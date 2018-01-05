@@ -1,0 +1,312 @@
+{
+	"info": {
+		"name": "Express Mongo React API",
+		"_postman_id": "dc527862-eb4f-74cb-fd2b-0095d452a651",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Server",
+			"description": "",
+			"item": [
+				{
+					"name": "SERVER: Auth Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"josephmgrotto@gmail.com\",\n\t\"password\": \"theone19\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "SERVER: Auth Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"josephmgrotto@gmail.com\",\n\t\"password\": \"theone19\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "SERVER: All Tickets",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tickets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tickets"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "SERVER: Create Ticket",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/tickets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"5a4c7998fb4fb526c0100abe",
+								"tickets"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Client",
+			"description": "",
+			"item": [
+				{
+					"name": "CLIENT: Auth Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"josephmgrotto@gmail.com\",\n\t\"password\": \"theone19\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "CLIENT: Auth Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"josephmgrotto@gmail.com\",\n\t\"password\": \"theone19\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "CLIENT: All Tickets",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/tickets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tickets"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "CLIENT: Create Ticket",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/5a4c7998fb4fb526c0100abe/tickets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"5a4c7998fb4fb526c0100abe",
+								"tickets"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ec9f9b6c-9ddf-4538-a5b6-2075291a6fa2",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "37ea4cfd-4b9f-4c06-96b4-e1c878f19da2",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

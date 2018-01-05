@@ -1,0 +1,43 @@
+* {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgba(0, 0, 0, 0.05);
+  height: 100%;
+}
+
+h1 {
+  font-weight: 400;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+
+/* @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  body {
+  }
+} */
+
+/* Tablets (portrait and landscape) ----------- */
+
+/* @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  body {
+  }
+} */
+
+/* Desktops and Laptops ----------- */
+
+/* @media only screen and (min-width: 1224px) {
+  body {
+  }
+} */
+
+/* Large screens ----------- */
+
+/* @media only screen and (min-width: 1824px) {
+  body {
+  }
+} */

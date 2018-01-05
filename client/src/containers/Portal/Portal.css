@@ -1,0 +1,10 @@
+.Portal {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.PortalTitle {
+  margin-bottom: 2rem;
+}
