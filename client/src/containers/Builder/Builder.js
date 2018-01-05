@@ -15,6 +15,8 @@ import classes from './Builder.css';
 
 class Builder extends Component {
   render() {
+    let counter = 0;
+
     return (
       <div className={classes.Builder}>
         <div className={classes.title}>
@@ -47,7 +49,7 @@ class Builder extends Component {
               </div>
             </div>
             <div className={classes.widget}>
-              <Map id={1} latitude={41.88} longitude={-87.65} />
+              <Map id={counter++} latitude={41.88} longitude={-87.65} />
             </div>
           </div>
         </div>
