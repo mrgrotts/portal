@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import Auxiliary from '../../../hoc/Auxiliary';
-
 import classes from './Map.css';
 
 let map;
