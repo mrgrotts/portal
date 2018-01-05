@@ -7,7 +7,7 @@ import classes from './MenuItems.css';
 const MenuItems = props => (
   <ul className={classes.MenuItems}>
     <MenuItem exact link="/">
-      Dashboard
+      Schedule Job
     </MenuItem>
 
     {props.isAuthenticated ? (

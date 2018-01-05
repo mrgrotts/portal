@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import asyncComponent from './hoc/asyncComponent/asyncComponent';
 
 import Auth from './containers/Auth/Auth';
-import Dashboard from './containers/Dashboard/Dashboard';
+import Builder from './containers/Builder/Builder';
 import Portal from './containers/Portal/Portal';
 import Layout from './containers/Layout/Layout';
 import Logout from './containers/Auth/Logout/Logout';

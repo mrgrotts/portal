@@ -9,3 +9,5 @@ const Service = props => {
     </div>
   );
 };
+
+export default Service;
