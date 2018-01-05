@@ -47,7 +47,7 @@ class Builder extends Component {
               </div>
             </div>
             <div className={classes.widget}>
-              <Map latitude={41.88} longitude={-87.65} />
+              <Map id={1} latitude={41.88} longitude={-87.65} />
             </div>
           </div>
         </div>

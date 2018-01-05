@@ -11,20 +11,23 @@ class Map extends Component {
   }
 
   initMap() {
-    map = new window.google.maps.Map(document.getElementById('map'), {
-      center: { lat: this.props.latitude, lng: this.props.longitude },
-      zoom: 10,
-      zoomControl: true,
-      zoomControlOptions: {
-        position: window.google.maps.ControlPosition.RIGHT_CENTER
-      },
-      scrollwheel: false,
-      streetViewControl: false
-    });
+    map = new window.google.maps.Map(
+      document.getElementById(`map-${this.props.id}`),
+      {
+        center: { lat: this.props.latitude, lng: this.props.longitude },
+        zoom: 10,
+        zoomControl: true,
+        zoomControlOptions: {
+          position: window.google.maps.ControlPosition.RIGHT_CENTER
+        },
+        scrollwheel: false,
+        streetViewControl: false
+      }
+    );
   }
 
   render() {
-    return <div className={classes.Map} id="map" />;
+    return <div className={classes.Map} id={`map-${this.props.id}`} />;
   }
 }
 
