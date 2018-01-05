@@ -1,0 +1,304 @@
+.ProgressWrap {
+  color: #444;
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+  margin-left: 6rem;
+  max-width: 1200px;
+}
+
+ul.ProgressBar li {
+  color: #ccc;
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 20px 14px 80px;
+  position: relative;
+}
+
+ul.ProgressBar li:before {
+  background: #ddd;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  left: 20px;
+  line-height: 37px;
+  height: 35px;
+  position: absolute;
+  text-align: left;
+  /* text-shadow: 1px 1px rgba(0, 0, 0, 0.2); */
+  top: 4px;
+  width: 35px;
+  z-index: 1;
+  box-shadow: -4px 0px 0px 0px #ddd;
+}
+
+ul.ProgressBar li:last-child:after {
+  width: 76%;
+  height: 20px;
+  position: absolute;
+  top: -58px;
+  background-color: white;
+  content: '';
+}
+
+ul.ProgressBar li.active {
+  color: #006eb6;
+  font-weight: bold;
+}
+
+ul.ProgressBar li.active-black:before {
+  background: #000000;
+  z-index: 2;
+  box-shadow: -4px 0px 0px 0px #006eb6;
+}
+
+ul.ProgressBar li.active-blue:before {
+  background: #006eb6;
+  z-index: 2;
+  box-shadow: -4px 0px 0px 0px #006eb6;
+}
+
+ul.ProgressBar li.active-green:before {
+  background: #8bc53f;
+  z-index: 2;
+  box-shadow: -4px 0px 0px 0px #006eb6;
+}
+
+ul.ProgressBar li.active-orange:before {
+  background: #ff9900;
+  z-index: 2;
+  box-shadow: -4px 0px 0px 0px #006eb6;
+}
+
+ul.ProgressBar li.active-red:before {
+  background: #a00000;
+  z-index: 2;
+  box-shadow: -4px 0px 0px 0px #006eb6;
+}
+
+ul.ProgressBar li.active-yellow:before {
+  background: #ffee00;
+  z-index: 2;
+  box-shadow: -4px 0px 0px 0px #006eb6;
+}
+
+ul.ProgressBar li.visited {
+  background: #006eb6;
+  color: #57aed1;
+  z-index: 2;
+}
+
+ul.ProgressBar li.visited:before {
+  background: #006eb6;
+  z-index: 2;
+  box-shadow: -4px 0px 0px 0px #006eb6;
+}
+
+ul.ProgressBar li.visited-black {
+  background: #000000;
+  color: #57aed1;
+  z-index: 2;
+}
+
+ul.ProgressBar li.visited-black:before {
+  background: #000000;
+  z-index: 2;
+  box-shadow: -4px 0px 0px 0px #006eb6;
+}
+
+ul.ProgressBar li.visited-blue {
+  background: #006eb6;
+  color: #57aed1;
+  z-index: 2;
+}
+
+ul.ProgressBar li.visited-blue:before {
+  background: #006eb6;
+  z-index: 2;
+  box-shadow: -4px 0px 0px 0px #006eb6;
+}
+
+ul.ProgressBar li.visited-green {
+  background: #8bc53f;
+  color: #57aed1;
+  z-index: 2;
+}
+
+ul.ProgressBar li.visited-green:before {
+  background: #8bc53f;
+  z-index: 2;
+  box-shadow: -4px 0px 0px 0px #006eb6;
+}
+
+ul.ProgressBar li.visited-orange {
+  background: #ff9900;
+  color: #57aed1;
+  z-index: 2;
+}
+
+ul.ProgressBar li.visited-orange:before {
+  background: #ff9900;
+  z-index: 2;
+  box-shadow: -4px 0px 0px 0px #006eb6;
+}
+
+ul.ProgressBar li.visited-red {
+  background: #a00000;
+  color: #57aed1;
+  z-index: 2;
+}
+
+ul.ProgressBar li.visited-red:before {
+  background: #a00000;
+  z-index: 2;
+  box-shadow: -4px 0px 0px 0px #006eb6;
+}
+
+ul.ProgressBar li.visited-yellow {
+  background: #ffee00;
+  color: #57aed1;
+  z-index: 2;
+}
+
+ul.ProgressBar li.visited-yellow:before {
+  background: #ffee00;
+  z-index: 2;
+  box-shadow: -4px 0px 0px 0px #006eb6;
+}
+
+/* ul.ProgressBar li:nth-child(1):before {
+  content: 'Scheduled';
+}
+
+ul.ProgressBar li:nth-child(2):before {
+  content: 'Assigned';
+}
+
+ul.ProgressBar li:nth-child(3):before {
+  content: 'Started';
+}
+
+ul.ProgressBar li:nth-child(4):before {
+  content: 'Completed';
+}
+
+ul.ProgressBar li:nth-child(5):before {
+  content: 'Invoiced';
+}
+
+ul.ProgressBar li:nth-child(6):before {
+  content: 'Done';
+} */
+
+ul.ProgressBar li:nth-child(1):before {
+  content: 'Unassigned';
+}
+
+ul.ProgressBar li:nth-child(2):before {
+  content: 'Pending';
+}
+
+ul.ProgressBar li:nth-child(3):before {
+  content: 'Prep';
+}
+
+ul.ProgressBar li:nth-child(4):before {
+  content: 'InProgress';
+}
+
+ul.ProgressBar li:nth-child(5):before {
+  content: 'Closed';
+}
+
+ul.ProgressBar li:nth-child(6):before {
+  content: 'Done';
+}
+
+@media all {
+  .ProgressBar li.active:after,
+  .ProgressBar li.active-black:after,
+  .ProgressBar li.active-blue:after,
+  .ProgressBar li.active-green:after,
+  .ProgressBar li.active-orange:after,
+  .ProgressBar li.active-red:after,
+  .ProgressBar li.active-yellow:after {
+    background-size: 35px 35px;
+    content: '';
+    height: 5px;
+    width: 100%;
+    left: 50%;
+    position: absolute;
+    top: -50px;
+    z-index: 0;
+  }
+
+  ul.ProgressBar {
+    background-size: 35px 35px;
+    background-color: #ececec;
+    border-radius: 15px;
+    height: 5px;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    width: 90%;
+  }
+
+  ul.ProgressBar:before {
+    background-size: 35px 35px;
+    background-color: #006eb6;
+    border-radius: 15px;
+    content: ' ';
+    height: 5px;
+    left: 0;
+    position: absolute;
+    width: 10%;
+  }
+
+  ul.ProgressBar li {
+    display: inline-block;
+    margin: 50px 0 0;
+    padding: 0;
+    text-align: center;
+    width: 19%;
+  }
+
+  ul.ProgressBar li:before {
+    height: 31px;
+    left: 40%;
+    line-height: 100px;
+    position: absolute;
+    top: -65px;
+    width: 31px;
+    z-index: 1;
+  }
+
+  ul.ProgressBar li.visited,
+  ul.ProgressBar li.visited-black,
+  ul.ProgressBar li.visited-blue,
+  ul.ProgressBar li.visited-green,
+  ul.ProgressBar li.visited-orange,
+  ul.ProgressBar li.visited-red,
+  ul.ProgressBar li.visited-yellow {
+    background: none;
+  }
+
+  ul.ProgressBar li.visited:after,
+  ul.ProgressBar li.visited-black:after,
+  ul.ProgressBar li.visited-blue:after,
+  ul.ProgressBar li.visited-green:after,
+  ul.ProgressBar li.visited-orange:after,
+  ul.ProgressBar li.visited-red:after,
+  ul.ProgressBar li.visited-yellow:after {
+    background-size: 35px 35px;
+    background-color: #006eb6;
+    content: '';
+    height: 5px;
+    left: 50%;
+    position: absolute;
+    top: -50px;
+    width: 100%;
+    z-index: 1;
+  }
+}
