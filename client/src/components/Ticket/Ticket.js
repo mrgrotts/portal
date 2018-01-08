@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Button from '../UI/Button/Button';
 import Map from '../UI/Map/Map';
 import ProgressBar from '../UI/ProgressBar/ProgressBar';
 
@@ -21,10 +22,15 @@ const Ticket = props => {
       </div>
       <p>Location: {props.location}</p>
       <p>Description: {props.description}</p>
-      <p>Received On: {props.dateReceived}</p>
       <p>Created By: {props.userId}</p>
       <p>Created At: {props.createdAt}</p>
       <p>Updated At: {props.updatedAt}</p>
+      <Button ButtonType="Success" clicked={props.update}>
+        Modify
+      </Button>
+      <Button ButtonType="Failure" clicked={props.delete}>
+        Delete
+      </Button>
     </div>
   );
 };

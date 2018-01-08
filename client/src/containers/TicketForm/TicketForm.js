@@ -39,80 +39,92 @@ class TicketForm extends Component {
     this.props.createTicket(ticket);
   };
 
-  handleChange = event => {
+  handleChange = event =>
     this.setState({ [event.target.name]: event.target.value });
-    console.log(this.state);
-  };
 
   render() {
     return (
       <div>
         <h1>Ticket Form</h1>
         <form onSubmit={this.addTicket}>
-          <label htmlFor="category">
-            Category
-            <select
-              id="category"
-              name="category"
-              className={classes.TicketFormControlSelect}
-              value={this.state.category}
-              onChange={this.handleChange}
-            >
-              <option value="commercialcleaning">Commercial Cleaning</option>
-              <option value="residentialcleaning">Residential Cleaning</option>
-              <option value="drywallinstallation">Drywall Installation</option>
-              <option value="electrician">Electrician</option>
-              <option value="floorservices">Floor Services</option>
-              <option value="maintenance">Maintenance</option>
-              <option value="painter">Painter</option>
-              <option value="pestcontrol">Pest Control</option>
-              <option value="plumber">Plumber</option>
-              <option value="postconstruction">Post Construction</option>
-              <option value="windowwashing">Window Washing</option>
-            </select>
-          </label>
-          <label htmlFor="location">
-            Location
-            <input
-              id="location"
-              type="text"
-              name="location"
-              className={classes.TicketFormControl}
-              value={this.state.location}
-              onChange={this.handleChange}
-            />
-          </label>
-          <label htmlFor="media">
-            Upload Image
-            <input
-              id="media"
-              type="file"
-              name="media"
-              className={classes.TicketFormControl}
-            />
-          </label>
-          <label htmlFor="requested-date">
-            Requested Date
-            <input
-              id="requested-date"
-              type="text"
-              name="requestedDate"
-              className={classes.TicketFormControl}
-              value={this.state.requestedDate}
-              onChange={this.handleChange}
-            />
-          </label>
-          <label htmlFor="description">
-            Description
-            <textarea
-              id="description"
-              type="text"
-              name="description"
-              className={classes.TicketFormControlArea}
-              value={this.state.description}
-              onChange={this.handleChange}
-            />
-          </label>
+          <div>
+            <label htmlFor="category">
+              Category
+              <select
+                id="category"
+                name="category"
+                className={classes.TicketFormControlSelect}
+                value={this.state.category}
+                onChange={this.handleChange}
+              >
+                <option value="commercialcleaning">Commercial Cleaning</option>
+                <option value="residentialcleaning">
+                  Residential Cleaning
+                </option>
+                <option value="drywallinstallation">
+                  Drywall Installation
+                </option>
+                <option value="electrician">Electrician</option>
+                <option value="floorservices">Floor Services</option>
+                <option value="maintenance">Maintenance</option>
+                <option value="painter">Painter</option>
+                <option value="pestcontrol">Pest Control</option>
+                <option value="plumber">Plumber</option>
+                <option value="postconstruction">Post Construction</option>
+                <option value="windowwashing">Window Washing</option>
+              </select>
+            </label>
+          </div>
+          <div>
+            <label htmlFor="location">
+              Location
+              <input
+                id="location"
+                type="text"
+                name="location"
+                className={classes.TicketFormControl}
+                value={this.state.location}
+                onChange={this.handleChange}
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="media">
+              Upload Image
+              <input
+                id="media"
+                type="file"
+                name="media"
+                className={classes.TicketFormControl}
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="requested-date">
+              Requested Date
+              <input
+                id="requested-date"
+                type="text"
+                name="requestedDate"
+                className={classes.TicketFormControl}
+                value={this.state.requestedDate}
+                onChange={this.handleChange}
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="description">
+              Description
+              <textarea
+                id="description"
+                type="text"
+                name="description"
+                className={classes.TicketFormControlArea}
+                value={this.state.description}
+                onChange={this.handleChange}
+              />
+            </label>
+          </div>
           <Button ButtonType="Success">Submit</Button>
         </form>
       </div>

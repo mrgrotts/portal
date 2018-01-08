@@ -18,8 +18,6 @@ exports.createTicket = (req, res, next) => {
     requestedDate: req.body.requestedDate
   };
 
-  console.log(newTicket);
-
   database.Ticket.create(newTicket)
     .then(ticket => {
       database.User.findById(req.params.id)
@@ -27,19 +25,23 @@ exports.createTicket = (req, res, next) => {
           user.tickets.push(ticket.id);
           user
             .save()
-            .then(user => {
-              return database.Ticket.findById(ticket._id).populate('userId', {
-                profileImageUrl: true
-              });
-            })
-            .then(t => {
-              return res.status(200).json(t);
-            })
+            .then(user =>
+              database.Ticket.findById(ticket._id).populate('userId', {
+                profilePicture: true
+              })
+            )
+            .then(t => res.status(200).json(t))
             .catch(next);
         })
         .catch(next);
     })
     .catch(next);
+};
+
+exports.readTicket = (req, res, next) => {
+  database.Ticket.findById(req.params.id)
+    .then(ticket => res.json(ticket))
+    .catch(error => res.send(error));
 };
 
 exports.updateTicket = (req, res, next) => {
@@ -62,27 +64,16 @@ exports.updateTicket = (req, res, next) => {
     requestedDeletion: req.body.requestedDeletion
   };
 
-  database.Ticket.findByIdAndUpdate(req.body._id, updatedTicket, { new: true })
-    .then(ticket => {
-      database.User.findById(req.params.id)
-        .then(user => {
-          user.tickets.push(ticket.id);
-          user
-            .save()
-            .then(user => database.Ticket.findById(ticket._id).populate('userId', {
-                profileImageUrl: true
-              })
-    .then(t => res.status(201).json(t))
-    .catch(next);
-      })
-      .catch(next);
+  database.Ticket.findByIdAndUpdate(req.params.id, updatedTicket, {
+    new: true
   })
-  .catch(next);
+    .then(ticket => res.status(201).json(ticket))
+    .catch(error => res.send(error));
 };
 
 exports.deleteTicket = (req, res, next) => {
   database.Ticket.findByIdAndRemove(req.params.id)
-    .then(res.json({ message: 'Ticket Deleted.' }))
+    .then(ticket => res.json(ticket))
     .catch(error => res.send(error));
 };
 

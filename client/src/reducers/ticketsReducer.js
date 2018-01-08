@@ -89,7 +89,9 @@ const ticketsReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        tickets: state.tickets.filter(ticket => ticket !== deletedTicket),
+        tickets: state.tickets.filter(
+          ticket => ticket._id !== deletedTicket._id
+        ),
         error: null,
         loading: false,
         success: true

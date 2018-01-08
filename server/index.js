@@ -39,15 +39,38 @@ app.get('/', (req, res) => {
   res.json({ message: API_WELCOME_MESSAGE });
 });
 
+// app.get('/api/users', (req, res) => {
+//   database.User.find()
+//     .then(users => {
+//       res.json(users);
+//     })
+//     .catch(error => {
+//       res.status(500).json(error);
+//     });
+// });
+
 app.get('/api/users', (req, res) => {
-  database.User.find()
-    .then(users => {
-      res.json(users);
-    })
-    .catch(error => {
-      res.status(500).json(error);
-    });
+  res.json([
+    {
+      _id: 'Unique Identifier',
+      email: 'Unique String',
+      password: 'Encrypted String (JWT)',
+      profilePicture: 'Google Cloud Storage URL'
+    }
+  ]);
 });
+
+// app.get('/api/tickets', (req, res, next) => {
+//   database.Ticket.find()
+//     .sort({ createAt: 'desc' })
+//     .populate('userId', { username: true, profileImageUrl: true })
+//     .then(tickets => {
+//       res.json(tickets);
+//     })
+//     .catch(error => {
+//       res.status(500).json(error);
+//     });
+// });
 
 app.get('/api/tickets', (req, res, next) => {
   res.json([

@@ -28,6 +28,7 @@ const ticketSchema = new mongoose.Schema(
       required: 'Please select a status',
       lowercase: true,
       trim: true,
+      default: 'unassigned',
       enum: [
         'unassigned',
         'prep',
@@ -37,14 +38,14 @@ const ticketSchema = new mongoose.Schema(
         'purchasingparts',
         'orderedparts',
         'closed'
-      ],
-      default: 'unassigned'
+      ]
     },
     category: {
       type: String,
       required: 'Please select a category',
       lowercase: true,
       trim: true,
+      default: 'commercialcleaning',
       enum: [
         'commercialcleaning',
         'residentialcleaning',

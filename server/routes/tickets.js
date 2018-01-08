@@ -4,6 +4,7 @@ const database = require('../database');
 const {
   readTickets,
   createTicket,
+  readTicket,
   updateTicket,
   deleteTicket
 } = require('../controllers/tickets');
@@ -13,7 +14,11 @@ const router = express.Router({ mergeParams: true });
 router
   .route('/')
   .get(readTickets)
-  .post(createTicket)
+  .post(createTicket);
+
+router
+  .route('/:id')
+  .get(readTicket)
   .put(updateTicket)
   .delete(deleteTicket);
 

@@ -17,6 +17,10 @@ class Tickets extends Component {
     await this.props.readTickets();
   }
 
+  updateTicket = async ticket => await this.props.updateTicket(ticket);
+
+  deleteTicket = async id => await this.props.deleteTicket(id);
+
   render() {
     let tickets = <Spinner />;
 
@@ -29,7 +33,11 @@ class Tickets extends Component {
             backgroundColor: 'white'
           }}
         >
-          <Ticket {...ticket} />
+          <Ticket
+            {...ticket}
+            update={this.updateTicket.bind(this, ticket)}
+            delete={this.deleteTicket.bind(this, ticket._id)}
+          />
         </div>
       ));
     }
@@ -51,7 +59,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  readTickets: () => dispatch(actions.readTickets())
+  readTickets: () => dispatch(actions.readTickets()),
+  updateTicket: ticket => dispatch(actions.updateTicket(ticket)),
+  deleteTicket: id => dispatch(actions.deleteTicket(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(

@@ -205,12 +205,13 @@ export const updateTicket = ticket => dispatch => {
 
   let url = `/users/${id}/tickets/${ticket._id}`;
 
-  api.put(url, ticket).then(ticket =>
-    dispatch(updateTicketSuccess(ticket)).catch(error => {
+  api
+    .put(url, ticket)
+    .then(response => dispatch(updateTicketSuccess(response.data)))
+    .catch(error => {
       console.log(error);
       dispatch(updateTicketFail(error));
-    })
-  );
+    });
 };
 
 export const updateTicketStart = () => ({
@@ -227,8 +228,8 @@ export const updateTicketFail = error => ({
   error
 });
 
-export const deleteTicket = ticket => dispatch => {
-  const id = localStorage.getItem('user');
+export const deleteTicket = id => dispatch => {
+  const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
   if (!token) {
@@ -237,14 +238,15 @@ export const deleteTicket = ticket => dispatch => {
 
   dispatch(deleteTicketStart());
 
-  let url = `/users/${id}/tickets/${ticket._id}`;
+  let url = `/users/${userId}/tickets/${id}`;
 
-  api.delete(url, ticket).then(ticket =>
-    dispatch(deleteTicketSuccess(ticket)).catch(error => {
+  api
+    .delete(url, id)
+    .then(response => dispatch(deleteTicketSuccess(response.data)))
+    .catch(error => {
       console.log(error);
       dispatch(deleteTicketFail(error));
-    })
-  );
+    });
 };
 
 export const deleteTicketStart = () => ({
