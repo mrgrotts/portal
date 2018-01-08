@@ -1,13 +1,12 @@
-import axios from 'axios';
+import api from '../../api';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import handleErrors from '../../hoc/handleErrors/handleErrors';
 
-import Map from '../../components/UI/Map/Map';
-import ProgressBar from '../../components/UI/ProgressBar/ProgressBar';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import Ticket from '../../components/Ticket/Ticket';
 
 import * as actions from '../../actions';
 
@@ -30,29 +29,14 @@ class Tickets extends Component {
             backgroundColor: 'white'
           }}
         >
-          <h4>{ticket.status}</h4>
-          <p>{ticket.description}</p>
-          <ProgressBar />
-          <div
-            style={{
-              height: '300px',
-              width: '300px'
-            }}
-          >
-            <Map
-              id={ticket._id}
-              location={ticket.location}
-              latitude={41.88}
-              longitude={-87.65}
-            />
-          </div>
+          <Ticket {...ticket} />
         </div>
       ));
     }
 
     return (
       <div className={classes.Tickets}>
-        <h1>Tickets List</h1>
+        <h1>You Have {tickets.length} Tickets</h1>
         {tickets}
       </div>
     );
@@ -62,6 +46,7 @@ class Tickets extends Component {
 const mapStateToProps = state => ({
   tickets: state.tickets.tickets,
   loading: state.tickets.loading,
+  token: state.auth.token,
   id: state.auth.id
 });
 
@@ -70,5 +55,5 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  handleErrors(Tickets, axios)
+  handleErrors(Tickets, api)
 );

@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import asyncComponent from './hoc/asyncComponent/asyncComponent';
-
 import Layout from './containers/Layout/Layout';
+import Portal from './containers/Portal/Portal';
 import Auth from './containers/Auth/Auth';
 import Logout from './containers/Auth/Logout/Logout';
-import Portal from './containers/Portal/Portal';
 import Builder from './containers/Builder/Builder';
 import Tickets from './containers/Tickets/Tickets';
 
 import * as actions from './actions';
+
+// import asyncComponent from './hoc/asyncComponent/asyncComponent';
 
 // const asyncAuth = asyncComponent(() => {
 //   return import('./containers/Auth/Auth');
@@ -30,7 +30,7 @@ class App extends Component {
     let routes = (
       <Switch>
         <Route path="/login" component={Auth} />
-        <Route exact path="/" component={Portal} />
+        <Route exact path="/" component={Builder} />
         <Redirect to="/" />
       </Switch>
     );
@@ -41,7 +41,7 @@ class App extends Component {
           <Route path="/tickets" component={Tickets} />
           <Route path="/login" component={Auth} />
           <Route path="/logout" component={Logout} />
-          <Route exact path="/" component={Portal} />
+          <Route exact path="/" component={Builder} />
           <Redirect to="/" />
         </Switch>
       );
@@ -49,7 +49,9 @@ class App extends Component {
 
     return (
       <div>
-        <Layout>{routes}</Layout>
+        <Layout>
+          <Portal>{routes}</Portal>
+        </Layout>
       </div>
     );
   }

@@ -7,7 +7,7 @@ import Backdrop from '../Backdrop/Backdrop';
 import classes from './Modal.css';
 
 class Modal extends Component {
-  // only update the Review component when Modal is toggled
+  // only update component when Modal is toggled
   shouldComponentUpdate(nextProps, nextState) {
     return (
       nextProps.show !== this.props.show ||

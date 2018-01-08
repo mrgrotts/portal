@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { unmountComponentAtNode } from 'react-dom';
+// import { unmountComponentAtNode } from 'react-dom';
 
 import classes from './Map.css';
 
@@ -9,12 +9,12 @@ class Map extends Component {
     await this.initMap();
   }
 
-  componentWillUnmount() {
-    unmountComponentAtNode(document.getElementById(`map-${this.props.id}`));
-  }
+  // componentWillUnmount() {
+  //   unmountComponentAtNode(document.getElementById(`map-${this.props.id}`));
+  // }
 
   initMap = () => {
-    const map = new window.google.maps.Map(
+    return new window.google.maps.Map(
       document.getElementById(`map-${this.props.id}`),
       {
         center: { lat: this.props.latitude, lng: this.props.longitude },

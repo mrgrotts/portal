@@ -27,28 +27,61 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use('/api/auth', authRoutes);
 app.use(
   '/api/users/:id/tickets',
   authenticateUser,
   authorizeUser,
   ticketRoutes
 );
-app.use('/api/auth', authRoutes);
 
 app.get('/', (req, res) => {
   res.json({ message: API_WELCOME_MESSAGE });
 });
 
-app.get('/api/tickets', (req, res, next) => {
-  database.Ticket.find()
-    .sort({ createAt: 'desc' })
-    .populate('userId', { profilePicture: true })
-    .then(tickets => {
-      res.json(tickets);
+app.get('/api/users', (req, res) => {
+  database.User.find()
+    .then(users => {
+      res.json(users);
     })
     .catch(error => {
       res.status(500).json(error);
     });
+});
+
+app.get('/api/tickets', (req, res, next) => {
+  res.json([
+    {
+      _id: 'Unique Identifier',
+      userId: 'Unique String',
+      status: 'Enum',
+      category: 'Enum',
+      location: {
+        addressOne: 'String',
+        addressTwo: 'String',
+        city: 'String',
+        state: 'String',
+        zipcode: 'Number',
+        latitude: 'Number',
+        longitude: 'Number'
+      },
+      description: 'String',
+      media: ['Array of Google Cloud Storage URLs'],
+      comments: ['Array of Comments'],
+      assignedTo: 'Enum',
+      requestedDate: 'Date',
+      scheduledFor: 'Date',
+      partPurchasedDate: 'Date',
+      partArrivedDate: 'Date',
+      workCompleted: 'String',
+      hoursSpent: 'Number',
+      hourlyRate: 'Number',
+      completedDate: 'Date',
+      requestedDeletion: 'Boolean',
+      createdAt: 'Date',
+      updatedAt: 'Date'
+    }
+  ]);
 });
 
 const server = http.createServer(app);

@@ -7,14 +7,22 @@ export const AUTH_FAIL = 'auth_fail';
 export const AUTH_LOGOUT = 'auth_logout';
 export const AUTH_REDIRECT_PATH = 'auth_redirect_path';
 
-export const READ_TICKETS_START = 'read_tickets_start';
-export const READ_TICKETS_SUCCESS = 'read_tickets_success';
-export const READ_TICKETS_FAIL = 'read_tickets_fail';
-
 export const CREATE_TICKET = 'create_ticket';
 export const CREATE_TICKET_START = 'create_ticket_start';
 export const CREATE_TICKET_SUCCESS = 'create_ticket_success';
 export const CREATE_TICKET_FAIL = 'create_ticket_fail';
+
+export const READ_TICKETS_START = 'read_tickets_start';
+export const READ_TICKETS_SUCCESS = 'read_tickets_success';
+export const READ_TICKETS_FAIL = 'read_tickets_fail';
+
+export const UPDATE_TICKET_START = 'update_ticket_start';
+export const UPDATE_TICKET_SUCCESS = 'update_ticket_success';
+export const UPDATE_TICKET_FAIL = 'update_ticket_fail';
+
+export const DELETE_TICKET_START = 'delete_ticket_start';
+export const DELETE_TICKET_SUCCESS = 'delete_ticket_success';
+export const DELETE_TICKET_FAIL = 'delete_ticket_fail';
 
 /**************************************************************************************
  * AUTH                                                                               *
@@ -115,6 +123,41 @@ export const authState = () => dispatch => {
 /**************************************************************************************
  * TICKETS                                                                            *
  **************************************************************************************/
+export const createTicket = ticket => dispatch => {
+  const id = localStorage.getItem('user');
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    dispatch(authLogout());
+  }
+
+  dispatch(createTicketStart());
+
+  let url = `/users/${id}/tickets`;
+
+  api
+    .post(url, ticket)
+    .then(ticket => dispatch(createTicketSuccess(ticket)))
+    .catch(error => {
+      console.log(error);
+      dispatch(createTicketFail(error));
+    });
+};
+
+export const createTicketStart = () => ({
+  type: CREATE_TICKET_START
+});
+
+export const createTicketSuccess = ticket => ({
+  type: CREATE_TICKET_SUCCESS,
+  ticket
+});
+
+export const createTicketFail = error => ({
+  type: CREATE_TICKET_FAIL,
+  error
+});
+
 export const readTickets = () => dispatch => {
   const id = localStorage.getItem('user');
   const token = localStorage.getItem('token');
@@ -150,36 +193,71 @@ export const readTicketsFail = error => ({
   error
 });
 
-export const createTicket = (id, ticket) => dispatch => {
+export const updateTicket = ticket => dispatch => {
+  const id = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
   if (!token) {
     dispatch(authLogout());
   }
 
-  dispatch(createTicketStart());
+  dispatch(updateTicketStart());
 
-  let url = `/users/${id}/tickets`;
+  let url = `/users/${id}/tickets/${ticket._id}`;
 
-  api.post(url, ticket).then(ticket =>
-    dispatch(createTicketSuccess(ticket)).catch(error => {
+  api.put(url, ticket).then(ticket =>
+    dispatch(updateTicketSuccess(ticket)).catch(error => {
       console.log(error);
-      dispatch(createTicketFail(error));
+      dispatch(updateTicketFail(error));
     })
   );
 };
 
-export const createTicketStart = () => ({
-  type: CREATE_TICKET_START
+export const updateTicketStart = () => ({
+  type: UPDATE_TICKET_START
 });
 
-export const createTicketSuccess = ticket => ({
-  type: CREATE_TICKET_SUCCESS,
+export const updateTicketSuccess = ticket => ({
+  type: UPDATE_TICKET_SUCCESS,
   ticket
 });
 
-export const createTicketFail = error => ({
-  type: CREATE_TICKET_FAIL,
+export const updateTicketFail = error => ({
+  type: UPDATE_TICKET_FAIL,
+  error
+});
+
+export const deleteTicket = ticket => dispatch => {
+  const id = localStorage.getItem('user');
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    dispatch(authLogout());
+  }
+
+  dispatch(deleteTicketStart());
+
+  let url = `/users/${id}/tickets/${ticket._id}`;
+
+  api.delete(url, ticket).then(ticket =>
+    dispatch(deleteTicketSuccess(ticket)).catch(error => {
+      console.log(error);
+      dispatch(deleteTicketFail(error));
+    })
+  );
+};
+
+export const deleteTicketStart = () => ({
+  type: DELETE_TICKET_START
+});
+
+export const deleteTicketSuccess = ticket => ({
+  type: DELETE_TICKET_SUCCESS,
+  ticket
+});
+
+export const deleteTicketFail = error => ({
+  type: DELETE_TICKET_FAIL,
   error
 });
 

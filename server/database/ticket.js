@@ -37,7 +37,8 @@ const ticketSchema = new mongoose.Schema(
         'purchasingparts',
         'orderedparts',
         'closed'
-      ]
+      ],
+      default: 'unassigned'
     },
     category: {
       type: String,
@@ -80,7 +81,7 @@ const ticketSchema = new mongoose.Schema(
       type: String
     },
     requestedDate: {
-      type: Date,
+      type: String,
       required: 'Please request a service date'
     },
     scheduledFor: {

@@ -1,96 +1,17 @@
-import axios from 'axios';
+import api from '../../api';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Auxiliary from '../../hoc/Auxiliary';
 import handleErrors from '../../hoc/handleErrors/handleErrors';
 
 import Map from '../../components/UI/Map/Map';
-import ProgressBar from '../../components/UI/ProgressBar/ProgressBar';
 
 import * as actions from '../../actions';
 
 import classes from './Builder.css';
 
 class Builder extends Component {
-  state = {
-    ticket: {
-      category: '',
-      location: '',
-      description: '',
-      media: [],
-      requestedDate: Date.now
-    }
-    // ticket: {
-    //   category: {
-    //     fieldType: 'input',
-    //     fieldConfig: {
-    //       type: 'text',
-    //       placeholder: 'Category'
-    //     },
-    //     value: '',
-    //     validation: {
-    //       required: true
-    //     },
-    //     touched: false,
-    //     valid: false
-    //   },
-    //   location: {
-    //     fieldType: 'input',
-    //     fieldConfig: {
-    //       type: 'text',
-    //       placeholder: 'Location'
-    //     },
-    //     value: '',
-    //     validation: {
-    //       required: true
-    //     },
-    //     touched: false,
-    //     valid: false
-    //   },
-    //   description: {
-    //     fieldType: 'input',
-    //     fieldConfig: {
-    //       type: 'text',
-    //       placeholder: 'Description'
-    //     },
-    //     value: '',
-    //     validation: {
-    //       required: true
-    //     },
-    //     touched: false,
-    //     valid: false
-    //   },
-    //   media: {
-    //     fieldType: 'input',
-    //     fieldConfig: {
-    //       type: 'text',
-    //       placeholder: 'Media'
-    //     },
-    //     value: '',
-    //     validation: {
-    //       required: true
-    //     },
-    //     touched: false,
-    //     valid: false
-    //   },
-    //   requestedDate: {
-    //     fieldType: 'input',
-    //     fieldConfig: {
-    //       type: 'text',
-    //       placeholder: 'Requested Date'
-    //     },
-    //     value: '',
-    //     validation: {
-    //       required: true
-    //     },
-    //     touched: false,
-    //     valid: false
-    //   }
-    // },
-  };
-
   render() {
     let counter = 0;
 
@@ -143,5 +64,5 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  handleErrors(Builder, axios)
+  handleErrors(Builder, api)
 );

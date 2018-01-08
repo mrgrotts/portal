@@ -9,6 +9,30 @@ const initialState = {
 
 const ticketsReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actions.CREATE_TICKET_START:
+      return {
+        ...state,
+        error: null,
+        loading: true,
+        success: false
+      };
+    case actions.CREATE_TICKET_SUCCESS:
+      const newTicket = { ...action.ticket };
+
+      return {
+        ...state,
+        tickets: state.tickets.concat(newTicket),
+        error: null,
+        loading: false,
+        success: true
+      };
+    case actions.CREATE_TICKET_FAIL:
+      return {
+        ...state,
+        error: action.error,
+        loading: false,
+        success: false
+      };
     case actions.READ_TICKETS_START:
       return {
         ...state,
@@ -29,24 +53,48 @@ const ticketsReducer = (state = initialState, action) => {
         error: action.error,
         success: false
       };
-    case actions.CREATE_TICKET_START:
+    case actions.UPDATE_TICKET_START:
       return {
         ...state,
         error: null,
         loading: true,
         success: false
       };
-    case actions.CREATE_TICKET_SUCCESS:
-      const ticket = { ...action.ticket };
+    case actions.UPDATE_TICKET_SUCCESS:
+      const updatedTicket = { ...action.ticket };
 
       return {
         ...state,
-        tickets: state.tickets.concat(ticket),
+        tickets: state.tickets.concat(updatedTicket),
         error: null,
         loading: false,
         success: true
       };
-    case actions.CREATE_TICKET_FAIL:
+    case actions.UPDATE_TICKET_FAIL:
+      return {
+        ...state,
+        error: action.error,
+        loading: false,
+        success: false
+      };
+    case actions.DELETE_TICKET_START:
+      return {
+        ...state,
+        error: null,
+        loading: true,
+        success: false
+      };
+    case actions.DELETE_TICKET_SUCCESS:
+      const deletedTicket = { ...action.ticket };
+
+      return {
+        ...state,
+        tickets: state.tickets.filter(ticket => ticket !== deletedTicket),
+        error: null,
+        loading: false,
+        success: true
+      };
+    case actions.DELETE_TICKET_FAIL:
       return {
         ...state,
         error: action.error,

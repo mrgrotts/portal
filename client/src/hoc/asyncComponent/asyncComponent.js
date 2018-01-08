@@ -9,9 +9,9 @@ const asyncComponent = importComponent => {
     };
 
     componentDidMount() {
-      importComponent().then(component =>
-        this.setState({ component: component.default })
-      );
+      importComponent().then(component => {
+        this.setState({ component: component.default });
+      });
     }
 
     render() {
