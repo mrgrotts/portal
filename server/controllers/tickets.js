@@ -71,7 +71,7 @@ exports.updateTicket = (req, res, next) => {
             .save()
             .then(user => database.Ticket.findById(ticket._id).populate('userId', {
                 profileImageUrl: true
-              // })
+              })
     .then(t => res.status(201).json(t))
     .catch(next);
       })
