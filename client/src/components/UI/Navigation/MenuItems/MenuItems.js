@@ -11,6 +11,10 @@ const MenuItems = props => (
     </MenuItem>
 
     {props.isAuthenticated ? (
+      <MenuItem link="/tickets">Tickets</MenuItem>
+    ) : null}
+
+    {props.isAuthenticated ? (
       <MenuItem link="/logout">Logout</MenuItem>
     ) : (
       <MenuItem link="/login">Login</MenuItem>

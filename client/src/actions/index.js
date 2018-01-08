@@ -7,6 +7,19 @@ export const AUTH_FAIL = 'auth_fail';
 export const AUTH_LOGOUT = 'auth_logout';
 export const AUTH_REDIRECT_PATH = 'auth_redirect_path';
 
+export const READ_TICKETS_START = 'read_tickets_start';
+export const READ_TICKETS_SUCCESS = 'read_tickets_success';
+export const READ_TICKETS_FAIL = 'read_tickets_fail';
+
+export const CREATE_TICKET = 'create_ticket';
+export const CREATE_TICKET_START = 'create_ticket_start';
+export const CREATE_TICKET_SUCCESS = 'create_ticket_success';
+export const CREATE_TICKET_FAIL = 'create_ticket_fail';
+
+/**************************************************************************************
+ * AUTH                                                                               *
+ **************************************************************************************/
+
 export const auth = (email, password, registration) => dispatch => {
   let url = `/auth/login`;
 
@@ -31,6 +44,7 @@ export const auth = (email, password, registration) => dispatch => {
 
       dispatch(authSuccess(response.data.token, response.data.userId));
       dispatch(authTimeout(response.data.expiresIn));
+      // dispatch(readTickets(response.data.userId));
     })
     .catch(error => {
       console.log(error);
@@ -97,3 +111,92 @@ export const authState = () => dispatch => {
     dispatch(authTimeout((expiration.getTime() - new Date().getTime()) / 1000));
   }
 };
+
+/**************************************************************************************
+ * TICKETS                                                                            *
+ **************************************************************************************/
+export const readTickets = () => dispatch => {
+  const id = localStorage.getItem('user');
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    dispatch(authLogout());
+  }
+
+  dispatch(readTicketsStart());
+
+  let url = `/users/${id}/tickets`;
+
+  api
+    .get(url)
+    .then(response => dispatch(readTicketsSuccess(response.data)))
+    .catch(error => {
+      console.log(error);
+      dispatch(readTicketsFail(error));
+    });
+};
+
+export const readTicketsStart = () => ({
+  type: READ_TICKETS_START
+});
+
+export const readTicketsSuccess = tickets => ({
+  type: READ_TICKETS_SUCCESS,
+  tickets
+});
+
+export const readTicketsFail = error => ({
+  type: READ_TICKETS_FAIL,
+  error
+});
+
+export const createTicket = (id, ticket) => dispatch => {
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    dispatch(authLogout());
+  }
+
+  dispatch(createTicketStart());
+
+  let url = `/users/${id}/tickets`;
+
+  api.post(url, ticket).then(ticket =>
+    dispatch(createTicketSuccess(ticket)).catch(error => {
+      console.log(error);
+      dispatch(createTicketFail(error));
+    })
+  );
+};
+
+export const createTicketStart = () => ({
+  type: CREATE_TICKET_START
+});
+
+export const createTicketSuccess = ticket => ({
+  type: CREATE_TICKET_SUCCESS,
+  ticket
+});
+
+export const createTicketFail = error => ({
+  type: CREATE_TICKET_FAIL,
+  error
+});
+
+// userId: null,
+// status: null,
+// category: null,
+// location: null,
+// description: null,
+// media: [],
+// comments: [],
+// assignedTo: null,
+// requestedDate: null,
+// scheduledFor: null,
+// partPurchasedDate: null,
+// partArrivedDate: null,
+// workCompleted: null,
+// hoursSpent: null,
+// hourlyRate: null,
+// completedDate: null,
+// requestedDeletion: false,

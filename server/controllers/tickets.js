@@ -1,25 +1,53 @@
 const database = require('../database');
 
+exports.readTickets = (req, res, next) => {
+  database.Ticket.find()
+    .sort({ createAt: 'desc' })
+    .populate('userId', { profilePicture: true })
+    .then(tickets => res.status(200).json(tickets))
+    .catch(error => res.send(error));
+};
+
 exports.createTicket = (req, res, next) => {
-  const newTicket = {
-    userId: req.params.id,
-    status: req.body.status,
-    category: req.body.category,
-    location: req.body.location,
-    description: req.body.description,
-    media: req.body.media,
-    comments: req.body.comments,
-    assignedTo: req.body.assignedTo,
-    requestedDate: req.body.requestedDate,
-    scheduledFor: req.body.scheduledFor,
-    partPurchasedDate: req.body.partPurchasedDate,
-    partArrivedDate: req.body.partArrivedDate,
-    workCompleted: req.body.workCompleted,
-    hoursSpent: req.body.hoursSpent,
-    hourlyRate: req.body.hourlyRate,
-    completedDate: req.body.completedDate,
-    requestedDeletion: req.body.requestedDeletion
-  };
+  const newTicket = ({
+    userId,
+    status,
+    category,
+    location,
+    description,
+    media,
+    comments,
+    assignedTo,
+    requestedDate,
+    scheduledFor,
+    partPurchasedDate,
+    partArrivedDate,
+    workCompleted,
+    hoursSpent,
+    hourlyRate,
+    completedDate,
+    requestedDeletion
+  } = req.body.ticket);
+
+  // const newTicket = {
+  //   userId: req.params.id,
+  //   status,
+  //   category,
+  //   location,
+  //   description,
+  //   media,
+  //   comments,
+  //   assignedTo,
+  //   requestedDate,
+  //   scheduledFor,
+  //   partPurchasedDate,
+  //   partArrivedDate,
+  //   workCompleted,
+  //   hoursSpent,
+  //   hourlyRate,
+  //   completedDate,
+  //   requestedDeletion
+  // };
 
   database.Ticket.create(newTicket)
     .then(ticket => {

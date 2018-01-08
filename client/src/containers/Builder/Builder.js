@@ -14,6 +14,83 @@ import * as actions from '../../actions';
 import classes from './Builder.css';
 
 class Builder extends Component {
+  state = {
+    ticket: {
+      category: '',
+      location: '',
+      description: '',
+      media: [],
+      requestedDate: Date.now
+    }
+    // ticket: {
+    //   category: {
+    //     fieldType: 'input',
+    //     fieldConfig: {
+    //       type: 'text',
+    //       placeholder: 'Category'
+    //     },
+    //     value: '',
+    //     validation: {
+    //       required: true
+    //     },
+    //     touched: false,
+    //     valid: false
+    //   },
+    //   location: {
+    //     fieldType: 'input',
+    //     fieldConfig: {
+    //       type: 'text',
+    //       placeholder: 'Location'
+    //     },
+    //     value: '',
+    //     validation: {
+    //       required: true
+    //     },
+    //     touched: false,
+    //     valid: false
+    //   },
+    //   description: {
+    //     fieldType: 'input',
+    //     fieldConfig: {
+    //       type: 'text',
+    //       placeholder: 'Description'
+    //     },
+    //     value: '',
+    //     validation: {
+    //       required: true
+    //     },
+    //     touched: false,
+    //     valid: false
+    //   },
+    //   media: {
+    //     fieldType: 'input',
+    //     fieldConfig: {
+    //       type: 'text',
+    //       placeholder: 'Media'
+    //     },
+    //     value: '',
+    //     validation: {
+    //       required: true
+    //     },
+    //     touched: false,
+    //     valid: false
+    //   },
+    //   requestedDate: {
+    //     fieldType: 'input',
+    //     fieldConfig: {
+    //       type: 'text',
+    //       placeholder: 'Requested Date'
+    //     },
+    //     value: '',
+    //     validation: {
+    //       required: true
+    //     },
+    //     touched: false,
+    //     valid: false
+    //   }
+    // },
+  };
+
   render() {
     let counter = 0;
 
@@ -22,7 +99,6 @@ class Builder extends Component {
         <div className={classes.title}>
           <h1>Builder Component</h1>
         </div>
-        <ProgressBar />
         <div className={classes.container}>
           <div className={classes.columnTwo}>
             <div className={classes.widget}>

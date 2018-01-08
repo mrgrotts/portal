@@ -4,17 +4,22 @@ import { connect } from 'react-redux';
 
 import asyncComponent from './hoc/asyncComponent/asyncComponent';
 
-import Auth from './containers/Auth/Auth';
-import Builder from './containers/Builder/Builder';
-import Portal from './containers/Portal/Portal';
 import Layout from './containers/Layout/Layout';
+import Auth from './containers/Auth/Auth';
 import Logout from './containers/Auth/Logout/Logout';
+import Portal from './containers/Portal/Portal';
+import Builder from './containers/Builder/Builder';
+import Tickets from './containers/Tickets/Tickets';
 
 import * as actions from './actions';
 
 // const asyncAuth = asyncComponent(() => {
 //   return import('./containers/Auth/Auth');
 // });
+
+// const asyncTickets = asyncComponent(() =>
+//   import('./containers/Tickets/Tickets')
+// );
 
 class App extends Component {
   async componentDidMount() {
@@ -33,6 +38,7 @@ class App extends Component {
     if (this.props.isAuthenticated) {
       routes = (
         <Switch>
+          <Route path="/tickets" component={Tickets} />
           <Route path="/login" component={Auth} />
           <Route path="/logout" component={Logout} />
           <Route exact path="/" component={Portal} />
