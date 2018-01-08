@@ -63,21 +63,21 @@ exports.updateTicket = (req, res, next) => {
   };
 
   database.Ticket.findByIdAndUpdate(req.body._id, updatedTicket, { new: true })
-    // .then(ticket => {
-    //   database.User.findById(req.params.id)
-    //     .then(user => {
-    //       user.tickets.push(ticket.id);
-    //       user
-    //         .save()
-    //         .then(user => database.Ticket.findById(ticket._id).populate('userId', {
-    //             profileImageUrl: true
-    //           })
+    .then(ticket => {
+      database.User.findById(req.params.id)
+        .then(user => {
+          user.tickets.push(ticket.id);
+          user
+            .save()
+            .then(user => database.Ticket.findById(ticket._id).populate('userId', {
+                profileImageUrl: true
+              // })
     .then(t => res.status(201).json(t))
     .catch(next);
-  //     })
-  //     .catch(next);
-  // })
-  // .catch(next);
+      })
+      .catch(next);
+  })
+  .catch(next);
 };
 
 exports.deleteTicket = (req, res, next) => {
