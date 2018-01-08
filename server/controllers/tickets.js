@@ -43,28 +43,26 @@ exports.createTicket = (req, res, next) => {
 };
 
 exports.updateTicket = (req, res, next) => {
-  const updatedTicket = ({
-    _id,
-    userId,
-    status,
-    category,
-    location,
-    description,
-    media,
-    comments,
-    assignedTo,
-    requestedDate,
-    scheduledFor,
-    partPurchasedDate,
-    partArrivedDate,
-    workCompleted,
-    hoursSpent,
-    hourlyRate,
-    completedDate,
-    requestedDeletion
-  } = req.body.ticket);
+  const updatedTicket = {
+    status: req.body.status,
+    category: req.body.category,
+    location: req.body.location,
+    description: req.body.description,
+    media: req.body.media,
+    comments: req.body.comments,
+    assignedTo: req.body.assignedTo,
+    requestedDate: req.body.requestedDate,
+    scheduledFor: req.body.scheduledFor,
+    partPurchasedDate: req.body.partPurchasedDate,
+    partArrivedDate: req.body.partArrivedDate,
+    workCompleted: req.body.workCompleted,
+    hoursSpent: req.body.hoursSpent,
+    hourlyRate: req.body.hourlyRate,
+    completedDate: req.body.completedDate,
+    requestedDeletion: req.body.requestedDeletion
+  };
 
-  database.Ticket.findByIdAndUpdate(req.params.id, updatedTicket, { new: true })
+  database.Ticket.findByIdAndUpdate(req.body._id, updatedTicket, { new: true })
     // .then(ticket => {
     //   database.User.findById(req.params.id)
     //     .then(user => {
