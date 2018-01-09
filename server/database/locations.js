@@ -41,7 +41,13 @@ const locationsSchema = new mongoose.Schema(
     longitude: {
       type: Number,
       default: -87.65
-    }
+    },
+    tickets: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Tickets'
+      }
+    ]
   },
   {
     timestamps: true
