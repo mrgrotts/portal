@@ -3,9 +3,9 @@ const { API_WELCOME_MESSAGE } = require('../constants');
 exports.restAPI = (req, res, next) => {
   res.json({
     message: API_WELCOME_MESSAGE,
-    userSchema: '/users',
-    locationSchema: '/locations',
-    ticketSchema: '/tickets'
+    usersSchema: '/users',
+    locationsSchema: '/locations',
+    ticketsSchema: '/tickets'
   });
 };
 
