@@ -103,6 +103,105 @@
 			"response": []
 		},
 		{
+			"name": "All Users",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "All Locations",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/locations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"locations"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "All Tickets",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tickets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tickets"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
 			"name": "Register",
 			"request": {
 				"method": "POST",
@@ -165,7 +264,7 @@
 			"response": []
 		},
 		{
-			"name": "All Locations",
+			"name": "User Locations",
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -363,7 +462,7 @@
 			"response": []
 		},
 		{
-			"name": "All Tickets",
+			"name": "User Tickets",
 			"request": {
 				"auth": {
 					"type": "noauth"
