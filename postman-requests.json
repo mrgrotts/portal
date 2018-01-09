@@ -24,14 +24,13 @@
 					"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/users",
+					"raw": "http://localhost:8080/users",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"api",
 						"users"
 					]
 				},
@@ -57,14 +56,13 @@
 					"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/locations",
+					"raw": "http://localhost:8080/locations",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"api",
 						"locations"
 					]
 				},
@@ -90,14 +88,13 @@
 					"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/tickets",
+					"raw": "http://localhost:8080/tickets",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"api",
 						"tickets"
 					]
 				},
