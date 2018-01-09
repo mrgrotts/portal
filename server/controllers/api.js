@@ -61,35 +61,3 @@ exports.ticketsAPI = (req, res, next) => {
     }
   ]);
 };
-
-// app.get('/api/users', (req, res) => {
-//   database.Users.find()
-//     .then(users => {
-//       res.json(users);
-//     })
-//     .catch(error => {
-//       res.status(500).json(error);
-//     });
-// });
-
-// app.get('/api/locations', (req, res) => {
-//   database.Locations.find()
-//     .then(locations => {
-//       res.json(locations);
-//     })
-//     .catch(error => {
-//       res.status(500).json(error);
-//     });
-// });
-
-// app.get('/api/tickets', (req, res, next) => {
-//   database.Tickets.find()
-//     .sort({ createAt: 'desc' })
-//     .populate('userId', { username: true, profileImageUrl: true })
-//     .then(tickets => {
-//       res.json(tickets);
-//     })
-//     .catch(error => {
-//       res.status(500).json(error);
-//     });
-// });
