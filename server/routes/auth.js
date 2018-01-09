@@ -2,11 +2,11 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 
 const database = require('../database');
-const auth = require('../controllers/auth');
+const { login, register } = require('../controllers/auth');
 
 const router = express.Router();
 
-router.post('/login', auth.login);
-router.post('/register', auth.register);
+router.post('/login', login);
+router.post('/register', register);
 
 module.exports = router;

@@ -10,11 +10,11 @@ const morgan = require('morgan');
 
 const database = require('./database');
 const { authenticateUser, authorizeUser } = require('./middleware');
+
+const apiRoutes = require('./routes/api');
 const authRoutes = require('./routes/auth');
 const locationRoutes = require('./routes/locations');
 const ticketRoutes = require('./routes/tickets');
-
-const { API_WELCOME_MESSAGE } = require('./constants');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -28,6 +28,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use('/', apiRoutes);
 app.use('/api/auth', authRoutes);
 app.use(
   '/api/users/:id/locations',
@@ -41,97 +42,6 @@ app.use(
   authorizeUser,
   ticketRoutes
 );
-
-app.get('/', (req, res) => {
-  res.json({ message: API_WELCOME_MESSAGE });
-});
-
-// app.get('/api/users', (req, res) => {
-//   database.Users.find()
-//     .then(users => {
-//       res.json(users);
-//     })
-//     .catch(error => {
-//       res.status(500).json(error);
-//     });
-// });
-
-app.get('/api/users', (req, res) => {
-  res.json([
-    {
-      _id: 'Unique Identifier',
-      email: 'Unique String',
-      password: 'Encrypted String (JWT)',
-      profilePicture: 'Google Cloud Storage URL'
-    }
-  ]);
-});
-
-// app.get('/api/locations', (req, res) => {
-//   database.Locations.find()
-//     .then(locations => {
-//       res.json(locations);
-//     })
-//     .catch(error => {
-//       res.status(500).json(error);
-//     });
-// });
-
-app.get('/api/locations', (req, res) => {
-  res.json([
-    {
-      _id: 'Unique Identifier',
-      userId: 'Mongo Document Collection',
-      name: 'String',
-      addressOne: 'String',
-      addressTwo: 'String',
-      city: 'String',
-      state: 'String',
-      zipcode: 'Number',
-      latitude: 'Number',
-      longitude: 'Number'
-    }
-  ]);
-});
-
-// app.get('/api/tickets', (req, res, next) => {
-//   database.Tickets.find()
-//     .sort({ createAt: 'desc' })
-//     .populate('userId', { username: true, profileImageUrl: true })
-//     .then(tickets => {
-//       res.json(tickets);
-//     })
-//     .catch(error => {
-//       res.status(500).json(error);
-//     });
-// });
-
-app.get('/api/tickets', (req, res, next) => {
-  res.json([
-    {
-      _id: 'Unique Identifier',
-      userId: 'Mongo Document Collection',
-      status: 'Enum',
-      category: 'Enum',
-      location: 'Mongo Document Collection',
-      description: 'String',
-      media: ['Array of Google Cloud Storage URLs'],
-      comments: ['Array of Comments'],
-      assignedTo: 'Enum',
-      requestedDate: 'Date',
-      scheduledFor: 'Date',
-      partPurchasedDate: 'Date',
-      partArrivedDate: 'Date',
-      workCompleted: 'String',
-      hoursSpent: 'Number',
-      hourlyRate: 'Number',
-      completedDate: 'Date',
-      requestedDeletion: 'Boolean',
-      createdAt: 'Date',
-      updatedAt: 'Date'
-    }
-  ]);
-});
 
 const server = http.createServer(app);
 server.listen(PORT, IP, () => {
