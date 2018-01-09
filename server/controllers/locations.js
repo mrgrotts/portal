@@ -1,0 +1,75 @@
+const database = require('../database');
+
+exports.readLocations = (req, res, next) => {
+  database.Locations.find()
+    .sort({ createAt: 'desc' })
+    // .populate('userId', { profilePicture: true })
+    .then(locations => res.status(200).json(locations))
+    .catch(error => res.send(error));
+};
+
+exports.createLocation = (req, res, next) => {
+  const newLocation = {
+    userId: req.params.id,
+    name: req.body.name,
+    addressOne: req.body.addressOne,
+    addressTwo: req.body.addressTwo,
+    city: req.body.city,
+    state: req.body.state,
+    zipcode: req.body.zipcode,
+    latitude: req.body.latitude,
+    longitude: req.body.longitude
+  };
+
+  database.Locations.create(newLocation)
+    .then(location => {
+      database.Users.findById(req.params.id)
+        .then(user => {
+          user.locations.push(location.id);
+          user
+            .save()
+            .then(user =>
+              database.Locations.findById(location._id).populate('userId', {
+                profilePicture: true
+              })
+            )
+            .then(t => res.status(200).json(t))
+            .catch(next);
+        })
+        .catch(next);
+    })
+    .catch(next);
+};
+
+exports.readLocation = (req, res, next) => {
+  database.Locations.findById(req.params.id)
+    .then(location => res.json(location))
+    .catch(error => res.send(error));
+};
+
+exports.updateLocation = (req, res, next) => {
+  const updatedLocation = {
+    name: req.body.name,
+    addressOne: req.body.addressOne,
+    addressTwo: req.body.addressTwo,
+    city: req.body.city,
+    state: req.body.state,
+    zipcode: req.body.zipcode,
+    latitude: req.body.latitude,
+    longitude: req.body.longitude
+  };
+
+  database.Locations.findByIdAndUpdate(req.params.id, updatedLocation, {
+    new: true
+  })
+    .then(location => res.status(201).json(location))
+    .catch(error => res.send(error));
+};
+
+exports.deleteLocation = (req, res, next) => {
+  database.Locations.findByIdAndRemove(req.params.id)
+    .then(location => res.json(location))
+    .catch(error => res.send(error));
+};
+
+module.exports = exports;

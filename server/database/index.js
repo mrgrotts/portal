@@ -20,5 +20,6 @@ process.on('SIGINT', () => {
   process.exit();
 });
 
-module.exports.User = require('./user');
-module.exports.Ticket = require('./ticket');
+module.exports.Users = require('./users');
+module.exports.Locations = require('./locations');
+module.exports.Tickets = require('./tickets');

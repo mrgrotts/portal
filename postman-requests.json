@@ -7,39 +7,6 @@
 	},
 	"item": [
 		{
-			"name": "Ticket Schema",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/tickets",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"tickets"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
 			"name": "User Schema",
 			"request": {
 				"auth": {
@@ -66,6 +33,72 @@
 					"path": [
 						"api",
 						"users"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Location Schema",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/locations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"locations"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Ticket Schema",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tickets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tickets"
 					]
 				},
 				"description": ""
@@ -128,6 +161,204 @@
 						"api",
 						"auth",
 						"login"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "All Locations",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/locations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"5a4c7998fb4fb526c0100abe",
+						"locations"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create Location",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"office\",\n    \"addressOne\": \"27W223 Churchill Roads\",\n    \"addressTwo\": \"\",\n    \"city\": \"Winfield\",\n    \"state\": \"IL\",\n    \"zipcode\": \"60190\",\n    \"latitude\": \"41.88\",\n    \"longitude\": \"-87.65\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/locations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"5a4c7998fb4fb526c0100abe",
+						"locations"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Read Location",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/locations/5a5510c80461ee2ff05e3358",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"5a4c7998fb4fb526c0100abe",
+						"locations",
+						"5a5510c80461ee2ff05e3358"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update Location",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Home\",\n    \"addressOne\": \"27W223 Churchill Road\",\n    \"addressTwo\": \"\",\n    \"city\": \"Winfield\",\n    \"state\": \"IL\",\n    \"zipcode\": \"60190\",\n    \"latitude\": \"41.88\",\n    \"longitude\": \"-87.65\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/locations/5a5510c80461ee2ff05e3358",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"5a4c7998fb4fb526c0100abe",
+						"locations",
+						"5a5510c80461ee2ff05e3358"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Destroy Location",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/locations/5a5511527e5cd03f1083e0f0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"5a4c7998fb4fb526c0100abe",
+						"locations",
+						"5a5511527e5cd03f1083e0f0"
 					]
 				},
 				"description": ""

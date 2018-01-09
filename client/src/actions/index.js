@@ -7,14 +7,18 @@ export const AUTH_FAIL = 'auth_fail';
 export const AUTH_LOGOUT = 'auth_logout';
 export const AUTH_REDIRECT_PATH = 'auth_redirect_path';
 
+export const READ_TICKETS_START = 'read_tickets_start';
+export const READ_TICKETS_SUCCESS = 'read_tickets_success';
+export const READ_TICKETS_FAIL = 'read_tickets_fail';
+
 export const CREATE_TICKET = 'create_ticket';
 export const CREATE_TICKET_START = 'create_ticket_start';
 export const CREATE_TICKET_SUCCESS = 'create_ticket_success';
 export const CREATE_TICKET_FAIL = 'create_ticket_fail';
 
-export const READ_TICKETS_START = 'read_tickets_start';
-export const READ_TICKETS_SUCCESS = 'read_tickets_success';
-export const READ_TICKETS_FAIL = 'read_tickets_fail';
+export const READ_TICKET_START = 'read_ticket_start';
+export const READ_TICKET_SUCCESS = 'read_ticket_success';
+export const READ_TICKET_FAIL = 'read_ticket_fail';
 
 export const UPDATE_TICKET_START = 'update_ticket_start';
 export const UPDATE_TICKET_SUCCESS = 'update_ticket_success';
@@ -23,6 +27,27 @@ export const UPDATE_TICKET_FAIL = 'update_ticket_fail';
 export const DELETE_TICKET_START = 'delete_ticket_start';
 export const DELETE_TICKET_SUCCESS = 'delete_ticket_success';
 export const DELETE_TICKET_FAIL = 'delete_ticket_fail';
+
+export const READ_LOCATIONS_START = 'read_locations_start';
+export const READ_LOCATIONS_SUCCESS = 'read_locations_success';
+export const READ_LOCATIONS_FAIL = 'read_locations_fail';
+
+export const CREATE_LOCATION = 'create_location';
+export const CREATE_LOCATION_START = 'create_location_start';
+export const CREATE_LOCATION_SUCCESS = 'create_location_success';
+export const CREATE_LOCATION_FAIL = 'create_location_fail';
+
+export const READ_LOCATION_START = 'read_location_start';
+export const READ_LOCATION_SUCCESS = 'read_location_success';
+export const READ_LOCATION_FAIL = 'read_location_fail';
+
+export const UPDATE_LOCATION_START = 'update_location_start';
+export const UPDATE_LOCATION_SUCCESS = 'update_location_success';
+export const UPDATE_LOCATION_FAIL = 'update_location_fail';
+
+export const DELETE_LOCATION_START = 'delete_location_start';
+export const DELETE_LOCATION_SUCCESS = 'delete_location_success';
+export const DELETE_LOCATION_FAIL = 'delete_location_fail';
 
 /**************************************************************************************
  * AUTH                                                                               *
@@ -123,6 +148,41 @@ export const authState = () => dispatch => {
 /**************************************************************************************
  * TICKETS                                                                            *
  **************************************************************************************/
+export const readTickets = () => dispatch => {
+  const id = localStorage.getItem('user');
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    dispatch(authLogout());
+  }
+
+  dispatch(readTicketsStart());
+
+  let url = `/users/${id}/tickets`;
+
+  api
+    .get(url)
+    .then(response => dispatch(readTicketsSuccess(response.data)))
+    .catch(error => {
+      console.log(error);
+      dispatch(readTicketsFail(error));
+    });
+};
+
+export const readTicketsStart = () => ({
+  type: READ_TICKETS_START
+});
+
+export const readTicketsSuccess = tickets => ({
+  type: READ_TICKETS_SUCCESS,
+  tickets
+});
+
+export const readTicketsFail = error => ({
+  type: READ_TICKETS_FAIL,
+  error
+});
+
 export const createTicket = ticket => dispatch => {
   const id = localStorage.getItem('user');
   const token = localStorage.getItem('token');
@@ -158,38 +218,38 @@ export const createTicketFail = error => ({
   error
 });
 
-export const readTickets = () => dispatch => {
-  const id = localStorage.getItem('user');
+export const readTicket = id => dispatch => {
+  const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
   if (!token) {
     dispatch(authLogout());
   }
 
-  dispatch(readTicketsStart());
+  dispatch(readTicketStart());
 
-  let url = `/users/${id}/tickets`;
+  let url = `/users/${userId}/tickets/${id}`;
 
   api
-    .get(url)
-    .then(response => dispatch(readTicketsSuccess(response.data)))
+    .get(url, id)
+    .then(response => dispatch(readTicketSuccess(response.data)))
     .catch(error => {
       console.log(error);
-      dispatch(readTicketsFail(error));
+      dispatch(readTicketFail(error));
     });
 };
 
-export const readTicketsStart = () => ({
-  type: READ_TICKETS_START
+export const readTicketStart = () => ({
+  type: READ_TICKET_START
 });
 
-export const readTicketsSuccess = tickets => ({
-  type: READ_TICKETS_SUCCESS,
-  tickets
+export const readTicketSuccess = ticket => ({
+  type: READ_TICKET_SUCCESS,
+  ticket
 });
 
-export const readTicketsFail = error => ({
-  type: READ_TICKETS_FAIL,
+export const readTicketFail = error => ({
+  type: READ_TICKET_FAIL,
   error
 });
 
@@ -263,20 +323,180 @@ export const deleteTicketFail = error => ({
   error
 });
 
-// userId: null,
-// status: null,
-// category: null,
-// location: null,
-// description: null,
-// media: [],
-// comments: [],
-// assignedTo: null,
-// requestedDate: null,
-// scheduledFor: null,
-// partPurchasedDate: null,
-// partArrivedDate: null,
-// workCompleted: null,
-// hoursSpent: null,
-// hourlyRate: null,
-// completedDate: null,
-// requestedDeletion: false,
+/**************************************************************************************
+ * LOCATIONS                                                                          *
+ **************************************************************************************/
+export const readLocations = () => dispatch => {
+  const id = localStorage.getItem('user');
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    dispatch(authLogout());
+  }
+
+  dispatch(readLocationsStart());
+
+  let url = `/users/${id}/locations`;
+
+  api
+    .get(url)
+    .then(response => dispatch(readLocationsSuccess(response.data)))
+    .catch(error => {
+      console.log(error);
+      dispatch(readLocationsFail(error));
+    });
+};
+
+export const readLocationsStart = () => ({
+  type: READ_LOCATIONS_START
+});
+
+export const readLocationsSuccess = locations => ({
+  type: READ_LOCATIONS_SUCCESS,
+  locations
+});
+
+export const readLocationsFail = error => ({
+  type: READ_LOCATIONS_FAIL,
+  error
+});
+
+export const createLocation = location => dispatch => {
+  const id = localStorage.getItem('user');
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    dispatch(authLogout());
+  }
+
+  dispatch(createLocationStart());
+
+  let url = `/users/${id}/locations`;
+
+  api
+    .post(url, location)
+    .then(location => dispatch(createLocationSuccess(location)))
+    .catch(error => {
+      console.log(error);
+      dispatch(createLocationFail(error));
+    });
+};
+
+export const createLocationStart = () => ({
+  type: CREATE_LOCATION_START
+});
+
+export const createLocationSuccess = location => ({
+  type: CREATE_LOCATION_SUCCESS,
+  location
+});
+
+export const createLocationFail = error => ({
+  type: CREATE_LOCATION_FAIL,
+  error
+});
+
+export const readLocation = id => dispatch => {
+  const userId = localStorage.getItem('user');
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    dispatch(authLogout());
+  }
+
+  dispatch(readLocationStart());
+
+  let url = `/users/${userId}/locations/${id}`;
+
+  api
+    .get(url, id)
+    .then(response => dispatch(readLocationSuccess(response.data)))
+    .catch(error => {
+      console.log(error);
+      dispatch(readLocationFail(error));
+    });
+};
+
+export const readLocationStart = () => ({
+  type: READ_LOCATION_START
+});
+
+export const readLocationSuccess = location => ({
+  type: READ_LOCATION_SUCCESS,
+  location
+});
+
+export const readLocationFail = error => ({
+  type: READ_LOCATION_FAIL,
+  error
+});
+
+export const updateLocation = location => dispatch => {
+  const id = localStorage.getItem('user');
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    dispatch(authLogout());
+  }
+
+  dispatch(updateLocationStart());
+
+  let url = `/users/${id}/locations/${location._id}`;
+
+  api
+    .put(url, location)
+    .then(response => dispatch(updateLocationSuccess(response.data)))
+    .catch(error => {
+      console.log(error);
+      dispatch(updatLocationsFail(error));
+    });
+};
+
+export const updateLocationStart = () => ({
+  type: UPDATE_LOCATION_START
+});
+
+export const updateLocationSuccess = location => ({
+  type: UPDATE_LOCATION_SUCCESS,
+  location
+});
+
+export const updateLocationFail = error => ({
+  type: UPDATE_LOCATION_FAIL,
+  error
+});
+
+export const deleteLocation = id => dispatch => {
+  const userId = localStorage.getItem('user');
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    dispatch(authLogout());
+  }
+
+  dispatch(deleteLocationStart());
+
+  let url = `/users/${userId}/locations/${id}`;
+
+  api
+    .delete(url, id)
+    .then(response => dispatch(deletLocationsSuccess(response.data)))
+    .catch(error => {
+      console.log(error);
+      dispatch(deleteLocationFail(error));
+    });
+};
+
+export const deleteLocationStart = () => ({
+  type: DELETE_LOCATION_START
+});
+
+export const deleteLocationSuccess = location => ({
+  type: DELETE_LOCATION_SUCCESS,
+  location
+});
+
+export const deleteLocationFail = error => ({
+  type: DELETE_LOCATION_FAIL,
+  error
+});

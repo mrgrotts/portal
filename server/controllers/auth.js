@@ -4,7 +4,7 @@ const database = require('../database');
 const { INVALID_EMAIL, INVALID_PASSWORD } = require('../constants');
 
 exports.login = (req, res) => {
-  database.User.findOne({ email: req.body.email })
+  database.Users.findOne({ email: req.body.email })
     .then(user => {
       user.comparePassword(req.body.password, (error, match) => {
         if (match) {
@@ -31,7 +31,7 @@ exports.login = (req, res) => {
 };
 
 exports.register = (req, res, next) => {
-  database.User.create(req.body)
+  database.Users.create(req.body)
     .then(user => {
       const token = jwt.sign({ userId: user.id }, process.env.JWT_KEY);
       res.status(200).json({

@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
-const commentSchema = new mongoose.Schema(
+const commentsSchema = new mongoose.Schema(
   {
     by: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'Users'
     },
     text: {
       type: String,
@@ -16,11 +16,11 @@ const commentSchema = new mongoose.Schema(
   }
 );
 
-const ticketSchema = new mongoose.Schema(
+const ticketsSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      ref: 'Users',
       required: true
     },
     status: {
@@ -75,8 +75,8 @@ const ticketSchema = new mongoose.Schema(
       url: String
     },
     comments: {
-      child: commentSchema,
-      children: [commentSchema]
+      child: commentsSchema,
+      children: [commentsSchema]
     },
     assignedTo: {
       type: String
@@ -116,15 +116,15 @@ const ticketSchema = new mongoose.Schema(
   }
 );
 
-// class TicketClass {
+// class TicketsClass {
 //   // methods for schema go here
 //   // http://mongoosejs.com/docs/advanced_schemas.html
 // }
 
-// ticketSchema.loadClass(TicketClass);
-const Ticket = mongoose.model('Ticket', ticketSchema);
+// ticketsSchema.loadClass(TicketsClass);
+const Tickets = mongoose.model('Tickets', ticketsSchema);
 
-module.exports = Ticket;
+module.exports = Tickets;
 
 /* 
 // media path 

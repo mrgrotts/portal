@@ -1,7 +1,7 @@
 const database = require('../database');
 
 exports.readTickets = (req, res, next) => {
-  database.Ticket.find()
+  database.Tickets.find()
     .sort({ createAt: 'desc' })
     // .populate('userId', { profilePicture: true })
     .then(tickets => res.status(200).json(tickets))
@@ -18,15 +18,15 @@ exports.createTicket = (req, res, next) => {
     requestedDate: req.body.requestedDate
   };
 
-  database.Ticket.create(newTicket)
+  database.Tickets.create(newTicket)
     .then(ticket => {
-      database.User.findById(req.params.id)
+      database.Users.findById(req.params.id)
         .then(user => {
           user.tickets.push(ticket.id);
           user
             .save()
             .then(user =>
-              database.Ticket.findById(ticket._id).populate('userId', {
+              database.Tickets.findById(ticket._id).populate('userId', {
                 profilePicture: true
               })
             )
@@ -39,7 +39,7 @@ exports.createTicket = (req, res, next) => {
 };
 
 exports.readTicket = (req, res, next) => {
-  database.Ticket.findById(req.params.id)
+  database.Tickets.findById(req.params.id)
     .then(ticket => res.json(ticket))
     .catch(error => res.send(error));
 };
@@ -64,7 +64,7 @@ exports.updateTicket = (req, res, next) => {
     requestedDeletion: req.body.requestedDeletion
   };
 
-  database.Ticket.findByIdAndUpdate(req.params.id, updatedTicket, {
+  database.Tickets.findByIdAndUpdate(req.params.id, updatedTicket, {
     new: true
   })
     .then(ticket => res.status(201).json(ticket))
@@ -72,7 +72,7 @@ exports.updateTicket = (req, res, next) => {
 };
 
 exports.deleteTicket = (req, res, next) => {
-  database.Ticket.findByIdAndRemove(req.params.id)
+  database.Tickets.findByIdAndRemove(req.params.id)
     .then(ticket => res.json(ticket))
     .catch(error => res.send(error));
 };

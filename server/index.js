@@ -11,6 +11,7 @@ const morgan = require('morgan');
 const database = require('./database');
 const { authenticateUser, authorizeUser } = require('./middleware');
 const authRoutes = require('./routes/auth');
+const locationRoutes = require('./routes/locations');
 const ticketRoutes = require('./routes/tickets');
 
 const { API_WELCOME_MESSAGE } = require('./constants');
@@ -29,6 +30,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api/auth', authRoutes);
 app.use(
+  '/api/users/:id/locations',
+  authenticateUser,
+  authorizeUser,
+  locationRoutes
+);
+app.use(
   '/api/users/:id/tickets',
   authenticateUser,
   authorizeUser,
@@ -40,7 +47,7 @@ app.get('/', (req, res) => {
 });
 
 // app.get('/api/users', (req, res) => {
-//   database.User.find()
+//   database.Users.find()
 //     .then(users => {
 //       res.json(users);
 //     })
@@ -60,8 +67,35 @@ app.get('/api/users', (req, res) => {
   ]);
 });
 
+// app.get('/api/locations', (req, res) => {
+//   database.Locations.find()
+//     .then(locations => {
+//       res.json(locations);
+//     })
+//     .catch(error => {
+//       res.status(500).json(error);
+//     });
+// });
+
+app.get('/api/locations', (req, res) => {
+  res.json([
+    {
+      _id: 'Unique Identifier',
+      userId: 'Mongo Document Collection',
+      name: 'String',
+      addressOne: 'String',
+      addressTwo: 'String',
+      city: 'String',
+      state: 'String',
+      zipcode: 'Number',
+      latitude: 'Number',
+      longitude: 'Number'
+    }
+  ]);
+});
+
 // app.get('/api/tickets', (req, res, next) => {
-//   database.Ticket.find()
+//   database.Tickets.find()
 //     .sort({ createAt: 'desc' })
 //     .populate('userId', { username: true, profileImageUrl: true })
 //     .then(tickets => {
@@ -76,18 +110,10 @@ app.get('/api/tickets', (req, res, next) => {
   res.json([
     {
       _id: 'Unique Identifier',
-      userId: 'Unique String',
+      userId: 'Mongo Document Collection',
       status: 'Enum',
       category: 'Enum',
-      location: {
-        addressOne: 'String',
-        addressTwo: 'String',
-        city: 'String',
-        state: 'String',
-        zipcode: 'Number',
-        latitude: 'Number',
-        longitude: 'Number'
-      },
+      location: 'Mongo Document Collection',
       description: 'String',
       media: ['Array of Google Cloud Storage URLs'],
       comments: ['Array of Comments'],

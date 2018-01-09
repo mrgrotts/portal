@@ -8,8 +8,10 @@ import Auth from './containers/Auth/Auth';
 import Logout from './containers/Auth/Logout/Logout';
 import Builder from './containers/Builder/Builder';
 import Tickets from './containers/Tickets/Tickets';
+import Locations from './containers/Locations/Locations';
 
 import * as actions from './actions';
+import Location from './components/Location/Location';
 
 // import asyncComponent from './hoc/asyncComponent/asyncComponent';
 
@@ -38,6 +40,7 @@ class App extends Component {
     if (this.props.isAuthenticated) {
       routes = (
         <Switch>
+          <Route path="/locations" component={Locations} />
           <Route path="/tickets" component={Tickets} />
           <Route path="/login" component={Auth} />
           <Route path="/logout" component={Logout} />
