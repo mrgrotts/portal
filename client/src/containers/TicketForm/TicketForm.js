@@ -1,52 +1,60 @@
-import api from '../../api';
-
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
-import handleErrors from '../../hoc/handleErrors/handleErrors';
 
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
-import Spinner from '../../components/UI/Spinner/Spinner';
-
-import * as actions from '../../actions';
 
 import { validateFields } from '../../utils';
 
 import classes from './TicketForm.css';
 
-class TicketForm extends Component {
-  state = {
-    category: 'commercialcleaning',
-    location: '',
-    description: '',
-    media: [],
-    requestedDate: ''
+export default class TicketForm extends Component {
+  static defaultProps = {
+    onCancel() {}
   };
 
-  addTicket = event => {
-    event.preventDefault();
-
-    const ticket = {
-      category: this.state.category,
-      location: this.state.location,
-      description: this.state.description,
-      media: this.state.media,
-      requestedDate: this.state.requestedDate
-    };
-
-    console.log(ticket);
-    this.props.createTicket(ticket);
+  state = {
+    category: this.props.ticket
+      ? this.props.ticket.category
+      : 'commercialcleaning',
+    location: this.props.ticket ? this.props.ticket.location : '',
+    description: this.props.ticket ? this.props.ticket.description : '',
+    media: this.props.ticket ? this.props.ticket.media : [],
+    requestedDate: this.props.ticket ? this.props.ticket.requestedDate : ''
   };
 
   handleChange = event =>
     this.setState({ [event.target.name]: event.target.value });
 
+  onSubmit = event => {
+    event.preventDefault();
+
+    this.props.onSubmit({
+      category: this.state.category,
+      location: this.state.location,
+      description: this.state.description,
+      media: this.state.media,
+      requestedDate: this.state.requestedDate
+    });
+  };
+
+  onCancel = event => {
+    this.props.onCancel();
+
+    this.setState({
+      category: this.props.ticket
+        ? this.props.ticket.category
+        : 'commercialcleaning',
+      location: this.props.ticket ? this.props.ticket.location : '',
+      description: this.props.ticket ? this.props.ticket.description : '',
+      media: this.props.ticket ? this.props.ticket.media : [],
+      requestedDate: this.props.ticket ? this.props.ticket.requestedDate : ''
+    });
+  };
+
   render() {
     return (
       <div>
-        <h1>Ticket Form</h1>
-        <form onSubmit={this.addTicket}>
+        <form onSubmit={this.onSubmit}>
           <div>
             <label htmlFor="category">
               Category
@@ -125,23 +133,14 @@ class TicketForm extends Component {
               />
             </label>
           </div>
-          <Button ButtonType="Success">Submit</Button>
+          <Button ButtonType="Success" type="submit">
+            Submit
+          </Button>
+          <Button ButtonType="Failure" clicked={this.onCancel} type="button">
+            Cancel
+          </Button>
         </form>
       </div>
     );
   }
 }
-
-const mapStateToProps = state => ({
-  id: state.auth.id,
-  loading: state.tickets.loading,
-  token: state.auth.token
-});
-
-const mapDispatchToProps = dispatch => ({
-  createTicket: ticket => dispatch(actions.createTicket(ticket))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(
-  handleErrors(TicketForm, api)
-);

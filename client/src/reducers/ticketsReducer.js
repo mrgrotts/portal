@@ -62,6 +62,7 @@ const ticketsReducer = (state = initialState, action) => {
       };
     case actions.UPDATE_TICKET_SUCCESS:
       const updatedTicket = { ...action.ticket };
+      console.log(updatedTicket);
 
       return {
         ...state,

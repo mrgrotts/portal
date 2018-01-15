@@ -23,3 +23,7 @@ const MenuItems = props => (
 );
 
 export default MenuItems;
+
+// {props.isAuthenticated ? (
+//   <MenuItem link="/tickets/create">Create Ticket</MenuItem>
+// ) : null}

@@ -7,11 +7,15 @@ import Portal from './containers/Portal/Portal';
 import Auth from './containers/Auth/Auth';
 import Logout from './containers/Auth/Logout/Logout';
 import Builder from './containers/Builder/Builder';
+
 import Tickets from './containers/Tickets/Tickets';
+import CreateTicket from './containers/TicketForm/CreateTicket';
+import UpdateTicket from './containers/TicketForm/UpdateTicket';
+
 import Locations from './containers/Locations/Locations';
+// import Location from './components/Location/Location';
 
 import * as actions from './actions';
-import Location from './components/Location/Location';
 
 // import asyncComponent from './hoc/asyncComponent/asyncComponent';
 
@@ -40,11 +44,13 @@ class App extends Component {
     if (this.props.isAuthenticated) {
       routes = (
         <Switch>
-          <Route path="/locations" component={Locations} />
-          <Route path="/tickets" component={Tickets} />
+          <Route exact path="/" component={Builder} />
           <Route path="/login" component={Auth} />
           <Route path="/logout" component={Logout} />
-          <Route exact path="/" component={Builder} />
+          <Route path="/locations" component={Locations} />
+          <Route path="/tickets/create" component={CreateTicket} />;
+          <Route path="/tickets/:id" component={UpdateTicket} />
+          <Route path="/tickets" component={Tickets} />
           <Redirect to="/" />
         </Switch>
       );

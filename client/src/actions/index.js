@@ -253,8 +253,8 @@ export const readTicketFail = error => ({
   error
 });
 
-export const updateTicket = ticket => dispatch => {
-  const id = localStorage.getItem('user');
+export const updateTicket = (id, ticket) => dispatch => {
+  const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
   if (!token) {
@@ -263,7 +263,7 @@ export const updateTicket = ticket => dispatch => {
 
   dispatch(updateTicketStart());
 
-  let url = `/users/${id}/tickets/${ticket._id}`;
+  let url = `/users/${userId}/tickets/${id}`;
 
   api
     .put(url, ticket)
@@ -448,7 +448,7 @@ export const updateLocation = location => dispatch => {
     .then(response => dispatch(updateLocationSuccess(response.data)))
     .catch(error => {
       console.log(error);
-      dispatch(updatLocationsFail(error));
+      dispatch(updateLocationFail(error));
     });
 };
 
@@ -480,7 +480,7 @@ export const deleteLocation = id => dispatch => {
 
   api
     .delete(url, id)
-    .then(response => dispatch(deletLocationsSuccess(response.data)))
+    .then(response => dispatch(deleteLocationSuccess(response.data)))
     .catch(error => {
       console.log(error);
       dispatch(deleteLocationFail(error));

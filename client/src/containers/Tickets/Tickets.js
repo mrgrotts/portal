@@ -17,29 +17,22 @@ class Tickets extends Component {
     await this.props.readTickets();
   }
 
-  updateTicket = async ticket => await this.props.updateTicket(ticket);
-
   deleteTicket = async id => await this.props.deleteTicket(id);
 
   render() {
     let tickets = <Spinner />;
 
     if (!this.props.loading) {
-      tickets = this.props.tickets.map(ticket => (
-        <div
-          key={ticket._id}
-          style={{
-            width: '100%',
-            backgroundColor: 'white'
-          }}
-        >
+      tickets = this.props.tickets
+        .map(ticket => (
           <Ticket
+            key={ticket._id}
+            style={{ width: '100%', backgroundColor: 'white' }}
             {...ticket}
-            update={this.updateTicket.bind(this, ticket)}
             delete={this.deleteTicket.bind(this, ticket._id)}
           />
-        </div>
-      ));
+        ))
+        .reverse();
     }
 
     return (
@@ -60,7 +53,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   readTickets: () => dispatch(actions.readTickets()),
-  updateTicket: ticket => dispatch(actions.updateTicket(ticket)),
   deleteTicket: id => dispatch(actions.deleteTicket(id))
 });
 

@@ -63,10 +63,9 @@ exports.updateTicket = (req, res, next) => {
     completedDate: req.body.completedDate,
     requestedDeletion: req.body.requestedDeletion
   };
+  console.log(req.body);
 
-  database.Tickets.findByIdAndUpdate(req.params.id, updatedTicket, {
-    new: true
-  })
+  database.Tickets.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then(ticket => res.status(201).json(ticket))
     .catch(error => res.send(error));
 };
