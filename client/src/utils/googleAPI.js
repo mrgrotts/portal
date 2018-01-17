@@ -3,7 +3,7 @@ export const GoogleAPI = function(options) {
 
   setTimeout(() => {
     if (!options.hasOwnProperty('apiKey')) {
-      console.log('You must pass an apiKey to use GoogleApi');
+      console.log('You must pass an apiKey to use GoogleAPI');
     }
   }, 2000);
 
@@ -11,7 +11,6 @@ export const GoogleAPI = function(options) {
   const libraries = options.libraries || ['places'];
   const client = options.client;
   const URL = 'https://maps.googleapis.com/maps/api/js';
-
   const googleVersion = options.version || '3';
 
   let script = null;
@@ -20,7 +19,6 @@ export const GoogleAPI = function(options) {
   let channel = null;
   let language = options.language;
   let region = null;
-
   let onLoadEvents = [];
 
   const url = (url = URL) => {
