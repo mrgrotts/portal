@@ -45,14 +45,6 @@ const eventNames = [
   'zoom_changed'
 ];
 
-export {
-  wrapper as googleAPIComponent
-} from '../../../hoc/googleAPIComponent/googleAPIComponent';
-export { Marker } from './Marker/Marker';
-export { InfoWindow } from './InfoWindow/InfoWindow';
-// export { HeatMap } from './components/HeatMap';
-// export { Polygon } from './components/Polygon';
-
 class Map extends Component {
   constructor(props) {
     super(props);
