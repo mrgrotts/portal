@@ -11,7 +11,7 @@ import TicketForm from './TicketForm';
 
 import * as actions from '../../actions';
 
-class CreateTicket extends Component {
+class TicketCreate extends Component {
   onSubmit = async ticket => {
     // console.log(ticket);
     await this.props.createTicket(ticket);
@@ -49,5 +49,5 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(handleErrors(CreateTicket, api))
+  connect(mapStateToProps, mapDispatchToProps)(handleErrors(TicketCreate, api))
 );

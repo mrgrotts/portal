@@ -1,8 +1,3 @@
-export const updateObject = (oldObject, updatedProperties) => ({
-  ...oldObject,
-  ...updatedProperties
-});
-
 export const validateFields = (value, rules) => {
   // recheck valid status after each rule
   let valid = true;
@@ -36,3 +31,5 @@ export const validateFields = (value, rules) => {
   // returns true or false
   return valid;
 };
+
+export default validateFields;

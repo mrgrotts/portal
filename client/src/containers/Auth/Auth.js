@@ -10,7 +10,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 
 import * as actions from '../../actions';
 
-import { validateFields } from '../../utils';
+import validateFields from '../../utils/validateFields';
 
 import classes from './Auth.css';
 

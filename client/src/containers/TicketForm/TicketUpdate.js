@@ -11,11 +11,14 @@ import TicketForm from './TicketForm';
 
 import * as actions from '../../actions';
 
-class CreateTicket extends Component {
-  onSubmit = async ticket => {
+class TicketUpdate extends Component {
+  updateTicket = async ticket => {
     // console.log(ticket);
-    await this.props.createTicket(ticket);
-    this.props.onCreate();
+    await this.props.updateTicket(this.props.ticket._id, ticket);
+    this.props.history.push('/tickets');
+  };
+
+  onCancel = () => {
     this.props.history.push('/tickets');
   };
 
@@ -24,29 +27,36 @@ class CreateTicket extends Component {
 
     if (!this.props.loading) {
       form = (
-        <TicketForm onSubmit={this.onSubmit} onCancel={this.props.onCancel} />
+        <TicketForm
+          onSubmit={this.updateTicket}
+          onCancel={this.onCancel}
+          ticket={this.props.ticket}
+        />
       );
     }
 
     return (
       <div>
-        <h1>Create Ticket Form</h1>
+        <h1>Update Ticket Form</h1>
         {form}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, props) => ({
+  ticket: state.tickets.tickets.find(
+    ticket => ticket._id === props.match.params.id
+  ),
   id: state.auth.id,
   loading: state.tickets.loading,
   token: state.auth.token
 });
 
 const mapDispatchToProps = dispatch => ({
-  createTicket: ticket => dispatch(actions.createTicket(ticket))
+  updateTicket: (id, ticket) => dispatch(actions.updateTicket(id, ticket))
 });
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(handleErrors(CreateTicket, api))
+  connect(mapStateToProps, mapDispatchToProps)(handleErrors(TicketUpdate, api))
 );

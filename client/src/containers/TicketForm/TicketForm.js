@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 import Button from '../../components/UI/Button/Button';
-import Input from '../../components/UI/Input/Input';
+// import Input from '../../components/UI/Input/Input';
 
-import { validateFields } from '../../utils';
+// import validateFields from '../../utils/validateFields';
 
 import classes from './TicketForm.css';
 

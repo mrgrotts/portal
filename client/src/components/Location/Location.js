@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Button from '../UI/Button/Button';
-import Map from '../UI/Map/Map';
+import Map from '../UI/Maps';
 
 import classes from './Location.css';
 

@@ -1,13 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { wrapper as googleAPIComponent } from '../../hoc/googleAPIComponent/googleAPIComponent';
+
 import Button from '../UI/Button/Button';
-import Map from '../UI/Map/Map';
+import Map from '../UI/Maps';
+import InfoWindow from '../UI/Maps/InfoWindow/InfoWindow';
+import Marker from '../UI/Maps/Marker/Marker';
 import ProgressBar from '../UI/ProgressBar/ProgressBar';
 
 import classes from './Ticket.css';
 
 const Ticket = props => {
+  const style = { height: '100%', width: '100%' };
+
+  let position = { lat: 41.88, lng: -87.65 };
+
   return (
     <div className={classes.Ticket}>
       <h1>Ticket ID: {props._id}</h1>
@@ -20,6 +28,19 @@ const Ticket = props => {
           latitude={41.88}
           longitude={-87.65}
         />
+        <Map
+          id={props._id}
+          google={props.google}
+          onClick={props.onMapClicked}
+          style={style}
+          zoom={10}
+        >
+          <Marker
+            name={'Test Marker'}
+            onClick={props.onMarkerClick}
+            position={props.position}
+          />
+        </Map>
       </div>
       <p>Location: {props.location}</p>
       <p>Category: {props.category}</p>
@@ -39,4 +60,7 @@ const Ticket = props => {
   );
 };
 
-export default Ticket;
+export default googleAPIComponent({
+  apiKey: 'AIzaSyD_xwq4iNehc3lxu1JPyDQyc_nm7D8KTRs',
+  libraries: ['places']
+})(Ticket);

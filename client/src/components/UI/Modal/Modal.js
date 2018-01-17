@@ -9,7 +9,6 @@ import classes from './Modal.css';
 class Modal extends Component {
   // only update component when Modal is toggled
   shouldComponentUpdate(nextProps, nextState) {
-    console.log(nextProps, nextState);
     return (
       nextProps.show !== this.props.show ||
       nextProps.children !== this.props.children
