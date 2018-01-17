@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom';
 
 import scriptCache from '../../utils/scriptCache';
 import googleAPI from '../../utils/googleAPI';
 
-// const defaultMapConfig = {};
+const defaultMapConfig = {};
 
 const defaultCreateCache = options => {
   options = options || {};
@@ -24,9 +24,9 @@ const defaultCreateCache = options => {
 };
 
 export const wrapper = options => WrappedComponent => {
-  // const apiKey = options.apiKey;
-  // const libraries = options.libraries || ['places'];
-  // const version = options.version || '3';
+  const apiKey = options.apiKey;
+  const libraries = options.libraries || ['places'];
+  const version = options.version || '3';
   const createCache = options.createCache || defaultCreateCache;
 
   class Wrapper extends Component {

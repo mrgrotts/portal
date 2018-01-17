@@ -14,14 +14,14 @@ export const GoogleAPI = function(options) {
 
   const googleVersion = options.version || '3';
 
-  // let script = null;
-  // let google = window.google || null;
-  // let loading = false;
+  let script = null;
+  let google = window.google || null;
+  let loading = false;
   let channel = null;
   let language = options.language;
   let region = null;
 
-  // let onLoadEvents = [];
+  let onLoadEvents = [];
 
   const url = (url = URL) => {
     let params = {
