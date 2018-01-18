@@ -13,9 +13,18 @@ import * as actions from '../../actions';
 import classes from './Tickets.css';
 
 class Tickets extends Component {
-  async componentDidMount() {
-    await this.props.readTickets();
+  componentDidMount() {
+    this.readTickets();
   }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      nextProps.tickets !== this.props.tickets ||
+      nextProps.children !== this.props.children
+    );
+  }
+
+  readTickets = async () => await this.props.readTickets();
 
   deleteTicket = async id => await this.props.deleteTicket(id);
 

@@ -55,7 +55,7 @@ const Ticket = props => {
 };
 
 export default googleAPIComponent({
-  apiKey: 'AIzaSyD_xwq4iNehc3lxu1JPyDQyc_nm7D8KTRs',
+  apiKey: process.env.GOOGLE_MAPS_API_KEY,
   libraries: ['places']
 })(Ticket);
 

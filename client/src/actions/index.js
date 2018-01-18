@@ -80,7 +80,9 @@ export const auth = (email, password, registration) => dispatch => {
 
       dispatch(authSuccess(response.data.token, response.data.userId));
       dispatch(authTimeout(response.data.expiresIn));
-      // Alternative API Call -- dispatch(readTickets());
+      // Primary Data API Calls
+      dispatch(readTickets());
+      dispatch(readLocations());
 
       generateAuthorizationHeader(response.data.token);
     })

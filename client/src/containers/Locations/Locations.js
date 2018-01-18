@@ -14,8 +14,17 @@ import classes from './Locations.css';
 
 class Locations extends Component {
   async componentDidMount() {
-    await this.props.readLocations();
+    await this.readLocations();
   }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      nextProps.locations !== this.props.locations ||
+      nextProps.children !== this.props.children
+    );
+  }
+
+  readLocations = async () => await this.props.readLocations();
 
   updateLocation = async location => {
     await this.props.updateLocation(this.props.location._id, location);

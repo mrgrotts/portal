@@ -152,7 +152,7 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   googleAPIComponent({
-    apiKey: 'AIzaSyD_xwq4iNehc3lxu1JPyDQyc_nm7D8KTRs',
+    apiKey: process.env.GOOGLE_MAPS_API_KEY,
     libraries: ['places']
   })(handleErrors(Builder, api))
 );
