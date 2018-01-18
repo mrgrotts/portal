@@ -3,7 +3,7 @@ import api from '../../api';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import handleErrors from '../../hoc/handleErrors/handleErrors';
+import handleErrors from '../../hoc/handleErrors';
 
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';

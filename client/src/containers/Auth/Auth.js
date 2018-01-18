@@ -1,8 +1,11 @@
+import api from '../../api';
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import Auxiliary from '../../hoc/Auxiliary';
+import handleErrors from '../../hoc/handleErrors';
 
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
@@ -176,4 +179,6 @@ const mapDispatchToProps = dispatch => ({
   authRedirectPath: path => dispatch(actions.authRedirectPath(path))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  handleErrors(Auth, api)
+);

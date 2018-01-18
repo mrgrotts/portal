@@ -2,7 +2,7 @@ const database = require('../database');
 
 exports.readTickets = (req, res, next) => {
   database.Tickets.find()
-    .sort({ createAt: 'desc' })
+    .sort({ createdAt: 'asc' })
     // .populate('userId', { profilePicture: true })
     .then(tickets => res.status(200).json(tickets))
     .catch(error => res.send(error));
@@ -25,12 +25,8 @@ exports.createTicket = (req, res, next) => {
           user.tickets.push(ticket.id);
           user
             .save()
-            .then(user =>
-              database.Tickets.findById(ticket._id).populate('userId', {
-                profilePicture: true
-              })
-            )
-            .then(t => res.status(200).json(t))
+            .then(user => database.Tickets.findById(ticket._id))
+            .then(t => res.status(201).json(t))
             .catch(next);
         })
         .catch(next);
@@ -63,7 +59,7 @@ exports.updateTicket = (req, res, next) => {
     completedDate: req.body.completedDate,
     requestedDeletion: req.body.requestedDeletion
   };
-  console.log(req.body);
+  // console.log(req.body);
 
   // database.Tickets.findByIdAndUpdate(req.params.id, updatedTicket, { new: true });
   database.Tickets.findByIdAndUpdate(req.params.id, req.body, { new: true })

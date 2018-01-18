@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { wrapper as googleAPIComponent } from '../../hoc/googleAPIComponent/googleAPIComponent';
-import handleErrors from '../../hoc/handleErrors/handleErrors';
+import { wrapper as googleAPIComponent } from '../../hoc/googleAPIComponent';
+import handleErrors from '../../hoc/handleErrors';
 
 import Map from '../../components/UI/Maps';
 import InfoWindow from '../../components/UI/Maps/InfoWindow/InfoWindow';

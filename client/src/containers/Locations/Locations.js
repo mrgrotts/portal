@@ -3,7 +3,7 @@ import api from '../../api';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import handleErrors from '../../hoc/handleErrors/handleErrors';
+import handleErrors from '../../hoc/handleErrors';
 
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Location from '../../components/Location/Location';
@@ -17,7 +17,10 @@ class Locations extends Component {
     await this.props.readLocations();
   }
 
-  updateLocation = async location => await this.props.updateLocation(location);
+  updateLocation = async location => {
+    await this.props.updateLocation(this.props.location._id, location);
+    this.props.history.push('/locations');
+  };
 
   deleteLocation = async id => await this.props.deleteLocation(id);
 

@@ -1,5 +1,6 @@
 import api from '../api';
-console.log(api.defaults);
+let generateAuthorizationHeader = (token = localStorage.getItem('token')) =>
+  (api.defaults.headers.common['Authorization'] = `Bearer ${token}`);
 
 export const AUTH_START = 'auth_start';
 export const AUTH_SUCCESS = 'auth_success';
@@ -63,7 +64,10 @@ export const auth = (email, password, registration) => dispatch => {
   dispatch(authStart());
 
   api
-    .post(url, { email, password })
+    .post(url, {
+      email,
+      password
+    })
     .then(response => {
       // create new date using the current date + expiration time in seconds
       const expiration = new Date(
@@ -73,11 +77,12 @@ export const auth = (email, password, registration) => dispatch => {
       localStorage.setItem('user', response.data.userId);
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('expiration', expiration);
-      // localStorage.setItem('refreshToken', response.data.refreshToken);
 
       dispatch(authSuccess(response.data.token, response.data.userId));
       dispatch(authTimeout(response.data.expiresIn));
-      // dispatch(readTickets(response.data.userId));
+      // Alternative API Call -- dispatch(readTickets());
+
+      generateAuthorizationHeader(response.data.token);
     })
     .catch(error => {
       console.log(error);
@@ -112,7 +117,6 @@ export const authLogout = () => {
   localStorage.removeItem('user');
   localStorage.removeItem('token');
   localStorage.removeItem('expiration');
-  // localStorage.removeItem('refreshToken');
 
   return {
     type: AUTH_LOGOUT
@@ -142,6 +146,8 @@ export const authState = () => dispatch => {
 
     dispatch(authSuccess(token, user));
     dispatch(authTimeout((expiration.getTime() - new Date().getTime()) / 1000));
+
+    generateAuthorizationHeader(token);
   }
 };
 
@@ -149,7 +155,7 @@ export const authState = () => dispatch => {
  * TICKETS                                                                            *
  **************************************************************************************/
 export const readTickets = () => dispatch => {
-  const id = localStorage.getItem('user');
+  const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
   if (!token) {
@@ -158,7 +164,7 @@ export const readTickets = () => dispatch => {
 
   dispatch(readTicketsStart());
 
-  let url = `/users/${id}/tickets`;
+  let url = `/users/${userId}/tickets`;
 
   api
     .get(url)
@@ -184,7 +190,7 @@ export const readTicketsFail = error => ({
 });
 
 export const createTicket = ticket => dispatch => {
-  const id = localStorage.getItem('user');
+  const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
   if (!token) {
@@ -193,7 +199,7 @@ export const createTicket = ticket => dispatch => {
 
   dispatch(createTicketStart());
 
-  let url = `/users/${id}/tickets`;
+  let url = `/users/${userId}/tickets`;
 
   api
     .post(url, ticket)
@@ -327,7 +333,7 @@ export const deleteTicketFail = error => ({
  * LOCATIONS                                                                          *
  **************************************************************************************/
 export const readLocations = () => dispatch => {
-  const id = localStorage.getItem('user');
+  const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
   if (!token) {
@@ -336,7 +342,7 @@ export const readLocations = () => dispatch => {
 
   dispatch(readLocationsStart());
 
-  let url = `/users/${id}/locations`;
+  let url = `/users/${userId}/locations`;
 
   api
     .get(url)
@@ -362,7 +368,7 @@ export const readLocationsFail = error => ({
 });
 
 export const createLocation = location => dispatch => {
-  const id = localStorage.getItem('user');
+  const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
   if (!token) {
@@ -371,7 +377,7 @@ export const createLocation = location => dispatch => {
 
   dispatch(createLocationStart());
 
-  let url = `/users/${id}/locations`;
+  let url = `/users/${userId}/locations`;
 
   api
     .post(url, location)
@@ -431,8 +437,8 @@ export const readLocationFail = error => ({
   error
 });
 
-export const updateLocation = location => dispatch => {
-  const id = localStorage.getItem('user');
+export const updateLocation = (id, location) => dispatch => {
+  const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
   if (!token) {
@@ -441,7 +447,7 @@ export const updateLocation = location => dispatch => {
 
   dispatch(updateLocationStart());
 
-  let url = `/users/${id}/locations/${location._id}`;
+  let url = `/users/${userId}/locations/${id}`;
 
   api
     .put(url, location)

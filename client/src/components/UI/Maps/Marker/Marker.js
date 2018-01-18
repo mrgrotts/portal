@@ -94,7 +94,7 @@ export class Marker extends React.Component {
     await this.markerPromise.resolve(this.marker);
   }
 
-  getMarker = async () => await this.markerPromise;
+  getMarker = () => this.markerPromise;
 
   handleEvent = event => e => {
     const eventName = `on${toCamelCase(event)}`;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { wrapper as googleAPIComponent } from '../../hoc/googleAPIComponent/googleAPIComponent';
+import { wrapper as googleAPIComponent } from '../../hoc/googleAPIComponent';
 
 import Button from '../UI/Button/Button';
 import Map from '../UI/Maps';
@@ -22,12 +22,6 @@ const Ticket = props => {
       <p>Status: {props.status}</p>
       <ProgressBar />
       <div style={{ height: '300px', width: '300px' }}>
-        <Map
-          id={props._id}
-          location={props.location}
-          latitude={41.88}
-          longitude={-87.65}
-        />
         <Map
           id={props._id}
           google={props.google}
@@ -64,3 +58,10 @@ export default googleAPIComponent({
   apiKey: 'AIzaSyD_xwq4iNehc3lxu1JPyDQyc_nm7D8KTRs',
   libraries: ['places']
 })(Ticket);
+
+// <Map
+//   id={props._id}
+//   location={props.location}
+//   latitude={41.88}
+//   longitude={-87.65}
+// />

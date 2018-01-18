@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import handleErrors from '../../hoc/handleErrors/handleErrors';
+import handleErrors from '../../hoc/handleErrors';
 
 import Spinner from '../../components/UI/Spinner/Spinner';
 import TicketForm from './TicketForm';

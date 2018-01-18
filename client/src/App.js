@@ -2,30 +2,29 @@ import React, { Component } from 'react';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import Auxiliary from './hoc/Auxiliary';
+import asyncComponent from './hoc/asyncComponent';
+
 import Layout from './containers/Layout/Layout';
 import Portal from './containers/Portal/Portal';
-import Auth from './containers/Auth/Auth';
 import Logout from './containers/Auth/Logout/Logout';
 import Builder from './containers/Builder/Builder';
 
-import Tickets from './containers/Tickets/Tickets';
-import TicketCreate from './containers/TicketForm/TicketCreate';
-import TicketUpdate from './containers/TicketForm/TicketUpdate';
-
-import Locations from './containers/Locations/Locations';
-// import Location from './components/Location/Location';
-
 import * as actions from './actions';
 
-// import asyncComponent from './hoc/asyncComponent/asyncComponent';
-
-// const asyncAuth = asyncComponent(() => {
-//   return import('./containers/Auth/Auth');
-// });
-
-// const asyncTickets = asyncComponent(() =>
-//   import('./containers/Tickets/Tickets')
-// );
+const asyncAuth = asyncComponent(() => import('./containers/Auth/Auth'));
+const asyncLocations = asyncComponent(() =>
+  import('./containers/Locations/Locations')
+);
+const asyncTickets = asyncComponent(() =>
+  import('./containers/Tickets/Tickets')
+);
+const asyncTicketCreate = asyncComponent(() =>
+  import('./containers/TicketForm/TicketCreate')
+);
+const asyncTicketUpdate = asyncComponent(() =>
+  import('./containers/TicketForm/TicketUpdate')
+);
 
 class App extends Component {
   async componentDidMount() {
@@ -35,7 +34,7 @@ class App extends Component {
   render() {
     let routes = (
       <Switch>
-        <Route path="/login" component={Auth} />
+        <Route path="/login" component={asyncAuth} />
         <Route exact path="/" component={Builder} />
         <Redirect to="/" />
       </Switch>
@@ -45,23 +44,23 @@ class App extends Component {
       routes = (
         <Switch>
           <Route exact path="/" component={Builder} />
-          <Route path="/login" component={Auth} />
+          <Route path="/login" component={asyncAuth} />
           <Route path="/logout" component={Logout} />
-          <Route path="/locations" component={Locations} />
-          <Route path="/tickets/create" component={TicketCreate} />;
-          <Route path="/tickets/:id" component={TicketUpdate} />
-          <Route path="/tickets" component={Tickets} />
+          <Route path="/locations" component={asyncLocations} />
+          <Route path="/tickets/create" component={asyncTicketCreate} />;
+          <Route path="/tickets/:id" component={asyncTicketUpdate} />
+          <Route path="/tickets" component={asyncTickets} />
           <Redirect to="/" />
         </Switch>
       );
     }
 
     return (
-      <div>
+      <Auxiliary>
         <Layout>
           <Portal>{routes}</Portal>
         </Layout>
-      </div>
+      </Auxiliary>
     );
   }
 }

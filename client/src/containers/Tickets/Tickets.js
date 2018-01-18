@@ -3,7 +3,7 @@ import api from '../../api';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import handleErrors from '../../hoc/handleErrors/handleErrors';
+import handleErrors from '../../hoc/handleErrors';
 
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Ticket from '../../components/Ticket/Ticket';
