@@ -33,6 +33,7 @@ class Tickets extends Component {
 
     if (!this.props.loading) {
       tickets = this.props.tickets
+        .reverse()
         .map(ticket => (
           <Ticket
             key={ticket._id}
@@ -40,8 +41,7 @@ class Tickets extends Component {
             {...ticket}
             delete={this.deleteTicket.bind(this, ticket._id)}
           />
-        ))
-        .reverse();
+        ));
     }
 
     return (

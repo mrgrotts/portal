@@ -15,7 +15,7 @@ export default class TicketForm extends Component {
   state = {
     category: this.props.ticket
       ? this.props.ticket.category
-      : 'commercialcleaning',
+      : 'Commercial Cleaning',
     location: this.props.ticket ? this.props.ticket.location : '',
     description: this.props.ticket ? this.props.ticket.description : '',
     media: this.props.ticket ? this.props.ticket.media : [],
@@ -43,7 +43,7 @@ export default class TicketForm extends Component {
     this.setState({
       category: this.props.ticket
         ? this.props.ticket.category
-        : 'commercialcleaning',
+        : 'Commercial Cleaning',
       location: this.props.ticket ? this.props.ticket.location : '',
       description: this.props.ticket ? this.props.ticket.description : '',
       media: this.props.ticket ? this.props.ticket.media : [],
@@ -65,21 +65,21 @@ export default class TicketForm extends Component {
                 value={this.state.category}
                 onChange={this.handleChange}
               >
-                <option value="commercialcleaning">Commercial Cleaning</option>
-                <option value="residentialcleaning">
+                <option value="Commercial Cleaning">Commercial Cleaning</option>
+                <option value="Residential Cleaning">
                   Residential Cleaning
                 </option>
-                <option value="drywallinstallation">
+                <option value="Drywall Installation">
                   Drywall Installation
                 </option>
-                <option value="electrician">Electrician</option>
-                <option value="floorservices">Floor Services</option>
-                <option value="maintenance">Maintenance</option>
-                <option value="painter">Painter</option>
-                <option value="pestcontrol">Pest Control</option>
-                <option value="plumber">Plumber</option>
-                <option value="postconstruction">Post Construction</option>
-                <option value="windowwashing">Window Washing</option>
+                <option value="Electrician">Electrician</option>
+                <option value="Floor Services">Floor Services</option>
+                <option value="Maintenance">Maintenance</option>
+                <option value="Painter">Painter</option>
+                <option value="Pest Control">Pest Control</option>
+                <option value="Plumber">Plumber</option>
+                <option value="Post Construction">Post Construction</option>
+                <option value="Window Washing">Window Washing</option>
               </select>
             </label>
           </div>

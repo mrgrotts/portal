@@ -2,8 +2,7 @@ const database = require('../database');
 
 exports.readLocations = (req, res, next) => {
   database.Locations.find()
-    .sort({ createAt: 'desc' })
-    // .populate('userId', { profilePicture: true })
+    .sort({ createAt: 'asc' })
     .then(locations => res.status(200).json(locations))
     .catch(error => res.send(error));
 };
@@ -29,11 +28,9 @@ exports.createLocation = (req, res, next) => {
           user
             .save()
             .then(user =>
-              database.Locations.findById(location._id).populate('userId', {
-                profilePicture: true
-              })
+              database.Locations.findById(location._id).populate('userId')
             )
-            .then(t => res.status(200).json(t))
+            .then(loc => res.status(200).json(loc))
             .catch(next);
         })
         .catch(next);

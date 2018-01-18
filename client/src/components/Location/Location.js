@@ -12,6 +12,8 @@ import classes from './Location.css';
 const Location = props => {
   const style = { height: '100%', width: '100%' };
 
+  let position = { lat: 41.88, lng: -87.65 };
+
   return (
     <div className={classes.Location}>
       <h1>Location ID: {props._id}</h1>
@@ -29,7 +31,7 @@ const Location = props => {
           <Marker
             name={'Test Marker'}
             onClick={props.onMarkerClick}
-            position={props.position}
+            position={position}
           />
         </Map>
       </div>
@@ -53,6 +55,6 @@ const Location = props => {
 };
 
 export default googleAPIComponent({
-  apiKey: process.env.GOOGLE_MAPS_API_KEY,
+  apiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   libraries: ['places']
 })(Location);

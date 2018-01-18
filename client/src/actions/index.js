@@ -11,23 +11,28 @@ export const AUTH_REDIRECT_PATH = 'auth_redirect_path';
 export const READ_TICKETS_START = 'read_tickets_start';
 export const READ_TICKETS_SUCCESS = 'read_tickets_success';
 export const READ_TICKETS_FAIL = 'read_tickets_fail';
+export const READ_TICKETS_END = 'read_tickets_end';
 
 export const CREATE_TICKET = 'create_ticket';
 export const CREATE_TICKET_START = 'create_ticket_start';
 export const CREATE_TICKET_SUCCESS = 'create_ticket_success';
 export const CREATE_TICKET_FAIL = 'create_ticket_fail';
+export const CREATE_TICKET_END = 'create_ticket_end';
 
 export const READ_TICKET_START = 'read_ticket_start';
 export const READ_TICKET_SUCCESS = 'read_ticket_success';
 export const READ_TICKET_FAIL = 'read_ticket_fail';
+export const READ_TICKET_END = 'read_ticket_end';
 
 export const UPDATE_TICKET_START = 'update_ticket_start';
 export const UPDATE_TICKET_SUCCESS = 'update_ticket_success';
 export const UPDATE_TICKET_FAIL = 'update_ticket_fail';
+export const UPDATE_TICKET_END = 'update_ticket_end';
 
 export const DELETE_TICKET_START = 'delete_ticket_start';
 export const DELETE_TICKET_SUCCESS = 'delete_ticket_success';
 export const DELETE_TICKET_FAIL = 'delete_ticket_fail';
+export const DELETE_TICKET_END = 'update_ticket_end';
 
 export const READ_LOCATIONS_START = 'read_locations_start';
 export const READ_LOCATIONS_SUCCESS = 'read_locations_success';
@@ -81,8 +86,8 @@ export const auth = (email, password, registration) => dispatch => {
       dispatch(authSuccess(response.data.token, response.data.userId));
       dispatch(authTimeout(response.data.expiresIn));
       // Primary Data API Calls
-      dispatch(readTickets());
-      dispatch(readLocations());
+      // dispatch(readTickets());
+      // dispatch(readLocations());
 
       generateAuthorizationHeader(response.data.token);
     })
@@ -171,6 +176,7 @@ export const readTickets = () => dispatch => {
   api
     .get(url)
     .then(response => dispatch(readTicketsSuccess(response.data)))
+    .then(() => dispatch(readTicketsEnd()))
     .catch(error => {
       console.log(error);
       dispatch(readTicketsFail(error));
@@ -191,6 +197,10 @@ export const readTicketsFail = error => ({
   error
 });
 
+export const readTicketsEnd = () => ({
+  type: READ_TICKETS_END
+});
+
 export const createTicket = ticket => dispatch => {
   const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
@@ -206,6 +216,7 @@ export const createTicket = ticket => dispatch => {
   api
     .post(url, ticket)
     .then(ticket => dispatch(createTicketSuccess(ticket)))
+    .then(() => dispatch(createTicketEnd()))
     .catch(error => {
       console.log(error);
       dispatch(createTicketFail(error));
@@ -224,6 +235,10 @@ export const createTicketSuccess = ticket => ({
 export const createTicketFail = error => ({
   type: CREATE_TICKET_FAIL,
   error
+});
+
+export const createTicketEnd = () => ({
+  type: CREATE_TICKET_END
 });
 
 export const readTicket = id => dispatch => {
@@ -245,6 +260,8 @@ export const readTicket = id => dispatch => {
       console.log(error);
       dispatch(readTicketFail(error));
     });
+
+  dispatch(readTicketEnd());
 };
 
 export const readTicketStart = () => ({
@@ -259,6 +276,10 @@ export const readTicketSuccess = ticket => ({
 export const readTicketFail = error => ({
   type: READ_TICKET_FAIL,
   error
+});
+
+export const readTicketEnd = () => ({
+  type: READ_TICKET_END
 });
 
 export const updateTicket = (id, ticket) => dispatch => {
@@ -280,6 +301,8 @@ export const updateTicket = (id, ticket) => dispatch => {
       console.log(error);
       dispatch(updateTicketFail(error));
     });
+
+  dispatch(updateTicketEnd());
 };
 
 export const updateTicketStart = () => ({
@@ -294,6 +317,10 @@ export const updateTicketSuccess = ticket => ({
 export const updateTicketFail = error => ({
   type: UPDATE_TICKET_FAIL,
   error
+});
+
+export const updateTicketEnd = () => ({
+  type: UPDATE_TICKET_END
 });
 
 export const deleteTicket = id => dispatch => {
@@ -315,6 +342,8 @@ export const deleteTicket = id => dispatch => {
       console.log(error);
       dispatch(deleteTicketFail(error));
     });
+
+  dispatch(deleteTicketEnd());
 };
 
 export const deleteTicketStart = () => ({
@@ -329,6 +358,10 @@ export const deleteTicketSuccess = ticket => ({
 export const deleteTicketFail = error => ({
   type: DELETE_TICKET_FAIL,
   error
+});
+
+export const deleteTicketEnd = () => ({
+  type: DELETE_TICKET_END
 });
 
 /**************************************************************************************

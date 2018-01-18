@@ -12,6 +12,7 @@ import ProgressBar from '../UI/ProgressBar/ProgressBar';
 import classes from './Ticket.css';
 
 const Ticket = props => {
+  console.log(props);
   const style = { height: '100%', width: '100%' };
 
   let position = { lat: 41.88, lng: -87.65 };
@@ -32,7 +33,7 @@ const Ticket = props => {
           <Marker
             name={'Test Marker'}
             onClick={props.onMarkerClick}
-            position={props.position}
+            position={position}
           />
         </Map>
       </div>
@@ -55,7 +56,7 @@ const Ticket = props => {
 };
 
 export default googleAPIComponent({
-  apiKey: process.env.GOOGLE_MAPS_API_KEY,
+  apiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   libraries: ['places']
 })(Ticket);
 

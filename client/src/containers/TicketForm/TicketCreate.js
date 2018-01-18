@@ -2,7 +2,7 @@ import api from '../../api';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 import handleErrors from '../../hoc/handleErrors';
 
@@ -13,9 +13,7 @@ import * as actions from '../../actions';
 
 class TicketCreate extends Component {
   onSubmit = async ticket => {
-    // console.log(ticket);
     await this.props.createTicket(ticket);
-    this.props.history.push('/tickets');
   };
 
   onCancel = () => {
@@ -23,14 +21,20 @@ class TicketCreate extends Component {
   };
 
   render() {
+    console.log(this.props.success);
     let form = <Spinner />;
 
     if (!this.props.loading) {
       form = <TicketForm onSubmit={this.onSubmit} onCancel={this.onCancel} />;
     }
 
+    const redirectAfterSubmit = this.props.success ? (
+      <Redirect to="/tickets" />
+    ) : null;
+
     return (
       <div>
+        {redirectAfterSubmit}
         <h1>Create Ticket Form</h1>
         {form}
       </div>
@@ -40,8 +44,9 @@ class TicketCreate extends Component {
 
 const mapStateToProps = state => ({
   id: state.auth.id,
+  token: state.auth.token,
   loading: state.tickets.loading,
-  token: state.auth.token
+  success: state.tickets.success
 });
 
 const mapDispatchToProps = dispatch => ({

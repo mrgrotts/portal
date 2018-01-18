@@ -33,6 +33,11 @@ const ticketsReducer = (state = initialState, action) => {
         loading: false,
         success: false
       };
+    case actions.CREATE_TICKET_END:
+      return {
+        ...state,
+        success: false
+      };
     case actions.READ_TICKETS_START:
       return {
         ...state,
@@ -53,6 +58,11 @@ const ticketsReducer = (state = initialState, action) => {
         error: action.error,
         success: false
       };
+    case actions.READ_TICKETS_END:
+      return {
+        ...state,
+        success: false
+      };
     case actions.UPDATE_TICKET_START:
       return {
         ...state,
@@ -62,7 +72,6 @@ const ticketsReducer = (state = initialState, action) => {
       };
     case actions.UPDATE_TICKET_SUCCESS:
       const updatedTicket = { ...action.ticket };
-      console.log(updatedTicket);
 
       return {
         ...state,
@@ -76,6 +85,11 @@ const ticketsReducer = (state = initialState, action) => {
         ...state,
         error: action.error,
         loading: false,
+        success: false
+      };
+    case actions.UPDATE_TICKET_END:
+      return {
+        ...state,
         success: false
       };
     case actions.DELETE_TICKET_START:
@@ -102,6 +116,11 @@ const ticketsReducer = (state = initialState, action) => {
         ...state,
         error: action.error,
         loading: false,
+        success: false
+      };
+    case actions.DELETE_TICKET_END:
+      return {
+        ...state,
         success: false
       };
     default:

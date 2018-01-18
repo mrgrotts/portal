@@ -43,21 +43,21 @@ const ticketsSchema = new mongoose.Schema(
     category: {
       type: String,
       required: 'Please select a category',
-      lowercase: true,
-      trim: true,
-      default: 'commercialcleaning',
+      // lowercase: true,
+      // trim: true,
+      default: 'Commercial Cleaning',
       enum: [
-        'commercialcleaning',
-        'residentialcleaning',
-        'drywallinstallation',
-        'electrician',
-        'floorservices',
-        'maintenance',
-        'painter',
-        'pestcontrol',
-        'plumber',
-        'postconstruction',
-        'windowwashing'
+        'Commercial Cleaning',
+        'Residential Cleaning',
+        'Drywall Installation',
+        'Electrician',
+        'Floor Services',
+        'Maintenance',
+        'Painter',
+        'Pest Control',
+        'Plumber',
+        'Post Construction',
+        'Window Washing'
       ]
     },
     location: {

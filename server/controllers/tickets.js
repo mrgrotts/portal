@@ -3,7 +3,6 @@ const database = require('../database');
 exports.readTickets = (req, res, next) => {
   database.Tickets.find()
     .sort({ createdAt: 'asc' })
-    // .populate('userId', { profilePicture: true })
     .then(tickets => res.status(200).json(tickets))
     .catch(error => res.send(error));
 };
@@ -25,7 +24,9 @@ exports.createTicket = (req, res, next) => {
           user.tickets.push(ticket.id);
           user
             .save()
-            .then(user => database.Tickets.findById(ticket._id))
+            .then(ticket =>
+              database.Tickets.findById(ticket._id).populate('userId')
+            )
             .then(t => res.status(201).json(t))
             .catch(next);
         })
@@ -63,6 +64,7 @@ exports.updateTicket = (req, res, next) => {
 
   // database.Tickets.findByIdAndUpdate(req.params.id, updatedTicket, { new: true });
   database.Tickets.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .populate('ticket')
     .then(ticket => res.status(201).json(ticket))
     .catch(error => res.send(error));
 };
