@@ -1,11 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import { wrapper as googleAPIComponent } from '../../hoc/googleAPIComponent';
 
 import Button from '../UI/Button/Button';
 import Map from '../UI/Maps';
+import Marker from '../UI/Maps/Marker/Marker';
 
 import classes from './Location.css';
 
 const Location = props => {
+  const style = { height: '100%', width: '100%' };
+
   return (
     <div className={classes.Location}>
       <h1>Location ID: {props._id}</h1>
@@ -13,7 +19,19 @@ const Location = props => {
         {props.latitude}, {props.longitude}
       </p>
       <div style={{ height: '300px', width: '300px' }}>
-        <Map id={props._id} latitude={41.88} longitude={-87.65} />
+        <Map
+          id={props._id}
+          google={props.google}
+          onClick={props.onMapClicked}
+          style={style}
+          zoom={10}
+        >
+          <Marker
+            name={'Test Marker'}
+            onClick={props.onMarkerClick}
+            position={props.position}
+          />
+        </Map>
       </div>
       <p>{props.name}</p>
       <p>{props.addressOne}</p>
@@ -22,9 +40,11 @@ const Location = props => {
         {props.city}, {props.state} {props.zipcode}
       </p>
 
-      <Button ButtonType="Success" clicked={props.update}>
-        Modify
-      </Button>
+      <Link to={`/locations/${props._id}`}>
+        <Button ButtonType="Success" clicked={props.update}>
+          Modify
+        </Button>
+      </Link>
       <Button ButtonType="Failure" clicked={props.delete}>
         Delete
       </Button>
@@ -32,4 +52,7 @@ const Location = props => {
   );
 };
 
-export default Location;
+export default googleAPIComponent({
+  apiKey: 'AIzaSyD_xwq4iNehc3lxu1JPyDQyc_nm7D8KTRs',
+  libraries: ['places']
+})(Location);

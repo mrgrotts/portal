@@ -29,19 +29,12 @@ class Locations extends Component {
 
     if (!this.props.loading) {
       locations = this.props.locations.map(location => (
-        <div
+        <Location
           key={location._id}
-          style={{
-            width: '100%',
-            backgroundColor: 'white'
-          }}
-        >
-          <Location
-            {...location}
-            update={this.updateLocation.bind(this, location)}
-            delete={this.deleteLocation.bind(this, location._id)}
-          />
-        </div>
+          {...location}
+          update={this.updateLocation.bind(this, location)}
+          delete={this.deleteLocation.bind(this, location._id)}
+        />
       ));
     }
 
@@ -63,7 +56,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   readLocations: () => dispatch(actions.readLocations()),
-  updateLocation: location => dispatch(actions.updateLocation(location)),
+  updateLocation: (id, location) =>
+    dispatch(actions.updateLocation(id, location)),
   deleteLocation: id => dispatch(actions.deleteLocation(id))
 });
 
