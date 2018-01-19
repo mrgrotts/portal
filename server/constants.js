@@ -1,5 +1,6 @@
 module.exports = {
   API_WELCOME_MESSAGE: 'Welcome to the Ticket Portal API.',
+  ADMIN_ACCESS_DENIED: 'You are not an Admin.',
   ACCOUNT_NOT_AUTHORIZED: 'Unauthorized.',
   ACCOUNT_NOT_VERIFIED: 'Please verify your account.',
   FORGOT_PASSWORD_SUCCESS: 'Email sent, please check your inbox to verify.',

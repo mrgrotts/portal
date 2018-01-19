@@ -2,7 +2,11 @@ require('dotenv').load();
 const jwt = require('jsonwebtoken');
 const database = require('../database');
 
-const { ACCOUNT_NOT_AUTHORIZED, SESSION_TIMEOUT } = require('../constants');
+const {
+  ACCOUNT_NOT_AUTHORIZED,
+  ADMIN_ACCESS_DENIED,
+  SESSION_TIMEOUT
+} = require('../constants');
 
 exports.checkAdmin = (req, res, next) => {
   try {
@@ -10,12 +14,12 @@ exports.checkAdmin = (req, res, next) => {
       if (admin) {
         next();
       } else {
-        res.status(403).json({ message: `You're not an Admin.` });
+        res.status(403).json({ message: ADMIN_ACCESS_DENIED });
       }
     });
   } catch (error) {
     console.log(error);
-    res.status(403).json({ message: `You're not an Admin.` });
+    res.status(403).json({ message: ADMIN_ACCESS_DENIED });
   }
 };
 
