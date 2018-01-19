@@ -3,8 +3,8 @@ const database = require('../database');
 
 const { INVALID_EMAIL, INVALID_PASSWORD } = require('../constants');
 
-exports.login = async (req, res) => {
-  await database.Users.findOne({
+exports.login = (req, res) => {
+  database.Users.findOne({
     email: req.body.email
   })
     .then(user => {
@@ -42,10 +42,8 @@ exports.login = async (req, res) => {
     });
 };
 
-exports.register = async (req, res) => {
-  console.log(req.body);
-
-  await database.Users.create(req.body)
+exports.register = (req, res) => {
+  database.Users.create(req.body)
     .then(user => {
       const token = jwt.sign(
         {
@@ -63,8 +61,8 @@ exports.register = async (req, res) => {
     });
 };
 
-exports.forgotPassword = async (req, res) => {
-  await database.Users.find({
+exports.forgotPassword = (req, res) => {
+  database.Users.find({
     email: req.body.email
   })
     .then(user => {
