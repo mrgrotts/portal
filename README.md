@@ -1,4 +1,4 @@
-**Portal**
+##Portal
 Portal is a platform developed with React, Express, NodeJS and MongoDB. It uses JSON Web Tokens (JWT) for authentication, and features multiple user types:
 
 * Admin - global access
@@ -7,14 +7,14 @@ Portal is a platform developed with React, Express, NodeJS and MongoDB. It uses 
 
 Create React App was used to generate client side boilerplate. This project has already been ejected to enable CSS Modules and other customizations.
 
-#Prerequisites
+##Prerequisites
 The following list outlines tools that must be installed locally to run Portal:
 
 * NodeJS
 * MongoDB
 * Postman - optional
 
-#Setup
+##Setup
 
 1. Open a terminal and start MongoDB (from the directory you installed it in to) --> LEAVE RUNNING
 2. Open a second terminal window, `cd server` --> `npm install` --> LEAVE OPEN
@@ -27,10 +27,11 @@ The following list outlines tools that must be installed locally to run Portal:
 `QUICKBOOKS_SECRET=YOUR_QUICKBOOKS_SECRET`
 
 3. If you plan to use Google Cloud Storage, you must download your `client_secret.json` and include it in the root of the `server` directory
-4. `npm run start` --> backend runs on localhost:8080
-5. Open a third terminal window, `cd client` --> npm install --> LEAVE OPEN
-6. In the root of the `client` directory, create a file `.env` as follows, replacing values with your own:
+4. If you plan to use Google Cloud Service Accounts, you must download your service account's Private Key as a .json file and include it in the root of the `server` directory
+5. `npm run start` --> backend runs on localhost:8080
+6. Open a third terminal window, `cd client` --> npm install --> LEAVE OPEN
+7. In the root of the `client` directory, create a file `.env` as follows, replacing values with your own:
 
 `REACT_APP_GOOGLE_MAPS_API_KEY=[YOUR GOOGLE MAPS API KEY]`
 
-7. `npm run start` --> React Dev Server runs on localhost:3000
+8. `npm run start` --> React Dev Server runs on localhost:3000

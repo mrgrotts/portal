@@ -52,6 +52,6 @@ app.use(
 
 const server = http.createServer(app);
 server.listen(PORT, IP, () => {
-  console.log(`[${process.env.APP_NAME}]: Launched API on ${HOST}:${PORT}.`);
-  console.log(`[${process.env.APP_NAME}]: Assigned IP Address ${IP}.`);
+  console.log(`[${process.env.APP_NAME}]: Launched API on ${HOST}:${PORT}`);
+  console.log(`[${process.env.APP_NAME}]: Assigned IP Address ${IP}`);
 });
