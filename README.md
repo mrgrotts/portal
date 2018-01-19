@@ -18,6 +18,8 @@ The following list outlines tools that must be installed locally to run Portal:
 
 ## Setup
 
+You could be building sick Portals too:
+
 ### MongoDB
 
 1. Open a terminal and start MongoDB **-->** **_LEAVE RUNNING_**
@@ -49,8 +51,6 @@ REACT_APP_GOOGLE_MAPS_API_KEY=YOUR_GOOGLE_MAPS_API_KEY
 ```
 
 3. `npm run start` **-->** React Dev Server runs on **localhost:3000**
-
-All that's left to do now is create sick Portals.
 
 ## Roadmap
 
