@@ -1,4 +1,4 @@
-##Portal
+**Portal**
 Portal is a platform developed with React, Express, NodeJS and MongoDB. It uses JSON Web Tokens (JWT) for authentication, and features multiple user types:
 
 * Admin - global access
@@ -7,20 +7,20 @@ Portal is a platform developed with React, Express, NodeJS and MongoDB. It uses 
 
 Create React App was used to generate client side boilerplate. This project has already been ejected to enable CSS Modules and other customizations.
 
-##Prerequisites
+**Prerequisites**
 The following list outlines tools that must be installed locally to run Portal:
 
 * NodeJS
 * MongoDB
 * Postman - optional
 
-##Setup
+**Setup**
 
 1. Open a terminal and start MongoDB (from the directory you installed it in to) --> LEAVE RUNNING
 2. Open a second terminal window, `cd server` --> `npm install` --> LEAVE OPEN
 3. In the root of the `server` directory, create a file `.env` as follows, replacing values with your own:
 
-`APP_NAME=YOUR_APP_NAME`
+`APP_NAME=YOUR_APP_NAME` \n
 `DATABASE_URI=YOUR_MONGO_DB_URI`
 `JWT_KEY=YOUR_RANDOM_JWT_STRING`
 `QUICKBOOKS_KEY=YOUR_QUICKBOOKS_KEY`
