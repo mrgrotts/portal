@@ -80,4 +80,4 @@ Interested in helping build more functionality in to Portal? Please connect with
 
 I wanted to personally take a moment to appreciate all of the great instructors at [Udemy](http://www.udemy.com/) and [Udacity](http://www.udacity.com/) for providing outstanding educational content. I would recommend them both to anyone.
 
-Special Thanks to Ricky and [Rozalado](https://rozaladocleaning.com/) for believing in Portal and our work. You guys are amazing.
+Shout out to Ricky and [Rozalado](https://rozaladocleaning.com/) for believing in Portal and our work. You guys are amazing.
