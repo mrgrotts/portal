@@ -69,7 +69,7 @@ All henceforth stated goals are by end of quarter.
 ### Q3 2018
 
 * Calendar
-* Offline First
+* Offline Mode
 * Push Notifications
 * Real Time Geolocation
 * Stripe
