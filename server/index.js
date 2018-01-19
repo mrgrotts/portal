@@ -11,14 +11,15 @@ const morgan = require('morgan');
 const database = require('./database');
 const { checkAdmin, authenticateUser, authorizeUser } = require('./middleware');
 
+const sudoRoutes = require('./routes/sudo');
 const apiRoutes = require('./routes/api');
 const adminRoutes = require('./routes/admins');
-const sudoRoutes = require('./routes/sudo');
 const authRoutes = require('./routes/auth');
 const locationRoutes = require('./routes/locations');
 const ticketRoutes = require('./routes/tickets');
 
 const app = express();
+const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 8080;
 const IP = process.env.IP || '0.0.0.0';
 
