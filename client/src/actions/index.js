@@ -346,7 +346,6 @@ export const READ_LOCATIONS_SUCCESS = 'read_locations_success';
 export const READ_LOCATIONS_FAIL = 'read_locations_fail';
 export const READ_LOCATIONS_END = 'read_locations_end';
 
-export const CREATE_LOCATION = 'create_location';
 export const CREATE_LOCATION_START = 'create_location_start';
 export const CREATE_LOCATION_SUCCESS = 'create_location_success';
 export const CREATE_LOCATION_FAIL = 'create_location_fail';
