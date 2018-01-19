@@ -33,7 +33,7 @@ QUICKBOOKS_SECRET=YOUR_QUICKBOOKS_SECRET
 4. If you plan to use **Google Cloud Storage**, you must download your `client_secret.json` and include it in the root of the `server` directory
 5. If you plan to use **Google Cloud Service Accounts**, you must download your service account's Private Key as a .json file and include it in the root of the `server` directory
 6. `npm run start` **-->** backend runs on **localhost:8080**
-7. Open a third terminal window, `cd client` **-->** npm install **-->** **_LEAVE OPEN_**
+7. Open a third terminal window, `cd client` **-->** `npm install` **-->** **_LEAVE OPEN_**
 8. In the root of the `client` directory, create a file `.env` as follows, replacing values with your own:
 
 ```
@@ -41,3 +41,4 @@ REACT_APP_GOOGLE_MAPS_API_KEY=YOUR_GOOGLE_MAPS_API_KEY
 ```
 
 9. `npm run start` **-->** React Dev Server runs on **localhost:3000**
+10. Create sick Portals!
