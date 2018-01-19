@@ -26,18 +26,18 @@ const ticketsSchema = new mongoose.Schema(
     status: {
       type: String,
       required: 'Please select a status',
-      lowercase: true,
-      trim: true,
-      default: 'unassigned',
+      // lowercase: true,
+      // trim: true,
+      default: 'Unassigned',
       enum: [
-        'unassigned',
-        'prep',
-        'onhold',
-        'inprogress',
-        'pending',
-        'purchasingparts',
-        'orderedparts',
-        'closed'
+        'Unassigned',
+        'Prep',
+        'On Hold',
+        'In Progress',
+        'Pending',
+        'Purchasing Parts',
+        'Odered Parts',
+        'Closed'
       ]
     },
     category: {

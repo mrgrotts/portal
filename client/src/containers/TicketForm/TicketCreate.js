@@ -21,7 +21,6 @@ class TicketCreate extends Component {
   };
 
   render() {
-    console.log(this.props.success);
     let form = <Spinner />;
 
     if (!this.props.loading) {

@@ -9,10 +9,11 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 const database = require('./database');
-const { authenticateUser, authorizeUser } = require('./middleware');
+const { checkAdmin, authenticateUser, authorizeUser } = require('./middleware');
 
 const apiRoutes = require('./routes/api');
-const adminRoutes = require('./routes/admin');
+const adminRoutes = require('./routes/admins');
+const sudoRoutes = require('./routes/sudo');
 const authRoutes = require('./routes/auth');
 const locationRoutes = require('./routes/locations');
 const ticketRoutes = require('./routes/tickets');
@@ -29,8 +30,11 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// SUDO MODE -- Enable to use API without Authenticating
+// app.use('/api/sudo', sudoRoutes);
+
 app.use('/', apiRoutes);
-app.use('/api', adminRoutes);
+app.use('/api/admin/:id', checkAdmin, adminRoutes);
 app.use('/api/auth', authRoutes);
 app.use(
   '/api/users/:id/locations',

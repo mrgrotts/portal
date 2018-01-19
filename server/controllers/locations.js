@@ -1,10 +1,19 @@
 const database = require('../database');
 
 exports.readLocations = (req, res, next) => {
-  database.Locations.find()
-    .sort({ createAt: 'asc' })
-    .then(locations => res.status(200).json(locations))
-    .catch(error => res.send(error));
+  database.Users.findById(req.params.id).then(user => {
+    if (user.admin) {
+      database.Locations.find()
+        .sort({ createdAt: 'asc' })
+        .then(locations => res.status(200).json(locations))
+        .catch(error => res.send(error));
+    } else {
+      database.Locations.find({ userId: req.params.id })
+        .sort({ createdAt: 'asc' })
+        .then(locations => res.status(200).json(locations))
+        .catch(error => res.send(error));
+    }
+  });
 };
 
 exports.createLocation = (req, res, next) => {

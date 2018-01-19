@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const usersSchema = new mongoose.Schema(
+const adminsSchema = new mongoose.Schema(
   {
     email: {
       type: String,
@@ -35,10 +35,12 @@ const usersSchema = new mongoose.Schema(
     profilePicture: {
       type: String
     },
-    admin: {
-      type: Boolean,
-      default: false
-    },
+    users: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Users'
+      }
+    ],
     tickets: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -61,7 +63,7 @@ const usersSchema = new mongoose.Schema(
   }
 );
 
-usersSchema.pre('save', function(next) {
+adminsSchema.pre('save', function(next) {
   const user = this;
   if (!user.isModified('password')) {
     return next();
@@ -78,7 +80,7 @@ usersSchema.pre('save', function(next) {
   );
 });
 
-usersSchema.methods.comparePassword = function(candidatePassword, next) {
+adminsSchema.methods.comparePassword = function(candidatePassword, next) {
   bcrypt.compare(candidatePassword, this.password, (error, isMatch) => {
     if (error) {
       return next(error);
@@ -88,5 +90,5 @@ usersSchema.methods.comparePassword = function(candidatePassword, next) {
   });
 };
 
-const Users = mongoose.model('Users', usersSchema);
-module.exports = Users;
+const Admins = mongoose.model('Admins', adminsSchema);
+module.exports = Admins;

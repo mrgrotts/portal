@@ -1,7 +1,23 @@
 require('dotenv').load();
 const jwt = require('jsonwebtoken');
+const database = require('../database');
 
 const { ACCOUNT_NOT_AUTHORIZED, SESSION_TIMEOUT } = require('../constants');
+
+exports.checkAdmin = (req, res, next) => {
+  try {
+    let admin = database.Admins.findById(req.params.id).then(admin => {
+      if (admin) {
+        next();
+      } else {
+        res.status(403).json({ message: `You're not an Admin.` });
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(403).json({ message: `You're not an Admin.` });
+  }
+};
 
 exports.authenticateUser = (req, res, next) => {
   try {
@@ -13,7 +29,8 @@ exports.authenticateUser = (req, res, next) => {
         res.status(401).json({ message: SESSION_TIMEOUT });
       }
     });
-  } catch (e) {
+  } catch (error) {
+    console.log(error);
     res.status(401).json({ message: SESSION_TIMEOUT });
   }
 };
@@ -25,10 +42,11 @@ exports.authorizeUser = (req, res, next) => {
       if (decoded && decoded.userId === req.params.id) {
         next();
       } else {
-        res.status(401).json({ message: ACCOUNT_NOT_AUTHORIZED });
+        res.status(403).json({ message: ACCOUNT_NOT_AUTHORIZED });
       }
     });
   } catch (error) {
-    res.status(401).json({ message: ACCOUNT_NOT_AUTHORIZED });
+    console.log(error);
+    res.status(403).json({ message: ACCOUNT_NOT_AUTHORIZED });
   }
 };

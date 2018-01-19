@@ -7,199 +7,1929 @@
 	},
 	"item": [
 		{
-			"name": "User Schema",
-			"request": {
-				"auth": {
-					"type": "noauth"
+			"name": "Sudo",
+			"description": "",
+			"item": [
+				{
+					"name": "Sudo All Admins",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"josephmgrotto@gmail.com\",\n    \"password\": \"theone19\",\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": \"1\",\n    \"phone\": \"6303862219\",\n    \"profilePicture\": \"\",\n    \"verified\": \"true\"\n}\n\n"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sudo/admins",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sudo",
+								"admins"
+							]
+						},
+						"description": ""
+					},
+					"response": []
 				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
+				{
+					"name": "Sudo Create Admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"josephmgrotto@gmail.com\",\n    \"password\": \"theone19\",\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": \"1\",\n    \"phone\": \"6303862219\",\n    \"profilePicture\": \"\",\n    \"verified\": \"true\"\n}\n\n"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sudo/admins",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sudo",
+								"admins"
+							]
+						},
+						"description": ""
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/users",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users"
-					]
+				{
+					"name": "Sudo Read Admin",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"josephmgrotto@gmail.com\",\n    \"password\": \"theone19\",\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": \"1\",\n    \"phone\": \"6303862219\",\n    \"profilePicture\": \"\",\n    \"verified\": \"true\"\n}\n\n"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sudo/admins/5a612ea23a029a0a70e5799e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sudo",
+								"admins",
+								"5a612ea23a029a0a70e5799e"
+							]
+						},
+						"description": ""
+					},
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
+				{
+					"name": "Sudo Update Admin",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"josephmgrotto@gmail.com\",\n    \"password\": \"theone19\",\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": \"1\",\n    \"phone\": \"6303862219\",\n    \"profilePicture\": \"\",\n    \"verified\": \"true\"\n}\n\n"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sudo/admins/5a612ea23a029a0a70e5799e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sudo",
+								"admins",
+								"5a612ea23a029a0a70e5799e"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Sudo Delete Admin",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sudo/admins/5a612ea23a029a0a70e5799e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sudo",
+								"admins",
+								"5a612ea23a029a0a70e5799e"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Sudo All Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sudo/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sudo",
+								"users"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Sudo Read User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sudo/users/5a4c80201a1ca52ae4c9c50a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sudo",
+								"users",
+								"5a4c80201a1ca52ae4c9c50a"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Sudo Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": 1,\n    \"phone\": 6303862219,\n    \"admin\": false,\n    \"tickets\": [],\n    \"locations\": [],\n    \"verified\": true,\n    \"email\": \"tom@gmail.com\",\n    \"password\": \"things123\",\n    \"__v\": 0,\n    \"updatedAt\": \"2018-01-18T21:51:51.688Z\",\n    \"profilePicture\": \"\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sudo/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sudo",
+								"users"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Sudo Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": 1,\n    \"phone\": 6303862219,\n    \"admin\": true,\n    \"tickets\": [],\n    \"locations\": [],\n    \"verified\": true,\n    \"_id\": \"5a4c80201a1ca52ae4c9c50a\",\n    \"email\": \"josephmgrotto@gmail.com\",\n    \"password\": \"$2a$10$CpMxLl42O01ql4T0zEgJee91rziTZ49z/oKAnJCRWA5Pkvw1RC5ve\",\n    \"__v\": 0,\n    \"updatedAt\": \"2018-01-18T21:51:51.688Z\",\n    \"profilePicture\": \"\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sudo/users/5a612ea23a029a0a70e5799e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sudo",
+								"users",
+								"5a612ea23a029a0a70e5799e"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Sudo Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sudo/users/5a6135bf22afb8410085441e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sudo",
+								"users",
+								"5a6135bf22afb8410085441e"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Sudo All Tickets",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sudo/tickets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sudo",
+								"tickets"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Sudo Read Ticket",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sudo/tickets/5a602b1e8ea3f4495837ccdd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sudo",
+								"tickets",
+								"5a602b1e8ea3f4495837ccdd"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Sudo Update Ticket",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"status\": \"unassigned\",\n        \"category\": \"Residential Cleaning\",\n        \"comments\": {\n            \"children\": []\n        },\n        \"requestedDeletion\": false,\n        \"location\": \"27W223 Churchill Road\",\n        \"description\": \"i don't clean my house, can you do it for me\",\n        \"requestedDate\": \"1-22-18\"\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sudo/tickets/5a602b1e8ea3f4495837ccdd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sudo",
+								"tickets",
+								"5a602b1e8ea3f4495837ccdd"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Sudo Delete Ticket",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sudo/tickets/5a602b1e8ea3f4495837ccdd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sudo",
+								"tickets",
+								"5a602b1e8ea3f4495837ccdd"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Sudo All Locations",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sudo/locations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sudo",
+								"locations"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Sudo Read Location",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sudo/locations/5a5510c80461ee2ff05e3358",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sudo",
+								"locations",
+								"5a5510c80461ee2ff05e3358"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Sudo Update Location",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"latitude\": 41.88,\n    \"longitude\": -87.00,\n    \"tickets\": [],\n    \"name\": \"Home\",\n    \"addressOne\": \"27W223 Churchill Road\",\n    \"addressTwo\": \"\",\n    \"city\": \"Winfield\",\n    \"state\": \"IL\",\n    \"zipcode\": \"60190\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sudo/locations/5a5510c80461ee2ff05e3358",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sudo",
+								"locations",
+								"5a5510c80461ee2ff05e3358"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Sudo Delete Location",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sudo/locations/5a5510c80461ee2ff05e3358",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sudo",
+								"locations",
+								"5a5510c80461ee2ff05e3358"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"name": "Location Schema",
-			"request": {
-				"auth": {
-					"type": "noauth"
+			"name": "Admins",
+			"description": "",
+			"item": [
+				{
+					"name": "All Admins",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"josephmgrotto@gmail.com\",\n    \"password\": \"theone19\",\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": \"1\",\n    \"phone\": \"6303862219\",\n    \"profilePicture\": \"\",\n    \"verified\": \"true\"\n}\n\n"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/admins",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"5a612ea23a029a0a70e5799e",
+								"admins"
+							]
+						},
+						"description": ""
+					},
+					"response": []
 				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
+				{
+					"name": "Create Admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"grottoj@gmail.com\",\n    \"password\": \"theone19\",\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": \"1\",\n    \"phone\": \"6303862219\",\n    \"profilePicture\": \"\",\n    \"verified\": \"true\"\n}\n\n"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/admins",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"5a612ea23a029a0a70e5799e",
+								"admins"
+							]
+						},
+						"description": ""
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/locations",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"locations"
-					]
+				{
+					"name": "Read Admin",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"josephmgrotto@gmail.com\",\n    \"password\": \"theone19\",\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": \"1\",\n    \"phone\": \"6303862219\",\n    \"profilePicture\": \"\",\n    \"verified\": \"true\"\n}\n\n"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/admins/5a6132c022afb8410085441a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"5a612ea23a029a0a70e5799e",
+								"admins",
+								"5a6132c022afb8410085441a"
+							]
+						},
+						"description": ""
+					},
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
+				{
+					"name": "Update Admin",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"grottoj@gmail.com\",\n    \"password\": \"theone19\",\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": \"1\",\n    \"phone\": \"6303862219\",\n    \"profilePicture\": \"\",\n    \"verified\": \"true\"\n}\n\n"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/admins/5a6132c022afb8410085441a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"5a612ea23a029a0a70e5799e",
+								"admins",
+								"5a6132c022afb8410085441a"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Admin",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/admins/5a6132c022afb8410085441a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"5a612ea23a029a0a70e5799e",
+								"admins",
+								"5a6132c022afb8410085441a"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Admin All Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"5a612ea23a029a0a70e5799e",
+								"users"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Read User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/users/5a4c80201a1ca52ae4c9c50a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"5a612ea23a029a0a70e5799e",
+								"users",
+								"5a4c80201a1ca52ae4c9c50a"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": 1,\n    \"phone\": 6303862219,\n    \"admin\": true,\n    \"tickets\": [],\n    \"locations\": [],\n    \"verified\": true,\n    \"_id\": \"5a4c80201a1ca52ae4c9c50a\",\n    \"email\": \"josephmgrotto@gmail.com\",\n    \"profilePicture\": \"https://google.com\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/users/5a4c80201a1ca52ae4c9c50a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"5a612ea23a029a0a70e5799e",
+								"users",
+								"5a4c80201a1ca52ae4c9c50a"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/users/5a4c80201a1ca52ae4c9c50a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"5a612ea23a029a0a70e5799e",
+								"users",
+								"5a4c80201a1ca52ae4c9c50a"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Admin All Tickets",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/tickets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"5a612ea23a029a0a70e5799e",
+								"tickets"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Read Ticket",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/tickets/5a602b1e8ea3f4495837ccdd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"5a612ea23a029a0a70e5799e",
+								"tickets",
+								"5a602b1e8ea3f4495837ccdd"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Update Ticket",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"unassigned\",\n    \"category\": \"Residential Cleaning\",\n    \"comments\": {\n        \"children\": []\n    },\n    \"requestedDeletion\": false,\n    \"_id\": \"5a602b1e8ea3f4495837ccdd\",\n    \"userId\": \"5a4c7998fb4fb526c0100abe\",\n    \"location\": \"27W223 Churchill Road\",\n    \"description\": \"i don't clean my house, can you do it for me\",\n    \"requestedDate\": \"3-22-18\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/tickets/5a602b1e8ea3f4495837ccdd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"5a612ea23a029a0a70e5799e",
+								"tickets",
+								"5a602b1e8ea3f4495837ccdd"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Delete Ticket",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/tickets/5a602b1e8ea3f4495837ccdd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"5a612ea23a029a0a70e5799e",
+								"tickets",
+								"5a602b1e8ea3f4495837ccdd"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Admin All Locations",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/locations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"5a612ea23a029a0a70e5799e",
+								"locations"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Read Location",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/locations/5a5510c80461ee2ff05e3358",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"5a612ea23a029a0a70e5799e",
+								"locations",
+								"5a5510c80461ee2ff05e3358"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Create Location",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"latitude\": 100,\n    \"longitude\": -200,\n    \"tickets\": [],\n    \"name\": \"madeup\",\n    \"addressOne\": \"is this real\",\n    \"addressTwo\": \"\",\n    \"city\": \"idk\",\n    \"state\": \"al\",\n    \"zipcode\": \"12345\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/locations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"5a612ea23a029a0a70e5799e",
+								"locations"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Update Location",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"latitude\": 41.88,\n    \"longitude\": -88,\n    \"tickets\": [],\n    \"name\": \"Home\",\n    \"addressOne\": \"27W223 Churchill Road\",\n    \"addressTwo\": \"\",\n    \"city\": \"Winfield\",\n    \"state\": \"IL\",\n    \"zipcode\": \"60190\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/locations/5a5510c80461ee2ff05e3358",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"5a612ea23a029a0a70e5799e",
+								"locations",
+								"5a5510c80461ee2ff05e3358"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Delete Location",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/locations/5a5510c80461ee2ff05e3358",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"5a612ea23a029a0a70e5799e",
+								"locations",
+								"5a5510c80461ee2ff05e3358"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"name": "Ticket Schema",
-			"request": {
-				"auth": {
-					"type": "noauth"
+			"name": "Users",
+			"description": "",
+			"item": [
+				{
+					"name": "User Schema",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						},
+						"description": ""
+					},
+					"response": []
 				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
+				{
+					"name": "All Users",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"users"
+							]
+						},
+						"description": ""
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/tickets",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"tickets"
-					]
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t    \"email\": \"josephmgrotto@gmail.com\",\n    \"password\": \"theone19\",\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": \"1\",\n    \"phone\": \"6303862219\",\n    \"profilePicture\": \"https://www.facebook.com/photo.php?fbid=1867630973451044&set=a.1376668085880671.1073741826.100006124774459&type=3&theater\",\n    \"admin\": \"true\",\n    \"verified\": \"true\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"users"
+							]
+						},
+						"description": ""
+					},
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
+				{
+					"name": "Read User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": \"1\",\n    \"phone\": \"6303862219\",\n    \"profilePicture\": \"https://www.facebook.com/photo.php?fbid=1867630973451044&set=a.1376668085880671.1073741826.100006124774459&type=3&theater\",\n    \"admin\": \"true\",\n    \"verified\": \"true\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/users/5a4c80201a1ca52ae4c9c50a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"users",
+								"5a4c80201a1ca52ae4c9c50a"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": \"1\",\n    \"phone\": \"6303862219\",\n    \"profilePicture\": \"\",\n    \"admin\": \"true\",\n    \"verified\": \"true\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/users/5a4c80201a1ca52ae4c9c50a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"users",
+								"5a4c80201a1ca52ae4c9c50a"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/users/5a4c80201a1ca52ae4c9c50a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"users",
+								"5a4c80201a1ca52ae4c9c50a"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"name": "All Users",
-			"request": {
-				"auth": {
-					"type": "noauth"
+			"name": "Tickets",
+			"description": "",
+			"item": [
+				{
+					"name": "Ticket Schema",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/tickets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tickets"
+							]
+						},
+						"description": ""
+					},
+					"response": []
 				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
+				{
+					"name": "All Tickets",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/tickets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"tickets"
+							]
+						},
+						"description": ""
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/api/users",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users"
-					]
+				{
+					"name": "User Tickets",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/tickets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"5a4c7998fb4fb526c0100abe",
+								"tickets"
+							]
+						},
+						"description": ""
+					},
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
+				{
+					"name": "Create Ticket",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/tickets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"5a4c7998fb4fb526c0100abe",
+								"tickets"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read Ticket",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/tickets/5a53b2f65f663c1618ae5efa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"5a4c7998fb4fb526c0100abe",
+								"tickets",
+								"5a53b2f65f663c1618ae5efa"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Ticket",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE PLEASE PLEASEEEEE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/tickets/5a53b2f65f663c1618ae5efa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"5a4c7998fb4fb526c0100abe",
+								"tickets",
+								"5a53b2f65f663c1618ae5efa"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Ticket",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/tickets/5a53b2f65f663c1618ae5efa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"5a4c7998fb4fb526c0100abe",
+								"tickets",
+								"5a53b2f65f663c1618ae5efa"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"name": "All Locations",
-			"request": {
-				"auth": {
-					"type": "noauth"
+			"name": "Locations",
+			"description": "",
+			"item": [
+				{
+					"name": "Location Schema",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/locations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"locations"
+							]
+						},
+						"description": ""
+					},
+					"response": []
 				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
+				{
+					"name": "All Locations",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/locations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"locations"
+							]
+						},
+						"description": ""
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/api/locations",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"locations"
-					]
+				{
+					"name": "User Locations",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/locations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"5a4c7998fb4fb526c0100abe",
+								"locations"
+							]
+						},
+						"description": ""
+					},
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "All Tickets",
-			"request": {
-				"auth": {
-					"type": "noauth"
+				{
+					"name": "Create Location",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"office\",\n    \"addressOne\": \"27W223 Churchill Roads\",\n    \"addressTwo\": \"\",\n    \"city\": \"Winfield\",\n    \"state\": \"IL\",\n    \"zipcode\": \"60190\",\n    \"latitude\": \"41.88\",\n    \"longitude\": \"-87.65\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/locations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"5a4c7998fb4fb526c0100abe",
+								"locations"
+							]
+						},
+						"description": ""
+					},
+					"response": []
 				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
+				{
+					"name": "Read Location",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/locations/5a5510c80461ee2ff05e3358",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"5a4c7998fb4fb526c0100abe",
+								"locations",
+								"5a5510c80461ee2ff05e3358"
+							]
+						},
+						"description": ""
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/api/tickets",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"tickets"
-					]
+				{
+					"name": "Update Location",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Home\",\n    \"addressOne\": \"27W223 Churchill Road\",\n    \"addressTwo\": \"\",\n    \"city\": \"Winfield\",\n    \"state\": \"IL\",\n    \"zipcode\": \"60190\",\n    \"latitude\": \"41.88\",\n    \"longitude\": \"-87.65\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/locations/5a5510c80461ee2ff05e3358",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"5a4c7998fb4fb526c0100abe",
+								"locations",
+								"5a5510c80461ee2ff05e3358"
+							]
+						},
+						"description": ""
+					},
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
+				{
+					"name": "Delete Location",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/locations/5a5511527e5cd03f1083e0f0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"5a4c7998fb4fb526c0100abe",
+								"locations",
+								"5a5511527e5cd03f1083e0f0"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Register",
@@ -257,402 +1987,6 @@
 						"api",
 						"auth",
 						"login"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "User Locations",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/locations",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"5a4c7998fb4fb526c0100abe",
-						"locations"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Create Location",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"office\",\n    \"addressOne\": \"27W223 Churchill Roads\",\n    \"addressTwo\": \"\",\n    \"city\": \"Winfield\",\n    \"state\": \"IL\",\n    \"zipcode\": \"60190\",\n    \"latitude\": \"41.88\",\n    \"longitude\": \"-87.65\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/locations",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"5a4c7998fb4fb526c0100abe",
-						"locations"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Read Location",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/locations/5a5510c80461ee2ff05e3358",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"5a4c7998fb4fb526c0100abe",
-						"locations",
-						"5a5510c80461ee2ff05e3358"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Update Location",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Home\",\n    \"addressOne\": \"27W223 Churchill Road\",\n    \"addressTwo\": \"\",\n    \"city\": \"Winfield\",\n    \"state\": \"IL\",\n    \"zipcode\": \"60190\",\n    \"latitude\": \"41.88\",\n    \"longitude\": \"-87.65\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/locations/5a5510c80461ee2ff05e3358",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"5a4c7998fb4fb526c0100abe",
-						"locations",
-						"5a5510c80461ee2ff05e3358"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Destroy Location",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/locations/5a5511527e5cd03f1083e0f0",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"5a4c7998fb4fb526c0100abe",
-						"locations",
-						"5a5511527e5cd03f1083e0f0"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "User Tickets",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/tickets",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"5a4c7998fb4fb526c0100abe",
-						"tickets"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Create Ticket",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/tickets",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"5a4c7998fb4fb526c0100abe",
-						"tickets"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Read Ticket",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/tickets/5a53b2f65f663c1618ae5efa",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"5a4c7998fb4fb526c0100abe",
-						"tickets",
-						"5a53b2f65f663c1618ae5efa"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Update Ticket",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE PLEASE PLEASEEEEE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/tickets/5a53b2f65f663c1618ae5efa",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"5a4c7998fb4fb526c0100abe",
-						"tickets",
-						"5a53b2f65f663c1618ae5efa"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Destroy Ticket",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/tickets/5a53b2f65f663c1618ae5efa",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"5a4c7998fb4fb526c0100abe",
-						"tickets",
-						"5a53b2f65f663c1618ae5efa"
 					]
 				},
 				"description": ""

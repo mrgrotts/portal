@@ -1,10 +1,19 @@
 const database = require('../database');
 
 exports.readTickets = (req, res, next) => {
-  database.Tickets.find()
-    .sort({ createdAt: 'asc' })
-    .then(tickets => res.status(200).json(tickets))
-    .catch(error => res.send(error));
+  database.Users.findById(req.params.id).then(user => {
+    if (user.admin) {
+      database.Tickets.find()
+        .sort({ createdAt: 'asc' })
+        .then(tickets => res.status(200).json(tickets))
+        .catch(error => res.send(error));
+    } else {
+      database.Tickets.find({ userId: req.params.id })
+        .sort({ createdAt: 'asc' })
+        .then(tickets => res.status(200).json(tickets))
+        .catch(error => res.send(error));
+    }
+  });
 };
 
 exports.createTicket = (req, res, next) => {
@@ -19,9 +28,17 @@ exports.createTicket = (req, res, next) => {
 
   database.Tickets.create(newTicket)
     .then(ticket => {
+      //   database.Locations.findById(ticket.location._id)
+      //     .then(location => {
+      //       location.tickets.push(ticket.id);
+      //       location.save();
+      //     })
+      //     .catch(next);
+
       database.Users.findById(req.params.id)
         .then(user => {
           user.tickets.push(ticket.id);
+          // user.locations.tickets.push(ticket.id);
           user
             .save()
             .then(ticket =>
@@ -37,7 +54,7 @@ exports.createTicket = (req, res, next) => {
 
 exports.readTicket = (req, res, next) => {
   database.Tickets.findById(req.params.id)
-    .then(ticket => res.json(ticket))
+    .then(ticket => res.status(200).json(ticket))
     .catch(error => res.send(error));
 };
 

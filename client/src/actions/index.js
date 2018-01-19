@@ -74,6 +74,7 @@ export const auth = (email, password, registration) => dispatch => {
       password
     })
     .then(response => {
+      console.log(response);
       // create new date using the current date + expiration time in seconds
       const expiration = new Date(
         new Date().getTime() + response.data.expiresIn * 1000
