@@ -33,6 +33,11 @@ const locationsReducer = (state = initialState, action) => {
         loading: false,
         success: false
       };
+    case actions.CREATE_LOCATION_END:
+      return {
+        ...state,
+        success: false
+      };
     case actions.READ_LOCATIONS_START:
       return {
         ...state,
@@ -51,6 +56,37 @@ const locationsReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.error,
+        success: false
+      };
+    case actions.READ_LOCATIONS_END:
+      return {
+        ...state,
+        success: false
+      };
+    case actions.READ_LOCATION_START:
+      return {
+        ...state,
+        loading: true,
+        success: false
+      };
+    case actions.READ_LOCATION_SUCCESS:
+      const location = { ...action.location };
+      return {
+        ...state,
+        locations: state.locations.filter(loc => loc._id === location._id),
+        loading: false,
+        success: true
+      };
+    case actions.READ_LOCATION_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+        success: false
+      };
+    case actions.READ_LOCATION_END:
+      return {
+        ...state,
         success: false
       };
     case actions.UPDATE_LOCATION_START:
@@ -77,6 +113,11 @@ const locationsReducer = (state = initialState, action) => {
         loading: false,
         success: false
       };
+    case actions.UPDATE_LOCATION_END:
+      return {
+        ...state,
+        success: false
+      };
     case actions.DELETE_LOCATION_START:
       return {
         ...state,
@@ -101,6 +142,11 @@ const locationsReducer = (state = initialState, action) => {
         ...state,
         error: action.error,
         loading: false,
+        success: false
+      };
+    case actions.DELETE_LOCATION_END:
+      return {
+        ...state,
         success: false
       };
     default:

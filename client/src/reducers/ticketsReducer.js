@@ -63,6 +63,32 @@ const ticketsReducer = (state = initialState, action) => {
         ...state,
         success: false
       };
+    case actions.READ_TICKET_START:
+      return {
+        ...state,
+        loading: true,
+        success: false
+      };
+    case actions.READ_TICKET_SUCCESS:
+      const ticket = { ...action.ticket };
+      return {
+        ...state,
+        tickets: state.tickets.filter(loc => loc._id === ticket._id),
+        loading: false,
+        success: true
+      };
+    case actions.READ_TICKET_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+        success: false
+      };
+    case actions.READ_TICKET_END:
+      return {
+        ...state,
+        success: false
+      };
     case actions.UPDATE_TICKET_START:
       return {
         ...state,

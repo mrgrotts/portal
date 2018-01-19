@@ -2,62 +2,14 @@ import api from '../api';
 let generateAuthorizationHeader = (token = localStorage.getItem('token')) =>
   (api.defaults.headers.common['Authorization'] = `Bearer ${token}`);
 
+/**************************************************************************************
+ * AUTH                                                                               *
+ **************************************************************************************/
 export const AUTH_START = 'auth_start';
 export const AUTH_SUCCESS = 'auth_success';
 export const AUTH_FAIL = 'auth_fail';
 export const AUTH_LOGOUT = 'auth_logout';
 export const AUTH_REDIRECT_PATH = 'auth_redirect_path';
-
-export const READ_TICKETS_START = 'read_tickets_start';
-export const READ_TICKETS_SUCCESS = 'read_tickets_success';
-export const READ_TICKETS_FAIL = 'read_tickets_fail';
-export const READ_TICKETS_END = 'read_tickets_end';
-
-export const CREATE_TICKET = 'create_ticket';
-export const CREATE_TICKET_START = 'create_ticket_start';
-export const CREATE_TICKET_SUCCESS = 'create_ticket_success';
-export const CREATE_TICKET_FAIL = 'create_ticket_fail';
-export const CREATE_TICKET_END = 'create_ticket_end';
-
-export const READ_TICKET_START = 'read_ticket_start';
-export const READ_TICKET_SUCCESS = 'read_ticket_success';
-export const READ_TICKET_FAIL = 'read_ticket_fail';
-export const READ_TICKET_END = 'read_ticket_end';
-
-export const UPDATE_TICKET_START = 'update_ticket_start';
-export const UPDATE_TICKET_SUCCESS = 'update_ticket_success';
-export const UPDATE_TICKET_FAIL = 'update_ticket_fail';
-export const UPDATE_TICKET_END = 'update_ticket_end';
-
-export const DELETE_TICKET_START = 'delete_ticket_start';
-export const DELETE_TICKET_SUCCESS = 'delete_ticket_success';
-export const DELETE_TICKET_FAIL = 'delete_ticket_fail';
-export const DELETE_TICKET_END = 'update_ticket_end';
-
-export const READ_LOCATIONS_START = 'read_locations_start';
-export const READ_LOCATIONS_SUCCESS = 'read_locations_success';
-export const READ_LOCATIONS_FAIL = 'read_locations_fail';
-
-export const CREATE_LOCATION = 'create_location';
-export const CREATE_LOCATION_START = 'create_location_start';
-export const CREATE_LOCATION_SUCCESS = 'create_location_success';
-export const CREATE_LOCATION_FAIL = 'create_location_fail';
-
-export const READ_LOCATION_START = 'read_location_start';
-export const READ_LOCATION_SUCCESS = 'read_location_success';
-export const READ_LOCATION_FAIL = 'read_location_fail';
-
-export const UPDATE_LOCATION_START = 'update_location_start';
-export const UPDATE_LOCATION_SUCCESS = 'update_location_success';
-export const UPDATE_LOCATION_FAIL = 'update_location_fail';
-
-export const DELETE_LOCATION_START = 'delete_location_start';
-export const DELETE_LOCATION_SUCCESS = 'delete_location_success';
-export const DELETE_LOCATION_FAIL = 'delete_location_fail';
-
-/**************************************************************************************
- * AUTH                                                                               *
- **************************************************************************************/
 
 export const auth = (email, password, registration) => dispatch => {
   let url = `/auth/login`;
@@ -161,6 +113,31 @@ export const authState = () => dispatch => {
 /**************************************************************************************
  * TICKETS                                                                            *
  **************************************************************************************/
+export const READ_TICKETS_START = 'read_tickets_start';
+export const READ_TICKETS_SUCCESS = 'read_tickets_success';
+export const READ_TICKETS_FAIL = 'read_tickets_fail';
+export const READ_TICKETS_END = 'read_tickets_end';
+
+export const CREATE_TICKET_START = 'create_ticket_start';
+export const CREATE_TICKET_SUCCESS = 'create_ticket_success';
+export const CREATE_TICKET_FAIL = 'create_ticket_fail';
+export const CREATE_TICKET_END = 'create_ticket_end';
+
+export const READ_TICKET_START = 'read_ticket_start';
+export const READ_TICKET_SUCCESS = 'read_ticket_success';
+export const READ_TICKET_FAIL = 'read_ticket_fail';
+export const READ_TICKET_END = 'read_ticket_end';
+
+export const UPDATE_TICKET_START = 'update_ticket_start';
+export const UPDATE_TICKET_SUCCESS = 'update_ticket_success';
+export const UPDATE_TICKET_FAIL = 'update_ticket_fail';
+export const UPDATE_TICKET_END = 'update_ticket_end';
+
+export const DELETE_TICKET_START = 'delete_ticket_start';
+export const DELETE_TICKET_SUCCESS = 'delete_ticket_success';
+export const DELETE_TICKET_FAIL = 'delete_ticket_fail';
+export const DELETE_TICKET_END = 'update_ticket_end';
+
 export const readTickets = () => dispatch => {
   const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
@@ -256,12 +233,11 @@ export const readTicket = id => dispatch => {
   api
     .get(url, id)
     .then(response => dispatch(readTicketSuccess(response.data)))
+    .then(() => dispatch(readTicketEnd()))
     .catch(error => {
       console.log(error);
       dispatch(readTicketFail(error));
     });
-
-  dispatch(readTicketEnd());
 };
 
 export const readTicketStart = () => ({
@@ -297,12 +273,11 @@ export const updateTicket = (id, ticket) => dispatch => {
   api
     .put(url, ticket)
     .then(response => dispatch(updateTicketSuccess(response.data)))
+    .then(() => dispatch(updateTicketEnd()))
     .catch(error => {
       console.log(error);
       dispatch(updateTicketFail(error));
     });
-
-  dispatch(updateTicketEnd());
 };
 
 export const updateTicketStart = () => ({
@@ -338,12 +313,11 @@ export const deleteTicket = id => dispatch => {
   api
     .delete(url, id)
     .then(response => dispatch(deleteTicketSuccess(response.data)))
+    .then(() => dispatch(deleteTicketEnd()))
     .catch(error => {
       console.log(error);
       dispatch(deleteTicketFail(error));
     });
-
-  dispatch(deleteTicketEnd());
 };
 
 export const deleteTicketStart = () => ({
@@ -367,6 +341,32 @@ export const deleteTicketEnd = () => ({
 /**************************************************************************************
  * LOCATIONS                                                                          *
  **************************************************************************************/
+export const READ_LOCATIONS_START = 'read_locations_start';
+export const READ_LOCATIONS_SUCCESS = 'read_locations_success';
+export const READ_LOCATIONS_FAIL = 'read_locations_fail';
+export const READ_LOCATIONS_END = 'read_locations_end';
+
+export const CREATE_LOCATION = 'create_location';
+export const CREATE_LOCATION_START = 'create_location_start';
+export const CREATE_LOCATION_SUCCESS = 'create_location_success';
+export const CREATE_LOCATION_FAIL = 'create_location_fail';
+export const CREATE_LOCATION_END = 'create_location_end';
+
+export const READ_LOCATION_START = 'read_location_start';
+export const READ_LOCATION_SUCCESS = 'read_location_success';
+export const READ_LOCATION_FAIL = 'read_location_fail';
+export const READ_LOCATION_END = 'read_location_end';
+
+export const UPDATE_LOCATION_START = 'update_location_start';
+export const UPDATE_LOCATION_SUCCESS = 'update_location_success';
+export const UPDATE_LOCATION_FAIL = 'update_location_fail';
+export const UPDATE_LOCATION_END = 'update_location_end';
+
+export const DELETE_LOCATION_START = 'delete_location_start';
+export const DELETE_LOCATION_SUCCESS = 'delete_location_success';
+export const DELETE_LOCATION_FAIL = 'delete_location_fail';
+export const DELETE_LOCATION_END = 'delete_location_end';
+
 export const readLocations = () => dispatch => {
   const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
@@ -382,6 +382,7 @@ export const readLocations = () => dispatch => {
   api
     .get(url)
     .then(response => dispatch(readLocationsSuccess(response.data)))
+    .then(() => dispatch(readLocationsEnd()))
     .catch(error => {
       console.log(error);
       dispatch(readLocationsFail(error));
@@ -402,6 +403,10 @@ export const readLocationsFail = error => ({
   error
 });
 
+export const readLocationsEnd = () => ({
+  type: READ_LOCATIONS_END
+});
+
 export const createLocation = location => dispatch => {
   const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
@@ -417,6 +422,7 @@ export const createLocation = location => dispatch => {
   api
     .post(url, location)
     .then(location => dispatch(createLocationSuccess(location)))
+    .then(() => dispatch(createLocationEnd()))
     .catch(error => {
       console.log(error);
       dispatch(createLocationFail(error));
@@ -437,6 +443,10 @@ export const createLocationFail = error => ({
   error
 });
 
+export const createLocationEnd = () => ({
+  type: CREATE_LOCATION_END
+});
+
 export const readLocation = id => dispatch => {
   const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
@@ -452,6 +462,7 @@ export const readLocation = id => dispatch => {
   api
     .get(url, id)
     .then(response => dispatch(readLocationSuccess(response.data)))
+    .then(() => dispatch(readLocationEnd()))
     .catch(error => {
       console.log(error);
       dispatch(readLocationFail(error));
@@ -472,6 +483,10 @@ export const readLocationFail = error => ({
   error
 });
 
+export const readLocationEnd = () => ({
+  type: READ_LOCATION_END
+});
+
 export const updateLocation = (id, location) => dispatch => {
   const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
@@ -487,6 +502,7 @@ export const updateLocation = (id, location) => dispatch => {
   api
     .put(url, location)
     .then(response => dispatch(updateLocationSuccess(response.data)))
+    .then(() => dispatch(updateLocationEnd()))
     .catch(error => {
       console.log(error);
       dispatch(updateLocationFail(error));
@@ -507,6 +523,10 @@ export const updateLocationFail = error => ({
   error
 });
 
+export const updateLocationEnd = () => ({
+  type: UPDATE_LOCATION_END
+});
+
 export const deleteLocation = id => dispatch => {
   const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
@@ -522,6 +542,7 @@ export const deleteLocation = id => dispatch => {
   api
     .delete(url, id)
     .then(response => dispatch(deleteLocationSuccess(response.data)))
+    .then(() => dispatch(deleteLocationEnd()))
     .catch(error => {
       console.log(error);
       dispatch(deleteLocationFail(error));
@@ -540,4 +561,8 @@ export const deleteLocationSuccess = location => ({
 export const deleteLocationFail = error => ({
   type: DELETE_LOCATION_FAIL,
   error
+});
+
+export const deleteLocationEnd = () => ({
+  type: DELETE_LOCATION_END
 });
