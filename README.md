@@ -1,4 +1,4 @@
-**Portal**
+**_Portal_**
 
 Portal is a platform developed with React, Express, NodeJS and MongoDB. It uses JSON Web Tokens (JWT) for authentication, and features multiple user types:
 
