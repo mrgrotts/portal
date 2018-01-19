@@ -1,21 +1,22 @@
 module.exports = {
   API_WELCOME_MESSAGE: 'Welcome to the Ticket Portal API.',
-  ADMIN_ACCESS_DENIED: 'You are not an Admin.',
+  ADMIN_ACCESS_DENIED: 'Not an Admin.',
   ACCOUNT_NOT_AUTHORIZED: 'Unauthorized.',
   ACCOUNT_NOT_VERIFIED: 'Please verify your account.',
-  FORGOT_PASSWORD_SUCCESS: 'Email sent, please check your inbox to verify.',
+  FORGOT_PASSWORD_SUCCESS:
+    'Email sent. Please check your inbox to update your password.',
   FORGOT_PASSWORD_FAILED: 'No account is registered with that email.',
   INVALID_EMAIL: 'Not a valid user. Please register.',
   INVALID_PASSWORD: 'Incorrect Email or Password.',
-  LOGOUT_SUCCESS: 'You have successfully logged out.',
+  LOGOUT_SUCCESS: 'Successfully logged out.',
   REGISTRATION_SUCCESS:
-    'Registration successful. Please check your email to verify.',
-  REGISTRATION_FAILED: 'Email already registered!',
+    'Registration successful. Please check your inbox to verify your email.',
+  REGISTRATION_FAILED: 'Email already registered.',
   SESSION_TIMEOUT: 'Please login.',
   TICKET_UPDATE: 'Ticket updated.',
   TICKET_SUBMITTE: 'Ticket submitted.',
   TICKET_DELETE: 'Ticket deletion request submitted.',
-  VERIFICATION_SUCCESS: 'Your account has been verified.',
+  VERIFICATION_SUCCESS: 'Account has been verified.',
   VERIFICATION_FAILED: 'Verification failed.'
 };
 
