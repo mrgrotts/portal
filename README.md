@@ -18,9 +18,14 @@ The following list outlines tools that must be installed locally to run Portal:
 
 ## Setup
 
+### MongoDB
+
 1. Open a terminal and start MongoDB **-->** **_LEAVE RUNNING_**
-2. Open a second terminal window, `cd server` **-->** `npm install` **-->** **_LEAVE OPEN_**
-3. In the root of the `server` directory, create a file `.env` as follows, replacing values with your own:
+
+### Server
+
+1. Open a second terminal window, `cd server` **-->** `npm install` **-->** **_LEAVE OPEN_**
+2. In the root of the `server` directory, create a file `.env` as follows, replacing values with your own:
 
 ```
 APP_NAME=YOUR_APP_NAME
@@ -30,18 +35,22 @@ QUICKBOOKS_KEY=YOUR_QUICKBOOKS_KEY
 QUICKBOOKS_SECRET=YOUR_QUICKBOOKS_SECRET
 ```
 
-4. If you plan to use **Google Cloud Storage**, you must download your `client_secret.json` and include it in the root of the `server` directory
-5. If you plan to use **Google Cloud Service Accounts**, you must download your service account's Private Key as a .json file and include it in the root of the `server` directory
-6. `npm run start` **-->** backend runs on **localhost:8080**
-7. Open a third terminal window, `cd client` **-->** `npm install` **-->** **_LEAVE OPEN_**
-8. In the root of the `client` directory, create a file `.env` as follows, replacing values with your own:
+3. If you plan to use **Google Cloud Storage**, you must download your `client_secret.json` and include it in the root of the `server` directory
+4. If you plan to use **Google Cloud Service Accounts**, you must download your service account's Private Key as a .json file and include it in the root of the `server` directory
+5. `npm run start` **-->** backend runs on **localhost:8080**
+
+### Client
+
+1. Open a third terminal window, `cd client` **-->** `npm install` **-->** **_LEAVE OPEN_**
+2. In the root of the `client` directory, create a file `.env` as follows, replacing values with your own:
 
 ```
 REACT_APP_GOOGLE_MAPS_API_KEY=YOUR_GOOGLE_MAPS_API_KEY
 ```
 
-9. `npm run start` **-->** React Dev Server runs on **localhost:3000**
-10. Create sick Portals
+3. `npm run start` **-->** React Dev Server runs on **localhost:3000**
+
+All that's left to do now is create sick Portals.
 
 ## Roadmap
 
