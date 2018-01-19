@@ -18,21 +18,21 @@ const authRoutes = require('./routes/auth');
 const locationRoutes = require('./routes/locations');
 const ticketRoutes = require('./routes/tickets');
 
-const app = express();
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 8080;
 const IP = process.env.IP || '0.0.0.0';
+const app = express();
 
-// Cross Origin Resource Sharing (for JWT)
-app.use(cors());
 // HTTP Logger -> 'dev' -> Concise output colored by response status for development use.
 app.use(morgan('dev'));
 // HTTP Body Parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+// Cross Origin Resource Sharing (for JWT)
+app.use(cors());
 
 // SUDO MODE -- Enable to use API without Authenticating
-// app.use('/api/sudo', sudoRoutes);
+app.use('/api/sudo', sudoRoutes);
 
 app.use('/', apiRoutes);
 app.use('/api/admin/:id', checkAdmin, adminRoutes);
@@ -52,5 +52,6 @@ app.use(
 
 const server = http.createServer(app);
 server.listen(PORT, IP, () => {
-  console.log(`[${process.env.APP_NAME}]: Launched on port ${PORT}.`);
+  console.log(`[${process.env.APP_NAME}]: Launched API on ${HOST}:${PORT}.`);
+  console.log(`[${process.env.APP_NAME}]: Assigned IP Address ${IP}.`);
 });
