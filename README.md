@@ -18,7 +18,7 @@ The following list outlines tools that must be installed locally to run Portal:
 
 ## Setup
 
-1. Open a terminal and start MongoDB (from the directory you installed it in to) **-->** **_LEAVE RUNNING_**
+1. Open a terminal and start MongoDB **-->** **_LEAVE RUNNING_**
 2. Open a second terminal window, `cd server` **-->** `npm install` **-->** **_LEAVE OPEN_**
 3. In the root of the `server` directory, create a file `.env` as follows, replacing values with your own:
 
