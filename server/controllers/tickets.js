@@ -26,25 +26,32 @@ exports.createTicket = (req, res, next) => {
     requestedDate: req.body.requestedDate
   };
 
+  console.log(newTicket);
+
   database.Tickets.create(newTicket)
     .then(ticket => {
-      //   database.Locations.findById(ticket.location._id)
-      //     .then(location => {
-      //       location.tickets.push(ticket.id);
-      //       location.save();
-      //     })
-      //     .catch(next);
+      database.Locations.findById(ticket.location)
+        .then(location => {
+          location.tickets.push(ticket._id);
+          location
+            .save()
+            .then(location =>
+              database.Tickets.findById(ticket._id).populate('location')
+            )
+            .then(loc => res.status(201).json(loc))
+            .catch(next);
+        })
+        .catch(next);
 
       database.Users.findById(req.params.id)
         .then(user => {
-          user.tickets.push(ticket.id);
-          // user.locations.tickets.push(ticket.id);
+          user.tickets.push(ticket._id);
           user
             .save()
-            .then(ticket =>
+            .then(user =>
               database.Tickets.findById(ticket._id).populate('userId')
             )
-            .then(t => res.status(201).json(t))
+            .then(t => res.status(200).json(t))
             .catch(next);
         })
         .catch(next);
@@ -77,12 +84,24 @@ exports.updateTicket = (req, res, next) => {
     completedDate: req.body.completedDate,
     requestedDeletion: req.body.requestedDeletion
   };
-  // console.log(req.body);
 
   // database.Tickets.findByIdAndUpdate(req.params.id, updatedTicket, { new: true });
   database.Tickets.findByIdAndUpdate(req.params.id, req.body, { new: true })
-    .populate('ticket')
-    .then(ticket => res.status(201).json(ticket))
+    .populate('location')
+    .populate('userId')
+    .then(ticket =>
+      database.Locations.findByIdAndUpdate(ticket.location, {
+        $set: {
+          tickets: [...ticket]
+        }
+      })
+        .then(location => {
+          database.Tickets.findById(req.params.id)
+            .populate('location')
+            .then(ticket => res.status(201).json(ticket));
+        })
+        .catch(next)
+    )
     .catch(error => res.send(error));
 };
 

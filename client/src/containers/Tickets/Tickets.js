@@ -40,6 +40,7 @@ class Tickets extends Component {
             style={{ width: '100%', backgroundColor: 'white' }}
             {...ticket}
             delete={this.deleteTicket.bind(this, ticket._id)}
+            location={ticket.location}
           />
         ));
     }
@@ -62,7 +63,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   readTickets: () => dispatch(actions.readTickets()),
-  deleteTicket: id => dispatch(actions.deleteTicket(id))
+  deleteTicket: id => dispatch(actions.deleteTicket(id)),
+  readLocation: id => dispatch(actions.readLocation(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(

@@ -65,9 +65,10 @@ exports.updateLocation = (req, res, next) => {
     longitude: req.body.longitude
   };
 
-  database.Locations.findByIdAndUpdate(req.params.id, updatedLocation, {
+  database.Locations.findByIdAndUpdate(req.params.id, req.body, {
     new: true
   })
+    .populate('location')
     .then(location => res.status(201).json(location))
     .catch(error => res.send(error));
 };

@@ -61,8 +61,9 @@ const ticketsSchema = new mongoose.Schema(
       ]
     },
     location: {
-      type: String,
-      required: 'Location cannot be blank'
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Locations',
+      required: 'Please select a Location'
     },
     description: {
       type: String,

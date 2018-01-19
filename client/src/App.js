@@ -16,14 +16,20 @@ const asyncAuth = asyncComponent(() => import('./containers/Auth/Auth'));
 const asyncLocations = asyncComponent(() =>
   import('./containers/Locations/Locations')
 );
+const asyncLocationCreate = asyncComponent(() =>
+  import('./containers/Locations/LocationForm/LocationCreate')
+);
+const asyncLocationUpdate = asyncComponent(() =>
+  import('./containers/Locations/LocationForm/LocationUpdate')
+);
 const asyncTickets = asyncComponent(() =>
   import('./containers/Tickets/Tickets')
 );
 const asyncTicketCreate = asyncComponent(() =>
-  import('./containers/TicketForm/TicketCreate')
+  import('./containers/Tickets/TicketForm/TicketCreate')
 );
 const asyncTicketUpdate = asyncComponent(() =>
-  import('./containers/TicketForm/TicketUpdate')
+  import('./containers/Tickets/TicketForm/TicketUpdate')
 );
 
 class App extends Component {
@@ -46,6 +52,8 @@ class App extends Component {
           <Route exact path="/" component={Builder} />
           <Route path="/login" component={asyncAuth} />
           <Route path="/logout" component={Logout} />
+          <Route path="/locations/create" component={asyncLocationCreate} />
+          <Route path="/locations/:id" component={asyncLocationUpdate} />
           <Route path="/locations" component={asyncLocations} />
           <Route path="/tickets/create" component={asyncTicketCreate} />;
           <Route path="/tickets/:id" component={asyncTicketUpdate} />

@@ -1,15 +1,15 @@
-import api from '../../api';
+import api from '../../../api';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
 
-import handleErrors from '../../hoc/handleErrors';
+import handleErrors from '../../../hoc/handleErrors';
 
-import Spinner from '../../components/UI/Spinner/Spinner';
+import Spinner from '../../../components/UI/Spinner/Spinner';
 import TicketForm from './TicketForm';
 
-import * as actions from '../../actions';
+import * as actions from '../../../actions';
 
 class TicketCreate extends Component {
   onSubmit = async ticket => {
@@ -42,8 +42,8 @@ class TicketCreate extends Component {
 }
 
 const mapStateToProps = state => ({
-  id: state.auth.id,
-  token: state.auth.token,
+  // id: state.auth.id,
+  // token: state.auth.token,
   loading: state.tickets.loading,
   success: state.tickets.success
 });

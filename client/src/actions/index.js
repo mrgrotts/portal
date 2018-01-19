@@ -11,7 +11,7 @@ export const AUTH_FAIL = 'auth_fail';
 export const AUTH_LOGOUT = 'auth_logout';
 export const AUTH_REDIRECT_PATH = 'auth_redirect_path';
 
-export const auth = (email, password, registration) => dispatch => {
+export const auth = (email, password, registration) => async dispatch => {
   let url = `/auth/login`;
 
   if (registration) {
@@ -20,7 +20,7 @@ export const auth = (email, password, registration) => dispatch => {
 
   dispatch(authStart());
 
-  api
+  await api
     .post(url, {
       email,
       password
@@ -138,7 +138,7 @@ export const DELETE_TICKET_SUCCESS = 'delete_ticket_success';
 export const DELETE_TICKET_FAIL = 'delete_ticket_fail';
 export const DELETE_TICKET_END = 'update_ticket_end';
 
-export const readTickets = () => dispatch => {
+export const readTickets = () => async dispatch => {
   const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
@@ -150,7 +150,7 @@ export const readTickets = () => dispatch => {
 
   let url = `/users/${userId}/tickets`;
 
-  api
+  await api
     .get(url)
     .then(response => dispatch(readTicketsSuccess(response.data)))
     .then(() => dispatch(readTicketsEnd()))
@@ -178,7 +178,7 @@ export const readTicketsEnd = () => ({
   type: READ_TICKETS_END
 });
 
-export const createTicket = ticket => dispatch => {
+export const createTicket = ticket => async dispatch => {
   const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
@@ -190,7 +190,7 @@ export const createTicket = ticket => dispatch => {
 
   let url = `/users/${userId}/tickets`;
 
-  api
+  await api
     .post(url, ticket)
     .then(ticket => dispatch(createTicketSuccess(ticket)))
     .then(() => dispatch(createTicketEnd()))
@@ -218,7 +218,7 @@ export const createTicketEnd = () => ({
   type: CREATE_TICKET_END
 });
 
-export const readTicket = id => dispatch => {
+export const readTicket = id => async dispatch => {
   const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
@@ -230,7 +230,7 @@ export const readTicket = id => dispatch => {
 
   let url = `/users/${userId}/tickets/${id}`;
 
-  api
+  await api
     .get(url, id)
     .then(response => dispatch(readTicketSuccess(response.data)))
     .then(() => dispatch(readTicketEnd()))
@@ -258,7 +258,7 @@ export const readTicketEnd = () => ({
   type: READ_TICKET_END
 });
 
-export const updateTicket = (id, ticket) => dispatch => {
+export const updateTicket = (id, ticket) => async dispatch => {
   const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
@@ -270,7 +270,7 @@ export const updateTicket = (id, ticket) => dispatch => {
 
   let url = `/users/${userId}/tickets/${id}`;
 
-  api
+  await api
     .put(url, ticket)
     .then(response => dispatch(updateTicketSuccess(response.data)))
     .then(() => dispatch(updateTicketEnd()))
@@ -298,7 +298,7 @@ export const updateTicketEnd = () => ({
   type: UPDATE_TICKET_END
 });
 
-export const deleteTicket = id => dispatch => {
+export const deleteTicket = id => async dispatch => {
   const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
@@ -310,7 +310,7 @@ export const deleteTicket = id => dispatch => {
 
   let url = `/users/${userId}/tickets/${id}`;
 
-  api
+  await api
     .delete(url, id)
     .then(response => dispatch(deleteTicketSuccess(response.data)))
     .then(() => dispatch(deleteTicketEnd()))
@@ -366,7 +366,7 @@ export const DELETE_LOCATION_SUCCESS = 'delete_location_success';
 export const DELETE_LOCATION_FAIL = 'delete_location_fail';
 export const DELETE_LOCATION_END = 'delete_location_end';
 
-export const readLocations = () => dispatch => {
+export const readLocations = () => async dispatch => {
   const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
@@ -378,7 +378,7 @@ export const readLocations = () => dispatch => {
 
   let url = `/users/${userId}/locations`;
 
-  api
+  await api
     .get(url)
     .then(response => dispatch(readLocationsSuccess(response.data)))
     .then(() => dispatch(readLocationsEnd()))
@@ -406,7 +406,7 @@ export const readLocationsEnd = () => ({
   type: READ_LOCATIONS_END
 });
 
-export const createLocation = location => dispatch => {
+export const createLocation = location => async dispatch => {
   const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
@@ -418,7 +418,7 @@ export const createLocation = location => dispatch => {
 
   let url = `/users/${userId}/locations`;
 
-  api
+  await api
     .post(url, location)
     .then(location => dispatch(createLocationSuccess(location)))
     .then(() => dispatch(createLocationEnd()))
@@ -446,7 +446,7 @@ export const createLocationEnd = () => ({
   type: CREATE_LOCATION_END
 });
 
-export const readLocation = id => dispatch => {
+export const readLocation = id => async dispatch => {
   const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
@@ -458,7 +458,7 @@ export const readLocation = id => dispatch => {
 
   let url = `/users/${userId}/locations/${id}`;
 
-  api
+  await api
     .get(url, id)
     .then(response => dispatch(readLocationSuccess(response.data)))
     .then(() => dispatch(readLocationEnd()))
@@ -486,7 +486,7 @@ export const readLocationEnd = () => ({
   type: READ_LOCATION_END
 });
 
-export const updateLocation = (id, location) => dispatch => {
+export const updateLocation = (id, location) => async dispatch => {
   const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
@@ -498,7 +498,7 @@ export const updateLocation = (id, location) => dispatch => {
 
   let url = `/users/${userId}/locations/${id}`;
 
-  api
+  await api
     .put(url, location)
     .then(response => dispatch(updateLocationSuccess(response.data)))
     .then(() => dispatch(updateLocationEnd()))
@@ -526,7 +526,7 @@ export const updateLocationEnd = () => ({
   type: UPDATE_LOCATION_END
 });
 
-export const deleteLocation = id => dispatch => {
+export const deleteLocation = id => async dispatch => {
   const userId = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
@@ -538,7 +538,7 @@ export const deleteLocation = id => dispatch => {
 
   let url = `/users/${userId}/locations/${id}`;
 
-  api
+  await api
     .delete(url, id)
     .then(response => dispatch(deleteLocationSuccess(response.data)))
     .then(() => dispatch(deleteLocationEnd()))

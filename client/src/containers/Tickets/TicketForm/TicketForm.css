@@ -1,0 +1,16 @@
+.TicketForm {
+}
+
+.TicketFormInputContainer {
+  margin-top: 1.5rem;
+}
+
+.TicketFormAddLocation {
+  background-color: #006eb6;
+  border-radius: 5px;
+  color: white;
+  font-weight: 500;
+  margin-left: 20px;
+  padding: 2px 10px;
+  text-decoration: none;
+}

@@ -17,6 +17,7 @@ const Location = props => {
   return (
     <div className={classes.Location}>
       <h1>Location ID: {props._id}</h1>
+      <h4>{props.tickets.length} Tickets</h4>
       <p>
         {props.latitude}, {props.longitude}
       </p>

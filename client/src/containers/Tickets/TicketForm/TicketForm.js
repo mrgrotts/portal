@@ -1,13 +1,22 @@
-import React, { Component } from 'react';
+import api from '../../../api';
 
-import Button from '../../components/UI/Button/Button';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+import Auxiliary from '../../../hoc/Auxiliary';
+import handleErrors from '../../../hoc/handleErrors';
+
+import Button from '../../../components/UI/Button/Button';
 // import Input from '../../components/UI/Input/Input';
 
 // import validateFields from '../../utils/validateFields';
 
+import * as actions from '../../../actions';
+
 import classes from './TicketForm.css';
 
-export default class TicketForm extends Component {
+class TicketForm extends Component {
   static defaultProps = {
     onCancel() {}
   };
@@ -22,8 +31,19 @@ export default class TicketForm extends Component {
     requestedDate: this.props.ticket ? this.props.ticket.requestedDate : ''
   };
 
-  handleChange = event =>
+  async componentDidMount() {
+    await this.props.readLocations();
+    // console.log(this.props.locations);
+    if (this.state.location === '') {
+      this.setState({ location: this.props.locations[0]._id });
+    }
+
+    console.log(this.state.location);
+  }
+
+  handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
+  };
 
   onSubmit = event => {
     event.preventDefault();
@@ -44,7 +64,7 @@ export default class TicketForm extends Component {
       category: this.props.ticket
         ? this.props.ticket.category
         : 'Commercial Cleaning',
-      location: this.props.ticket ? this.props.ticket.location : '',
+      location: this.props.ticket ? this.props.ticket.location._id : '',
       description: this.props.ticket ? this.props.ticket.description : '',
       media: this.props.ticket ? this.props.ticket.media : [],
       requestedDate: this.props.ticket ? this.props.ticket.requestedDate : ''
@@ -52,10 +72,21 @@ export default class TicketForm extends Component {
   };
 
   render() {
+    let counter = 1;
+    let selectLocation = <option>No Locations.</option>;
+
+    if (!this.props.loading) {
+      selectLocation = this.props.locations.map(location => (
+        <option key={location._id} value={location._id}>
+          {location.name}
+        </option>
+      ));
+    }
+
     return (
-      <div>
+      <Auxiliary>
         <form onSubmit={this.onSubmit}>
-          <div>
+          <div className={classes.TicketFormInputContainer}>
             <label htmlFor="category">
               Category
               <select
@@ -83,20 +114,28 @@ export default class TicketForm extends Component {
               </select>
             </label>
           </div>
-          <div>
+
+          <div className={classes.TicketFormInputContainer}>
             <label htmlFor="location">
               Location
-              <input
-                id="location"
-                type="text"
+              <select
+                className={classes.TicketFormControlSelect}
                 name="location"
-                className={classes.TicketFormControl}
-                value={this.state.location}
                 onChange={this.handleChange}
-              />
+                value={this.state.location}
+              >
+                {selectLocation}
+              </select>
             </label>
+            <Link
+              className={classes.TicketFormAddLocation}
+              to="/locations/create"
+            >
+              Add Location
+            </Link>
           </div>
-          <div>
+
+          <div className={classes.TicketFormInputContainer}>
             <label htmlFor="media">
               Upload Image
               <input
@@ -107,7 +146,7 @@ export default class TicketForm extends Component {
               />
             </label>
           </div>
-          <div>
+          <div className={classes.TicketFormInputContainer}>
             <label htmlFor="requested-date">
               Requested Date
               <input
@@ -120,7 +159,7 @@ export default class TicketForm extends Component {
               />
             </label>
           </div>
-          <div>
+          <div className={classes.TicketFormInputContainer}>
             <label htmlFor="description">
               Description
               <textarea
@@ -140,7 +179,20 @@ export default class TicketForm extends Component {
             Cancel
           </Button>
         </form>
-      </div>
+      </Auxiliary>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  locations: state.locations.locations,
+  loading: state.locations.loading
+});
+
+const mapDispatchToProps = dispatch => ({
+  readLocations: () => dispatch(actions.readLocations())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(
+  handleErrors(TicketForm, api)
+);

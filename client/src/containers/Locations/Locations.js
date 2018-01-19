@@ -26,11 +26,6 @@ class Locations extends Component {
 
   readLocations = async () => await this.props.readLocations();
 
-  updateLocation = async location => {
-    await this.props.updateLocation(this.props.location._id, location);
-    this.props.history.push('/locations');
-  };
-
   deleteLocation = async id => await this.props.deleteLocation(id);
 
   render() {
@@ -41,7 +36,6 @@ class Locations extends Component {
         <Location
           key={location._id}
           {...location}
-          update={this.updateLocation.bind(this, location)}
           delete={this.deleteLocation.bind(this, location._id)}
         />
       ));

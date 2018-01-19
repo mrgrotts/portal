@@ -12,7 +12,6 @@ import ProgressBar from '../UI/ProgressBar/ProgressBar';
 import classes from './Ticket.css';
 
 const Ticket = props => {
-  console.log(props);
   const style = { height: '100%', width: '100%' };
 
   let position = { lat: 41.88, lng: -87.65 };
