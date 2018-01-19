@@ -798,6 +798,38 @@
 					"response": []
 				},
 				{
+					"name": "Admin Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Tom\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": 1,\n    \"phone\": 6306530495,\n    \"admin\": false,\n    \"tickets\": [],\n    \"locations\": [],\n    \"verified\": true,\n    \"email\": \"tom@gmail.com\",\n    \"profilePicture\": \"https://google.com\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"5a612ea23a029a0a70e5799e",
+								"users"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
 					"name": "Admin Read User",
 					"request": {
 						"method": "GET",
@@ -909,6 +941,38 @@
 						"body": {
 							"mode": "raw",
 							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/tickets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"5a612ea23a029a0a70e5799e",
+								"tickets"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Create Ticket",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"unassigned\",\n    \"category\": \"Plumbing\",\n    \"comments\": {\n        \"children\": []\n    },\n    \"requestedDeletion\": false,\n    \"location\": \"27W223 Churchill Road\",\n    \"description\": \"i don't clean my house, can you do it for me\",\n    \"requestedDate\": \"3-22-18\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/tickets",
