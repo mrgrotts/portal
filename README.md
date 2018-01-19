@@ -74,7 +74,7 @@ All henceforth stated goals are by end of quarter.
 
 ## Contributing
 
-Interested in helping build more functionality in to Portal? Please connect with **Joe Grotto** by email at **josephmgrotto@gmail.com**. We'd love help creating more highly modular components, as well as API functionality that anyone can enjoy for their own projects.
+Interested in building more functionality for Portal? Please connect with **Joe Grotto** by email at **josephmgrotto@gmail.com**. We'd love help creating more highly modular components, as well as API functionality that anyone can enjoy for their own projects.
 
 ## Special Thanks
 
