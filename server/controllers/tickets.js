@@ -96,25 +96,18 @@ exports.updateTicket = (req, res, next) => {
     new: true
   })
     .then(ticket => {
-      // database.Locations.findByIdAndUpdate(ticket.location, {
-      //   $set: {
-      //     tickets: location.tickets
-      //   }
-      // }, {
-      //   new: true, upsert: true
-      // })
       console.log('[TICKET TO ADD]', ticket);
+
       database.Locations.findById(ticket.location)
         .then(location => {
           console.log('[LOCATION]', location);
           console.log('[LOCATION TICKETS]', location.tickets);
 
-          location.tickets = [...location.tickets, ticket];
-          // location.tickets.push(ticket._id);
+          let tickets = (location.tickets = [...location.tickets, ticket]);
 
           location.update(
             { _id: location._id },
-            { $set: { tickets: location.tickets } },
+            { $set: { tickets } },
             (error, result) => {
               if (error) {
                 res.send(error);
@@ -128,16 +121,14 @@ exports.updateTicket = (req, res, next) => {
 
       database.Locations.findById(ticket.previousLocation)
         .then(location => {
-          // console.log('[TICKET TO ADD]', ticket);
           console.log('[OLD LOCATION]', location);
           console.log('[OLD LOCATION TICKETS]', location.tickets);
 
-          let updates = location.tickets.filter(t => t._id !== ticket._id);
-          // location.tickets.push(ticket._id);
+          let tickets = location.tickets.filter(t => t._id !== ticket._id);
 
           location.update(
             { _id: location._id },
-            { $set: { tickets: updates } },
+            { $set: { tickets } },
             (error, result) => {
               if (error) {
                 res.send(error);
