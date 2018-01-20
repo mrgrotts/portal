@@ -26,6 +26,7 @@ class TicketForm extends Component {
       ? this.props.ticket.category
       : 'Commercial Cleaning',
     location: this.props.ticket ? this.props.ticket.location : '',
+    previousLocation: this.props.ticket ? this.props.ticket.location : '',
     description: this.props.ticket ? this.props.ticket.description : '',
     media: this.props.ticket ? this.props.ticket.media : [],
     requestedDate: this.props.ticket ? this.props.ticket.requestedDate : ''
@@ -35,10 +36,12 @@ class TicketForm extends Component {
     await this.props.readLocations();
     // console.log(this.props.locations);
     if (this.state.location === '') {
-      this.setState({ location: this.props.locations[0]._id });
+      this.setState({
+        location: this.props.locations[0]._id
+      });
     }
 
-    console.log(this.state.location);
+    console.log(this.state.location, this.state.previousLocation);
   }
 
   handleChange = event => {
@@ -51,10 +54,13 @@ class TicketForm extends Component {
     this.props.onSubmit({
       category: this.state.category,
       location: this.state.location,
+      previousLocation: this.state.previousLocation,
       description: this.state.description,
       media: this.state.media,
       requestedDate: this.state.requestedDate
     });
+
+    console.log(this.state);
   };
 
   onCancel = event => {
@@ -65,6 +71,9 @@ class TicketForm extends Component {
         ? this.props.ticket.category
         : 'Commercial Cleaning',
       location: this.props.ticket ? this.props.ticket.location._id : '',
+      previousLocation: this.props.ticket
+        ? this.props.ticket.previousLocation
+        : '',
       description: this.props.ticket ? this.props.ticket.description : '',
       media: this.props.ticket ? this.props.ticket.media : [],
       requestedDate: this.props.ticket ? this.props.ticket.requestedDate : ''

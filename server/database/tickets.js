@@ -60,6 +60,10 @@ const ticketsSchema = new mongoose.Schema(
         'Window Washing'
       ]
     },
+    previousLocation: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Locations'
+    },
     location: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Locations',
