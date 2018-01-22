@@ -68,7 +68,7 @@ exports.updateLocation = (req, res, next) => {
   database.Locations.findByIdAndUpdate(req.params.id, req.body, {
     new: true
   })
-    .populate('location')
+    // .populate('userId')
     .then(location => res.status(201).json(location))
     .catch(error => res.send(error));
 };

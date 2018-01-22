@@ -103,40 +103,53 @@ exports.updateTicket = (req, res, next) => {
           console.log('[LOCATION]', location);
           console.log('[LOCATION TICKETS]', location.tickets);
 
-          let tickets = (location.tickets = [...location.tickets, ticket]);
+          // let tickets = (location.tickets = [...location.tickets, ticket]);
+          let tickets = location.tickets.concat(ticket);
 
           location.update(
-            { _id: location._id },
-            { $set: { tickets } },
+            {
+              _id: location._id
+            },
+            {
+              $set: {
+                tickets
+              }
+            },
             (error, result) => {
               if (error) {
                 res.send(error);
               }
             }
           );
+
+          database.Locations.findById(ticket.previousLocation)
+            .then(location => {
+              console.log('[OLD LOCATION]', location);
+              console.log('[OLD LOCATION TICKETS]', location.tickets);
+
+              let tickets = location.tickets.filter(t => t._id !== ticket._id);
+
+              location.update(
+                {
+                  _id: location._id
+                },
+                {
+                  $set: {
+                    tickets
+                  }
+                },
+                (error, result) => {
+                  if (error) {
+                    res.send(error);
+                  }
+                }
+              );
+
+              console.log('[UPDATED OLD LOCATION TICKETS]', location.tickets);
+            })
+            .catch(next);
 
           console.log('[UPDATED LOCATION TICKETS]', location.tickets);
-        })
-        .catch(next);
-
-      database.Locations.findById(ticket.previousLocation)
-        .then(location => {
-          console.log('[OLD LOCATION]', location);
-          console.log('[OLD LOCATION TICKETS]', location.tickets);
-
-          let tickets = location.tickets.filter(t => t._id !== ticket._id);
-
-          location.update(
-            { _id: location._id },
-            { $set: { tickets } },
-            (error, result) => {
-              if (error) {
-                res.send(error);
-              }
-            }
-          );
-
-          console.log('[UPDATED OLD LOCATION TICKETS]', location.tickets);
         })
         .catch(next);
     })
