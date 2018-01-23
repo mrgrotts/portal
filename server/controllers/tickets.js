@@ -73,23 +73,6 @@ exports.readTicket = (req, res, next) => {
 };
 
 exports.updateTicket = async (req, res, next) => {
-  const oldLocation = await database.Locations.findById(
-    req.body.previousLocation,
-    {
-      tickets: 1
-    }
-  ).catch(error => console.log(error));
-
-  const oldLocationTicket = await database.Tickets.find({
-    tickets: { $in: oldLocation['tickets'] }
-  }).catch(error => console.log(error));
-
-  await oldLocation
-    .update({
-      $pull: { tickets: { $in: oldLocation['tickets'] } }
-    })
-    .exec();
-
   const updatedTicket = {
     status: req.body.status,
     category: req.body.category,
@@ -115,6 +98,31 @@ exports.updateTicket = async (req, res, next) => {
     updatedTicket,
     { new: true }
   ).catch(error => console.log(error));
+
+  const oldLocation = await database.Locations.findById(
+    req.body.previousLocation,
+    {
+      tickets: 1
+    }
+  ).catch(error => console.log(error));
+
+  const oldLocationTicket = await database.Tickets.find({
+    _id: { $in: oldLocation['tickets'] }
+  }).catch(error => console.log(error));
+
+  // const oldLocationTickets = await oldLocation
+  // .update({
+  //   $pull: { tickets: { $elemMatch: { _id: ticket._id } } }
+  // })
+  // .exec();
+
+  await oldLocation.update({
+    $pull: { tickets: { $elemMatch: { _id: ticket._id } } }
+  });
+
+  // await oldLocationTicket.remove({
+  //   $pull: { tickets: { $elemMatch: { _id: ticket._id } } }
+  // });
 
   console.log('[TICKET]', ticket);
   console.log('[OLD LOCATION]', oldLocation);
