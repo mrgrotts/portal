@@ -1,0 +1,45 @@
+.Autocomplete {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.AutocompleteContainer {
+  height: 100%;
+  width: 100%;
+}
+
+.left {
+  flex: 1;
+  order: 1;
+  padding: 20px;
+}
+
+.right {
+  flex: 1;
+  order: 2;
+}
+
+.AutocompleteForm {
+  margin: 0 auto;
+  position: relative;
+  height: 30px;
+  width: 100%;
+}
+
+.AutocompleteForm input {
+  height: 100%;
+  font-size: 1.2em;
+}
+
+.AutocompleteForm input[type='text'] {
+  width: 80%;
+}
+
+.AutocompleteForm input[type='submit'] {
+  width: 20%;
+  border: 1px solid #ddd;
+  background: #fff;
+}

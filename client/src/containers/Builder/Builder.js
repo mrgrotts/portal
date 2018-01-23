@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { wrapper as googleAPIComponent } from '../../hoc/googleAPIComponent';
 import handleErrors from '../../hoc/handleErrors';
 
+import AutocompleteWrapper from '../../components/UI/Maps/Autocomplete/Autocomplete';
 import Map from '../../components/UI/Maps';
 import InfoWindow from '../../components/UI/Maps/InfoWindow/InfoWindow';
 import Marker from '../../components/UI/Maps/Marker/Marker';
@@ -94,8 +95,13 @@ class Builder extends Component {
             </div>
 
             <div className={classes.widget}>
-              <div>
-                <h4>Job Description</h4>
+              <div
+                style={{
+                  width: '100%',
+                  height: '100%'
+                }}
+              >
+                <AutocompleteWrapper />
               </div>
             </div>
           </div>
@@ -111,29 +117,36 @@ class Builder extends Component {
             </div>
 
             <div className={classes.widget}>
-              <Map
-                id={JSON.stringify(counter++)}
-                google={this.props.google}
-                onClick={this.onMapClicked}
-                style={style}
-                zoom={10}
+              <div
+                style={{
+                  height: '300px',
+                  width: '300px'
+                }}
               >
-                <Marker
-                  name={'Test Marker'}
-                  onClick={this.onMarkerClick}
-                  position={position}
-                />
-                <InfoWindow
-                  style={{ zIndex: '100' }}
-                  marker={this.state.activeMarker}
-                  visible={this.state.showingInfoWindow}
-                  onClose={this.onInfoWindowClose}
+                <Map
+                  id={JSON.stringify(counter++)}
+                  google={this.props.google}
+                  onClick={this.onMapClicked}
+                  style={style}
+                  zoom={10}
                 >
-                  <div>
-                    <h1>{this.state.selectedPlace.name}</h1>
-                  </div>
-                </InfoWindow>
-              </Map>
+                  <Marker
+                    name={'Test Marker'}
+                    onClick={this.onMarkerClick}
+                    position={position}
+                  />
+                  <InfoWindow
+                    style={{ zIndex: '100' }}
+                    marker={this.state.activeMarker}
+                    visible={this.state.showingInfoWindow}
+                    onClose={this.onInfoWindowClose}
+                  >
+                    <div>
+                      <h1>{this.state.selectedPlace.name}</h1>
+                    </div>
+                  </InfoWindow>
+                </Map>
+              </div>
             </div>
           </div>
         </div>

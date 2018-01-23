@@ -2,7 +2,7 @@ import api from '../../../api';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Auxiliary from '../../../hoc/Auxiliary';
 import handleErrors from '../../../hoc/handleErrors';
@@ -151,7 +151,7 @@ class TicketForm extends Component {
             </label>
           </div>
 
-          {selectLocation}
+          {this.props.ticket ? null : selectLocation}
 
           <div className={classes.TicketFormInputContainer}>
             <label htmlFor="media">

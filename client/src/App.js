@@ -10,6 +10,8 @@ import Portal from './containers/Portal/Portal';
 import Logout from './containers/Auth/Logout/Logout';
 import Builder from './containers/Builder/Builder';
 
+import AutocompleteWrapper from './components/UI/Maps/Autocomplete/Autocomplete';
+
 import * as actions from './actions';
 
 const asyncAuth = asyncComponent(() => import('./containers/Auth/Auth'));
@@ -40,6 +42,7 @@ class App extends Component {
   render() {
     let routes = (
       <Switch>
+        <Route path="/autocomplete" component={AutocompleteWrapper} />
         <Route path="/login" component={asyncAuth} />
         <Route exact path="/" component={Builder} />
         <Redirect to="/" />
@@ -49,7 +52,7 @@ class App extends Component {
     if (this.props.isAuthenticated) {
       routes = (
         <Switch>
-          <Route exact path="/" component={Builder} />
+          <Route path="/autocomplete" component={AutocompleteWrapper} />
           <Route path="/login" component={asyncAuth} />
           <Route path="/logout" component={Logout} />
           <Route path="/locations/create" component={asyncLocationCreate} />
@@ -58,6 +61,7 @@ class App extends Component {
           <Route path="/tickets/create" component={asyncTicketCreate} />;
           <Route path="/tickets/:id" component={asyncTicketUpdate} />
           <Route path="/tickets" component={asyncTickets} />
+          <Route exact path="/" component={Builder} />
           <Redirect to="/" />
         </Switch>
       );

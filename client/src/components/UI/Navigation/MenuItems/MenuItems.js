@@ -10,6 +10,8 @@ const MenuItems = props => (
       Dashboard
     </MenuItem>
 
+    <MenuItem link="/autocomplete">Autocomplete</MenuItem>
+
     {props.isAuthenticated ? (
       <MenuItem link="/tickets">Tickets</MenuItem>
     ) : null}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import scriptCache from '../utils/scriptCache';
+import { ScriptCache } from '../utils/scriptCache';
 import googleAPI from '../utils/googleAPI';
 
 const defaultMapConfig = {};
@@ -13,7 +13,7 @@ const defaultCreateCache = options => {
   const version = options.version || '3.31';
   const language = options.language || 'en';
 
-  return scriptCache({
+  return ScriptCache({
     google: googleAPI({
       apiKey,
       language,
@@ -29,7 +29,7 @@ export const wrapper = options => WrappedComponent => {
   const version = options.version || '3';
   const createCache = options.createCache || defaultCreateCache;
 
-  class Wrapper extends Component {
+  return class Wrapper extends Component {
     constructor(props, context) {
       super(props, context);
 
@@ -64,9 +64,7 @@ export const wrapper = options => WrappedComponent => {
         </div>
       );
     }
-  }
-
-  return Wrapper;
+  };
 };
 
 export default wrapper;
