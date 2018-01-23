@@ -10,14 +10,33 @@ import Marker from '../UI/Maps/Marker/Marker';
 import classes from './Location.css';
 
 const Location = props => {
+  console.log(props.tickets);
   const style = { height: '100%', width: '100%' };
 
   let position = { lat: 41.88, lng: -87.65 };
 
+  let tickets;
+  props.tickets
+    ? (tickets = (
+        <div>
+          <h4>{props.tickets.length} Tickets</h4>
+          {props.tickets.map(ticket => (
+            <div key={ticket}>
+              <Link to={`/tickets/${ticket}`}>{ticket}</Link>
+            </div>
+          ))}
+        </div>
+      ))
+    : (tickets = (
+        <div>
+          <h4>No Tickets</h4>
+          <p>No Tickets for this Location</p>
+        </div>
+      ));
+
   return (
     <div className={classes.Location}>
       <h1>Location ID: {props._id}</h1>
-      <h4>{props.tickets.length} Tickets</h4>
       <p>
         {props.latitude}, {props.longitude}
       </p>
@@ -42,6 +61,7 @@ const Location = props => {
       <p>
         {props.city}, {props.state} {props.zipcode}
       </p>
+      {tickets}
 
       <Link to={`/locations/${props._id}`}>
         <Button ButtonType="Success" clicked={props.update}>

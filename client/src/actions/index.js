@@ -44,8 +44,8 @@ export const auth = (email, password, registration) => async dispatch => {
       generateAuthorizationHeader(response.data.token);
     })
     .catch(error => {
-      console.log(error);
-      dispatch(authFail(error.response.data.error));
+      console.log(error.message);
+      dispatch(authFail(error.message));
     });
 };
 
@@ -420,7 +420,7 @@ export const createLocation = location => async dispatch => {
 
   await api
     .post(url, location)
-    .then(location => dispatch(createLocationSuccess(location)))
+    .then(response => dispatch(createLocationSuccess(response.data)))
     .then(() => dispatch(createLocationEnd()))
     .catch(error => {
       console.log(error);

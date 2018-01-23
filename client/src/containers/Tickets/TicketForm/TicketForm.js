@@ -2,7 +2,7 @@ import api from '../../../api';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import Auxiliary from '../../../hoc/Auxiliary';
 import handleErrors from '../../../hoc/handleErrors';
@@ -22,6 +22,7 @@ class TicketForm extends Component {
   };
 
   state = {
+    status: this.props.ticket ? this.props.ticket.status : 'Unassigned',
     category: this.props.ticket
       ? this.props.ticket.category
       : 'Commercial Cleaning',
@@ -34,14 +35,13 @@ class TicketForm extends Component {
 
   async componentDidMount() {
     await this.props.readLocations();
-    // console.log(this.props.locations);
-    if (this.state.location === '') {
+    console.log(this.props.locations);
+
+    if (this.state.location === '' && this.props.locations.length !== 0) {
       this.setState({
         location: this.props.locations[0]._id
       });
     }
-
-    console.log(this.state.location, this.state.previousLocation);
   }
 
   handleChange = event => {
@@ -52,6 +52,7 @@ class TicketForm extends Component {
     event.preventDefault();
 
     this.props.onSubmit({
+      status: this.state.status,
       category: this.state.category,
       location: this.state.location,
       previousLocation: this.state.previousLocation,
@@ -67,6 +68,7 @@ class TicketForm extends Component {
     this.props.onCancel();
 
     this.setState({
+      status: this.props.ticket ? this.props.ticket.status : 'Unassigned',
       category: this.props.ticket
         ? this.props.ticket.category
         : 'Commercial Cleaning',
@@ -81,15 +83,40 @@ class TicketForm extends Component {
   };
 
   render() {
-    let counter = 1;
-    let selectLocation = <option>No Locations.</option>;
+    let selectLocation = (
+      <div className={classes.TicketFormInputContainer}>
+        <Link className={classes.TicketFormAddLocation} to="/locations/create">
+          Add Location
+        </Link>
+      </div>
+    );
 
-    if (!this.props.loading) {
-      selectLocation = this.props.locations.map(location => (
-        <option key={location._id} value={location._id}>
-          {location.name}
-        </option>
-      ));
+    if (!this.props.loading && this.props.locations.length !== 0) {
+      selectLocation = (
+        <div className={classes.TicketFormInputContainer}>
+          <label htmlFor="location">
+            Location
+            <select
+              className={classes.TicketFormControlSelect}
+              name="location"
+              onChange={this.handleChange}
+              value={this.state.location}
+            >
+              {this.props.locations.map(location => (
+                <option key={location._id} value={location._id}>
+                  {location.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <Link
+            className={classes.TicketFormAddLocation}
+            to="/locations/create"
+          >
+            Add Location
+          </Link>
+        </div>
+      );
     }
 
     return (
@@ -124,25 +151,7 @@ class TicketForm extends Component {
             </label>
           </div>
 
-          <div className={classes.TicketFormInputContainer}>
-            <label htmlFor="location">
-              Location
-              <select
-                className={classes.TicketFormControlSelect}
-                name="location"
-                onChange={this.handleChange}
-                value={this.state.location}
-              >
-                {selectLocation}
-              </select>
-            </label>
-            <Link
-              className={classes.TicketFormAddLocation}
-              to="/locations/create"
-            >
-              Add Location
-            </Link>
-          </div>
+          {selectLocation}
 
           <div className={classes.TicketFormInputContainer}>
             <label htmlFor="media">

@@ -1,4 +1,5 @@
 const database = require('../database');
+const mongoose = require('mongoose');
 
 exports.readTickets = (req, res, next) => {
   database.Users.findById(req.params.id).then(user => {
@@ -57,7 +58,7 @@ exports.createTicket = (req, res, next) => {
             .then(user =>
               database.Tickets.findById(ticket._id).populate('userId')
             )
-            .then(t => res.status(200).json(t))
+            .then(t => res.status(201).json(t))
             .catch(next);
         })
         .catch(next);
@@ -71,7 +72,24 @@ exports.readTicket = (req, res, next) => {
     .catch(error => res.send(error));
 };
 
-exports.updateTicket = (req, res, next) => {
+exports.updateTicket = async (req, res, next) => {
+  const oldLocation = await database.Locations.findById(
+    req.body.previousLocation,
+    {
+      tickets: 1
+    }
+  ).catch(error => console.log(error));
+
+  const oldLocationTicket = await database.Tickets.find({
+    tickets: { $in: oldLocation['tickets'] }
+  }).catch(error => console.log(error));
+
+  await oldLocation
+    .update({
+      $pull: { tickets: { $in: oldLocation['tickets'] } }
+    })
+    .exec();
+
   const updatedTicket = {
     status: req.body.status,
     category: req.body.category,
@@ -91,76 +109,35 @@ exports.updateTicket = (req, res, next) => {
     completedDate: req.body.completedDate,
     requestedDeletion: req.body.requestedDeletion
   };
-  // database.Tickets.findByIdAndUpdate(req.params.id, updatedTicket, { new: true });
-  database.Tickets.findByIdAndUpdate(req.params.id, updatedTicket, {
-    new: true
-  })
-    .then(ticket => {
-      console.log('[TICKET TO ADD]', ticket);
 
+  const ticket = await database.Tickets.findByIdAndUpdate(
+    req.params.id,
+    updatedTicket,
+    { new: true }
+  ).catch(error => console.log(error));
+
+  console.log('[TICKET]', ticket);
+  console.log('[OLD LOCATION]', oldLocation);
+  console.log('[OLD LOCATION TICKET]', oldLocationTicket);
+
+  ticket
+    .save()
+    .then(ticket =>
       database.Locations.findById(ticket.location)
         .then(location => {
-          console.log('[LOCATION]', location);
-          console.log('[LOCATION TICKETS]', location.tickets);
-
-          // let tickets = (location.tickets = [...location.tickets, ticket]);
-          let tickets = location.tickets.concat(ticket);
-
-          location.update(
-            {
-              _id: location._id
-            },
-            {
-              $set: {
-                tickets
-              }
-            },
-            (error, result) => {
-              if (error) {
-                res.send(error);
-              }
-            }
-          );
-
-          database.Locations.findById(ticket.previousLocation)
-            .then(location => {
-              console.log('[OLD LOCATION]', location);
-              console.log('[OLD LOCATION TICKETS]', location.tickets);
-
-              let tickets = location.tickets.filter(t => t._id !== ticket._id);
-
-              location.update(
-                {
-                  _id: location._id
-                },
-                {
-                  $set: {
-                    tickets
-                  }
-                },
-                (error, result) => {
-                  if (error) {
-                    res.send(error);
-                  }
-                }
-              );
-
-              console.log('[UPDATED OLD LOCATION TICKETS]', location.tickets);
-            })
+          location.tickets.push(ticket._id);
+          location
+            .save()
+            .then(loc =>
+              database.Tickets.findById(ticket._id)
+                .then(ticket => res.status(200).json(ticket))
+                .catch(error => res.send(error))
+            )
             .catch(next);
-
-          console.log('[UPDATED LOCATION TICKETS]', location.tickets);
         })
-        .catch(next);
-    })
-    .then(loc => {
-      database.Tickets.findById(req.params.id)
-        // .populate('location')
-        // .populate('userId')
-        .then(ticket => res.status(201).json(ticket))
-        .catch(next);
-    })
-    .catch(error => res.send(error));
+        .catch(next)
+    )
+    .catch(next);
 };
 
 exports.deleteTicket = (req, res, next) => {
@@ -170,3 +147,97 @@ exports.deleteTicket = (req, res, next) => {
 };
 
 module.exports = exports;
+
+// exports.updateTicket = (req, res, next) => {
+//   const updatedTicket = {
+//     status: req.body.status,
+//     category: req.body.category,
+//     location: req.body.location,
+//     previousLocation: req.body.previousLocation,
+//     description: req.body.description,
+//     media: req.body.media,
+//     comments: req.body.comments,
+//     assignedTo: req.body.assignedTo,
+//     requestedDate: req.body.requestedDate,
+//     scheduledFor: req.body.scheduledFor,
+//     partPurchasedDate: req.body.partPurchasedDate,
+//     partArrivedDate: req.body.partArrivedDate,
+//     workCompleted: req.body.workCompleted,
+//     hoursSpent: req.body.hoursSpent,
+//     hourlyRate: req.body.hourlyRate,
+//     completedDate: req.body.completedDate,
+//     requestedDeletion: req.body.requestedDeletion
+//   };
+
+//   // database.Locations.findById(req.body.location, { tickets: 1 })
+//   // var addresses = db.address.find({ _id: { $in: result['address_ids'] } });
+
+//   database.Tickets.findByIdAndUpdate(req.params.id, updatedTicket, {
+//     new: true
+//   })
+//     .populate('location')
+//     .then(ticket => {
+//       console.log('[TICKET TO ADD]', ticket);
+//       console.log('[PREVIOUS]', ticket.previousLocation);
+
+//       database.Locations.findByIdAndUpdate(
+//         ticket.location._id,
+//         { $push: { tickets: ticket } },
+//         { new: true, upsert: true }
+//       )
+//         .then(location => {
+//           // console.log('[LOCATION]', location);
+//           // console.log('[LOCATION TICKETS]', location.tickets);
+//           // let tickets = location.tickets.push(ticket._id);
+//           // console.log('[UPDATED LOCATION TICKETS]', tickets);
+//           // location.save();
+//         })
+//         .catch(next);
+
+//       database.Locations.findById(ticket.previousLocation)
+//         .then(location => {
+//           console.log('[OLD LOCATION]', location);
+//           console.log('[OLD LOCATION TICKETS]', location.tickets);
+
+//           let tickets = location.tickets.filter(
+//             t =>
+//               mongoose.Types.ObjectId(t._id) !==
+//               mongoose.Types.ObjectId(ticket._id)
+//           );
+//           console.log('[OLD LOCATION UPDATED TICKETS]', tickets);
+
+//           location
+//             .update({
+//               $set: { tickets }
+//             })
+//             .exec();
+
+//           // location.set({
+//           //   tickets: location.tickets.filter(t => t._id !== ticket._id)
+//           // });
+//         })
+//         .catch(next);
+
+//       // database.Locations.findById(ticket.previousLocation)
+//       //   .then(location => {
+//       // console.log('[OLD LOCATION]', location);
+//       // console.log('[OLD LOCATION TICKETS]', location.tickets);
+//       //     let tickets = location.tickets.filter(t => t._id !== ticket._id);
+
+//       //     location
+//       //       .update({
+//       //         $set: { tickets }
+//       //       })
+//       //       .exec();
+
+//       //     console.log('[OLD LOCATION UPDATED TICKETS]', tickets);
+//       //   })
+//       //   .catch(next);
+//     })
+//     .then(loc => {
+//       database.Tickets.findById(req.params.id)
+//         .then(ticket => res.status(201).json(ticket))
+//         .catch(next);
+//     })
+//     .catch(error => res.send(error));
+// };

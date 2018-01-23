@@ -25,7 +25,7 @@ const ticketsSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      required: 'Please select a status',
+      // required: 'Please select a status',
       // lowercase: true,
       // trim: true,
       default: 'Unassigned',

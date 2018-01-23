@@ -40,7 +40,6 @@ class Tickets extends Component {
             style={{ width: '100%', backgroundColor: 'white' }}
             {...ticket}
             delete={this.deleteTicket.bind(this, ticket._id)}
-            location={ticket.location}
           />
         ));
     }
