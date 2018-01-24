@@ -118,12 +118,12 @@ class Map extends Component {
         lng: this.props.center.lng
       }
     });
-    console.log('[componentDidMount]', this.state.currentLocation);
+    // console.log('[componentDidMount]', this.state.currentLocation);
     await this.initMap();
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('[componentDidUpdate]', prevProps.center, this.props.center);
+    // console.log('[componentDidUpdate]', prevProps.center, this.props.center);
     if (prevProps.google !== this.props.google) {
       this.initMap();
     }
@@ -143,8 +143,8 @@ class Map extends Component {
           lng: this.props.center.lng
         }
       });
-      console.log(this.props.center);
-      console.log(this.state.currentLocation);
+      // console.log(this.props.center);
+      // console.log(this.state.currentLocation);
       this.recenterMap();
     }
 
@@ -155,7 +155,7 @@ class Map extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     // console.log(nextProps, nextState);
-    console.log('[shouldComponentUpdate]', nextProps.center, this.props.center);
+    // console.log('[shouldComponentUpdate]', nextProps.center, this.props.center);
     return (
       nextProps.center !== this.props.center ||
       nextProps.google !== this.props.google ||
