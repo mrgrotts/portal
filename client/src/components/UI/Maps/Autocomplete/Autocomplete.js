@@ -107,7 +107,6 @@ class AutocompleteWrapper extends Component {
     return (
       <div className={classes.AutocompleteWrapper}>
         <Map
-          {...this.props}
           google={this.props.google}
           center={this.state.center}
           className={classes.AutocompleteMap}
