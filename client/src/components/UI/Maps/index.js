@@ -7,21 +7,6 @@ import toCamelCase from '../../../utils/toCamelCase';
 
 import classes from './Map.css';
 
-// const styles = {
-//   container: {
-//     position: 'absolute',
-//     width: '300px',
-//     height: '300px'
-//   },
-//   map: {
-//     position: 'absolute',
-//     left: 0,
-//     right: 0,
-//     bottom: 0,
-//     top: 0
-//   }
-// };
-
 const eventNames = [
   'ready',
   'click',
@@ -52,8 +37,10 @@ class Map extends Component {
     this.listeners = {};
     this.state = {
       currentLocation: {
-        lat: this.props.initialCenter.lat,
-        lng: this.props.initialCenter.lng
+        // lat: this.props.initialCenter.lat,
+        // lng: this.props.initialCenter.lng
+        lat: this.props.center.lat,
+        lng: this.props.center.lng
       }
     };
   }
@@ -64,7 +51,7 @@ class Map extends Component {
     zoom: PropTypes.number,
     centerAroundCurrentLocation: PropTypes.bool,
     center: PropTypes.object,
-    initialCenter: PropTypes.object,
+    // initialCenter: PropTypes.object,
     className: PropTypes.string,
     style: PropTypes.object,
     containerStyle: PropTypes.object,
@@ -91,10 +78,10 @@ class Map extends Component {
 
   static defaultProps = {
     zoom: 10,
-    initialCenter: {
-      lat: 41.88,
-      lng: -87.65
-    },
+    // initialCenter: {
+    //   lat: 41.88,
+    //   lng: -87.65
+    // },
     center: {},
     centerAroundCurrentLocation: false,
     style: {},
@@ -125,24 +112,42 @@ class Map extends Component {
     //   }
     // }
 
+    this.setState({
+      currentLocation: {
+        lat: this.props.center.lat,
+        lng: this.props.center.lng
+      }
+    });
+    console.log('[componentDidMount]', this.state.currentLocation);
     await this.initMap();
   }
 
   componentDidUpdate(prevProps, prevState) {
+    console.log('[componentDidUpdate]', prevProps.center, this.props.center);
     if (prevProps.google !== this.props.google) {
       this.initMap();
     }
+
     if (this.props.visible !== prevProps.visible) {
       this.restyleMap();
     }
+
     if (this.props.zoom !== prevProps.zoom) {
       this.map.setZoom(this.props.zoom);
     }
+
     if (this.props.center !== prevProps.center) {
       this.setState({
-        currentLocation: this.props.center
+        currentLocation: {
+          lat: this.props.center.lat,
+          lng: this.props.center.lng
+        }
       });
+      console.log(this.props.center);
+      console.log(this.state.currentLocation);
+      this.recenterMap();
     }
+
     if (prevState.currentLocation !== this.state.currentLocation) {
       this.recenterMap();
     }
@@ -150,7 +155,9 @@ class Map extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     // console.log(nextProps, nextState);
+    console.log('[shouldComponentUpdate]', nextProps.center, this.props.center);
     return (
+      nextProps.center !== this.props.center ||
       nextProps.google !== this.props.google ||
       nextProps.children !== this.props.children
     );
@@ -170,7 +177,8 @@ class Map extends Component {
   initMap = async () => {
     if (this.props && this.props.google) {
       const maps = this.props.google.maps;
-      const current = this.state.currentLocation;
+      // const current = this.state.currentLocation;
+      const current = this.props.center;
       const center = new maps.LatLng(current.lat, current.lng);
       const mapRef = this.refs.map;
       const node = findDOMNode(mapRef);
@@ -252,7 +260,8 @@ class Map extends Component {
     const maps = this.props.google.maps;
 
     if (map) {
-      let center = this.state.currentLocation;
+      // const current = this.state.currentLocation;
+      let center = this.props.center;
       if (!(center instanceof this.props.google.maps.LatLng)) {
         center = new this.props.google.maps.LatLng(center.lat, center.lng);
       }
@@ -281,7 +290,8 @@ class Map extends Component {
       return React.cloneElement(c, {
         map: this.map,
         google: this.props.google,
-        mapCenter: this.state.currentLocation
+        mapCenter: this.props.center
+        // mapCenter: this.state.currentLocation
       });
     });
   };

@@ -25,7 +25,12 @@ export class Autocomplete extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    console.log(this.state);
+
+    let lat = this.state.position.lat();
+    let lng = this.state.position.lng();
+
+    this.props.updateMap(lat, lng);
+    console.log('[LAT LNG FROM onSubmit]', lat, lng);
   };
 
   renderAutoComplete = () => {
@@ -47,12 +52,12 @@ export class Autocomplete extends Component {
         return;
       }
 
-      if (place.geometry.viewport) {
-        this.props.map.fitBounds(place.geometry.viewport);
-      } else {
-        this.props.map.setCenter(place.geometry.location);
-        this.props.map.setZoom(17);
-      }
+      // if (place.geometry.viewport) {
+      //   this.props.map.fitBounds(place.geometry.viewport);
+      // } else {
+      //   this.props.map.setCenter(place.geometry.location);
+      //   this.props.map.setZoom(10);
+      // }
 
       this.setState({
         place,
@@ -72,7 +77,7 @@ export class Autocomplete extends Component {
               type="text"
               placeholder="Enter a location"
             />
-            <input className={classes.button} type="submit" value="Go" />
+            <input className={classes.button} type="submit" value="Search" />
           </form>
         </div>
         <div>
@@ -85,16 +90,32 @@ export class Autocomplete extends Component {
 }
 
 class AutocompleteWrapper extends Component {
+  state = {
+    center: {
+      lat: 41.88,
+      lng: -87.65
+    },
+    showingMap: false
+  };
+
+  updateMap = (lat, lng) => {
+    console.log('[LAT LNG FROM updateMap]', lat, lng);
+    this.setState({ showingMap: true, center: { lat, lng } });
+  };
+
   render() {
     return (
-      <div
-        style={{
-          height: '100%',
-          width: '100%'
-        }}
-      >
-        <Map google={this.props.google} className={'map'} visible={false}>
-          <Autocomplete {...this.props} />
+      <div className={classes.AutocompleteWrapper}>
+        <Map
+          {...this.props}
+          google={this.props.google}
+          center={this.state.center}
+          className={classes.AutocompleteMap}
+          visible={this.state.showingMap}
+          zoom={10}
+        >
+          <Marker name={'Search Results'} position={this.state.center} />
+          <Autocomplete {...this.props} updateMap={this.updateMap} />
         </Map>
       </div>
     );

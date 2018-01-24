@@ -12,8 +12,8 @@ exports.readTickets = (req, res, next) => {
         .catch(error => res.send(error));
     } else {
       database.Tickets.find({
-        userId: req.params.id
-      })
+          userId: req.params.id
+        })
         .sort({
           createdAt: 'asc'
         })
@@ -72,7 +72,7 @@ exports.readTicket = (req, res, next) => {
     .catch(error => res.send(error));
 };
 
-exports.updateTicket = async (req, res, next) => {
+exports.updateTicket = async(req, res, next) => {
   const updatedTicket = {
     status: req.body.status,
     category: req.body.category,
@@ -95,19 +95,21 @@ exports.updateTicket = async (req, res, next) => {
 
   const ticket = await database.Tickets.findByIdAndUpdate(
     req.params.id,
-    updatedTicket,
-    { new: true }
+    updatedTicket, {
+      new: true
+    }
   ).catch(error => console.log(error));
 
   const oldLocation = await database.Locations.findById(
-    req.body.previousLocation,
-    {
+    req.body.previousLocation, {
       tickets: 1
     }
   ).catch(error => console.log(error));
 
   const oldLocationTicket = await database.Tickets.find({
-    _id: { $in: oldLocation['tickets'] }
+    _id: {
+      $in: oldLocation['tickets']
+    }
   }).catch(error => console.log(error));
 
   // const oldLocationTickets = await oldLocation
@@ -117,7 +119,13 @@ exports.updateTicket = async (req, res, next) => {
   // .exec();
 
   await oldLocation.update({
-    $pull: { tickets: { $elemMatch: { _id: ticket._id } } }
+    $pull: {
+      tickets: {
+        $elemMatch: {
+          _id: ticket._id
+        }
+      }
+    }
   });
 
   // await oldLocationTicket.remove({
@@ -131,21 +139,21 @@ exports.updateTicket = async (req, res, next) => {
   ticket
     .save()
     .then(ticket =>
-      database.Locations.findById(ticket.location)
-        .then(location => {
-          location.tickets.push(ticket._id);
-          location
-            .save()
-            .then(loc =>
-              database.Tickets.findById(ticket._id)
-                .then(ticket => res.status(200).json(ticket))
-                .catch(error => res.send(error))
-            )
-            .catch(next);
-        })
-        .catch(next)
+      // database.Locations.findById(ticket.location)
+      //   .then(location => {
+      //     location.tickets.push(ticket._id);
+      //     location
+      //       .save()
+      //       .then(loc =>
+      database.Tickets.findById(ticket._id)
+      .then(ticket => res.status(200).json(ticket))
+      .catch(error => res.send(error))
     )
     .catch(next);
+  //     })
+  //     .catch(next)
+  // )
+  // .catch(next);
 };
 
 exports.deleteTicket = (req, res, next) => {

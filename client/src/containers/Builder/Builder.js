@@ -23,14 +23,6 @@ class Builder extends Component {
     selectedPlace: {}
   };
 
-  // static propTypes = {
-  //   children: PropTypes.element.isRequired
-  // };
-
-  // static contextTypes = {
-  //   router: PropTypes.object
-  // };
-
   onMapClick = () => {
     if (this.state.showingInfoWindow) {
       this.setState({
@@ -56,27 +48,9 @@ class Builder extends Component {
     });
   };
 
-  // renderChildren = () => {
-  //   if (!this.props.children) {
-  //     return;
-  //   }
-
-  //   const sharedProps = {
-  //     google: this.props.google,
-  //     loaded: this.props.loaded
-  //   };
-
-  //   return React.Children.map(this.props.children, c => {
-  //     return React.cloneElement(c, sharedProps, {});
-  //   });
-  // };
-
   render() {
-    const style = { height: '100%', width: '100%' };
-
     let counter = 0;
     let position = { lat: 41.88, lng: -87.65 };
-    // const c = this.renderChildren();
 
     return (
       <div className={classes.Builder}>
@@ -95,12 +69,7 @@ class Builder extends Component {
             </div>
 
             <div className={classes.widget}>
-              <div
-                style={{
-                  width: '100%',
-                  height: '100%'
-                }}
-              >
+              <div>
                 <AutocompleteWrapper />
               </div>
             </div>
@@ -124,10 +93,10 @@ class Builder extends Component {
                 }}
               >
                 <Map
+                  center={position}
                   id={JSON.stringify(counter++)}
                   google={this.props.google}
                   onClick={this.onMapClicked}
-                  style={style}
                   zoom={10}
                 >
                   <Marker
