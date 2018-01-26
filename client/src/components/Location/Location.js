@@ -10,7 +10,7 @@ import Marker from '../UI/Maps/Marker/Marker';
 import classes from './Location.css';
 
 const Location = props => {
-  console.log(props.tickets);
+  // console.log(props.tickets);
   const style = { height: '100%', width: '100%' };
 
   let tickets;
