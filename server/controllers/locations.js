@@ -20,11 +20,16 @@ exports.createLocation = (req, res, next) => {
   const newLocation = {
     userId: req.params.id,
     name: req.body.name,
-    addressOne: req.body.addressOne,
-    addressTwo: req.body.addressTwo,
-    city: req.body.city,
-    state: req.body.state,
-    zipcode: req.body.zipcode,
+    addressOne: `${req.body.location.street_number} ${req.body.location.route}`,
+    streetNumber: req.body.location.street_number,
+    route: req.body.location.route,
+    neighborhood: req.body.location.neighborhood,
+    city: req.body.location.locality,
+    township: req.body.location.administrative_area_level_3,
+    county: req.body.location.administrative_area_level_2,
+    state: req.body.location.administrative_area_level_1,
+    zipcode: req.body.location.postal_code,
+    zipcodeSuffix: req.body.location.postal_code_suffix,
     latitude: req.body.latitude,
     longitude: req.body.longitude
   };
@@ -56,11 +61,16 @@ exports.readLocation = (req, res, next) => {
 exports.updateLocation = (req, res, next) => {
   const updatedLocation = {
     name: req.body.name,
-    addressOne: req.body.addressOne,
-    addressTwo: req.body.addressTwo,
-    city: req.body.city,
-    state: req.body.state,
-    zipcode: req.body.zipcode,
+    addressOne: `${req.body.location.street_number} ${req.body.location.route}`,
+    streetNumber: req.body.location.street_number,
+    route: req.body.location.route,
+    neighborhood: req.body.location.neighborhood,
+    city: req.body.location.locality,
+    township: req.body.location.administrative_area_level_3,
+    county: req.body.location.administrative_area_level_2,
+    state: req.body.location.administrative_area_level_1,
+    zipcode: req.body.location.postal_code,
+    zipcodeSuffix: req.body.location.postal_code_suffix,
     latitude: req.body.latitude,
     longitude: req.body.longitude
   };

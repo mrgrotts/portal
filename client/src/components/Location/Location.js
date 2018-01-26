@@ -13,8 +13,6 @@ const Location = props => {
   console.log(props.tickets);
   const style = { height: '100%', width: '100%' };
 
-  let position = { lat: 41.88, lng: -87.65 };
-
   let tickets;
   props.tickets
     ? (tickets = (
@@ -43,6 +41,7 @@ const Location = props => {
       <div style={{ height: '300px', width: '300px' }}>
         <Map
           id={props._id}
+          center={{ lat: props.latitude, lng: props.longitude }}
           google={props.google}
           onClick={props.onMapClicked}
           style={style}
@@ -51,7 +50,7 @@ const Location = props => {
           <Marker
             name={'Test Marker'}
             onClick={props.onMarkerClick}
-            position={position}
+            position={{ lat: props.latitude, lng: props.longitude }}
           />
         </Map>
       </div>

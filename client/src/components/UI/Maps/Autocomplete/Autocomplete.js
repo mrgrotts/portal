@@ -5,6 +5,8 @@ import Map from '../';
 import Marker from '../Marker/Marker';
 import googleAPIComponent from '../../../../hoc/googleAPIComponent';
 
+import Button from '../../Button/Button';
+
 import classes from './Autocomplete.css';
 
 export class Autocomplete extends Component {
@@ -25,25 +27,23 @@ export class Autocomplete extends Component {
     }
   }
 
-  onSubmit = event => {
+  onSearch = event => {
     event.preventDefault();
-
     let lat = this.state.position.lat();
     let lng = this.state.position.lng();
 
-    this.props.updateMap(lat, lng);
-    console.log('[LAT LNG FROM onSubmit]', lat, lng);
+    this.props.updateMap(this.state.location, lat, lng, this.state.phone);
   };
 
   renderAutoComplete = () => {
     if (!this.props.google || !this.props.map) {
-      console.log('WAITING FOR AUTOCOMPLETE PROPS...');
+      // console.log('WAITING FOR AUTOCOMPLETE PROPS...');
       return;
     }
 
     const autocompleteRef = this.refs.autocomplete;
     const node = ReactDOM.findDOMNode(autocompleteRef);
-    console.log('AUTOCOMPLETE NODE FOUND', node);
+    // console.log('AUTOCOMPLETE NODE FOUND', node);
 
     let autocomplete = new this.props.google.maps.places.Autocomplete(node);
     autocomplete.bindTo('bounds', this.props.map);
@@ -54,33 +54,10 @@ export class Autocomplete extends Component {
         return;
       }
 
-      console.log(place);
-      console.log(place.formatted_address);
-      console.log(place.formatted_phone_number);
-
-      let location = {
-        street_number: 'short_name',
-        route: 'long_name',
-        neighborhood: 'long_name',
-        locality: 'long_name',
-        administrative_area_level_1: 'short_name',
-        administrative_area_level_2: 'short_name',
-        country: 'short_name',
-        postal_code: 'short_name'
-      };
-
-      for (let field in place.address_components) {
-        let type = place.address_components[field].types[0];
-        // console.log('TYPES', type);
-
-        if (location[type]) {
-          let value = place.address_components[field][location[type]];
-          // console.log('VALUES', value);
-          location[type] = value;
-        }
-
-        // console.log('LOCATION', location);
-      }
+      let location = place.address_components.reduce((loc, component) => {
+        loc[component.types[0]] = component.short_name;
+        return loc;
+      }, {});
 
       // if (place.geometry.viewport) {
       //   this.props.map.fitBounds(place.geometry.viewport);
@@ -102,19 +79,17 @@ export class Autocomplete extends Component {
     return (
       <div className={classes.Autocomplete}>
         <div className={classes.AutocompleteContainer}>
-          <form className={classes.AutocompleteForm} onSubmit={this.onSubmit}>
+          <div className={classes.AutocompleteForm}>
             <input
               className={classes.input}
               ref="autocomplete"
               type="text"
               placeholder="Enter a location"
             />
-            <input className={classes.button} type="submit" value="Search" />
-          </form>
-        </div>
-        <div>
-          <div>Lat: {this.state.position && this.state.position.lat()}</div>
-          <div>Lng: {this.state.position && this.state.position.lng()}</div>
+            <Button ButtonType="Success" clicked={this.onSearch}>
+              Search
+            </Button>
+          </div>
         </div>
       </div>
     );
@@ -130,9 +105,10 @@ class AutocompleteWrapper extends Component {
     showingMap: false
   };
 
-  updateMap = (lat, lng) => {
-    console.log('[LAT LNG FROM updateMap]', lat, lng);
+  updateMap = (location, lat, lng, phone) => {
     this.setState({ showingMap: true, center: { lat, lng } });
+    this.props.onSearch(location, lat, lng, phone);
+    console.log(location, lat, lng, phone);
   };
 
   render() {
@@ -157,3 +133,62 @@ export default googleAPIComponent({
   apiKey: process.env.GOOGLE_MAPS_API_KEY,
   libraries: ['places']
 })(AutocompleteWrapper);
+
+// let location = {
+//   street_number: 'short_name',
+//   route: 'long_name',
+//   neighborhood: 'long_name',
+//   locality: 'long_name',
+//   administrative_area_level_1: 'short_name',
+//   administrative_area_level_2: 'short_name',
+//   administrative_area_level_3: 'short_name',
+//   country: 'short_name',
+//   postal_code: 'short_name',
+//   postal_code_suffix: 'short_name'
+// };
+
+// for (let component of place.address_components) {
+//   for (let type of component.types) {
+//     location[type] ? (location[type] = component[location[type]]) : null;
+//   }
+// }
+
+// place.address_components.map(
+//   component =>
+//     (location[component.types[0]] =
+//       component[location[component.types[0]]])
+// );
+
+// console.log(location);
+
+// let location = place.address_components.reduce((address, component) => {
+//   address[component.types[0]] = component.short_name;
+//   return address;
+// }, {});
+
+// console.log(location);
+
+// for (let component in place.address_components) {
+//   let type = place.address_components[component].types[0];
+//   let value = place.address_components[component][location[type]];
+//   let keys = Object.keys(location).map(
+//     key => (key === type ? value : '')
+//   );
+//   console.log(keys);
+// }
+
+// for (let component in place.address_components) {
+//   let type = place.address_components[component].types[0];
+//   // console.log('TYPES', type);
+//   console.log(location[type]);
+
+//   if (location[type]) {
+//     let value = place.address_components[component][location[type]];
+//     // console.log('VALUES', value);
+//     location[type] = value;
+//   } else {
+//     location[type] = '';
+//   }
+
+//   console.log('LOCATION', location);
+// }

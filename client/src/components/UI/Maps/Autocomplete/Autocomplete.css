@@ -1,5 +1,5 @@
 .Autocomplete {
-  margin-top: -30px;
+  margin-top: -45px;
   align-items: center;
   display: flex;
   flex-flow: column nowrap;
@@ -28,14 +28,9 @@
 .AutocompleteForm input {
   height: 100%;
   font-size: 1.1rem;
+  margin-right: 10px;
 }
 
-.AutocompleteForm input[type='text'] {
+/* .AutocompleteForm input[type='text'] {
   width: 80%;
-}
-
-.AutocompleteForm input[type='submit'] {
-  width: 20%;
-  border: 1px solid #ddd;
-  background: #fff;
-}
+} */

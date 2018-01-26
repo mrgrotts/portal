@@ -290,8 +290,8 @@ class Map extends Component {
       return React.cloneElement(c, {
         map: this.map,
         google: this.props.google,
-        mapCenter: this.props.center
-        // mapCenter: this.state.currentLocation
+        mapcenter: this.props.center
+        // mapcenter: this.state.currentLocation
       });
     });
   };

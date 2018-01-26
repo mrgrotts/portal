@@ -11,6 +11,15 @@ const locationsSchema = new mongoose.Schema(
       type: String,
       required: 'Please enter a location name'
     },
+    phone: {
+      type: Number
+    },
+    streetNumber: {
+      type: String
+    },
+    route: {
+      type: String
+    },
     addressOne: {
       type: String,
       required: 'Please enter an address'
@@ -18,9 +27,21 @@ const locationsSchema = new mongoose.Schema(
     addressTwo: {
       type: String
     },
+    addressThree: {
+      type: String
+    },
+    neighborhood: {
+      type: String
+    },
+    township: {
+      type: String
+    },
     city: {
       type: String,
       required: 'Please enter a city'
+    },
+    county: {
+      type: String
     },
     state: {
       type: String,
@@ -33,6 +54,9 @@ const locationsSchema = new mongoose.Schema(
       required: 'Please enter a zipcode',
       max: 5,
       min: 5
+    },
+    zipcodeSuffix: {
+      type: String
     },
     latitude: {
       type: Number,

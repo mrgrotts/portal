@@ -48,6 +48,9 @@ class Builder extends Component {
     });
   };
 
+  onSearch = (location, lat, lng, phone) =>
+    console.log(location, lat, lng, phone);
+
   render() {
     let counter = 0;
     let position = { lat: 41.88, lng: -87.65 };
@@ -69,9 +72,7 @@ class Builder extends Component {
             </div>
 
             <div className={classes.widget}>
-              <div>
-                <AutocompleteWrapper />
-              </div>
+              <AutocompleteWrapper onSearch={this.onSearch} />
             </div>
           </div>
 
