@@ -3,6 +3,8 @@ import api from '../../../api';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { SingleDatePicker } from 'react-dates';
+import moment from 'moment';
 
 import Auxiliary from '../../../hoc/Auxiliary';
 import handleErrors from '../../../hoc/handleErrors';
@@ -30,7 +32,10 @@ class TicketForm extends Component {
     previousLocation: this.props.ticket ? this.props.ticket.location : '',
     description: this.props.ticket ? this.props.ticket.description : '',
     media: this.props.ticket ? this.props.ticket.media : [],
-    requestedDate: this.props.ticket ? this.props.ticket.requestedDate : ''
+    requestedDate: this.props.ticket
+      ? moment(this.props.ticket.requestedDate)
+      : moment(),
+    focused: false
   };
 
   async componentDidMount() {
@@ -48,6 +53,10 @@ class TicketForm extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  onCalendarDateChange = requestedDate => this.setState({ requestedDate });
+
+  onCalendarFocusChange = ({ focused }) => this.setState(() => ({ focused }));
+
   onSubmit = event => {
     event.preventDefault();
 
@@ -58,7 +67,7 @@ class TicketForm extends Component {
       previousLocation: this.state.previousLocation,
       description: this.state.description,
       media: this.state.media,
-      requestedDate: this.state.requestedDate
+      requestedDate: this.state.requestedDate.valueOf()
     });
 
     console.log(this.state);
@@ -78,7 +87,9 @@ class TicketForm extends Component {
         : '',
       description: this.props.ticket ? this.props.ticket.description : '',
       media: this.props.ticket ? this.props.ticket.media : [],
-      requestedDate: this.props.ticket ? this.props.ticket.requestedDate : ''
+      requestedDate: this.props.ticket
+        ? moment(this.props.ticket.requestedDate)
+        : moment()
     });
   };
 
@@ -167,13 +178,13 @@ class TicketForm extends Component {
           <div className={classes.TicketFormInputContainer}>
             <label htmlFor="requested-date">
               Requested Date
-              <input
-                id="requested-date"
-                type="text"
-                name="requestedDate"
-                className={classes.TicketFormControl}
-                value={this.state.requestedDate}
-                onChange={this.handleChange}
+              <SingleDatePicker
+                id="date_input"
+                date={this.state.requestedDate}
+                onDateChange={this.onCalendarDateChange}
+                focused={this.state.focused}
+                onFocusChange={this.onCalendarFocusChange}
+                numberOfMonths={1}
               />
             </label>
           </div>
@@ -214,3 +225,12 @@ const mapDispatchToProps = dispatch => ({
 export default connect(mapStateToProps, mapDispatchToProps)(
   handleErrors(TicketForm, api)
 );
+
+// <input
+//   id="requested-date"
+//   type="text"
+//   name="requestedDate"
+//   className={classes.TicketFormControl}
+//   value={this.state.requestedDate}
+//   onChange={this.handleChange}
+// />
