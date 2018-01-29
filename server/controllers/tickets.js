@@ -48,8 +48,8 @@ exports.createTicket = (req, res, next) => {
                     .save()
                     .then(user =>
                       database.Tickets.findById(ticket._id)
-                        .populate('userId')
                         .populate('location')
+                        .populate('userId')
                     )
                     .then(t => res.status(201).json(t))
                     .catch(next);
@@ -136,16 +136,17 @@ exports.updateTicket = async (req, res, next) => {
 
   ticket
     .save()
-    .then(ticket =>
-      // database.Locations.findById(ticket.location)
+    .then((
+      ticket // database.Locations.findById(ticket.location)
+    ) =>
       //   .then(location => {
       //     location.tickets.push(ticket._id);
       //     location
       //       .save()
       //       .then(loc =>
       database.Tickets.findById(ticket._id)
-        .populate('userId')
         .populate('location')
+        .populate('userId')
         .then(ticket => res.status(200).json(ticket))
         .catch(error => res.send(error))
     )
