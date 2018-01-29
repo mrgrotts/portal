@@ -2,21 +2,19 @@ const database = require('../database');
 const mongoose = require('mongoose');
 
 exports.readTickets = (req, res, next) => {
-  database.Users.findById(req.params.id).then(user => {
+  database.Users.findById(req.params.userId).then(user => {
     if (user.admin) {
       database.Tickets.find()
-        .sort({
-          createdAt: 'asc'
-        })
+        .sort({ createdAt: 'asc' })
+        .populate('location')
+        .populate('userId')
         .then(tickets => res.status(200).json(tickets))
         .catch(error => res.send(error));
     } else {
-      database.Tickets.find({
-          userId: req.params.id
-        })
-        .sort({
-          createdAt: 'asc'
-        })
+      database.Tickets.find({ userId: req.params.userId })
+        .sort({ createdAt: 'asc' })
+        .populate('location')
+        .populate('userId')
         .then(tickets => res.status(200).json(tickets))
         .catch(error => res.send(error));
     }
@@ -25,7 +23,7 @@ exports.readTickets = (req, res, next) => {
 
 exports.createTicket = (req, res, next) => {
   const newTicket = {
-    userId: req.params.id,
+    userId: req.params.userId,
     category: req.body.category,
     location: req.body.location,
     description: req.body.description,
@@ -33,7 +31,7 @@ exports.createTicket = (req, res, next) => {
     requestedDate: req.body.requestedDate
   };
 
-  console.log(newTicket);
+  // console.log(newTicket);
 
   database.Tickets.create(newTicket)
     .then(ticket => {
@@ -42,23 +40,22 @@ exports.createTicket = (req, res, next) => {
           location.tickets.push(ticket._id);
           location
             .save()
-            .then(location =>
-              database.Tickets.findById(ticket._id).populate('location')
-            )
-            .then(loc => res.status(201).json(loc))
-            .catch(next);
-        })
-        .catch(next);
-
-      database.Users.findById(req.params.id)
-        .then(user => {
-          user.tickets.push(ticket._id);
-          user
-            .save()
-            .then(user =>
-              database.Tickets.findById(ticket._id).populate('userId')
-            )
-            .then(t => res.status(201).json(t))
+            .then(location => {
+              database.Users.findById(req.params.userId)
+                .then(user => {
+                  user.tickets.push(ticket._id);
+                  user
+                    .save()
+                    .then(user =>
+                      database.Tickets.findById(ticket._id)
+                        .populate('userId')
+                        .populate('location')
+                    )
+                    .then(t => res.status(201).json(t))
+                    .catch(next);
+                })
+                .catch(next);
+            })
             .catch(next);
         })
         .catch(next);
@@ -67,12 +64,12 @@ exports.createTicket = (req, res, next) => {
 };
 
 exports.readTicket = (req, res, next) => {
-  database.Tickets.findById(req.params.id)
+  database.Tickets.findById(req.params.ticketId)
     .then(ticket => res.status(200).json(ticket))
     .catch(error => res.send(error));
 };
 
-exports.updateTicket = async(req, res, next) => {
+exports.updateTicket = async (req, res, next) => {
   const updatedTicket = {
     status: req.body.status,
     category: req.body.category,
@@ -94,23 +91,24 @@ exports.updateTicket = async(req, res, next) => {
   };
 
   const ticket = await database.Tickets.findByIdAndUpdate(
-    req.params.id,
-    updatedTicket, {
+    req.params.ticketId,
+    updatedTicket,
+    {
       new: true
     }
   ).catch(error => console.log(error));
 
-  const oldLocation = await database.Locations.findById(
-    req.body.previousLocation, {
-      tickets: 1
-    }
-  ).catch(error => console.log(error));
+  // const oldLocation = await database.Locations.findById(
+  //   req.body.previousLocation, {
+  //     tickets: 1
+  //   }
+  // ).catch(error => console.log(error));
 
-  const oldLocationTicket = await database.Tickets.find({
-    _id: {
-      $in: oldLocation['tickets']
-    }
-  }).catch(error => console.log(error));
+  // const oldLocationTicket = await database.Tickets.find({
+  //   _id: {
+  //     $in: oldLocation['tickets']
+  //   }
+  // }).catch(error => console.log(error));
 
   // const oldLocationTickets = await oldLocation
   // .update({
@@ -118,23 +116,23 @@ exports.updateTicket = async(req, res, next) => {
   // })
   // .exec();
 
-  await oldLocation.update({
-    $pull: {
-      tickets: {
-        $elemMatch: {
-          _id: ticket._id
-        }
-      }
-    }
-  });
+  // await oldLocation.update({
+  //   $pull: {
+  //     tickets: {
+  //       $elemMatch: {
+  //         _id: ticket._id
+  //       }
+  //     }
+  //   }
+  // });
 
   // await oldLocationTicket.remove({
   //   $pull: { tickets: { $elemMatch: { _id: ticket._id } } }
   // });
 
-  console.log('[TICKET]', ticket);
-  console.log('[OLD LOCATION]', oldLocation);
-  console.log('[OLD LOCATION TICKET]', oldLocationTicket);
+  // console.log('[TICKET]', ticket);
+  // console.log('[OLD LOCATION]', oldLocation);
+  // console.log('[OLD LOCATION TICKET]', oldLocationTicket);
 
   ticket
     .save()
@@ -146,8 +144,10 @@ exports.updateTicket = async(req, res, next) => {
       //       .save()
       //       .then(loc =>
       database.Tickets.findById(ticket._id)
-      .then(ticket => res.status(200).json(ticket))
-      .catch(error => res.send(error))
+        .populate('userId')
+        .populate('location')
+        .then(ticket => res.status(200).json(ticket))
+        .catch(error => res.send(error))
     )
     .catch(next);
   //     })
@@ -157,7 +157,7 @@ exports.updateTicket = async(req, res, next) => {
 };
 
 exports.deleteTicket = (req, res, next) => {
-  database.Tickets.findByIdAndRemove(req.params.id)
+  database.Tickets.findByIdAndRemove(req.params.ticketId)
     .then(ticket => res.json(ticket))
     .catch(error => res.send(error));
 };

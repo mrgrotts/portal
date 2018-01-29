@@ -17,7 +17,7 @@ router
   .post(createLocation);
 
 router
-  .route('/:id')
+  .route('/:locationId')
   .get(readLocation)
   .put(updateLocation)
   .delete(deleteLocation);

@@ -28,7 +28,7 @@ class TicketCreate extends Component {
     }
 
     const redirectAfterSubmit = this.props.success ? (
-      <Redirect to="/tickets" />
+      <Redirect to="/tickets" {...this.props.tickets} />
     ) : null;
 
     return (

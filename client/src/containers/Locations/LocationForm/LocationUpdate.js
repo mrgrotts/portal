@@ -32,7 +32,6 @@ class LocationUpdate extends Component {
         />
       );
     }
-    console.log(this.props.success);
 
     const redirectAfterSubmit = this.props.success ? (
       <Redirect to="/locations" />

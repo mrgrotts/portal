@@ -73,7 +73,7 @@ const ticketsReducer = (state = initialState, action) => {
       const ticket = { ...action.ticket };
       return {
         ...state,
-        tickets: state.tickets.filter(loc => loc._id === ticket._id),
+        tickets: state.tickets.filter(t => t._id === ticket._id),
         loading: false,
         success: true
       };

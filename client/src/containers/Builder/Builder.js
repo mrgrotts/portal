@@ -2,7 +2,7 @@ import api from '../../api';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import { wrapper as googleAPIComponent } from '../../hoc/googleAPIComponent';
 import handleErrors from '../../hoc/handleErrors';

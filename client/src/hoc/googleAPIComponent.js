@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
 import { ScriptCache } from '../utils/scriptCache';
 import googleAPI from '../utils/googleAPI';
-
-const defaultMapConfig = {};
 
 const defaultCreateCache = options => {
   options = options || {};
@@ -24,9 +21,6 @@ const defaultCreateCache = options => {
 };
 
 export const wrapper = options => WrappedComponent => {
-  const apiKey = options.apiKey;
-  const libraries = options.libraries || ['places'];
-  const version = options.version || '3';
   const createCache = options.createCache || defaultCreateCache;
 
   return class Wrapper extends Component {
@@ -44,9 +38,9 @@ export const wrapper = options => WrappedComponent => {
     }
 
     onLoad(err, tag) {
-      this._gapi = window.google;
+      this.googleApi = window.google;
 
-      this.setState({ loaded: true, google: this._gapi });
+      this.setState({ loaded: true, google: this.googleApi });
     }
 
     render() {

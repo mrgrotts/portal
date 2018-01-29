@@ -43,7 +43,7 @@ exports.authorizeUser = (req, res, next) => {
   try {
     const token = req.headers.authorization.split(' ')[1];
     jwt.verify(token, process.env.JWT_KEY, (error, decoded) => {
-      if (decoded && decoded.userId === req.params.id) {
+      if (decoded && decoded.userId === req.params.userId) {
         next();
       } else {
         res.status(403).json({ message: ACCOUNT_NOT_AUTHORIZED });

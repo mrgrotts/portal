@@ -5,7 +5,7 @@ import { wrapper as googleAPIComponent } from '../../hoc/googleAPIComponent';
 
 import Button from '../UI/Button/Button';
 import Map from '../UI/Maps';
-import InfoWindow from '../UI/Maps/InfoWindow/InfoWindow';
+// import InfoWindow from '../UI/Maps/InfoWindow/InfoWindow';
 import Marker from '../UI/Maps/Marker/Marker';
 import ProgressBar from '../UI/ProgressBar/ProgressBar';
 
@@ -23,7 +23,11 @@ const Ticket = props => {
       <ProgressBar />
       <div style={{ height: '300px', width: '300px' }}>
         <Map
-          id={props._id}
+          id={props.location._id}
+          center={{
+            lat: props.location.latitude,
+            lng: props.location.longitude
+          }}
           google={props.google}
           onClick={props.onMapClicked}
           style={style}
@@ -36,10 +40,13 @@ const Ticket = props => {
           />
         </Map>
       </div>
-      <p>Location: {props.location}</p>
+      <p>
+        Location: {props.location.addressOne}, {props.location.city},{' '}
+        {props.location.state} {props.location.zipcode}
+      </p>
       <p>Category: {props.category}</p>
       <p>Description: {props.description}</p>
-      <p>Created By: {props.userId}</p>
+      <p>Created By: {props.userId.email}</p>
       <p>Created At: {props.createdAt}</p>
       <p>Updated At: {props.updatedAt}</p>
       <Link to={`/tickets/${props._id}`}>
@@ -58,10 +65,3 @@ export default googleAPIComponent({
   apiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   libraries: ['places']
 })(Ticket);
-
-// <Map
-//   id={props._id}
-//   location={props.location}
-//   latitude={41.88}
-//   longitude={-87.65}
-// />

@@ -108,7 +108,7 @@ class AutocompleteWrapper extends Component {
   updateMap = (location, lat, lng, phone) => {
     this.setState({ showingMap: true, center: { lat, lng } });
     this.props.onSearch(location, lat, lng, phone);
-    console.log(location, lat, lng, phone);
+    // console.log(location, lat, lng, phone);
   };
 
   render() {

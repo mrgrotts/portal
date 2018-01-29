@@ -35,12 +35,18 @@ class TicketForm extends Component {
     requestedDate: this.props.ticket
       ? moment(this.props.ticket.requestedDate)
       : moment(),
+    createdAt: this.props.ticket
+      ? moment(this.props.ticket.createdAt)
+      : moment(),
+    updatedAt: this.props.ticket
+      ? moment(this.props.ticket.updatedAt)
+      : moment(),
     focused: false
   };
 
   async componentDidMount() {
     await this.props.readLocations();
-    console.log(this.props.locations);
+    // console.log(this.props.locations);
 
     if (this.state.location === '' && this.props.locations.length !== 0) {
       this.setState({
@@ -49,9 +55,8 @@ class TicketForm extends Component {
     }
   }
 
-  handleChange = event => {
+  handleChange = event =>
     this.setState({ [event.target.name]: event.target.value });
-  };
 
   onCalendarDateChange = requestedDate => this.setState({ requestedDate });
 
@@ -67,10 +72,10 @@ class TicketForm extends Component {
       previousLocation: this.state.previousLocation,
       description: this.state.description,
       media: this.state.media,
-      requestedDate: this.state.requestedDate.valueOf()
+      requestedDate: this.state.requestedDate
     });
 
-    console.log(this.state);
+    // console.log(this.state);
   };
 
   onCancel = event => {
@@ -89,6 +94,12 @@ class TicketForm extends Component {
       media: this.props.ticket ? this.props.ticket.media : [],
       requestedDate: this.props.ticket
         ? moment(this.props.ticket.requestedDate)
+        : moment(),
+      createdAt: this.props.ticket
+        ? moment(this.props.ticket.createdAt)
+        : moment(),
+      updatedAt: this.props.ticket
+        ? moment(this.props.ticket.updatedAt)
         : moment()
     });
   };
@@ -161,6 +172,19 @@ class TicketForm extends Component {
               </select>
             </label>
           </div>
+          <div className={classes.TicketFormInputContainer}>
+            <label htmlFor="description">
+              Description
+              <textarea
+                id="description"
+                type="text"
+                name="description"
+                className={classes.TicketFormControlArea}
+                value={this.state.description}
+                onChange={this.handleChange}
+              />
+            </label>
+          </div>
 
           {this.props.ticket ? null : selectLocation}
 
@@ -185,19 +209,7 @@ class TicketForm extends Component {
                 focused={this.state.focused}
                 onFocusChange={this.onCalendarFocusChange}
                 numberOfMonths={1}
-              />
-            </label>
-          </div>
-          <div className={classes.TicketFormInputContainer}>
-            <label htmlFor="description">
-              Description
-              <textarea
-                id="description"
-                type="text"
-                name="description"
-                className={classes.TicketFormControlArea}
-                value={this.state.description}
-                onChange={this.handleChange}
+                keepOpenOnDateSelect
               />
             </label>
           </div>
@@ -233,4 +245,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 //   className={classes.TicketFormControl}
 //   value={this.state.requestedDate}
 //   onChange={this.handleChange}
+// />
+
+// ALWAYS OPEN DATE PICKER (also set focused state to true)
+// <SingleDatePicker
+//   id="date_input"
+//   date={this.state.requestedDate}
+//   onDateChange={this.onCalendarDateChange}
+//   focused={this.state.focused}
+//   onFocusChange={() => {}}
+//   numberOfMonths={1}
+//   keepOpenOnDateSelect
 // />

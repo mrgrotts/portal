@@ -17,7 +17,7 @@ router
   .post(createTicket);
 
 router
-  .route('/:id')
+  .route('/:ticketId')
   .get(readTicket)
   .put(updateTicket)
   .delete(deleteTicket);

@@ -19,8 +19,13 @@ const Location = props => {
         <div>
           <h4>{props.tickets.length} Tickets</h4>
           {props.tickets.map(ticket => (
-            <div key={ticket}>
-              <Link to={`/tickets/${ticket}`}>{ticket}</Link>
+            <div key={ticket._id}>
+              <p>
+                <Link to={`/tickets/${ticket._id}`}>
+                  <strong>{ticket._id}: </strong>
+                </Link>
+                {ticket.description}
+              </p>
             </div>
           ))}
         </div>
@@ -34,11 +39,7 @@ const Location = props => {
 
   return (
     <div className={classes.Location}>
-      <h1>Location ID: {props._id}</h1>
-      <p>
-        {props.latitude}, {props.longitude}
-      </p>
-      <div style={{ height: '300px', width: '300px' }}>
+      <div className={classes.LocationMap}>
         <Map
           id={props._id}
           center={{ lat: props.latitude, lng: props.longitude }}
@@ -54,13 +55,26 @@ const Location = props => {
           />
         </Map>
       </div>
-      <p>{props.name}</p>
+      <h1>
+        <strong>{props.name}</strong>
+      </h1>
+      <h4>{props._id}</h4>
+      <p>
+        <a href={`tel:${props.phone}`}>{props.phone}</a>
+      </p>
       <p>{props.addressOne}</p>
       <p>{props.addressTwo}</p>
       <p>
         {props.city}, {props.state} {props.zipcode}
       </p>
+      <p>
+        {props.latitude}, {props.longitude}
+      </p>
+      <hr style={{ margin: '5px 0' }} />
       {tickets}
+      <p>Created By: {props.userId.email}</p>
+      <p>Created At: {props.createdAt}</p>
+      <p>Updated At: {props.updatedAt}</p>
 
       <Link to={`/locations/${props._id}`}>
         <Button ButtonType="Success" clicked={props.update}>

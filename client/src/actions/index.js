@@ -192,7 +192,7 @@ export const createTicket = ticket => async dispatch => {
 
   await api
     .post(url, ticket)
-    .then(ticket => dispatch(createTicketSuccess(ticket)))
+    .then(response => dispatch(createTicketSuccess(response.data)))
     .then(() => dispatch(createTicketEnd()))
     .catch(error => {
       console.log(error);

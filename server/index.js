@@ -38,13 +38,13 @@ app.use('/', apiRoutes);
 app.use('/api/admin/:id', checkAdmin, adminRoutes);
 app.use('/api/auth', authRoutes);
 app.use(
-  '/api/users/:id/locations',
+  '/api/users/:userId/locations',
   authenticateUser,
   authorizeUser,
   locationRoutes
 );
 app.use(
-  '/api/users/:id/tickets',
+  '/api/users/:userId/tickets',
   authenticateUser,
   authorizeUser,
   ticketRoutes

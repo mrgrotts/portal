@@ -13,8 +13,8 @@ import * as actions from '../../actions';
 import classes from './Tickets.css';
 
 class Tickets extends Component {
-  componentDidMount() {
-    this.readTickets();
+  async componentDidMount() {
+    await this.readTickets();
   }
 
   shouldComponentUpdate(nextProps, nextState) {
