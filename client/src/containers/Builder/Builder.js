@@ -24,8 +24,9 @@ class Builder extends Component {
   };
 
   onMapClick = () => {
+    // console.log('map click');
     if (this.state.showingInfoWindow) {
-      this.setState({
+      return this.setState({
         showingInfoWindow: false,
         activeMarker: null
       });
@@ -33,8 +34,8 @@ class Builder extends Component {
   };
 
   onMarkerClick = (props, marker, e) => {
-    console.log('clicked');
-    this.setState({
+    // console.log('marker click');
+    return this.setState({
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true
@@ -42,7 +43,8 @@ class Builder extends Component {
   };
 
   onInfoWindowClose = () => {
-    this.setState({
+    // console.log('infowindow close');
+    return this.setState({
       showingInfoWindow: false,
       activeMarker: null
     });
@@ -97,7 +99,7 @@ class Builder extends Component {
                   center={position}
                   id={JSON.stringify(counter++)}
                   google={this.props.google}
-                  onClick={this.onMapClicked}
+                  onClick={this.onMapClick}
                   zoom={10}
                 >
                   <Marker
@@ -106,13 +108,14 @@ class Builder extends Component {
                     position={position}
                   />
                   <InfoWindow
-                    style={{ zIndex: '100' }}
                     marker={this.state.activeMarker}
                     visible={this.state.showingInfoWindow}
                     onClose={this.onInfoWindowClose}
                   >
                     <div>
-                      <h1>{this.state.selectedPlace.name}</h1>
+                      <p style={{ color: 'black' }}>
+                        {this.state.selectedPlace.name}
+                      </p>
                     </div>
                   </InfoWindow>
                 </Map>

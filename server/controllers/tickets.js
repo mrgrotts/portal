@@ -136,9 +136,8 @@ exports.updateTicket = async (req, res, next) => {
 
   ticket
     .save()
-    .then((
-      ticket // database.Locations.findById(ticket.location)
-    ) =>
+    .then(ticket =>
+      // database.Locations.findById(ticket.location)
       //   .then(location => {
       //     location.tickets.push(ticket._id);
       //     location

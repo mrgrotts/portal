@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import toCamelCase from '../../../../utils/toCamelCase';
-
 const eventNames = [
   'click',
   'dblclick',
@@ -97,7 +95,10 @@ export class Marker extends React.Component {
   getMarker = () => this.markerPromise;
 
   handleEvent = event => e => {
-    const eventName = `on${toCamelCase(event)}`;
+    // console.log(event);
+    let eName = event.split('')[0].toUpperCase() + event.slice(1);
+    const eventName = `on${eName}`;
+    // console.log(eventName);
     if (this.props[eventName]) {
       this.props[eventName](this.props, this.marker, e);
     }

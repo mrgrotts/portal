@@ -46,9 +46,9 @@ class Tickets extends Component {
     }
 
     let headers = [
+      'Category',
       'Number',
       'Status',
-      'Category',
       'Location',
       'Description',
       'Date Received',
