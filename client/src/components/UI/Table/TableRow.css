@@ -1,0 +1,7 @@
+.TableRow {
+  display: table-row;
+  text-align: center;
+  box-sizing: content-box;
+  line-height: 50px;
+  white-space: normal;
+}

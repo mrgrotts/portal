@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 
 import handleErrors from '../../hoc/handleErrors';
 
+import Table from '../../components/UI/Table/Table';
+
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Ticket from '../../components/Ticket/Ticket';
 
@@ -37,17 +39,25 @@ class Tickets extends Component {
         .map(ticket => (
           <Ticket
             key={ticket._id}
-            style={{ width: '100%', backgroundColor: 'white' }}
             {...ticket}
             delete={this.deleteTicket.bind(this, ticket._id)}
           />
         ));
     }
 
+    let headers = [
+      'Number',
+      'Status',
+      'Category',
+      'Description',
+      'Date Received',
+      'Actions'
+    ];
+
     return (
       <div className={classes.Tickets}>
         <h1>You Have {tickets.length} Tickets</h1>
-        {tickets}
+        <Table headers={headers}>{tickets}</Table>
       </div>
     );
   }

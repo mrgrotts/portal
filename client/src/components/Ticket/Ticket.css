@@ -1,4 +1,4 @@
-.Ticket {
+/* .Ticket {
   background-color: rgba(255, 255, 255, 1);
   border: none;
   border-radius: 5px;
@@ -6,4 +6,10 @@
   margin: 0 auto;
   margin-bottom: 2rem;
   padding: 20px;
+} */
+
+.TicketActions {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
 }

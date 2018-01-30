@@ -1,0 +1,40 @@
+.Table {
+  background-color: rgba(255, 255, 255, 1);
+  border-collapse: separate;
+  border-spacing: 0;
+  border-width: 0;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  empty-cells: show;
+  outline: none;
+  min-width: 100vw;
+  max-width: none;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.TableHeadersRow {
+  display: table-row;
+  line-height: 50px;
+  text-align: center;
+  white-space: normal;
+}
+
+.TableHeaders {
+  background-color: #006eb6;
+  color: rgba(255, 255, 255, 1);
+}
+
+/* .TableFooterRow {
+  display: table-row;
+  text-align: center;
+  box-sizing: content-box;
+  white-space: normal;
+}
+
+.TableFooter {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.TableFooterItem {
+  border: 1px solid gray;
+} */

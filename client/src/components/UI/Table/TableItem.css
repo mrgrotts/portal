@@ -1,0 +1,12 @@
+.TableItem {
+  border: 1px solid #e0e0e0;
+  border-left-width: 0;
+  border-top-width: 0;
+  display: table-cell;
+  /* font-size: 0.8rem; */
+  width: 100%;
+}
+
+.TableItem:first-child {
+  border-left-width: 1px;
+}

@@ -13,7 +13,7 @@ exports.login = (req, res) => {
           const expiresIn = 60 * 60;
           const token = jwt.sign(
             {
-              userId: user.id
+              userId: user._id
             },
             process.env.JWT_KEY,
             {
@@ -21,7 +21,7 @@ exports.login = (req, res) => {
             }
           );
           res.status(200).json({
-            userId: user.id,
+            userId: user._id,
             profilePicture: user.profilePicture,
             token,
             expiresIn
@@ -47,12 +47,12 @@ exports.register = (req, res) => {
     .then(user => {
       const token = jwt.sign(
         {
-          userId: user.id
+          userId: user._id
         },
         process.env.JWT_KEY
       );
       res.status(200).json({
-        userId: user.id,
+        userId: user._id,
         token
       });
     })
