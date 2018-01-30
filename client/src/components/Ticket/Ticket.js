@@ -16,6 +16,7 @@ const Ticket = props => {
       </TableItem>
       <TableItem>{props.status}</TableItem>
       <TableItem>{props.category}</TableItem>
+      <TableItem>{props.location.name}</TableItem>
       <TableItem>{props.description}</TableItem>
       <TableItem>{moment(props.requestedDate).format('LLL')}</TableItem>
       <TableItem>

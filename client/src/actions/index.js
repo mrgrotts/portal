@@ -1,6 +1,8 @@
 import api from '../api';
-let generateAuthorizationHeader = (token = localStorage.getItem('token')) =>
-  (api.defaults.headers.common['Authorization'] = `Bearer ${token}`);
+let generateAuthorizationHeader = (token = localStorage.getItem('token')) => {
+  api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  api.defaults.headers.common['Cache-Control'] = 'max-age=3600';
+};
 
 /**************************************************************************************
  * AUTH                                                                               *

@@ -49,6 +49,7 @@ class Tickets extends Component {
       'Number',
       'Status',
       'Category',
+      'Location',
       'Description',
       'Date Received',
       'Actions'
