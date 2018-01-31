@@ -40,8 +40,6 @@ const Ticket = props => {
     props.location.city
   } ${props.location.state} ${props.location.zipcode}`;
 
-  console.log(address);
-
   return (
     <TableRow>
       <TableItem>
