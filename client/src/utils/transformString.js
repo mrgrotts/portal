@@ -2,7 +2,7 @@ export const toCamelCase = string => {
   // remove all characters that should not be in a variable name
   // as well underscores an numbers from the beginning of the string
   string = string
-    .replace(/([^a-zA-Z0-9_\- ])|^[_0-9]+/g, '')
+    .replace(/([^a-zA-Z0-9_\- ])|^[_0-9]+/g, "")
     .trim()
     .toLowerCase();
   // uppercase letters preceeded by a hyphen or a space
@@ -27,4 +27,9 @@ export const toCamelCase = string => {
 //     });
 // });
 
-export default toCamelCase;
+export const toTitleCase = string =>
+  string
+    .toLowerCase()
+    .split(" ")
+    .map(word => word.replace(word[0], word[0].toUpperCase()))
+    .join(" ");

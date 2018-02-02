@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import classes from './Input.css';
+import classes from "./Input.css";
 
 const Input = props => {
   let field = null;
@@ -12,33 +12,35 @@ const Input = props => {
 
   // these properties come from a form's state, like Customer.js
   switch (props.fieldType) {
-    case 'input':
+    case "input":
       field = (
         <input
-          className={inputClasses.join(' ')}
+          className={inputClasses.join(" ")}
           {...props.fieldConfig}
+          name={props.name}
           value={props.value}
           onChange={props.update}
         />
       );
       break;
-    case 'textarea':
+    case "textarea":
       field = (
         <textarea
-          className={inputClasses.join(' ')}
+          className={inputClasses.join(" ")}
           {...props.fieldConfig}
+          name={props.name}
           value={props.value}
           onChange={props.update}
         />
       );
       break;
-    case 'select':
+    case "select":
       field = (
         <select
-          className={inputClasses.join(' ')}
+          className={inputClasses.join(" ")}
+          name={props.name}
           value={props.value}
-          onChange={props.update}
-        >
+          onChange={props.update}>
           {props.fieldConfig.options.map(option => (
             <option key={option.value} value={option.value}>
               {option.label}
@@ -50,8 +52,9 @@ const Input = props => {
     default:
       field = (
         <input
-          className={inputClasses.join(' ')}
+          className={inputClasses.join(" ")}
           {...props.fieldConfig}
+          name={props.name}
           value={props.value}
           onChange={props.update}
         />

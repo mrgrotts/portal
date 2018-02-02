@@ -1,33 +1,33 @@
-import React, { Component } from 'react';
-import { findDOMNode } from 'react-dom';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { findDOMNode } from "react-dom";
+import PropTypes from "prop-types";
 
-import toCamelCase from '../../../utils/toCamelCase';
+import { toCamelCase } from "../../../utils/transformString";
 // import cancelablePromise from '../../../utils/cancelablePromise';
 
-import classes from './Map.css';
+import classes from "./Map.css";
 
 const eventNames = [
-  'ready',
-  'click',
-  'dragend',
-  'recenter',
-  'bounds_changed',
-  'center_changed',
-  'dblclick',
-  'dragstart',
-  'heading_change',
-  'idle',
-  'maptypeid_changed',
-  'mousemove',
-  'mouseout',
-  'mouseover',
-  'projection_changed',
-  'resize',
-  'rightclick',
-  'tilesloaded',
-  'tilt_changed',
-  'zoom_changed'
+  "ready",
+  "click",
+  "dragend",
+  "recenter",
+  "bounds_changed",
+  "center_changed",
+  "dblclick",
+  "dragstart",
+  "heading_change",
+  "idle",
+  "maptypeid_changed",
+  "mousemove",
+  "mouseout",
+  "mouseover",
+  "projection_changed",
+  "resize",
+  "rightclick",
+  "tilesloaded",
+  "tilt_changed",
+  "zoom_changed"
 ];
 
 class Map extends Component {
@@ -228,7 +228,7 @@ class Map extends Component {
         this.listeners[e] = this.map.addListener(e, this.handleEvent(e));
       });
 
-      maps.event.trigger(this.map, 'ready');
+      maps.event.trigger(this.map, "ready");
       this.forceUpdate();
     }
   };
@@ -267,13 +267,13 @@ class Map extends Component {
       }
       // map.panTo(center)
       map.setCenter(center);
-      maps.event.trigger(map, 'recenter');
+      maps.event.trigger(map, "recenter");
     }
   };
 
   restyleMap = () => {
     if (this.map) {
-      this.props.google.maps.event.trigger(this.map, 'resize');
+      this.props.google.maps.event.trigger(this.map, "resize");
     }
   };
 
@@ -298,7 +298,7 @@ class Map extends Component {
 
   render() {
     const mapStyles = Object.assign({}, this.props.style, {
-      display: this.props.visible ? 'inherit' : 'none'
+      display: this.props.visible ? "inherit" : "none"
     });
 
     const containerStyles = Object.assign({}, this.props.containerStyle);
@@ -307,8 +307,7 @@ class Map extends Component {
       <div
         style={containerStyles}
         className={classes.MapContainer}
-        id={this.props.id}
-      >
+        id={this.props.id}>
         <div style={mapStyles} className={classes.Map} ref="map">
           Loading map...
         </div>

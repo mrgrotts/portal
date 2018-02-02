@@ -1,14 +1,14 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const commentsSchema = new mongoose.Schema(
   {
     by: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Users'
+      ref: "Users"
     },
     text: {
       type: String,
-      required: 'Comments cannot be blank'
+      required: "Comments cannot be blank"
     }
   },
   {
@@ -20,7 +20,7 @@ const ticketsSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Users',
+      ref: "Users",
       required: true
     },
     status: {
@@ -28,50 +28,50 @@ const ticketsSchema = new mongoose.Schema(
       // required: 'Please select a status',
       // lowercase: true,
       // trim: true,
-      default: 'Unassigned',
+      default: "Unassigned",
       enum: [
-        'Unassigned',
-        'Prep',
-        'On Hold',
-        'In Progress',
-        'Pending',
-        'Purchasing Parts',
-        'Odered Parts',
-        'Closed'
+        "Unassigned",
+        "Prep",
+        "On Hold",
+        "In Progress",
+        "Pending",
+        "Purchasing Parts",
+        "Ordered Parts",
+        "Closed"
       ]
     },
     category: {
       type: String,
-      required: 'Please select a category',
+      required: "Please select a category",
       // lowercase: true,
       // trim: true,
-      default: 'Commercial Cleaning',
+      default: "Commercial Cleaning",
       enum: [
-        'Commercial Cleaning',
-        'Residential Cleaning',
-        'Drywall Installation',
-        'Electrician',
-        'Floor Services',
-        'Maintenance',
-        'Painter',
-        'Pest Control',
-        'Plumber',
-        'Post Construction',
-        'Window Washing'
+        "Commercial Cleaning",
+        "Residential Cleaning",
+        "Drywall Installation",
+        "Electrician",
+        "Floor Services",
+        "Maintenance",
+        "Painter",
+        "Pest Control",
+        "Plumber",
+        "Post Construction",
+        "Window Washing"
       ]
     },
     previousLocation: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Locations'
+      ref: "Locations"
     },
     location: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Locations',
-      required: 'Please select a Location'
+      ref: "Locations",
+      required: "Please select a Location"
     },
     description: {
       type: String,
-      required: 'Description cannot be blank'
+      required: "Description cannot be blank"
     },
     media: {
       // with google cloud storage
@@ -88,7 +88,7 @@ const ticketsSchema = new mongoose.Schema(
     },
     requestedDate: {
       type: String,
-      required: 'Please request a service date'
+      required: "Please request a service date"
     },
     scheduledFor: {
       type: Date
@@ -127,7 +127,7 @@ const ticketsSchema = new mongoose.Schema(
 // }
 
 // ticketsSchema.loadClass(TicketsClass);
-const Tickets = mongoose.model('Tickets', ticketsSchema);
+const Tickets = mongoose.model("Tickets", ticketsSchema);
 
 module.exports = Tickets;
 
