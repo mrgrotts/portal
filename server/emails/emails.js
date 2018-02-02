@@ -1,4 +1,6 @@
 const crypto = require('crypto');
+const nodemailer = require('nodemailer');
+const smtpTransport = require('nodemailer-smtp-transport');
 
 const helpers = {
   encrypt: (key, data) => {
@@ -27,16 +29,16 @@ module.exports = {
   sendVerification: function(result, callback) {
     var mailOptions = {
       from: '<rozalado@gmail.com>',
-      to: result[0].username,
+      to: result.username,
       subject: 'Click the link to verify your email.',
       text:
         'https://app.rozaladocleaning.com/verifyregistration?id=' +
-        result[0]._id,
+        result._id,
       html:
         '<a href="https://app.rozaladocleaning.com/verifyregistration?id=' +
-        result[0]._id +
+        result._id +
         '">https://app.rozaladocleaning.com/verifyregistration?id=' +
-        result[0]._id +
+        result._id +
         '</a>'
     };
 

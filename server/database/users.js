@@ -85,5 +85,13 @@ usersSchema.methods.comparePassword = function(candidatePassword, next) {
   });
 };
 
+usersSchema.methods.isVerified = function(next) {
+    if(this.verified) {
+      next(null);
+    } else {
+      next('unverfied')
+    }
+};
+
 const Users = mongoose.model('Users', usersSchema);
 module.exports = Users;
