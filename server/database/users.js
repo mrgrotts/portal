@@ -89,7 +89,7 @@ usersSchema.methods.isVerified = function(next) {
     if(this.verified) {
       next(null);
     } else {
-      next('unverfied')
+      next('unverfied!')
     }
 };
 
