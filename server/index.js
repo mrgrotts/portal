@@ -1,30 +1,30 @@
-require('dotenv').config();
-const http = require('http');
-const path = require('path');
-const fs = require('fs');
+require("dotenv").config();
+const http = require("http");
+const path = require("path");
+const fs = require("fs");
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const morgan = require('morgan');
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const morgan = require("morgan");
 
-const database = require('./database');
-const { checkAdmin, authenticateUser, authorizeUser } = require('./middleware');
+const database = require("./database");
+const { checkAdmin, authenticateUser, authorizeUser } = require("./middleware");
 
-const sudoRoutes = require('./routes/sudo');
-const apiRoutes = require('./routes/api');
-const adminRoutes = require('./routes/admins');
-const authRoutes = require('./routes/auth');
-const locationRoutes = require('./routes/locations');
-const ticketRoutes = require('./routes/tickets');
+const sudoRoutes = require("./routes/sudo");
+const apiRoutes = require("./routes/api");
+const adminRoutes = require("./routes/admins");
+const authRoutes = require("./routes/auth");
+const locationRoutes = require("./routes/locations");
+const ticketRoutes = require("./routes/tickets");
 
-const HOST = process.env.HOST || 'localhost';
+const HOST = process.env.HOST || "localhost";
 const PORT = process.env.PORT || 8080;
-const IP = process.env.IP || '0.0.0.0';
+const IP = process.env.IP || "0.0.0.0";
 const app = express();
 
 // HTTP Logger -> 'dev' -> Concise output colored by response status for development use.
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 // HTTP Body Parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -32,19 +32,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 // SUDO MODE -- Enable to use API without Authenticating
-app.use('/api/sudo', sudoRoutes);
+app.use("/api/sudo", sudoRoutes);
 
-app.use('/', apiRoutes);
-app.use('/api/admin/:id', checkAdmin, adminRoutes);
-app.use('/api/auth', authRoutes);
+app.use("/", apiRoutes);
+app.use("/api/admin/:id", checkAdmin, adminRoutes);
+app.use("/api/auth", authRoutes);
 app.use(
-  '/api/users/:userId/locations',
+  "/api/users/:userId/locations",
   authenticateUser,
   authorizeUser,
   locationRoutes
 );
 app.use(
-  '/api/users/:userId/tickets',
+  "/api/users/:userId/tickets",
   authenticateUser,
   authorizeUser,
   ticketRoutes

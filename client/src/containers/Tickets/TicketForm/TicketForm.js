@@ -12,6 +12,7 @@ import handleErrors from "../../../hoc/handleErrors";
 import Button from "../../../components/UI/Button/Button";
 import Input from "../../../components/UI/Input/Input";
 import ProgressBar from "../../../components/UI/ProgressBar/ProgressBar";
+import Spinner from "../../../components/UI/Spinner/Spinner";
 
 import { toTitleCase } from "../../../utils/transformString";
 import validateFields from "../../../utils/validateFields";
@@ -318,10 +319,12 @@ class TicketForm extends Component {
       });
     }
 
-    return (
-      <Auxiliary>
-        {this.props.ticket === undefined ? null : <ProgressBar />}
+    let progress = this.props.ticket === undefined ? null : <ProgressBar />;
 
+    let form = <Spinner />;
+
+    if (!this.props.loading) {
+      form = (
         <form onSubmit={this.onSubmit}>
           {ticketFields.map(field => {
             if (!this.props.ticket && field.id === "status") {
@@ -388,6 +391,13 @@ class TicketForm extends Component {
             Cancel
           </Button>
         </form>
+      );
+    }
+
+    return (
+      <Auxiliary>
+        {progress}
+        {form}
       </Auxiliary>
     );
   }

@@ -1,12 +1,13 @@
-require('dotenv').load();
-const jwt = require('jsonwebtoken');
-const database = require('../database');
+require("dotenv").load();
+const jwt = require("jsonwebtoken");
+const database = require("../database");
 
 const {
   ACCOUNT_NOT_AUTHORIZED,
+  ACCOUNT_NOT_VERIFIED,
   ADMIN_ACCESS_DENIED,
   SESSION_TIMEOUT
-} = require('../constants');
+} = require("../constants");
 
 exports.checkAdmin = (req, res, next) => {
   try {
@@ -25,7 +26,7 @@ exports.checkAdmin = (req, res, next) => {
 
 exports.authenticateUser = (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(' ')[1];
+    const token = req.headers.authorization.split(" ")[1];
     jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
       if (decoded) {
         next();
@@ -41,7 +42,7 @@ exports.authenticateUser = (req, res, next) => {
 
 exports.authorizeUser = (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(' ')[1];
+    const token = req.headers.authorization.split(" ")[1];
     jwt.verify(token, process.env.JWT_KEY, (error, decoded) => {
       if (decoded && decoded.userId === req.params.userId) {
         next();
@@ -52,5 +53,20 @@ exports.authorizeUser = (req, res, next) => {
   } catch (error) {
     console.log(error);
     res.status(403).json({ message: ACCOUNT_NOT_AUTHORIZED });
+  }
+};
+
+exports.isVerified = (req, res, next) => {
+  try {
+    database.Users.findOne({
+      email: req.body.email
+    }).then(user => {
+      if (user.verified) {
+        next();
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(403).json({ message: ACCOUNT_NOT_VERIFIED });
   }
 };
