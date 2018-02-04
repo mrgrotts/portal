@@ -1,7 +1,31 @@
 .Input {
-  box-sizing: border-box;
+  box-sizing: inherit;
   padding: 10px;
   width: 100%;
+}
+
+.FileInput {
+  border: none;
+  height: inherit;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0!important;
+  position: absolute;
+  width: inherit;
+  z-index: -1;
+}
+
+.FileUpload {
+  background-color: #006eb6;
+  border: none;
+  border-radius: 5px;
+  color: rgba(255, 255, 255, 1);
+  cursor: pointer;
+  font-weight: 200!important;
+  outline: none;
+  padding: 6px 10px;
+  text-decoration: none;
+  width: fit-content;
 }
 
 .Label {
@@ -11,9 +35,9 @@
 }
 
 .Field {
-  background: #fff;
+  background-color: rgba(255, 255, 255, 1);
   border: 1px solid #ccc;
-  box-sizing: border-box;
+  box-sizing: inherit;
   font: inherit;
   outline: none;
   padding: 6px 10px;
@@ -34,3 +58,36 @@
   color: red;
   margin: 5px 0;
 }
+
+/* .Input [type="file"] {
+  background-color: inherit;
+  border: none;
+  box-sizing: inherit;
+  font: inherit;
+  outline: none;
+  padding: 0;
+  width: 100%;
+}
+
+.Input [type="file"]::-webkit-file-upload-button {
+  background-color: #006eb6;
+  border: none;
+  border-radius: 5px;
+  color: rgba(255, 255, 255, 1);
+  cursor: pointer;
+  font: inherit;
+  outline: none;
+  padding: 6px 10px;
+  text-decoration: none;
+} */
+
+/* .Input [type="file"] {
+  border: none;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 0.1px;
+  z-index: -1;
+} */

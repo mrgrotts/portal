@@ -2,6 +2,7 @@ import api from "../../../api";
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { SingleDatePicker } from "react-dates";
 import moment from "moment";
 
@@ -161,10 +162,21 @@ class TicketForm extends Component {
         },
         touched: false,
         valid: this.props.ticket ? true : false
+      },
+      media: {
+        fieldType: "file",
+        fieldConfig: {
+          type: "file",
+          placeholder: "No files uploaded"
+        },
+        value: this.props.ticket ? this.props.ticket.media : [],
+        validation: {},
+        touched: false,
+        valid: this.props.ticket ? true : false
       }
     },
     previousLocation: this.props.ticket ? this.props.ticket.location : "",
-    media: this.props.ticket ? this.props.ticket.media : [],
+    // media: this.props.ticket ? this.props.ticket.media : [],
     requestedDate: this.props.ticket
       ? moment(this.props.ticket.requestedDate)
       : moment(),
@@ -252,7 +264,7 @@ class TicketForm extends Component {
       location: this.state.ticketForm.location.value,
       previousLocation: this.state.previousLocation,
       description: this.state.ticketForm.description.value,
-      media: this.state.media,
+      media: this.state.ticketForm.media.value,
       requestedDate: this.state.requestedDate
     });
 
@@ -272,17 +284,18 @@ class TicketForm extends Component {
             ? this.props.ticket.category
             : "Commercial Cleaning"
         },
+        location: {
+          value: this.props.ticket ? this.props.ticket.location._id : ""
+        },
         description: {
           value: this.props.ticket ? this.props.ticket.description : ""
         },
-        location: {
-          value: this.props.ticket ? this.props.ticket.location._id : ""
-        }
+        media: this.props.ticket ? this.props.ticket.media : []
       },
       previousLocation: this.props.ticket
         ? this.props.ticket.previousLocation
         : "",
-      media: this.props.ticket ? this.props.ticket.media : [],
+      // media: this.props.ticket ? this.props.ticket.media : [],
       requestedDate: this.props.ticket
         ? moment(this.props.ticket.requestedDate)
         : moment(),
@@ -296,6 +309,7 @@ class TicketForm extends Component {
   };
 
   render() {
+    // console.log(this.props.ticket);
     let ticketFields = [];
     for (let key in this.state.ticketForm) {
       ticketFields.push({
@@ -306,45 +320,53 @@ class TicketForm extends Component {
 
     return (
       <Auxiliary>
-        {this.props.ticket ? null : <ProgressBar />}
+        {this.props.ticket === undefined ? null : <ProgressBar />}
 
         <form onSubmit={this.onSubmit}>
-          <div className={classes.TicketFormInputContainer}>
-            {ticketFields.map(field => {
-              if (!this.props.ticket && field.id === "status") {
-                return null;
-              }
+          {ticketFields.map(field => {
+            if (!this.props.ticket && field.id === "status") {
+              return null;
+            }
 
+            if (this.props.locations.length === 0 && field.id === "location") {
               return (
-                <label key={field.id} htmlFor={field.id}>
-                  {toTitleCase(field.id)}
-                  <Input
-                    key={field.id}
-                    name={field.id}
-                    update={event => this.updateField(event, field.id)}
-                    fieldType={field.config.fieldType}
-                    fieldConfig={field.config.fieldConfig}
-                    value={field.config.value}
-                    validation={field.config.validation}
-                    touched={field.config.touched}
-                    invalid={!field.config.valid}
-                  />
-                </label>
+                <div
+                  key={field.id}
+                  className={classes.TicketFormInputContainer}>
+                  <div className={classes.TicketFormAddLocation}>
+                    <label
+                      className={classes.TicketFormAddLocationLabel}
+                      htmlFor={field.id}>
+                      {toTitleCase(field.id)}
+                    </label>
+                    <Link
+                      className={classes.TicketFormAddLocationButton}
+                      to="/locations/create">
+                      Add Location
+                    </Link>
+                  </div>
+                </div>
               );
-            })}
-          </div>
+            }
 
-          <div className={classes.TicketFormInputContainer}>
-            <label htmlFor="media">
-              Upload Image
-              <input
-                id="media"
-                type="file"
-                name="media"
-                className={classes.TicketFormControl}
-              />
-            </label>
-          </div>
+            return (
+              <div key={field.id} className={classes.TicketFormInputContainer}>
+                <Input
+                  key={field.id}
+                  label={toTitleCase(field.id)}
+                  name={field.id}
+                  update={event => this.updateField(event, field.id)}
+                  fieldType={field.config.fieldType}
+                  fieldConfig={field.config.fieldConfig}
+                  value={field.config.value}
+                  validation={field.config.validation}
+                  touched={field.config.touched}
+                  invalid={!field.config.valid}
+                />
+              </div>
+            );
+          })}
+
           <div className={classes.TicketFormInputContainer}>
             <label htmlFor="requested-date">
               Requested Date
