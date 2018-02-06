@@ -7,9 +7,16 @@ const locationsSchema = new mongoose.Schema(
       ref: 'Users',
       required: true
     },
+    customer: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Customers'
+    },
     name: {
       type: String,
       required: 'Please enter a location name'
+    },
+    headquarters: {
+      type: Boolean
     },
     phone: {
       type: Number

@@ -23,6 +23,10 @@ const ticketsSchema = new mongoose.Schema(
       ref: 'Users',
       required: true
     },
+    customer: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Customers'
+    },
     status: {
       type: String,
       // required: 'Please select a status',
