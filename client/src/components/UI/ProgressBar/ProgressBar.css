@@ -39,7 +39,7 @@ ul.ProgressBar li:last-child:after {
   height: 20px;
   position: absolute;
   top: -58px;
-  background-color: white;
+  background-color: inherit;
   content: '';
 }
 

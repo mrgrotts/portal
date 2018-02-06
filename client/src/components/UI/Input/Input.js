@@ -1,10 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import classes from './Input.css';
+import classes from "./Input.css";
 
 const Input = props => {
   let field = null;
   const inputClasses = [classes.Field];
+  const labelClasses = [classes.Label];
 
   if (props.invalid && props.validation && props.touched) {
     inputClasses.push(classes.Invalid);
@@ -12,33 +13,38 @@ const Input = props => {
 
   // these properties come from a form's state, like Customer.js
   switch (props.fieldType) {
-    case 'input':
+    case "input":
       field = (
         <input
-          className={inputClasses.join(' ')}
+          id={props.name}
+          className={inputClasses.join(" ")}
           {...props.fieldConfig}
+          name={props.name}
           value={props.value}
           onChange={props.update}
         />
       );
       break;
-    case 'textarea':
+    case "textarea":
       field = (
         <textarea
-          className={inputClasses.join(' ')}
+          id={props.name}
+          className={inputClasses.join(" ")}
           {...props.fieldConfig}
+          name={props.name}
           value={props.value}
           onChange={props.update}
         />
       );
       break;
-    case 'select':
+    case "select":
       field = (
         <select
-          className={inputClasses.join(' ')}
+          id={props.name}
+          className={inputClasses.join(" ")}
+          name={props.name}
           value={props.value}
-          onChange={props.update}
-        >
+          onChange={props.update}>
           {props.fieldConfig.options.map(option => (
             <option key={option.value} value={option.value}>
               {option.label}
@@ -47,11 +53,48 @@ const Input = props => {
         </select>
       );
       break;
+    case "file":
+      inputClasses.push(classes.FileInput);
+      labelClasses.push(classes.FileUpload);
+
+      // const fileInputs = document.querySelectorAll(`.${classes.FileInput}`);
+      // const fileUpload = document.querySelectorAll(`.${classes.FileUpload}`);
+      // const fileUploadLabel = document.querySelectorAll(
+      //   `label[for=${props.name}]`
+      // );
+      // console.log(fileInputs, fileUpload, fileUploadLabel);
+
+      field = (
+        <input
+          id={props.name}
+          className={inputClasses.join(" ")}
+          {...props.fieldConfig}
+          name={props.name}
+          value={props.value}
+          onChange={props.update}
+          multiple
+        />
+      );
+      break;
+    case "button":
+      field = (
+        <input
+          id={props.name}
+          className={inputClasses.join(" ")}
+          {...props.fieldConfig}
+          name={props.name}
+          value={props.value}
+          onChange={props.update}
+        />
+      );
+      break;
     default:
       field = (
         <input
-          className={inputClasses.join(' ')}
+          id={props.name}
+          className={inputClasses.join(" ")}
           {...props.fieldConfig}
+          name={props.name}
           value={props.value}
           onChange={props.update}
         />
@@ -67,7 +110,9 @@ const Input = props => {
 
   return (
     <div className={classes.Input}>
-      <label className={classes.Label}>{props.label}</label>
+      <label className={labelClasses.join(" ")} htmlFor={props.name}>
+        {props.label}
+      </label>
       {field}
       {validationError}
     </div>
@@ -75,3 +120,52 @@ const Input = props => {
 };
 
 export default Input;
+
+// inputClasses.push(classes.FileInput);
+
+// const fileInputs = document.querySelectorAll(`.${classes.FileInput}`);
+// const fileUpload = document.querySelectorAll(`.${classes.FileUpload}`);
+// const fileUploadLabel = document.querySelectorAll(`label[for=${props.name}]`);
+// console.log(fileInputs, fileUpload, fileUploadLabel);
+
+// Array.prototype.forEach.call(fileInputs, input => {
+//   let label = input.nextElementSibling;
+//   let labelValue = label.innerHTML;
+
+//   input.addEventListener("change", function(event) {
+//     event.preventDefault();
+//     let fileName = "";
+
+//     if (this.files && this.files.length > 1) {
+//       fileName = (
+//         this.getAttribute("data-multiple-caption") || ""
+//       ).replace("{count}", this.files.length);
+//     } else {
+//       fileName = event.target.value.split("\\").pop();
+//     }
+
+//     if (fileName) {
+//       label.querySelector("span").innerHTML = fileName;
+//     } else {
+//       label.innerHTML = labelValue;
+//     }
+//   });
+// });
+
+// field = (
+//   <div style={{ marginTop: "14px" }}>
+//     <label className={classes.FileUpload}>
+//       Upload Files
+//       <input
+//         id={props.name}
+//         className={inputClasses.join(" ")}
+//         {...props.fieldConfig}
+//         name={props.name}
+//         value={props.value}
+//         onChange={props.update}
+//         multiple
+//         data-multiple-caption={"{count} files selected"}
+//       />
+//     </label>
+//   </div>
+// );

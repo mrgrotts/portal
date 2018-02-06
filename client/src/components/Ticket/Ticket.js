@@ -1,23 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import moment from 'moment';
+import React from "react";
+import { Link } from "react-router-dom";
+import moment from "moment";
 
-import Button from '../UI/Button/Button';
-import TableRow from '../UI/Table/TableRow';
-import TableItem from '../UI/Table/TableItem';
+import Button from "../UI/Button/Button";
+import TableRow from "../UI/Table/TableRow";
+import TableItem from "../UI/Table/TableItem";
 
-import CommercialCleaning from '../../assets/images/CommercialCleaning.jpg';
-import DrywallInstallation from '../../assets/images/DrywallInstallation.jpg';
-import Electrician from '../../assets/images/Electrician.jpg';
-import FloorServices from '../../assets/images/FloorServices.jpg';
-import Maintenance from '../../assets/images/Maintenance.jpg';
-import Painter from '../../assets/images/Painter.jpg';
-import Plumber from '../../assets/images/Plumber.jpg';
-import PestControl from '../../assets/images/PestControl.jpg';
-import PostConstruction from '../../assets/images/PostConstruction.jpg';
-import ResidentialCleaning from '../../assets/images/ResidentialCleaning.jpg';
+import CommercialCleaning from "../../assets/images/CommercialCleaning.jpg";
+import DrywallInstallation from "../../assets/images/DrywallInstallation.jpg";
+import Electrician from "../../assets/images/Electrician.jpg";
+import FloorServices from "../../assets/images/FloorServices.jpg";
+import Maintenance from "../../assets/images/Maintenance.jpg";
+import Painter from "../../assets/images/Painter.jpg";
+import Plumber from "../../assets/images/Plumber.jpg";
+import PestControl from "../../assets/images/PestControl.jpg";
+import PostConstruction from "../../assets/images/PostConstruction.jpg";
+import ResidentialCleaning from "../../assets/images/ResidentialCleaning.jpg";
 
-import classes from './Ticket.css';
+import classes from "./Ticket.css";
 
 const Ticket = props => {
   let images = [
@@ -36,10 +36,6 @@ const Ticket = props => {
   let matchCategory = category =>
     images.find(image => image.includes(category));
 
-  let address = `${props.location.addressOne} ${props.location.addressTwo} ${
-    props.location.city
-  } ${props.location.state} ${props.location.zipcode}`;
-
   return (
     <TableRow>
       <TableItem>
@@ -48,7 +44,7 @@ const Ticket = props => {
           <img
             alt={props.category}
             className={classes.TicketImage}
-            src={matchCategory(props.category.replace(/[^\w]/g, ''))}
+            src={matchCategory(props.category.replace(/[^\w]/g, ""))}
           />
         </div>
       </TableItem>
@@ -57,7 +53,7 @@ const Ticket = props => {
       </TableItem>
       <TableItem>
         <p>{props.status}</p>
-        {props.status === 'Unassigned' ? null : <p>{props.assignedTo}</p>}
+        {props.status === "Unassigned" ? null : <p>{props.assignedTo}</p>}
       </TableItem>
       <TableItem>
         <Link to={`/locations/${props.location._id}`}>
@@ -70,7 +66,7 @@ const Ticket = props => {
         </p>
       </TableItem>
       <TableItem>{props.description}</TableItem>
-      <TableItem>{moment(props.requestedDate).format('LLL')}</TableItem>
+      <TableItem>{moment(props.requestedDate).format("LLL")}</TableItem>
       <TableItem>
         <div className={classes.TicketActions}>
           <Link to={`/tickets/${props._id}`}>

@@ -1,17 +1,17 @@
-import api from '../api';
-let generateAuthorizationHeader = (token = localStorage.getItem('token')) => {
-  api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-  api.defaults.headers.common['Cache-Control'] = 'max-age=3600';
+import api from "../api";
+const generateAuthorizationHeader = (token = localStorage.getItem("token")) => {
+  api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  api.defaults.headers.common["Cache-Control"] = "max-age=3600";
 };
 
 /**************************************************************************************
  * AUTH                                                                               *
  **************************************************************************************/
-export const AUTH_START = 'auth_start';
-export const AUTH_SUCCESS = 'auth_success';
-export const AUTH_FAIL = 'auth_fail';
-export const AUTH_LOGOUT = 'auth_logout';
-export const AUTH_REDIRECT_PATH = 'auth_redirect_path';
+export const AUTH_START = "auth_start";
+export const AUTH_SUCCESS = "auth_success";
+export const AUTH_FAIL = "auth_fail";
+export const AUTH_LOGOUT = "auth_logout";
+export const AUTH_REDIRECT_PATH = "auth_redirect_path";
 
 export const auth = (email, password, registration) => async dispatch => {
   let url = `/auth/login`;
@@ -33,9 +33,9 @@ export const auth = (email, password, registration) => async dispatch => {
         new Date().getTime() + response.data.expiresIn * 1000
       );
 
-      localStorage.setItem('user', response.data.userId);
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('expiration', expiration);
+      localStorage.setItem("user", response.data.userId);
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("expiration", expiration);
 
       dispatch(authSuccess(response.data.token, response.data.userId));
       dispatch(authTimeout(response.data.expiresIn));
@@ -75,9 +75,9 @@ export const authTimeout = expiration => dispatch => {
 };
 
 export const authLogout = () => {
-  localStorage.removeItem('user');
-  localStorage.removeItem('token');
-  localStorage.removeItem('expiration');
+  localStorage.removeItem("user");
+  localStorage.removeItem("token");
+  localStorage.removeItem("expiration");
 
   return {
     type: AUTH_LOGOUT
@@ -90,20 +90,20 @@ export const authRedirectPath = path => ({
 });
 
 export const authState = () => dispatch => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
 
   if (!token) {
     dispatch(authLogout());
   }
 
   // convert stored date STRING to a new Date object
-  const expiration = new Date(localStorage.getItem('expiration'));
+  const expiration = new Date(localStorage.getItem("expiration"));
 
   // compare expiration to current time
   if (expiration <= new Date()) {
     dispatch(authLogout());
   } else {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem("user");
 
     dispatch(authSuccess(token, user));
     dispatch(authTimeout((expiration.getTime() - new Date().getTime()) / 1000));
@@ -115,34 +115,34 @@ export const authState = () => dispatch => {
 /**************************************************************************************
  * TICKETS                                                                            *
  **************************************************************************************/
-export const READ_TICKETS_START = 'read_tickets_start';
-export const READ_TICKETS_SUCCESS = 'read_tickets_success';
-export const READ_TICKETS_FAIL = 'read_tickets_fail';
-export const READ_TICKETS_END = 'read_tickets_end';
+export const READ_TICKETS_START = "read_tickets_start";
+export const READ_TICKETS_SUCCESS = "read_tickets_success";
+export const READ_TICKETS_FAIL = "read_tickets_fail";
+export const READ_TICKETS_END = "read_tickets_end";
 
-export const CREATE_TICKET_START = 'create_ticket_start';
-export const CREATE_TICKET_SUCCESS = 'create_ticket_success';
-export const CREATE_TICKET_FAIL = 'create_ticket_fail';
-export const CREATE_TICKET_END = 'create_ticket_end';
+export const CREATE_TICKET_START = "create_ticket_start";
+export const CREATE_TICKET_SUCCESS = "create_ticket_success";
+export const CREATE_TICKET_FAIL = "create_ticket_fail";
+export const CREATE_TICKET_END = "create_ticket_end";
 
-export const READ_TICKET_START = 'read_ticket_start';
-export const READ_TICKET_SUCCESS = 'read_ticket_success';
-export const READ_TICKET_FAIL = 'read_ticket_fail';
-export const READ_TICKET_END = 'read_ticket_end';
+export const READ_TICKET_START = "read_ticket_start";
+export const READ_TICKET_SUCCESS = "read_ticket_success";
+export const READ_TICKET_FAIL = "read_ticket_fail";
+export const READ_TICKET_END = "read_ticket_end";
 
-export const UPDATE_TICKET_START = 'update_ticket_start';
-export const UPDATE_TICKET_SUCCESS = 'update_ticket_success';
-export const UPDATE_TICKET_FAIL = 'update_ticket_fail';
-export const UPDATE_TICKET_END = 'update_ticket_end';
+export const UPDATE_TICKET_START = "update_ticket_start";
+export const UPDATE_TICKET_SUCCESS = "update_ticket_success";
+export const UPDATE_TICKET_FAIL = "update_ticket_fail";
+export const UPDATE_TICKET_END = "update_ticket_end";
 
-export const DELETE_TICKET_START = 'delete_ticket_start';
-export const DELETE_TICKET_SUCCESS = 'delete_ticket_success';
-export const DELETE_TICKET_FAIL = 'delete_ticket_fail';
-export const DELETE_TICKET_END = 'update_ticket_end';
+export const DELETE_TICKET_START = "delete_ticket_start";
+export const DELETE_TICKET_SUCCESS = "delete_ticket_success";
+export const DELETE_TICKET_FAIL = "delete_ticket_fail";
+export const DELETE_TICKET_END = "update_ticket_end";
 
 export const readTickets = () => async dispatch => {
-  const userId = localStorage.getItem('user');
-  const token = localStorage.getItem('token');
+  const userId = localStorage.getItem("user");
+  const token = localStorage.getItem("token");
 
   if (!token) {
     dispatch(authLogout());
@@ -181,8 +181,8 @@ export const readTicketsEnd = () => ({
 });
 
 export const createTicket = ticket => async dispatch => {
-  const userId = localStorage.getItem('user');
-  const token = localStorage.getItem('token');
+  const userId = localStorage.getItem("user");
+  const token = localStorage.getItem("token");
 
   if (!token) {
     dispatch(authLogout());
@@ -221,8 +221,8 @@ export const createTicketEnd = () => ({
 });
 
 export const readTicket = id => async dispatch => {
-  const userId = localStorage.getItem('user');
-  const token = localStorage.getItem('token');
+  const userId = localStorage.getItem("user");
+  const token = localStorage.getItem("token");
 
   if (!token) {
     dispatch(authLogout());
@@ -261,8 +261,8 @@ export const readTicketEnd = () => ({
 });
 
 export const updateTicket = (id, ticket) => async dispatch => {
-  const userId = localStorage.getItem('user');
-  const token = localStorage.getItem('token');
+  const userId = localStorage.getItem("user");
+  const token = localStorage.getItem("token");
 
   if (!token) {
     dispatch(authLogout());
@@ -301,8 +301,8 @@ export const updateTicketEnd = () => ({
 });
 
 export const deleteTicket = id => async dispatch => {
-  const userId = localStorage.getItem('user');
-  const token = localStorage.getItem('token');
+  const userId = localStorage.getItem("user");
+  const token = localStorage.getItem("token");
 
   if (!token) {
     dispatch(authLogout());
@@ -343,34 +343,34 @@ export const deleteTicketEnd = () => ({
 /**************************************************************************************
  * LOCATIONS                                                                          *
  **************************************************************************************/
-export const READ_LOCATIONS_START = 'read_locations_start';
-export const READ_LOCATIONS_SUCCESS = 'read_locations_success';
-export const READ_LOCATIONS_FAIL = 'read_locations_fail';
-export const READ_LOCATIONS_END = 'read_locations_end';
+export const READ_LOCATIONS_START = "read_locations_start";
+export const READ_LOCATIONS_SUCCESS = "read_locations_success";
+export const READ_LOCATIONS_FAIL = "read_locations_fail";
+export const READ_LOCATIONS_END = "read_locations_end";
 
-export const CREATE_LOCATION_START = 'create_location_start';
-export const CREATE_LOCATION_SUCCESS = 'create_location_success';
-export const CREATE_LOCATION_FAIL = 'create_location_fail';
-export const CREATE_LOCATION_END = 'create_location_end';
+export const CREATE_LOCATION_START = "create_location_start";
+export const CREATE_LOCATION_SUCCESS = "create_location_success";
+export const CREATE_LOCATION_FAIL = "create_location_fail";
+export const CREATE_LOCATION_END = "create_location_end";
 
-export const READ_LOCATION_START = 'read_location_start';
-export const READ_LOCATION_SUCCESS = 'read_location_success';
-export const READ_LOCATION_FAIL = 'read_location_fail';
-export const READ_LOCATION_END = 'read_location_end';
+export const READ_LOCATION_START = "read_location_start";
+export const READ_LOCATION_SUCCESS = "read_location_success";
+export const READ_LOCATION_FAIL = "read_location_fail";
+export const READ_LOCATION_END = "read_location_end";
 
-export const UPDATE_LOCATION_START = 'update_location_start';
-export const UPDATE_LOCATION_SUCCESS = 'update_location_success';
-export const UPDATE_LOCATION_FAIL = 'update_location_fail';
-export const UPDATE_LOCATION_END = 'update_location_end';
+export const UPDATE_LOCATION_START = "update_location_start";
+export const UPDATE_LOCATION_SUCCESS = "update_location_success";
+export const UPDATE_LOCATION_FAIL = "update_location_fail";
+export const UPDATE_LOCATION_END = "update_location_end";
 
-export const DELETE_LOCATION_START = 'delete_location_start';
-export const DELETE_LOCATION_SUCCESS = 'delete_location_success';
-export const DELETE_LOCATION_FAIL = 'delete_location_fail';
-export const DELETE_LOCATION_END = 'delete_location_end';
+export const DELETE_LOCATION_START = "delete_location_start";
+export const DELETE_LOCATION_SUCCESS = "delete_location_success";
+export const DELETE_LOCATION_FAIL = "delete_location_fail";
+export const DELETE_LOCATION_END = "delete_location_end";
 
 export const readLocations = () => async dispatch => {
-  const userId = localStorage.getItem('user');
-  const token = localStorage.getItem('token');
+  const userId = localStorage.getItem("user");
+  const token = localStorage.getItem("token");
 
   if (!token) {
     dispatch(authLogout());
@@ -409,8 +409,8 @@ export const readLocationsEnd = () => ({
 });
 
 export const createLocation = location => async dispatch => {
-  const userId = localStorage.getItem('user');
-  const token = localStorage.getItem('token');
+  const userId = localStorage.getItem("user");
+  const token = localStorage.getItem("token");
 
   if (!token) {
     dispatch(authLogout());
@@ -449,8 +449,8 @@ export const createLocationEnd = () => ({
 });
 
 export const readLocation = id => async dispatch => {
-  const userId = localStorage.getItem('user');
-  const token = localStorage.getItem('token');
+  const userId = localStorage.getItem("user");
+  const token = localStorage.getItem("token");
 
   if (!token) {
     dispatch(authLogout());
@@ -489,8 +489,8 @@ export const readLocationEnd = () => ({
 });
 
 export const updateLocation = (id, location) => async dispatch => {
-  const userId = localStorage.getItem('user');
-  const token = localStorage.getItem('token');
+  const userId = localStorage.getItem("user");
+  const token = localStorage.getItem("token");
 
   if (!token) {
     dispatch(authLogout());
@@ -529,8 +529,8 @@ export const updateLocationEnd = () => ({
 });
 
 export const deleteLocation = id => async dispatch => {
-  const userId = localStorage.getItem('user');
-  const token = localStorage.getItem('token');
+  const userId = localStorage.getItem("user");
+  const token = localStorage.getItem("token");
 
   if (!token) {
     dispatch(authLogout());
