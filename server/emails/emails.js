@@ -50,13 +50,10 @@ module.exports = {
   sendForgotPassword: function(result, callback) {
     const mailOptions = {
       from: "<rozalado@gmail.com>",
-      to: result[0].username,
-      subject: "Your Password",
-      text: helper.decrypt(process.env.JWT_KEY, result[0].password),
-      html: `<strong>${helper.decrypt(
-        process.env.JWT_KEY,
-        result[0].password
-      )}</strong>`
+      to: result.username,
+      subject: "Your Password Reset Link",
+      text: `${result.tmpPassword}`,
+      html: `${result.tmpPassword}`
     };
 
     this.transporter.sendMail(mailOptions, function(error, info) {
