@@ -72,33 +72,6 @@ class App extends Component {
             <Redirect to="/" />
           </Switch>
         );
-      } else if (props.user.role.contains("Super Admin")) {
-        routes = (
-          <Switch>
-            <Route path="/login" component={asyncAuth} />
-            <Route path="/logout" component={Logout} />
-            <Route
-              path="/locations/create"
-              component={asyncSuperAdminLocationCreate}
-            />
-            <Route
-              path="/locations/:id"
-              component={asyncSuperAdminLocationUpdate}
-            />
-            <Route path="/locations" component={asyncSuperAdminLocations} />
-            <Route
-              path="/tickets/create"
-              component={asyncSuperAdminTicketCreate}
-            />;
-            <Route
-              path="/tickets/:id"
-              component={asyncSuperAdminTicketUpdate}
-            />
-            <Route path="/tickets" component={asyncSuperAdminTickets} />
-            <Route exact path="/" component={SuperAdminBuilder} />
-            <Redirect to="/" />
-          </Switch>
-        );
       } else {
         routes = (
           <Switch>
