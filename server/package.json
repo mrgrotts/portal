@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "debug": "node --inspect-brk index.js",
+    "dev": "node ./node_modules/nodemon/bin/nodemon.js index.js",
     "start": "node ./node_modules/nodemon/bin/nodemon.js index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,13 +17,16 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
+    "compression": "^1.7.1",
     "cors": "^2.8.4",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
+    "helmet": "^3.10.0",
     "jsonwebtoken": "^8.1.0",
     "mongoose": "^5.0.0-rc1",
     "morgan": "^1.9.0",
     "node-quickbooks": "^2.0.23",
+    "uuid": "^3.2.1"
     "nodemailer": "^4.4.2",
     "nodemailer-smtp-transport": "^2.7.4"
   }

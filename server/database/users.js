@@ -12,6 +12,10 @@ const usersSchema = new mongoose.Schema(
       type: String,
       required: true
     },
+    customer: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Customers'
+    },
     firstName: {
       type: String,
       default: ''
