@@ -16,11 +16,11 @@ const { checkAdmin, authenticateUser, authorizeUser } = require("./middleware");
 
 const sudoRoutes = require("./routes/sudo");
 const apiRoutes = require("./routes/api");
-const adminRoutes = require("./routes/admins");
 const authRoutes = require("./routes/auth");
 const companyRoutes = require("./routes/companies");
 const locationRoutes = require("./routes/locations");
 const ticketRoutes = require("./routes/tickets");
+const invoiceRoutes = require("./routes/invoices");
 
 const HOST = process.env.HOST || "localhost";
 const PORT = process.env.PORT || 8080;
@@ -69,11 +69,12 @@ process.env.NODE_ENV === "production"
 
 // SUDO MODE -- Enable to use API without Authenticating
 app.use("/api/sudo", sudoRoutes);
+
+// Production Routes
 app.use("/", apiRoutes);
-app.use("/api/admin/:id", checkAdmin, adminRoutes);
 app.use("/api/auth", authRoutes);
 app.use(
-  "/api/companies/:companyId",
+  "/api/users/:userId/companies",
   authenticateUser,
   authorizeUser,
   companyRoutes
@@ -89,6 +90,12 @@ app.use(
   authenticateUser,
   authorizeUser,
   ticketRoutes
+);
+app.use(
+  "/api/users/:userId/invoices",
+  authenticateUser,
+  authorizeUser,
+  invoiceRoutes
 );
 
 const server = http.createServer(app);

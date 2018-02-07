@@ -2,14 +2,14 @@ const mongoose = require("mongoose");
 
 const companiesSchema = new mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: "Please enter a company name"
-    },
-    owner: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Users",
       required: true
+    },
+    name: {
+      type: String,
+      required: "Please enter a company name"
     },
     headquarters: {
       type: mongoose.Schema.Types.ObjectId,
