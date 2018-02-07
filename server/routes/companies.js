@@ -36,7 +36,22 @@ const {
   createCompanyLocationInvoice,
   readCompanyLocationInvoice,
   updateCompanyLocationInvoice,
-  deleteCompanyLocationInvoice
+  deleteCompanyLocationInvoice,
+  readCompanyTicketsUsers,
+  createCompanyTicketUser,
+  readCompanyTicketUser,
+  updateCompanyTicketUser,
+  deleteCompanyTicketUser,
+  readCompanyLocationsUsers,
+  createCompanyLocationUser,
+  readCompanyLocationUser,
+  updateCompanyLocationUser,
+  deleteCompanyLocationUser,
+  readCompanyLocationTicketUsers,
+  createCompanyLocationUserTicketUser,
+  readCompanyLocationTicketUser,
+  updateCompanyLocationTicketUser,
+  deleteCompanyLocationTicketUser
 } = require("../controllers/companies");
 
 const router = express.Router({ mergeParams: true });
@@ -53,12 +68,12 @@ router
   .delete(deleteCompany);
 
 router
-  .route("/:companyId/users")
+  .route("/:companyId/companyUsers")
   .get(readCompanyUsers)
   .post(createCompanyUser);
 
 router
-  .route("/:companyId/users/:userId")
+  .route("/:companyId/companyUsers/:companyUserId")
   .get(readCompanyUser)
   .put(updateCompanyUser)
   .delete(deleteCompanyUser);
@@ -73,6 +88,17 @@ router
   .get(readCompanyTicket)
   .put(updateCompanyTicket)
   .delete(deleteCompanyTicket);
+
+router
+  .route("/:companyId/tickets/companyUsers")
+  .get(readCompanyTicketsUsers)
+  .post(createCompanyTicketUser);
+
+router
+  .route("/:companyId/tickets/:ticketId/companyUsers/:companyUserId")
+  .get(readCompanyTicketUser)
+  .put(updateCompanyTicketUser)
+  .delete(deleteCompanyTicketUser);
 
 router
   .route("/:companyId/invoices")
@@ -97,6 +123,17 @@ router
   .delete(deleteCompanyLocation);
 
 router
+  .route("/:companyId/locations/companyUsers")
+  .get(readCompanyLocationsUsers)
+  .post(createCompanyLocationUser);
+
+router
+  .route("/:companyId/locations/:locationId/companyUsers/:companyUserId")
+  .get(readCompanyLocationUser)
+  .put(updateCompanyLocationUser)
+  .delete(deleteCompanyLocationUser);
+
+router
   .route("/:companyId/locations/:locationId/tickets")
   .get(readCompanyLocationTickets)
   .post(createCompanyLocationTicket);
@@ -104,18 +141,31 @@ router
 router
   .route("/:companyId/locations/:locationId/tickets/:ticketId")
   .get(readCompanyLocationTicket)
-  .put(updateCompanyLocationTickets)
+  .put(updateCompanyLocationTicket)
   .delete(deleteCompanyLocationTicket);
 
 router
   .route("/:companyId/locations/:locationId/invoices")
-  .get(readCompanyLocationTickets)
-  .post(createCompanyLocationTicket);
+  .get(readCompanyLocationInvoices)
+  .post(createCompanyLocationInvoice);
 
 router
   .route("/:companyId/locations/:locationId/invoices/:invoiceId")
   .get(readCompanyLocationInvoice)
   .put(updateCompanyLocationInvoice)
   .delete(deleteCompanyLocationInvoice);
+
+router
+  .route("/:companyId/locations/:locationId/tickets/:ticketId/companyUsers")
+  .get(readCompanyLocationTicketUsers)
+  .post(createCompanyLocationUserTicketUser);
+
+router
+  .route(
+    "/:companyId/locations/:locationId/tickets/:ticketId/companyUsers/:companyUserId"
+  )
+  .get(readCompanyLocationTicketUser)
+  .put(updateCompanyLocationTicketUser)
+  .delete(deleteCompanyLocationTicketUser);
 
 module.exports = router;

@@ -480,6 +480,166 @@ exports.deleteCompanyTicket = async (req, res, next) => {
     .populate("ticket");
 };
 
+exports.readCompanyTicketUsers = async (req, res, next) => {
+  let company = await database.Companies.findById(req.params.companyId)
+    .populate("users")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+  console.log(company);
+
+  let users = await database.Users.find({ company: company._id })
+    .populate("company")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+
+  let locations = await database.Locations.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("tickets")
+    .populate("invoices");
+
+  let tickets = await database.Tickets.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location");
+
+  let invoices = await database.Invoices.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location")
+    .populate("ticket");
+};
+
+exports.createCompanyTicketUser = async (req, res, next) => {
+  let company = await database.Companies.findById(req.params.companyId)
+    .populate("users")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+  console.log(company);
+
+  let users = await database.Users.find({ company: company._id })
+    .populate("company")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+
+  let locations = await database.Locations.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("tickets")
+    .populate("invoices");
+
+  let tickets = await database.Tickets.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location");
+
+  let invoices = await database.Invoices.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location")
+    .populate("ticket");
+};
+
+exports.readCompanyTicketUser = async (req, res, next) => {
+  let company = await database.Companies.findById(req.params.companyId)
+    .populate("users")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+  console.log(company);
+
+  let users = await database.Users.find({ company: company._id })
+    .populate("company")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+
+  let locations = await database.Locations.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("tickets")
+    .populate("invoices");
+
+  let tickets = await database.Tickets.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location");
+
+  let invoices = await database.Invoices.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location")
+    .populate("ticket");
+};
+
+exports.updateCompanyTicketUser = async (req, res, next) => {
+  let company = await database.Companies.findById(req.params.companyId)
+    .populate("users")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+  console.log(company);
+
+  let users = await database.Users.find({ company: company._id })
+    .populate("company")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+
+  let locations = await database.Locations.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("tickets")
+    .populate("invoices");
+
+  let tickets = await database.Tickets.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location");
+
+  let invoices = await database.Invoices.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location")
+    .populate("ticket");
+};
+
+exports.deleteCompanyTicketUser = async (req, res, next) => {
+  let company = await database.Companies.findById(req.params.companyId)
+    .populate("users")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+  console.log(company);
+
+  let users = await database.Users.find({ company: company._id })
+    .populate("company")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+
+  let locations = await database.Locations.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("tickets")
+    .populate("invoices");
+
+  let tickets = await database.Tickets.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location");
+
+  let invoices = await database.Invoices.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location")
+    .populate("ticket");
+};
+
 exports.readCompanyInvoices = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
@@ -768,6 +928,166 @@ exports.updateCompanyLocations = async (req, res, next) => {
     .populate("ticket");
 };
 exports.deleteCompanyLocation = async (req, res, next) => {
+  let company = await database.Companies.findById(req.params.companyId)
+    .populate("users")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+  console.log(company);
+
+  let users = await database.Users.find({ company: company._id })
+    .populate("company")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+
+  let locations = await database.Locations.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("tickets")
+    .populate("invoices");
+
+  let tickets = await database.Tickets.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location");
+
+  let invoices = await database.Invoices.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location")
+    .populate("ticket");
+};
+
+exports.readCompanyLocationsUsers = async (req, res, next) => {
+  let company = await database.Companies.findById(req.params.companyId)
+    .populate("users")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+  console.log(company);
+
+  let users = await database.Users.find({ company: company._id })
+    .populate("company")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+
+  let locations = await database.Locations.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("tickets")
+    .populate("invoices");
+
+  let tickets = await database.Tickets.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location");
+
+  let invoices = await database.Invoices.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location")
+    .populate("ticket");
+};
+
+exports.createCompanyLocationUser = async (req, res, next) => {
+  let company = await database.Companies.findById(req.params.companyId)
+    .populate("users")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+  console.log(company);
+
+  let users = await database.Users.find({ company: company._id })
+    .populate("company")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+
+  let locations = await database.Locations.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("tickets")
+    .populate("invoices");
+
+  let tickets = await database.Tickets.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location");
+
+  let invoices = await database.Invoices.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location")
+    .populate("ticket");
+};
+
+exports.readCompanyLocationUser = async (req, res, next) => {
+  let company = await database.Companies.findById(req.params.companyId)
+    .populate("users")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+  console.log(company);
+
+  let users = await database.Users.find({ company: company._id })
+    .populate("company")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+
+  let locations = await database.Locations.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("tickets")
+    .populate("invoices");
+
+  let tickets = await database.Tickets.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location");
+
+  let invoices = await database.Invoices.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location")
+    .populate("ticket");
+};
+
+exports.updateCompanyLocationUser = async (req, res, next) => {
+  let company = await database.Companies.findById(req.params.companyId)
+    .populate("users")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+  console.log(company);
+
+  let users = await database.Users.find({ company: company._id })
+    .populate("company")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+
+  let locations = await database.Locations.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("tickets")
+    .populate("invoices");
+
+  let tickets = await database.Tickets.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location");
+
+  let invoices = await database.Invoices.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location")
+    .populate("ticket");
+};
+
+exports.deleteCompanyLocationUser = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
@@ -1088,6 +1408,166 @@ exports.updateCompanyLocationInvoice = async (req, res, next) => {
 };
 
 exports.deleteCompanyLocationInvoice = async (req, res, next) => {
+  let company = await database.Companies.findById(req.params.companyId)
+    .populate("users")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+  console.log(company);
+
+  let users = await database.Users.find({ company: company._id })
+    .populate("company")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+
+  let locations = await database.Locations.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("tickets")
+    .populate("invoices");
+
+  let tickets = await database.Tickets.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location");
+
+  let invoices = await database.Invoices.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location")
+    .populate("ticket");
+};
+
+exports.readCompanyLocationTicketUsers = async (req, res, next) => {
+  let company = await database.Companies.findById(req.params.companyId)
+    .populate("users")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+  console.log(company);
+
+  let users = await database.Users.find({ company: company._id })
+    .populate("company")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+
+  let locations = await database.Locations.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("tickets")
+    .populate("invoices");
+
+  let tickets = await database.Tickets.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location");
+
+  let invoices = await database.Invoices.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location")
+    .populate("ticket");
+};
+
+exports.createCompanyLocationUserTicketUser = async (req, res, next) => {
+  let company = await database.Companies.findById(req.params.companyId)
+    .populate("users")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+  console.log(company);
+
+  let users = await database.Users.find({ company: company._id })
+    .populate("company")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+
+  let locations = await database.Locations.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("tickets")
+    .populate("invoices");
+
+  let tickets = await database.Tickets.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location");
+
+  let invoices = await database.Invoices.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location")
+    .populate("ticket");
+};
+
+exports.readCompanyLocationTicketUser = async (req, res, next) => {
+  let company = await database.Companies.findById(req.params.companyId)
+    .populate("users")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+  console.log(company);
+
+  let users = await database.Users.find({ company: company._id })
+    .populate("company")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+
+  let locations = await database.Locations.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("tickets")
+    .populate("invoices");
+
+  let tickets = await database.Tickets.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location");
+
+  let invoices = await database.Invoices.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location")
+    .populate("ticket");
+};
+
+exports.updateCompanyLocationTicketUser = async (req, res, next) => {
+  let company = await database.Companies.findById(req.params.companyId)
+    .populate("users")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+  console.log(company);
+
+  let users = await database.Users.find({ company: company._id })
+    .populate("company")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+
+  let locations = await database.Locations.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("tickets")
+    .populate("invoices");
+
+  let tickets = await database.Tickets.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location");
+
+  let invoices = await database.Invoices.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location")
+    .populate("ticket");
+};
+
+exports.deleteCompanyLocationTicketUser = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
