@@ -1,36 +1,36 @@
-import 'react-dates/initialize';
-import React, { Component } from 'react';
-import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
+import "react-dates/initialize";
+import React, { Component } from "react";
+import { Redirect, Route, Switch, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
-import Auxiliary from './hoc/Auxiliary';
-import asyncComponent from './hoc/asyncComponent';
+import Auxiliary from "./hoc/Auxiliary";
+import asyncComponent from "./hoc/asyncComponent";
 
-import Layout from './containers/Layout/Layout';
-import Portal from './containers/Portal/Portal';
-import Logout from './containers/Auth/Logout/Logout';
-import Builder from './containers/Builder/Builder';
+import Layout from "./containers/Layout/Layout";
+import Portal from "./containers/Portal/Portal";
+import Logout from "./containers/Auth/Logout/Logout";
+import Builder from "./containers/Builder/Builder";
 
-import * as actions from './actions';
+import * as actions from "./actions";
 
-const asyncAuth = asyncComponent(() => import('./containers/Auth/Auth'));
+const asyncAuth = asyncComponent(() => import("./containers/Auth/Auth"));
 const asyncLocations = asyncComponent(() =>
-  import('./containers/Locations/Locations')
+  import("./containers/Locations/Locations")
 );
 const asyncLocationCreate = asyncComponent(() =>
-  import('./containers/Locations/LocationForm/LocationCreate')
+  import("./containers/Locations/LocationForm/LocationCreate")
 );
 const asyncLocationUpdate = asyncComponent(() =>
-  import('./containers/Locations/LocationForm/LocationUpdate')
+  import("./containers/Locations/LocationForm/LocationUpdate")
 );
 const asyncTickets = asyncComponent(() =>
-  import('./containers/Tickets/Tickets')
+  import("./containers/Tickets/Tickets")
 );
 const asyncTicketCreate = asyncComponent(() =>
-  import('./containers/Tickets/TicketForm/TicketCreate')
+  import("./containers/Tickets/TicketForm/TicketCreate")
 );
 const asyncTicketUpdate = asyncComponent(() =>
-  import('./containers/Tickets/TicketForm/TicketUpdate')
+  import("./containers/Tickets/TicketForm/TicketUpdate")
 );
 
 class App extends Component {
@@ -48,20 +48,73 @@ class App extends Component {
     );
 
     if (this.props.isAuthenticated) {
-      routes = (
-        <Switch>
-          <Route path="/login" component={asyncAuth} />
-          <Route path="/logout" component={Logout} />
-          <Route path="/locations/create" component={asyncLocationCreate} />
-          <Route path="/locations/:id" component={asyncLocationUpdate} />
-          <Route path="/locations" component={asyncLocations} />
-          <Route path="/tickets/create" component={asyncTicketCreate} />;
-          <Route path="/tickets/:id" component={asyncTicketUpdate} />
-          <Route path="/tickets" component={asyncTickets} />
-          <Route exact path="/" component={Builder} />
-          <Redirect to="/" />
-        </Switch>
-      );
+      if (props.user.role.contains("Customer")) {
+        routes = (
+          <Switch>
+            <Route path="/login" component={asyncAuth} />
+            <Route path="/logout" component={Logout} />
+            <Route
+              path="/locations/create"
+              component={asyncCustomerLocationCreate}
+            />
+            <Route
+              path="/locations/:id"
+              component={asyncCustomerLocationUpdate}
+            />
+            <Route path="/locations" component={asyncCustomerLocations} />
+            <Route
+              path="/tickets/create"
+              component={asyncCustomerTicketCreate}
+            />;
+            <Route path="/tickets/:id" component={asyncCustomerTicketUpdate} />
+            <Route path="/tickets" component={asyncCustomerTickets} />
+            <Route exact path="/" component={CustomerBuilder} />
+            <Redirect to="/" />
+          </Switch>
+        );
+      } else if (props.user.role.contains("Super Admin")) {
+        routes = (
+          <Switch>
+            <Route path="/login" component={asyncAuth} />
+            <Route path="/logout" component={Logout} />
+            <Route
+              path="/locations/create"
+              component={asyncSuperAdminLocationCreate}
+            />
+            <Route
+              path="/locations/:id"
+              component={asyncSuperAdminLocationUpdate}
+            />
+            <Route path="/locations" component={asyncSuperAdminLocations} />
+            <Route
+              path="/tickets/create"
+              component={asyncSuperAdminTicketCreate}
+            />;
+            <Route
+              path="/tickets/:id"
+              component={asyncSuperAdminTicketUpdate}
+            />
+            <Route path="/tickets" component={asyncSuperAdminTickets} />
+            <Route exact path="/" component={SuperAdminBuilder} />
+            <Redirect to="/" />
+          </Switch>
+        );
+      } else {
+        routes = (
+          <Switch>
+            <Route path="/login" component={asyncAuth} />
+            <Route path="/logout" component={Logout} />
+            <Route path="/locations/create" component={asyncLocationCreate} />
+            <Route path="/locations/:id" component={asyncLocationUpdate} />
+            <Route path="/locations" component={asyncLocations} />
+            <Route path="/tickets/create" component={asyncTicketCreate} />;
+            <Route path="/tickets/:id" component={asyncTicketUpdate} />
+            <Route path="/tickets" component={asyncTickets} />
+            <Route exact path="/" component={Builder} />
+            <Redirect to="/" />
+          </Switch>
+        );
+      }
     }
 
     return (
