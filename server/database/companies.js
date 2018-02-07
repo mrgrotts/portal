@@ -1,19 +1,19 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const customersSchema = new mongoose.Schema(
+const companiesSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: 'Please enter a company name'
+      required: "Please enter a company name"
     },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Users',
+      ref: "Users",
       required: true
     },
     headquarters: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Locations',
+      ref: "Locations",
       required: true,
       min: 1,
       max: 1
@@ -21,19 +21,19 @@ const customersSchema = new mongoose.Schema(
     users: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Users'
+        ref: "Users"
       }
     ],
     locations: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Locations'
+        ref: "Locations"
       }
     ],
     tickets: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Tickets'
+        ref: "Tickets"
       }
     ]
   },
@@ -42,6 +42,6 @@ const customersSchema = new mongoose.Schema(
   }
 );
 
-const Customers = mongoose.model('Customers', customersSchema);
+const Companies = mongoose.model("Companies", companiesSchema);
 
-module.exports = Customers;
+module.exports = Companies;

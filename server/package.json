@@ -25,11 +25,8 @@
     "jsonwebtoken": "^8.1.0",
     "mongoose": "^5.0.0-rc1",
     "morgan": "^1.9.0",
-<<<<<<< HEAD
-    "uuid": "^3.2.1"
-=======
     "nodemailer": "^4.4.2",
-    "nodemailer-smtp-transport": "^2.7.4"
->>>>>>> ec34e0ef95c9e9d34ea8eeb60b74d703f8a1c32e
+    "nodemailer-smtp-transport": "^2.7.4",
+    "uuid": "^3.2.1"
   }
 }

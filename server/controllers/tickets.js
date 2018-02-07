@@ -1,20 +1,27 @@
-const database = require('../database');
-const mongoose = require('mongoose');
+const database = require("../database");
+const mongoose = require("mongoose");
 
 exports.readTickets = (req, res, next) => {
   database.Users.findById(req.params.userId).then(user => {
-    if (user.admin) {
+    if (user.role === "Owner") {
       database.Tickets.find()
-        .sort({ createdAt: 'asc' })
-        .populate('location')
-        .populate('userId')
+        .sort({ createdAt: "asc" })
+        .populate("location")
+        .populate("userId")
+        .then(tickets => res.status(200).json(tickets))
+        .catch(error => res.send(error));
+    } else if (user.role === "Admin") {
+      database.Tickets.find()
+        .sort({ createdAt: "asc" })
+        .populate("location")
+        .populate("userId")
         .then(tickets => res.status(200).json(tickets))
         .catch(error => res.send(error));
     } else {
       database.Tickets.find({ userId: req.params.userId })
-        .sort({ createdAt: 'asc' })
-        .populate('location')
-        .populate('userId')
+        .sort({ createdAt: "asc" })
+        .populate("location")
+        .populate("userId")
         .then(tickets => res.status(200).json(tickets))
         .catch(error => res.send(error));
     }
@@ -48,8 +55,8 @@ exports.createTicket = (req, res, next) => {
                     .save()
                     .then(user =>
                       database.Tickets.findById(ticket._id)
-                        .populate('location')
-                        .populate('userId')
+                        .populate("location")
+                        .populate("userId")
                     )
                     .then(t => res.status(201).json(t))
                     .catch(next);
@@ -144,8 +151,8 @@ exports.updateTicket = async (req, res, next) => {
       //       .save()
       //       .then(loc =>
       database.Tickets.findById(ticket._id)
-        .populate('location')
-        .populate('userId')
+        .populate("location")
+        .populate("userId")
         .then(ticket => res.status(200).json(ticket))
         .catch(error => res.send(error))
     )

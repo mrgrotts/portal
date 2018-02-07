@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 const usersSchema = new mongoose.Schema(
   {
@@ -12,47 +12,49 @@ const usersSchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    customer: {
+    company: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Customers'
+      ref: "Companies"
     },
     firstName: {
       type: String,
-      default: ''
+      default: ""
     },
     lastName: {
       type: String,
-      default: ''
+      default: ""
     },
     countryCode: {
       type: Number,
       trim: true,
-      default: '',
-      match: [/^\+?\d+[\d\s]+$/, 'Please use a valid country code']
+      default: "",
+      match: [/^\+?\d+[\d\s]+$/, "Please use a valid country code"]
     },
     phone: {
       type: Number,
       trim: true,
-      default: '',
-      match: [/^\+?\d+[\d\s]+$/, 'Please use a valid phone number']
+      default: "",
+      match: [/^\+?\d+[\d\s]+$/, "Please use a valid phone number"]
     },
     profilePicture: {
-      type: String
+      type: String,
+      default: ""
     },
-    admin: {
-      type: Boolean,
-      default: false
+    role: {
+      type: String,
+      enum: ["User", "Admin", "Owner", "Super Admin"],
+      default: "User"
     },
     tickets: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Tickets'
+        ref: "Tickets"
       }
     ],
     locations: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Locations'
+        ref: "Locations"
       }
     ],
     verified: {
@@ -65,8 +67,8 @@ const usersSchema = new mongoose.Schema(
   }
 );
 
-usersSchema.pre('save', function(next) {
-  if (!this.isModified('password')) {
+usersSchema.pre("save", function(next) {
+  if (!this.isModified("password")) {
     return next();
   }
 
@@ -90,12 +92,12 @@ usersSchema.methods.comparePassword = function(candidatePassword, next) {
 };
 
 usersSchema.methods.isVerified = function(next) {
-    if(this.verified) {
-      next(null);
-    } else {
-      next('unverfied!')
-    }
+  if (this.verified) {
+    next(null);
+  } else {
+    next(`User not verified: ${this.email}`);
+  }
 };
 
-const Users = mongoose.model('Users', usersSchema);
+const Users = mongoose.model("Users", usersSchema);
 module.exports = Users;

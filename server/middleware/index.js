@@ -1,7 +1,7 @@
 require("dotenv").load();
 const jwt = require("jsonwebtoken");
-const database = require("../database");
 
+const database = require("../database");
 const {
   ACCOUNT_NOT_AUTHORIZED,
   ACCOUNT_NOT_VERIFIED,
@@ -52,21 +52,19 @@ exports.authorizeUser = (req, res, next) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(403).json({ message: ACCOUNT_NOT_AUTHORIZED });
+    res.status(403).json({ error, message: ACCOUNT_NOT_AUTHORIZED });
   }
 };
 
 exports.isVerified = (req, res, next) => {
   try {
-    database.Users.findOne({
-      email: req.body.email
-    }).then(user => {
+    database.Users.findOne({ email: req.body.email }).then(user => {
       if (user.verified) {
         next();
       }
     });
   } catch (error) {
     console.log(error);
-    res.status(403).json({ message: ACCOUNT_NOT_VERIFIED });
+    res.status(403).json({ error, message: ACCOUNT_NOT_VERIFIED });
   }
 };

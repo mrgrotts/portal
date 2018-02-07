@@ -46,8 +46,8 @@ export const auth = (email, password, registration) => async dispatch => {
       generateAuthorizationHeader(response.data.token);
     })
     .catch(error => {
-      console.log(error.message);
-      dispatch(authFail(error.message));
+      console.log(error);
+      dispatch(authFail(error));
     });
 };
 
