@@ -2,6 +2,13 @@ const jwt = require("jsonwebtoken");
 const database = require("../database");
 const emails = require("../emails");
 
+const QuickBooks = require('node-quickbooks');
+
+const consumerKey = 'Q0aIuU5BcaRH2vuDGblRpRm2dGNprV1g2407AqoFSgFk25yqnd';
+const consumerSecret = 'VfCISeBd60Edv9kSKQtVGr8Mmpse9JI6moA7RhUp';
+
+QuickBooks.setOauthVersion('2.0');
+
 const {
   INVALID_EMAIL,
   INVALID_PASSWORD,
@@ -87,13 +94,23 @@ exports.verifyRegistration = (req, res) =>
       res.status(404).json({ error, message: VERIFICATION_FAILED })
     );
 
-exports.forgotPassword = (req, res) =>
-  database.Users.find({
-    email: req.body.email
-  })
+
+exports.forgotPassword = (req, res) => {
+  let tmpPw = parseInt(Math.random() * 1000000000);
+  database.Users.findByIdAndUpdate(req.params.userId, { password: tmpPw })
     .then(user => {
-      console.log(user);
-      // send password reset email
+      emails.sendForgotPassword(
+        { username: user.email, tmpPassword: tmpPw },
+        event => {
+          if (event) {
+            res.status(200).json({
+              userId: user._id 
+            }); //send back something
+          } else {
+            res.status(400);
+          }
+        }
+      );
     })
     .catch(error =>
       res.status(404).json({ error, message: FORGOT_PASSWORD_FAILED })
