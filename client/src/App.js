@@ -21,7 +21,7 @@ class App extends Component {
   }
 
   render() {
-    let routes;
+    let routes = <BaseRoutes />;
 
     if (this.props.isAuthenticated && this.props.user) {
       console.log(this.props.user.role);

@@ -46,9 +46,9 @@ class WorkList extends Component {
     }
 
     let headers = [
+      'Status',
       'Category',
       'Number',
-      'Status',
       'Location',
       'Description',
       'Date Received',
@@ -57,7 +57,9 @@ class WorkList extends Component {
 
     return (
       <div className={classes.WorkList}>
-        <h1>You Have {workList.length} Work Orders</h1>
+        <h1 style={{ marginBottom: '2rem', textAlign: 'center' }}>
+          You Have {workList.length} Work Orders
+        </h1>
         <Table headers={headers}>{workList}</Table>
       </div>
     );

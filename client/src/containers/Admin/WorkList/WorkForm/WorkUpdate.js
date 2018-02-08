@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
 
+import Auxiliary from '../../../../hoc/Auxiliary';
 import handleErrors from '../../../../hoc/handleErrors';
 
 import Spinner from '../../../../components/UI/Spinner/Spinner';
@@ -38,11 +39,11 @@ class WorkUpdate extends Component {
     ) : null;
 
     return (
-      <div>
+      <Auxiliary>
         {redirectAfterSubmit}
-        <h1>Update Work Form</h1>
+        <h1 style={{ textAlign: 'center' }}>Update Work Form</h1>
         {form}
-      </div>
+      </Auxiliary>
     );
   }
 }

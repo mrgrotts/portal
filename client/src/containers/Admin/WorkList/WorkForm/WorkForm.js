@@ -386,7 +386,7 @@ class WorkForm extends Component {
 
     return (
       <Auxiliary>
-        {progress}
+        <div style={{ width: '100%' }}>{progress}</div>
         {form}
       </Auxiliary>
     );

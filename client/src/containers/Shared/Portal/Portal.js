@@ -10,7 +10,6 @@ class Portal extends Component {
   render() {
     return (
       <div className={classes.Portal}>
-        <h1 className={classes.PortalTitle}>Portal Component</h1>
         <Link to="/work/create">
           <FloatingButton>add</FloatingButton>
         </Link>

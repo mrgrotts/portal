@@ -1,12 +1,98 @@
 .TableItem {
   border: 1px solid #e0e0e0;
+  border-bottom-width: 0;
   border-left-width: 0;
-  border-top-width: 0;
+  border-right-width: 1;
+  border-top-width: 1;
   display: table-cell;
   font-size: 0.9rem;
+  height: 100%;
   width: 100%;
 }
 
 .TableItem:first-child {
-  border-left-width: 1px;
+  border-top-width: 0px;
+}
+
+.TableItem:last-child {
+  border-right-width: 0px;
+}
+
+/* USER STYLES */
+
+.NewAccount {
+  background-color: green;
+}
+
+.CustomerUser {
+  background-color: orange;
+}
+
+.CustomerManager {
+  background-color: red;
+}
+
+.AdminUser {
+  background-color: gray;
+}
+
+.AdminManager {
+  background-color: black;
+}
+
+.Owner {
+  background-color: #006eb6;
+}
+
+/* LOCATION STYLES */
+
+.Headquarters {
+  background-color: #006eb6;
+}
+
+/* WORK ORDER STYLES */
+
+.Status,
+.Role,
+.Headquarters,
+.Paid {
+  height: 100%;
+}
+
+.Unassigned {
+  background-color: red;
+}
+
+.Prep {
+  background-color: purple;
+}
+
+.OnHold {
+  background-color: yellow;
+}
+
+.InProgress {
+  background-color: blue;
+}
+
+.Pending {
+  background-color: orange;
+}
+
+.PurchasingParts {
+  background-color: gray;
+}
+
+.OrderedParts {
+  background-color: brown;
+}
+
+.Closed {
+  background-color: green;
+}
+
+/* INVOICE STYLES */
+
+.Paid {
+  background-color: green;
 }
