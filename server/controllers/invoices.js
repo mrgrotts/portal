@@ -121,6 +121,76 @@ exports.buildInvoice = (invoiceData, callback) => {
   callback(invoice);
 };
 
+exports.readInvoices = async (req, res, next) => {
+  let company = await database.Companies.findById(req.params.companyId)
+    .populate("users")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+
+  let invoices = await database.Invoices.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location")
+    .populate("ticket");
+};
+
+exports.createInvoice = async (req, res, next) => {
+  let company = await database.Companies.findById(req.params.companyId)
+    .populate("users")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+
+  let invoices = await database.Invoices.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location")
+    .populate("ticket");
+};
+
+exports.readInvoice = async (req, res, next) => {
+  let company = await database.Companies.findById(req.params.companyId)
+    .populate("users")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+
+  let invoices = await database.Invoices.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location")
+    .populate("ticket");
+};
+
+exports.updateInvoice = async (req, res, next) => {
+  let company = await database.Companies.findById(req.params.companyId)
+    .populate("users")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+
+  let invoices = await database.Invoices.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location")
+    .populate("ticket");
+};
+
+exports.deleteInvoice = async (req, res, next) => {
+  let company = await database.Companies.findById(req.params.companyId)
+    .populate("users")
+    .populate("locations")
+    .populate("tickets")
+    .populate("invoices");
+
+  let invoices = await database.Invoices.find({ company: company._id })
+    .populate("company")
+    .populate("userId")
+    .populate("location")
+    .populate("ticket");
+};
+
 /*
 
 app.post('/requestqbtoken', (req, res) => {

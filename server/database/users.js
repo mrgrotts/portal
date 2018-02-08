@@ -43,17 +43,15 @@ const usersSchema = new mongoose.Schema(
     role: {
       type: String,
       enum: [
-        "User",
-        "CustomerUser",
-        "CustomerAdmin",
-        "Technician",
-        "Sales",
-        "Manager",
-        "Admin",
-        "Owner",
+        "New Account",
+        "Customer User",
+        "Customer Manager",
+        "Admin User",
+        "Admin Manager",
+        "Admin Owner",
         "Super Admin"
       ],
-      default: "User"
+      default: "New Account"
     },
     tickets: [
       {

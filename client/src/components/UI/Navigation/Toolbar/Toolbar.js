@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import Logo from '../../../Logo/Logo';
-import MenuItems from '../MenuItems/MenuItems';
+import Logo from "../../../Logo/Logo";
+import MenuItems from "../MenuItems/MenuItems";
 
-import ToggleDrawer from '../SideDrawer/ToggleDrawer/ToggleDrawer';
+import ToggleDrawer from "../SideDrawer/ToggleDrawer/ToggleDrawer";
 
-import classes from './Toolbar.css';
+import classes from "./Toolbar.css";
 
 const Toolbar = props => (
   <header className={classes.Toolbar}>

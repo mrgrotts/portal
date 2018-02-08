@@ -256,7 +256,7 @@ exports.readCompanyUser = async (req, res, next) => {
     .populate("ticket");
 };
 
-exports.updateCompanyUsers = async (req, res, next) => {
+exports.updateCompanyUser = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
@@ -288,7 +288,7 @@ exports.updateCompanyUsers = async (req, res, next) => {
     .populate("ticket");
 };
 
-exports.deleteCompanyUsers = async (req, res, next) => {
+exports.deleteCompanyUser = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
@@ -896,7 +896,7 @@ exports.readCompanyLocation = async (req, res, next) => {
     .populate("ticket");
 };
 
-exports.updateCompanyLocations = async (req, res, next) => {
+exports.updateCompanyLocation = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
@@ -1215,7 +1215,7 @@ exports.readCompanyLocationTicket = async (req, res, next) => {
     .populate("ticket");
 };
 
-exports.updateCompanyLocationTickets = async (req, res, next) => {
+exports.updateCompanyLocationTicket = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")

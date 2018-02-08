@@ -10,8 +10,8 @@ const {
   readCompanyUsers,
   createCompanyUser,
   readCompanyUser,
-  updateCompanyUsers,
-  deleteCompanyUsers,
+  updateCompanyUser,
+  deleteCompanyUser,
   readCompanyTickets,
   createCompanyTicket,
   readCompanyTicket,
@@ -37,7 +37,7 @@ const {
   readCompanyLocationInvoice,
   updateCompanyLocationInvoice,
   deleteCompanyLocationInvoice,
-  readCompanyTicketsUsers,
+  readCompanyTicketUsers,
   createCompanyTicketUser,
   readCompanyTicketUser,
   updateCompanyTicketUser,
@@ -91,7 +91,7 @@ router
 
 router
   .route("/:companyId/tickets/companyUsers")
-  .get(readCompanyTicketsUsers)
+  .get(readCompanyTicketUsers)
   .post(createCompanyTicketUser);
 
 router

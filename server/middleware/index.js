@@ -5,24 +5,8 @@ const database = require("../database");
 const {
   ACCOUNT_NOT_AUTHORIZED,
   ACCOUNT_NOT_VERIFIED,
-  ADMIN_ACCESS_DENIED,
   SESSION_TIMEOUT
 } = require("../constants");
-
-exports.checkAdmin = (req, res, next) => {
-  try {
-    let admin = database.Admins.findById(req.params.id).then(admin => {
-      if (admin) {
-        next();
-      } else {
-        res.status(403).json({ message: ADMIN_ACCESS_DENIED });
-      }
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(403).json({ message: ADMIN_ACCESS_DENIED });
-  }
-};
 
 exports.authenticateUser = (req, res, next) => {
   try {
@@ -41,10 +25,28 @@ exports.authenticateUser = (req, res, next) => {
 };
 
 exports.authorizeUser = (req, res, next) => {
+  req.user = req.params.userId;
+
+  if (req.user === undefined) {
+    // req.user = req.url.slice(1);
+    req.user = req.url.split("/")[1];
+    // console.log("[USER FROM AUTHORIZEUSER]", req.user);
+  }
+
+  database.Users.findById(req.user)
+    .populate("company")
+    .populate("locations")
+    .populate("tickets")
+    .then(user => {
+      req.user = user;
+      // console.log("[USER FOUND]", user);
+    })
+    .catch(next);
+
   try {
     const token = req.headers.authorization.split(" ")[1];
     jwt.verify(token, process.env.JWT_KEY, (error, decoded) => {
-      if (decoded && decoded.userId === req.params.userId) {
+      if (decoded && decoded.userId === req.user) {
         next();
       } else {
         res.status(403).json({ message: ACCOUNT_NOT_AUTHORIZED });

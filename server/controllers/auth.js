@@ -17,7 +17,11 @@ exports.login = (req, res) =>
   database.Users.findOne({
     email: req.body.email
   })
+    .populate("company")
+    .populate("locations")
+    .populate("tickets")
     .then(user => {
+      // console.log("[LOGIN]", user);
       if (user.verified) {
         user.comparePassword(req.body.password, (error, match) => {
           if (match) {
@@ -26,9 +30,8 @@ exports.login = (req, res) =>
               expiresIn
             });
 
-            res.status(200).json({
-              userId: user._id,
-              profilePicture: user.profilePicture,
+            return res.json({
+              user,
               token,
               expiresIn
             });
@@ -59,15 +62,19 @@ exports.login = (req, res) =>
 exports.register = (req, res) =>
   database.Users.create(req.body)
     .then(user => {
-      const token = jwt.sign({ userId: user._id }, process.env.JWT_KEY);
+      const expiresIn = 60 * 60;
+      const token = jwt.sign({ userId: user._id }, process.env.JWT_KEY, {
+        expiresIn
+      });
       // console.log(JSON.stringify(user));
       emails.sendVerification(
         { _id: user._id, username: user.email },
         event => {
           if (event) {
-            res.status(200).json({
-              userId: user._id,
+            res.json({
+              user,
               token,
+              expiresIn,
               message: REGISTRATION_SUCCESS
             });
           } else {
@@ -81,7 +88,12 @@ exports.register = (req, res) =>
     );
 
 exports.verifyRegistration = (req, res) =>
-  database.Users.findByIdAndUpdate(req.params.userId, { verified: true })
+  database.Users.findByIdAndUpdate(
+    req.params.userId,
+    { verified: true },
+    { new: true }
+  )
+    .populate("user")
     .then(user => res.status(200).json({ user, message: VERIFICATION_SUCCESS }))
     .catch(error =>
       res.status(404).json({ error, message: VERIFICATION_FAILED })

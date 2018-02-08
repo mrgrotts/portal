@@ -20,7 +20,6 @@ process.on("SIGINT", () => {
   process.exit();
 });
 
-module.exports.Admins = require("./admins");
 module.exports.Users = require("./users");
 module.exports.Companies = require("./companies");
 module.exports.Locations = require("./locations");

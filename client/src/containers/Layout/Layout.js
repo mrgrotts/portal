@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
-import Auxiliary from '../../hoc/Auxiliary';
+import Auxiliary from "../../hoc/Auxiliary";
 
-import Toolbar from '../../components/UI/Navigation/Toolbar/Toolbar';
-import SideDrawer from '../../components/UI/Navigation/SideDrawer/SideDrawer';
+import Toolbar from "../../components/UI/Navigation/Toolbar/Toolbar";
+import SideDrawer from "../../components/UI/Navigation/SideDrawer/SideDrawer";
 
-import classes from './Layout.css';
+import classes from "./Layout.css";
 
 class Layout extends Component {
   state = {
@@ -42,7 +43,8 @@ class Layout extends Component {
 }
 
 const mapStateToProps = state => ({
+  user: state.auth.user,
   isAuthenticated: state.auth.token !== null
 });
 
-export default connect(mapStateToProps)(Layout);
+export default withRouter(connect(mapStateToProps)(Layout));

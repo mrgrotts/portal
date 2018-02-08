@@ -1,19 +1,19 @@
-const database = require('../database');
+const database = require("../database");
 
 exports.readLocations = (req, res, next) => {
   database.Users.findById(req.params.userId).then(user => {
-    if (user.admin) {
+    if (user.role === "Owner") {
       database.Locations.find()
-        .sort({ createdAt: 'asc' })
-        .populate('tickets')
-        .populate('userId')
+        .sort({ createdAt: "asc" })
+        .populate("tickets")
+        .populate("userId")
         .then(locations => res.status(200).json(locations))
         .catch(error => res.send(error));
     } else {
       database.Locations.find({ userId: req.params.userId })
-        .sort({ createdAt: 'asc' })
-        .populate('tickets')
-        .populate('userId')
+        .sort({ createdAt: "asc" })
+        .populate("tickets")
+        .populate("userId")
         .then(locations => res.status(200).json(locations))
         .catch(error => res.send(error));
     }
@@ -50,8 +50,8 @@ exports.createLocation = (req, res, next) => {
             .save()
             .then(user =>
               database.Locations.findById(location._id)
-                .populate('tickets')
-                .populate('userId')
+                .populate("tickets")
+                .populate("userId")
             )
             .then(loc => res.status(200).json(loc))
             .catch(next);
@@ -63,8 +63,8 @@ exports.createLocation = (req, res, next) => {
 
 exports.readLocation = (req, res, next) => {
   database.Locations.findById(req.params.locationId)
-    .populate('tickets')
-    .populate('userId')
+    .populate("tickets")
+    .populate("userId")
     .then(location => res.json(location))
     .catch(error => res.send(error));
 };
@@ -92,8 +92,8 @@ exports.updateLocation = (req, res, next) => {
   database.Locations.findByIdAndUpdate(req.params.locationId, req.body, {
     new: true
   })
-    .populate('tickets')
-    .populate('userId')
+    .populate("tickets")
+    .populate("userId")
     .then(location => res.status(201).json(location))
     .catch(error => res.send(error));
 };

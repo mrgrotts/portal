@@ -1,11 +1,6 @@
-const express = require('express');
+const express = require("express");
 
 const {
-  getAdmins,
-  createAdmin,
-  readAdmin,
-  updateAdmin,
-  deleteAdmin,
   getUsers,
   createUser,
   readUser,
@@ -21,50 +16,39 @@ const {
   readTicket,
   updateTicket,
   deleteTicket
-} = require('../controllers/admins');
+} = require("../controllers/sudo");
 
 const router = express.Router();
 
 router
-  .route('/admins')
-  .get(getAdmins)
-  .post(createAdmin);
-
-router
-  .route('/admins/:adminId')
-  .get(readAdmin)
-  .put(updateAdmin)
-  .delete(deleteAdmin);
-
-router
-  .route('/users')
+  .route("/users")
   .get(getUsers)
   .post(createUser);
 
 router
-  .route('/users/:id')
+  .route("/users/:id")
   .get(readUser)
   .put(updateUser)
   .delete(deleteUser);
 
 router
-  .route('/locations')
+  .route("/locations")
   .get(getLocations)
   .post(createLocation);
 
 router
-  .route('/locations/:id')
+  .route("/locations/:id")
   .get(readLocation)
   .put(updateLocation)
   .delete(deleteLocation);
 
 router
-  .route('/tickets')
+  .route("/tickets")
   .get(getTickets)
   .post(createTicket);
 
 router
-  .route('/tickets/:id')
+  .route("/tickets/:id")
   .get(readTicket)
   .put(updateTicket)
   .delete(deleteTicket);

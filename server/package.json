@@ -26,8 +26,8 @@
     "mongoose": "^5.0.0-rc1",
     "morgan": "^1.9.0",
     "node-quickbooks": "^2.0.23",
-    "uuid": "^3.2.1",
     "nodemailer": "^4.4.2",
-    "nodemailer-smtp-transport": "^2.7.4"
+    "nodemailer-smtp-transport": "^2.7.4",
+    "uuid": "^3.2.1"
   }
 }

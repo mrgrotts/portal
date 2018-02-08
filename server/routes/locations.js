@@ -1,23 +1,23 @@
-const express = require('express');
+const express = require("express");
 
-const database = require('../database');
+const database = require("../database");
 const {
   readLocations,
   createLocation,
   readLocation,
   updateLocation,
   deleteLocation
-} = require('../controllers/locations');
+} = require("../controllers/locations");
 
 const router = express.Router({ mergeParams: true });
 
 router
-  .route('/')
+  .route("/")
   .get(readLocations)
   .post(createLocation);
 
 router
-  .route('/:locationId')
+  .route("/:locationId")
   .get(readLocation)
   .put(updateLocation)
   .delete(deleteLocation);
