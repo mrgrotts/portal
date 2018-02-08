@@ -32,7 +32,9 @@ export const auth = (email, password, registration) => async dispatch => {
     .then(response => {
       console.log(response);
       // create new date using the current date + expiration time in seconds
-      const expiration = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+      const expiration = new Date(
+        new Date().getTime() + response.data.expiresIn * 1000
+      );
 
       localStorage.setItem('userId', response.data.user._id);
       localStorage.setItem('token', response.data.token);
@@ -90,7 +92,9 @@ export const authRedirectPath = path => ({
   path
 });
 
-export const authCurrentUser = (userId = localStorage.getItem('userId')) => async dispatch => {
+export const authCurrentUser = (
+  userId = localStorage.getItem('userId')
+) => async dispatch => {
   // console.log("[UserId]", userId);
 
   if (userId) {
@@ -104,16 +108,15 @@ export const authCurrentUser = (userId = localStorage.getItem('userId')) => asyn
   }
 };
 
-export const authState = () => async dispatch => {
-  const userId = await localStorage.getItem('userId');
-  const token = await localStorage.getItem('token');
+export const authState = () => dispatch => {
+  const userId = localStorage.getItem('userId');
+  const token = localStorage.getItem('token');
 
   if (!token || !userId) {
     dispatch(authLogout());
   }
 
-  await generateAuthorizationHeader(token);
-  // const user = await authCurrentUser(userId);
+  generateAuthorizationHeader(token);
 
   // convert stored date STRING to a new Date object
   const expiration = new Date(localStorage.getItem('expiration'));

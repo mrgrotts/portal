@@ -1,4 +1,4 @@
-import * as actions from "../actions";
+import * as actions from '../actions';
 
 const initialState = {
   user: {},
@@ -6,7 +6,7 @@ const initialState = {
   token: null,
   error: null,
   loading: false,
-  redirectPath: "/"
+  redirectPath: '/'
 };
 
 const authReducer = (state = initialState, action) => {
@@ -46,7 +46,9 @@ const authReducer = (state = initialState, action) => {
     case actions.AUTH_CURRENT_USER:
       return {
         ...state,
-        user: action.user
+        user: action.user,
+        error: null,
+        loading: false
       };
     case actions.AUTH_STATE_UPDATE:
       return {

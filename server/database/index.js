@@ -1,6 +1,6 @@
-require("dotenv").load();
-const mongoose = require("mongoose");
-mongoose.set("debug", true);
+require('dotenv').load();
+const mongoose = require('mongoose');
+mongoose.set('debug', true);
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE_URI, {
@@ -12,15 +12,15 @@ mongoose.connect(process.env.DATABASE_URI, {
 // Get the default connection
 let database = mongoose.connection;
 // Bind connection to error event (to get notification of connection errors)
-database.on("error", console.error.bind(console, `MongoDB connection error:`));
+database.on('error', console.error.bind(console, `MongoDB connection error:`));
 
-process.on("SIGINT", () => {
+process.on('SIGINT', () => {
   console.log(`[${process.env.APP_NAME}]: SIGINT`);
   database.close();
   process.exit();
 });
 
-module.exports.Users = require("./users");
-module.exports.Companies = require("./companies");
-module.exports.Locations = require("./locations");
-module.exports.WorkList = require("./work");
+module.exports.Users = require('./users');
+module.exports.Companies = require('./companies');
+module.exports.Locations = require('./locations');
+module.exports.Work = require('./work');

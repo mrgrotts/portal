@@ -28,7 +28,7 @@ class WorkForm extends Component {
   };
 
   state = {
-    ticketForm: {
+    workForm: {
       status: {
         fieldType: "select",
         fieldConfig: {
@@ -67,12 +67,12 @@ class WorkForm extends Component {
             }
           ]
         },
-        value: this.props.ticket ? this.props.ticket.status : "Unassigned",
+        value: this.props.work ? this.props.work.status : "Unassigned",
         validation: {
           required: true
         },
         touched: false,
-        valid: this.props.ticket ? true : false
+        valid: this.props.work ? true : false
       },
       category: {
         fieldType: "select",
@@ -124,14 +124,14 @@ class WorkForm extends Component {
             }
           ]
         },
-        value: this.props.ticket
-          ? this.props.ticket.category
+        value: this.props.work
+          ? this.props.work.category
           : "Commercial Cleaning",
         validation: {
           required: true
         },
         touched: false,
-        valid: this.props.ticket ? true : false
+        valid: this.props.work ? true : false
       },
       location: {
         fieldType: "select",
@@ -143,12 +143,12 @@ class WorkForm extends Component {
             }
           ]
         },
-        value: this.props.ticket ? this.props.ticket.location : "",
+        value: this.props.work ? this.props.work.location : "",
         validation: {
           required: true
         },
         touched: false,
-        valid: this.props.ticket ? true : false
+        valid: this.props.work ? true : false
       },
       description: {
         fieldType: "textarea",
@@ -156,13 +156,13 @@ class WorkForm extends Component {
           type: "text",
           placeholder: "Description"
         },
-        value: this.props.ticket ? this.props.ticket.description : "",
+        value: this.props.work ? this.props.work.description : "",
         validation: {
           required: true,
           minLength: 1
         },
         touched: false,
-        valid: this.props.ticket ? true : false
+        valid: this.props.work ? true : false
       },
       media: {
         fieldType: "file",
@@ -170,22 +170,22 @@ class WorkForm extends Component {
           type: "file",
           placeholder: "No files uploaded"
         },
-        value: this.props.ticket ? this.props.ticket.media : [],
+        value: this.props.work ? this.props.work.media : [],
         validation: {},
         touched: false,
-        valid: this.props.ticket ? true : false
+        valid: this.props.work ? true : false
       }
     },
-    previousLocation: this.props.ticket ? this.props.ticket.location : "",
-    // media: this.props.ticket ? this.props.ticket.media : [],
-    requestedDate: this.props.ticket
-      ? moment(this.props.ticket.requestedDate)
+    previousLocation: this.props.work ? this.props.work.location : "",
+    // media: this.props.work ? this.props.work.media : [],
+    requestedDate: this.props.work
+      ? moment(this.props.work.requestedDate)
       : moment(),
-    createdAt: this.props.ticket
-      ? moment(this.props.ticket.createdAt)
+    createdAt: this.props.work
+      ? moment(this.props.work.createdAt)
       : moment(),
-    updatedAt: this.props.ticket
-      ? moment(this.props.ticket.updatedAt)
+    updatedAt: this.props.work
+      ? moment(this.props.work.updatedAt)
       : moment(),
     focused: false,
     formValid: false
@@ -211,29 +211,29 @@ class WorkForm extends Component {
       return options.push(option);
     });
 
-    const ticketForm = {
-      ...this.state.ticketForm,
+    const workForm = {
+      ...this.state.workForm,
       location: {
-        ...this.state.ticketForm.location,
+        ...this.state.workForm.location,
         fieldConfig: {
           options
         }
       }
     };
 
-    this.setState({ ticketForm });
+    this.setState({ workForm });
   }
 
   updateField = (event, field) => {
     // 2 spreads to deeply clone state and get copies of nested properties from state
-    const ticketForm = {
-      ...this.state.ticketForm,
+    const workForm = {
+      ...this.state.workForm,
       [field]: {
-        ...this.state.ticketForm[field],
+        ...this.state.workForm[field],
         value: event.target.value,
         valid: validateFields(
           event.target.value,
-          this.state.ticketForm[field].validation
+          this.state.workForm[field].validation
         ),
         touched: true
       }
@@ -242,11 +242,11 @@ class WorkForm extends Component {
     // check form validity
     let formValid = true;
 
-    for (let field in ticketForm) {
-      formValid = ticketForm[field].valid && formValid;
+    for (let field in workForm) {
+      formValid = workForm[field].valid && formValid;
     }
 
-    return this.setState({ ticketForm, formValid });
+    return this.setState({ workForm, formValid });
   };
 
   handleChange = event =>
@@ -260,12 +260,12 @@ class WorkForm extends Component {
     event.preventDefault();
 
     this.props.onSubmit({
-      status: this.state.ticketForm.status.value,
-      category: this.state.ticketForm.category.value,
-      location: this.state.ticketForm.location.value,
+      status: this.state.workForm.status.value,
+      category: this.state.workForm.category.value,
+      location: this.state.workForm.location.value,
       previousLocation: this.state.previousLocation,
-      description: this.state.ticketForm.description.value,
-      media: this.state.ticketForm.media.value,
+      description: this.state.workForm.description.value,
+      media: this.state.workForm.media.value,
       requestedDate: this.state.requestedDate
     });
 
@@ -276,58 +276,58 @@ class WorkForm extends Component {
     this.props.onCancel();
 
     this.setState({
-      ticketForm: {
+      workForm: {
         status: {
-          value: this.props.ticket ? this.props.ticket.status : "Unassigned"
+          value: this.props.work ? this.props.work.status : "Unassigned"
         },
         category: {
-          value: this.props.ticket
-            ? this.props.ticket.category
+          value: this.props.work
+            ? this.props.work.category
             : "Commercial Cleaning"
         },
         location: {
-          value: this.props.ticket ? this.props.ticket.location._id : ""
+          value: this.props.work ? this.props.work.location._id : ""
         },
         description: {
-          value: this.props.ticket ? this.props.ticket.description : ""
+          value: this.props.work ? this.props.work.description : ""
         },
-        media: this.props.ticket ? this.props.ticket.media : []
+        media: this.props.work ? this.props.work.media : []
       },
-      previousLocation: this.props.ticket
-        ? this.props.ticket.previousLocation
+      previousLocation: this.props.work
+        ? this.props.work.previousLocation
         : "",
-      // media: this.props.ticket ? this.props.ticket.media : [],
-      requestedDate: this.props.ticket
-        ? moment(this.props.ticket.requestedDate)
+      // media: this.props.work ? this.props.work.media : [],
+      requestedDate: this.props.work
+        ? moment(this.props.work.requestedDate)
         : moment(),
-      createdAt: this.props.ticket
-        ? moment(this.props.ticket.createdAt)
+      createdAt: this.props.work
+        ? moment(this.props.work.createdAt)
         : moment(),
-      updatedAt: this.props.ticket
-        ? moment(this.props.ticket.updatedAt)
+      updatedAt: this.props.work
+        ? moment(this.props.work.updatedAt)
         : moment()
     });
   };
 
   render() {
-    // console.log(this.props.ticket);
-    let ticketFields = [];
-    for (let key in this.state.ticketForm) {
-      ticketFields.push({
+    // console.log(this.props.work);
+    let workFields = [];
+    for (let key in this.state.workForm) {
+      workFields.push({
         id: key,
-        config: this.state.ticketForm[key]
+        config: this.state.workForm[key]
       });
     }
 
-    let progress = this.props.ticket === undefined ? null : <ProgressBar />;
+    let progress = this.props.work === undefined ? null : <ProgressBar />;
 
     let form = <Spinner />;
 
     if (!this.props.loading) {
       form = (
         <form onSubmit={this.onSubmit}>
-          {ticketFields.map(field => {
-            if (!this.props.ticket && field.id === "status") {
+          {workFields.map(field => {
+            if (!this.props.work && field.id === "status") {
               return null;
             }
 

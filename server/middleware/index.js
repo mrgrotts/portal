@@ -1,16 +1,16 @@
-require("dotenv").load();
-const jwt = require("jsonwebtoken");
+require('dotenv').load();
+const jwt = require('jsonwebtoken');
 
-const database = require("../database");
+const database = require('../database');
 const {
   ACCOUNT_NOT_AUTHORIZED,
   ACCOUNT_NOT_VERIFIED,
   SESSION_TIMEOUT
-} = require("../constants");
+} = require('../constants');
 
 exports.authenticateUser = (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(" ")[1];
+    const token = req.headers.authorization.split(' ')[1];
     jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
       if (decoded) {
         next();
@@ -29,14 +29,14 @@ exports.authorizeUser = (req, res, next) => {
 
   if (req.user === undefined) {
     // req.user = req.url.slice(1);
-    req.user = req.url.split("/")[1];
+    req.user = req.url.split('/')[1];
     // console.log("[USER FROM AUTHORIZEUSER]", req.user);
   }
 
   database.Users.findById(req.user)
-    .populate("company")
-    .populate("locations")
-    .populate("workList")
+    .populate('company')
+    .populate('locations')
+    .populate('work')
     .then(user => {
       req.user = user;
       // console.log("[USER FOUND]", user);
@@ -44,7 +44,7 @@ exports.authorizeUser = (req, res, next) => {
     .catch(next);
 
   try {
-    const token = req.headers.authorization.split(" ")[1];
+    const token = req.headers.authorization.split(' ')[1];
     jwt.verify(token, process.env.JWT_KEY, (error, decoded) => {
       if (decoded && decoded.userId === req.user) {
         next();

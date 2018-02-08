@@ -7,7 +7,7 @@ const initialState = {
   success: false
 };
 
-const workListReducer = (state = initialState, action) => {
+const workReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.CREATE_WORK_START:
       return {
@@ -21,7 +21,7 @@ const workListReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        workList: state.workList.concat(newWork),
+        workList: state.work.concat(newWork),
         error: null,
         loading: false,
         success: true
@@ -73,7 +73,7 @@ const workListReducer = (state = initialState, action) => {
       const work = { ...action.work };
       return {
         ...state,
-        workList: state.workList.filter(t => t._id === work._id),
+        workList: state.work.filter(t => t._id === work._id),
         loading: false,
         success: true
       };
@@ -101,7 +101,7 @@ const workListReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        workList: state.workList.concat(updatedWork),
+        workList: state.work.concat(updatedWork),
         error: null,
         loading: false,
         success: true
@@ -130,7 +130,7 @@ const workListReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        workList: state.workList.filter(work => work._id !== deletedWork._id),
+        workList: state.work.filter(work => work._id !== deletedWork._id),
         error: null,
         loading: false,
         success: true
@@ -152,4 +152,4 @@ const workListReducer = (state = initialState, action) => {
   }
 };
 
-export default workListReducer;
+export default workReducer;

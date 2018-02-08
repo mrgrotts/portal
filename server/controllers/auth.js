@@ -1,6 +1,6 @@
-const jwt = require("jsonwebtoken");
-const database = require("../database");
-const emails = require("../emails");
+const jwt = require('jsonwebtoken');
+const database = require('../database');
+const emails = require('../emails');
 
 const {
   INVALID_EMAIL,
@@ -11,15 +11,15 @@ const {
   REGISTRATION_FAILED,
   VERIFICATION_SUCCESS,
   VERIFICATION_FAILED
-} = require("../constants");
+} = require('../constants');
 
 exports.login = (req, res) =>
   database.Users.findOne({
     email: req.body.email
   })
-    .populate("company")
-    .populate("locations")
-    .populate("workList")
+    .populate('company')
+    .populate('locations')
+    .populate('work')
     .then(user => {
       // console.log("[LOGIN]", user);
       if (user.verified) {
@@ -37,14 +37,14 @@ exports.login = (req, res) =>
             });
           } else {
             // email/password did not match db
-            console.log("invalid password");
+            console.log('invalid password');
             res.status(400).json({
               message: INVALID_PASSWORD
             });
           }
         });
       } else {
-        console.log("account not verified");
+        console.log('account not verified');
         res.status(400).json({
           message: ACCOUNT_NOT_VERIFIED
         });
@@ -52,7 +52,7 @@ exports.login = (req, res) =>
     })
     .catch(error => {
       // could not find email in db
-      console.log("invalid email");
+      console.log('invalid email');
       res.status(400).json({
         error,
         message: INVALID_EMAIL
@@ -93,7 +93,7 @@ exports.verifyRegistration = (req, res) =>
     { verified: true },
     { new: true }
   )
-    .populate("user")
+    .populate('user')
     .then(user => res.status(200).json({ user, message: VERIFICATION_SUCCESS }))
     .catch(error =>
       res.status(404).json({ error, message: VERIFICATION_FAILED })

@@ -1,23 +1,23 @@
-import api from "../../../../api";
+import api from '../../../../api';
 
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter, Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Redirect } from 'react-router-dom';
 
-import handleErrors from "../../../../hoc/handleErrors";
+import handleErrors from '../../../../hoc/handleErrors';
 
-import Spinner from "../../../../components/UI/Spinner/Spinner";
-import WorkForm from "./WorkForm";
+import Spinner from '../../../../components/UI/Spinner/Spinner';
+import WorkForm from './WorkForm';
 
-import * as actions from "../../../../actions";
+import * as actions from '../../../../actions';
 
 class WorkUpdate extends Component {
-  updateWork = async ticket => {
-    await this.props.updateWork(this.props.ticket._id, ticket);
+  updateWork = async work => {
+    await this.props.updateWork(this.props.work._id, work);
   };
 
   onCancel = () => {
-    this.props.history.push("/work");
+    this.props.history.push('/work');
   };
 
   render() {
@@ -28,7 +28,7 @@ class WorkUpdate extends Component {
         <WorkForm
           onSubmit={this.updateWork}
           onCancel={this.onCancel}
-          ticket={this.props.ticket}
+          work={this.props.work}
         />
       );
     }
@@ -48,17 +48,15 @@ class WorkUpdate extends Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  ticket: state.workList.workList.find(
-    ticket => ticket._id === props.match.params.id
-  ),
-  id: state.auth.id,
+  work: state.work.workList.find(work => work._id === props.match.params.id),
+  userId: state.auth.userId,
   token: state.auth.token,
-  loading: state.workList.loading,
-  success: state.workList.success
+  loading: state.work.loading,
+  success: state.work.success
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateWork: (id, ticket) => dispatch(actions.updateWork(id, ticket))
+  updateWork: (id, work) => dispatch(actions.updateWork(id, work))
 });
 
 export default withRouter(

@@ -1,23 +1,23 @@
-import api from "../../../../api";
+import api from '../../../../api';
 
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter, Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Redirect } from 'react-router-dom';
 
-import handleErrors from "../../../../hoc/handleErrors";
+import handleErrors from '../../../../hoc/handleErrors';
 
-import Spinner from "../../../../components/UI/Spinner/Spinner";
-import WorkForm from "./WorkForm";
+import Spinner from '../../../../components/UI/Spinner/Spinner';
+import WorkForm from './WorkForm';
 
-import * as actions from "../../../../actions";
+import * as actions from '../../../../actions';
 
 class WorkCreate extends Component {
-  onSubmit = async ticket => {
-    await this.props.createWork(ticket);
+  onSubmit = async work => {
+    await this.props.createWork(work);
   };
 
   onCancel = () => {
-    this.props.history.push("/work");
+    this.props.history.push('/work');
   };
 
   render() {
@@ -28,7 +28,7 @@ class WorkCreate extends Component {
     }
 
     const redirectAfterSubmit = this.props.success ? (
-      <Redirect to="/work" {...this.props.workList} />
+      <Redirect to="/work" {...this.props.work} />
     ) : null;
 
     return (
@@ -42,14 +42,14 @@ class WorkCreate extends Component {
 }
 
 const mapStateToProps = state => ({
-  // id: state.auth.id,
-  // token: state.auth.token,
-  loading: state.workList.loading,
-  success: state.workList.success
+  userId: state.auth.userId,
+  token: state.auth.token,
+  loading: state.work.loading,
+  success: state.work.success
 });
 
 const mapDispatchToProps = dispatch => ({
-  createWork: ticket => dispatch(actions.createWork(ticket))
+  createWork: work => dispatch(actions.createWork(work))
 });
 
 export default withRouter(

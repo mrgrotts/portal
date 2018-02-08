@@ -185,11 +185,11 @@ exports.deleteLocation = (req, res, next) => {
 };
 
 exports.getWorkList = (req, res, next) => {
-  database.WorkList.find()
+  database.Work.find()
     .sort({ createAt: 'desc' })
     .populate('userId', { username: true, profileImageUrl: true })
-    .then(workList => {
-      res.json(workList);
+    .then(work => {
+      res.json(work);
     })
     .catch(error => {
       res.status(500).json(error);
@@ -206,26 +206,26 @@ exports.createWork = (req, res, next) => {
     requestedDate: req.body.requestedDate
   };
 
-  database.WorkList.create(newWork)
+  database.Work.create(newWork)
     .then(work => res.status(201).json(work))
     .catch(error => res.send(error));
 
   // .then(work => {
   //   //   database.Locations.findById(work.location._id)
   //   //     .then(location => {
-  //   //       location.workList.push(work.id);
+  //   //       location.work.push(work.id);
   //   //       location.save();
   //   //     })
   //   //     .catch(next);
 
   //   database.Users.findById(req.params.id)
   //     .then(user => {
-  //       user.workList.push(work.id);
-  //       // user.locations.workList.push(work.id);
+  //       user.work.push(work.id);
+  //       // user.locations.work.push(work.id);
   //       user
   //         .save()
   //         .then(work =>
-  //           database.WorkList.findById(work._id).populate('userId')
+  //           database.Work.findById(work._id).populate('userId')
   //         )
   //         .then(t => res.status(201).json(t))
   //         .catch(next);
@@ -236,7 +236,7 @@ exports.createWork = (req, res, next) => {
 };
 
 exports.readWork = (req, res, next) => {
-  database.WorkList.findById(req.params.id)
+  database.Work.findById(req.params.id)
     .then(work => res.status(200).json(work))
     .catch(error => res.send(error));
 };
@@ -262,15 +262,15 @@ exports.updateWork = (req, res, next) => {
   };
   // console.log(req.body);
 
-  // database.WorkList.findByIdAndUpdate(req.params.id, updatedWork, { new: true });
-  database.WorkList.findByIdAndUpdate(req.params.id, req.body, { new: true })
+  // database.Work.findByIdAndUpdate(req.params.id, updatedWork, { new: true });
+  database.Work.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .populate('work')
     .then(work => res.status(201).json(work))
     .catch(error => res.send(error));
 };
 
 exports.deleteWork = (req, res, next) => {
-  database.WorkList.findByIdAndRemove(req.params.id)
+  database.Work.findByIdAndRemove(req.params.id)
     .then(work => res.json(work))
     .catch(error => res.send(error));
 };

@@ -39,7 +39,16 @@ const workSchema = new mongoose.Schema(
       // lowercase: true,
       // trim: true,
       default: 'Unassigned',
-      enum: ['Unassigned', 'Prep', 'On Hold', 'In Progress', 'Pending', 'Purchasing Parts', 'Ordered Parts', 'Closed']
+      enum: [
+        'Unassigned',
+        'Prep',
+        'On Hold',
+        'In Progress',
+        'Pending',
+        'Purchasing Parts',
+        'Ordered Parts',
+        'Closed'
+      ]
     },
     category: {
       type: String,
@@ -122,12 +131,12 @@ const workSchema = new mongoose.Schema(
   }
 );
 
-// class WorkListClass {
+// class WorkClass {
 //   // methods for schema go here
 //   // http://mongoosejs.com/docs/advanced_schemas.html
 // }
 
-// workListSchema.loadClass(WorkListClass);
+// workSchema.loadClass(WorkListClass);
 const Work = mongoose.model('WorkList', workSchema);
 
 module.exports = Work;

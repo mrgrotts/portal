@@ -7,5 +7,5 @@ import workReducer from './workReducer';
 export default combineReducers({
   auth: authReducer,
   locations: locationsReducer,
-  workList: workReducer
+  work: workReducer
 });

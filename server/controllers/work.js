@@ -1,28 +1,28 @@
-const database = require("../database");
-const mongoose = require("mongoose");
+const database = require('../database');
+const mongoose = require('mongoose');
 
 exports.readWorkList = (req, res, next) => {
   database.Users.findById(req.params.userId).then(user => {
-    if (user.role === "Owner") {
-      database.WorkList.find()
-        .sort({ createdAt: "asc" })
-        .populate("location")
-        .populate("userId")
-        .then(workList => res.status(200).json(workList))
+    if (user.role === 'Owner') {
+      database.Work.find()
+        .sort({ createdAt: 'asc' })
+        .populate('location')
+        .populate('userId')
+        .then(work => res.status(200).json(work))
         .catch(error => res.send(error));
-    } else if (user.role === "Admin") {
-      database.WorkList.find()
-        .sort({ createdAt: "asc" })
-        .populate("location")
-        .populate("userId")
-        .then(workList => res.status(200).json(workList))
+    } else if (user.role === 'Admin') {
+      database.Work.find()
+        .sort({ createdAt: 'asc' })
+        .populate('location')
+        .populate('userId')
+        .then(work => res.status(200).json(work))
         .catch(error => res.send(error));
     } else {
-      database.WorkList.find({ userId: req.params.userId })
-        .sort({ createdAt: "asc" })
-        .populate("location")
-        .populate("userId")
-        .then(workList => res.status(200).json(workList))
+      database.Work.find({ userId: req.params.userId })
+        .sort({ createdAt: 'asc' })
+        .populate('location')
+        .populate('userId')
+        .then(work => res.status(200).json(work))
         .catch(error => res.send(error));
     }
   });
@@ -40,23 +40,23 @@ exports.createWork = (req, res, next) => {
 
   // console.log(newWork);
 
-  database.WorkList.create(newWork)
+  database.Work.create(newWork)
     .then(work => {
       database.Locations.findById(work.location)
         .then(location => {
-          location.workList.push(work._id);
+          location.work.push(work._id);
           location
             .save()
             .then(location => {
               database.Users.findById(req.params.userId)
                 .then(user => {
-                  user.workList.push(work._id);
+                  user.work.push(work._id);
                   user
                     .save()
                     .then(user =>
-                      database.WorkList.findById(work._id)
-                        .populate("location")
-                        .populate("userId")
+                      database.Work.findById(work._id)
+                        .populate('location')
+                        .populate('userId')
                     )
                     .then(t => res.status(201).json(t))
                     .catch(next);
@@ -71,7 +71,7 @@ exports.createWork = (req, res, next) => {
 };
 
 exports.readWork = (req, res, next) => {
-  database.WorkList.findById(req.params.workId)
+  database.Work.findById(req.params.workId)
     .then(work => res.status(200).json(work))
     .catch(error => res.send(error));
 };
@@ -97,7 +97,7 @@ exports.updateWork = async (req, res, next) => {
     requestedDeletion: req.body.requestedDeletion
   };
 
-  const work = await database.WorkList.findByIdAndUpdate(
+  const work = await database.Work.findByIdAndUpdate(
     req.params.workId,
     updatedWork,
     {
@@ -108,9 +108,9 @@ exports.updateWork = async (req, res, next) => {
   work
     .save()
     .then(work =>
-      database.WorkList.findById(work._id)
-        .populate("location")
-        .populate("userId")
+      database.Work.findById(work._id)
+        .populate('location')
+        .populate('userId')
         .then(work => res.status(200).json(work))
         .catch(error => res.send(error))
     )
@@ -118,7 +118,7 @@ exports.updateWork = async (req, res, next) => {
 };
 
 exports.deleteWork = (req, res, next) => {
-  database.WorkList.findByIdAndRemove(req.params.workId)
+  database.Work.findByIdAndRemove(req.params.workId)
     .then(work => res.json(work))
     .catch(error => res.send(error));
 };

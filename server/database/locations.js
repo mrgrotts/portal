@@ -1,19 +1,19 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const locationsSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Users",
+      ref: 'Users',
       required: true
     },
     company: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Companies"
+      ref: 'Companies'
     },
     name: {
       type: String,
-      required: "Please enter a location name"
+      required: 'Please enter a location name'
     },
     headquarters: {
       type: Boolean
@@ -29,7 +29,7 @@ const locationsSchema = new mongoose.Schema(
     },
     addressOne: {
       type: String,
-      required: "Please enter an address"
+      required: 'Please enter an address'
     },
     addressTwo: {
       type: String
@@ -45,20 +45,20 @@ const locationsSchema = new mongoose.Schema(
     },
     city: {
       type: String,
-      required: "Please enter a city"
+      required: 'Please enter a city'
     },
     county: {
       type: String
     },
     state: {
       type: String,
-      required: "Please enter a state",
+      required: 'Please enter a state',
       max: 2,
       min: 2
     },
     zipcode: {
       type: String,
-      required: "Please enter a zipcode",
+      required: 'Please enter a zipcode',
       max: 5,
       min: 5
     },
@@ -73,10 +73,10 @@ const locationsSchema = new mongoose.Schema(
       type: Number,
       default: -87.65
     },
-    workList: [
+    work: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "WorkList"
+        ref: 'WorkList'
       }
     ]
   },
@@ -91,6 +91,6 @@ const locationsSchema = new mongoose.Schema(
 // }
 
 // locationSchema.loadClass(LocationClass);
-const Locations = mongoose.model("Locations", locationsSchema);
+const Locations = mongoose.model('Locations', locationsSchema);
 
 module.exports = Locations;

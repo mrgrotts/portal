@@ -48,11 +48,11 @@ class Location extends Component {
     const style = { height: '100%', width: '100%' };
 
     let workList;
-    this.props.workList
+    this.props.work
       ? (workList = (
           <div>
-            <h4>{this.props.workList.length} WorkList</h4>
-            {this.props.workList.map(work => (
+            <h4>{this.props.work.length} WorkList</h4>
+            {this.props.work.map(work => (
               <div key={work._id}>
                 <p>
                   <Link to={`/work/${work._id}`}>
@@ -80,11 +80,22 @@ class Location extends Component {
             google={this.props.google}
             onClick={this.onMapClicked}
             style={style}
-            zoom={10}>
-            <Marker name={this.props.name} onClick={this.onMarkerClick} position={{ lat: this.props.latitude, lng: this.props.longitude }} />
-            <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow} onClose={this.onInfoWindowClose}>
+            zoom={10}
+          >
+            <Marker
+              name={this.props.name}
+              onClick={this.onMarkerClick}
+              position={{ lat: this.props.latitude, lng: this.props.longitude }}
+            />
+            <InfoWindow
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}
+              onClose={this.onInfoWindowClose}
+            >
               <div>
-                <p style={{ color: 'black', fontWeight: '600' }}>{this.state.selectedPlace.name}</p>
+                <p style={{ color: 'black', fontWeight: '600' }}>
+                  {this.state.selectedPlace.name}
+                </p>
                 <p style={{ color: 'black' }}>{this.props.addressOne}</p>
                 <p style={{ color: 'black' }}>{this.props.addressTwo}</p>
                 <p style={{ color: 'black' }}>

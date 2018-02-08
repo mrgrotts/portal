@@ -21,18 +21,27 @@ class App extends Component {
   }
 
   render() {
-    let routes = <BaseRoutes />;
+    let routes;
 
     if (this.props.isAuthenticated && this.props.user) {
-      // console.log(this.props.user.role);
+      console.log(this.props.user.role);
       switch (this.props.user.role) {
         case 'New Account':
           routes = <AdminRoutes />;
           break;
-        case 'Customer User' || 'Customer Manager':
+        case 'Customer User':
           routes = <CustomerRoutes />;
           break;
-        case 'Admin User' || 'Admin Manager' || 'Owner':
+        case 'Customer Manager':
+          routes = <CustomerRoutes />;
+          break;
+        case 'Admin User':
+          routes = <AdminRoutes />;
+          break;
+        case 'Admin Manager':
+          routes = <AdminRoutes />;
+          break;
+        case 'Owner':
           routes = <AdminRoutes />;
           break;
         default:

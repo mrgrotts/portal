@@ -5,7 +5,7 @@ exports.restAPI = (req, res, next) => {
     message: API_WELCOME_MESSAGE,
     usersSchema: '/users',
     locationsSchema: '/locations',
-    workListSchema: '/work'
+    workSchema: '/work'
   });
 };
 

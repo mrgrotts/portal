@@ -1,9 +1,9 @@
-const QuickBooks = require("node-quickbooks");
+const QuickBooks = require('node-quickbooks');
 
-const consumerKey = "Q0aIuU5BcaRH2vuDGblRpRm2dGNprV1g2407AqoFSgFk25yqnd";
-const consumerSecret = "VfCISeBd60Edv9kSKQtVGr8Mmpse9JI6moA7RhUp";
+const consumerKey = 'Q0aIuU5BcaRH2vuDGblRpRm2dGNprV1g2407AqoFSgFk25yqnd';
+const consumerSecret = 'VfCISeBd60Edv9kSKQtVGr8Mmpse9JI6moA7RhUp';
 
-QuickBooks.setOauthVersion("2.0");
+QuickBooks.setOauthVersion('2.0');
 
 // OAUTH 2 makes use of redirect requests
 let generateAntiForgery = session => {
@@ -14,17 +14,17 @@ let generateAntiForgery = session => {
 exports.buildInvoice = (invoiceData, callback) => {
   var invoice = {
     Deposit: 0,
-    domain: "QBO",
+    domain: 'QBO',
     sparse: false,
     MetaData: {
-      CreateTime: "2017-09-19T13:16:17-07:00", //use moment
-      LastUpdatedTime: "2017-09-19T13:16:17-07:00"
+      CreateTime: '2017-09-19T13:16:17-07:00', //use moment
+      LastUpdatedTime: '2017-09-19T13:16:17-07:00'
     },
-    TxnDate: "2018-09-19",
+    TxnDate: '2018-09-19',
     Line: [],
     TxnTaxDetail: {
       TxnTaxCodeRef: {
-        value: "2"
+        value: '2'
       },
       TotalTax: 26.82,
       TaxLine: [{}]
@@ -33,13 +33,13 @@ exports.buildInvoice = (invoiceData, callback) => {
       value: invoiceData.companyId
     },
     CustomerMemo: {
-      value: "Thank you for your business and have a great day!"
+      value: 'Thank you for your business and have a great day!'
     },
-    DueDate: "2018-10-20",
+    DueDate: '2018-10-20',
     TotalAmt: 362.07,
     ApplyTaxAfterDiscount: false,
-    PrintStatus: "NeedToPrint",
-    EmailStatus: "NotSet",
+    PrintStatus: 'NeedToPrint',
+    EmailStatus: 'NotSet',
     BillEmail: {
       Address: invoiceData.user
     },
@@ -49,22 +49,22 @@ exports.buildInvoice = (invoiceData, callback) => {
   var notes = invoiceData.notes;
   var i = 0;
 
-  while (notes.indexOf("\n") > -1) {
+  while (notes.indexOf('\n') > -1) {
     var val;
-    switch (notes.substring(0, notes.indexOf(":"))) {
-      case "PURCHASED":
+    switch (notes.substring(0, notes.indexOf(':'))) {
+      case 'PURCHASED':
         val = 121;
         break;
-      case "REPLACED":
+      case 'REPLACED':
         val = 122;
         break;
-      case "REPAIRED":
+      case 'REPAIRED':
         val = 123;
         break;
-      case "REMOVED":
+      case 'REMOVED':
         val = 124;
         break;
-      case "INSPECTED":
+      case 'INSPECTED':
         val = 125;
         break;
     }
@@ -73,48 +73,48 @@ exports.buildInvoice = (invoiceData, callback) => {
       Id: i,
       LineNum: i,
       Description: notes
-        .substring(notes.indexOf(":") + 1, notes.indexOf("\n"))
+        .substring(notes.indexOf(':') + 1, notes.indexOf('\n'))
         .trim(),
       Amount: 1.0,
-      DetailType: "SalesItemLineDetail",
+      DetailType: 'SalesItemLineDetail',
       SalesItemLineDetail: {
         ItemRef: {
           value: val,
-          name: notes.substring(0, notes.indexOf(":"))
+          name: notes.substring(0, notes.indexOf(':'))
         },
         UnitPrice: 1.0,
         Qty: 1,
         TaxCodeRef: {
-          value: "TAX"
+          value: 'TAX'
         }
       }
     });
     i++;
-    notes = notes.substring(notes.indexOf("\n") + 1);
+    notes = notes.substring(notes.indexOf('\n') + 1);
   }
 
   invoice.Line.push({
     Id: i,
     LineNum: i,
-    Description: "",
+    Description: '',
     Amount: invoiceData.hourlyrate * invoiceData.hoursspent,
-    DetailType: "SalesItemLineDetail",
+    DetailType: 'SalesItemLineDetail',
     SalesItemLineDetail: {
       ItemRef: {
         value: 127,
-        name: "Total Cost"
+        name: 'Total Cost'
       },
       UnitPrice: invoiceData.hourlyrate,
       Qty: invoiceData.hoursspent,
       TaxCodeRef: {
-        value: "TAX"
+        value: 'TAX'
       }
     }
   });
 
   invoice.Line.push({
     Amount: 1.0,
-    DetailType: "SubTotalLineDetail",
+    DetailType: 'SubTotalLineDetail',
     SubTotalLineDetail: {}
   });
 
@@ -123,72 +123,72 @@ exports.buildInvoice = (invoiceData, callback) => {
 
 exports.readInvoices = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
-    .populate("users")
-    .populate("locations")
-    .populate("workList")
-    .populate("invoices");
+    .populate('users')
+    .populate('locations')
+    .populate('work')
+    .populate('invoices');
 
   let invoices = await database.Invoices.find({ company: company._id })
-    .populate("company")
-    .populate("userId")
-    .populate("location")
-    .populate("work");
+    .populate('company')
+    .populate('userId')
+    .populate('location')
+    .populate('work');
 };
 
 exports.createInvoice = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
-    .populate("users")
-    .populate("locations")
-    .populate("workList")
-    .populate("invoices");
+    .populate('users')
+    .populate('locations')
+    .populate('work')
+    .populate('invoices');
 
   let invoices = await database.Invoices.find({ company: company._id })
-    .populate("company")
-    .populate("userId")
-    .populate("location")
-    .populate("work");
+    .populate('company')
+    .populate('userId')
+    .populate('location')
+    .populate('work');
 };
 
 exports.readInvoice = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
-    .populate("users")
-    .populate("locations")
-    .populate("workList")
-    .populate("invoices");
+    .populate('users')
+    .populate('locations')
+    .populate('work')
+    .populate('invoices');
 
   let invoices = await database.Invoices.find({ company: company._id })
-    .populate("company")
-    .populate("userId")
-    .populate("location")
-    .populate("work");
+    .populate('company')
+    .populate('userId')
+    .populate('location')
+    .populate('work');
 };
 
 exports.updateInvoice = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
-    .populate("users")
-    .populate("locations")
-    .populate("workList")
-    .populate("invoices");
+    .populate('users')
+    .populate('locations')
+    .populate('work')
+    .populate('invoices');
 
   let invoices = await database.Invoices.find({ company: company._id })
-    .populate("company")
-    .populate("userId")
-    .populate("location")
-    .populate("work");
+    .populate('company')
+    .populate('userId')
+    .populate('location')
+    .populate('work');
 };
 
 exports.deleteInvoice = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
-    .populate("users")
-    .populate("locations")
-    .populate("workList")
-    .populate("invoices");
+    .populate('users')
+    .populate('locations')
+    .populate('work')
+    .populate('invoices');
 
   let invoices = await database.Invoices.find({ company: company._id })
-    .populate("company")
-    .populate("userId")
-    .populate("location")
-    .populate("work");
+    .populate('company')
+    .populate('userId')
+    .populate('location')
+    .populate('work');
 };
 
 /*
