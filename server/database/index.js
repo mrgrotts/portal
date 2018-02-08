@@ -23,4 +23,4 @@ process.on("SIGINT", () => {
 module.exports.Users = require("./users");
 module.exports.Companies = require("./companies");
 module.exports.Locations = require("./locations");
-module.exports.Tickets = require("./tickets");
+module.exports.WorkList = require("./work");

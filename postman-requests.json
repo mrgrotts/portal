@@ -243,7 +243,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": 1,\n    \"phone\": 6303862219,\n    \"admin\": false,\n    \"tickets\": [],\n    \"locations\": [],\n    \"verified\": true,\n    \"email\": \"tom@gmail.com\",\n    \"password\": \"things123\",\n    \"__v\": 0,\n    \"updatedAt\": \"2018-01-18T21:51:51.688Z\",\n    \"profilePicture\": \"\"\n}"
+							"raw": "{\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": 1,\n    \"phone\": 6303862219,\n    \"admin\": false,\n    \"workList\": [],\n    \"locations\": [],\n    \"verified\": true,\n    \"email\": \"tom@gmail.com\",\n    \"password\": \"things123\",\n    \"__v\": 0,\n    \"updatedAt\": \"2018-01-18T21:51:51.688Z\",\n    \"profilePicture\": \"\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/api/sudo/users",
@@ -274,7 +274,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": 1,\n    \"phone\": 6303862219,\n    \"admin\": true,\n    \"tickets\": [],\n    \"locations\": [],\n    \"verified\": true,\n    \"_id\": \"5a4c80201a1ca52ae4c9c50a\",\n    \"email\": \"josephmgrotto@gmail.com\",\n    \"password\": \"$2a$10$CpMxLl42O01ql4T0zEgJee91rziTZ49z/oKAnJCRWA5Pkvw1RC5ve\",\n    \"__v\": 0,\n    \"updatedAt\": \"2018-01-18T21:51:51.688Z\",\n    \"profilePicture\": \"\"\n}"
+							"raw": "{\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": 1,\n    \"phone\": 6303862219,\n    \"admin\": true,\n    \"workList\": [],\n    \"locations\": [],\n    \"verified\": true,\n    \"_id\": \"5a4c80201a1ca52ae4c9c50a\",\n    \"email\": \"josephmgrotto@gmail.com\",\n    \"password\": \"$2a$10$CpMxLl42O01ql4T0zEgJee91rziTZ49z/oKAnJCRWA5Pkvw1RC5ve\",\n    \"__v\": 0,\n    \"updatedAt\": \"2018-01-18T21:51:51.688Z\",\n    \"profilePicture\": \"\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/api/sudo/users/5a612ea23a029a0a70e5799e",
@@ -327,7 +327,7 @@
 					"response": []
 				},
 				{
-					"name": "Sudo All Tickets",
+					"name": "Sudo All WorkList",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -341,7 +341,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/sudo/tickets",
+							"raw": "http://localhost:8080/api/sudo/work",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -350,7 +350,7 @@
 							"path": [
 								"api",
 								"sudo",
-								"tickets"
+								"workList"
 							]
 						},
 						"description": ""
@@ -358,7 +358,7 @@
 					"response": []
 				},
 				{
-					"name": "Sudo Read Ticket",
+					"name": "Sudo Read Work",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -372,7 +372,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/sudo/tickets/5a602b1e8ea3f4495837ccdd",
+							"raw": "http://localhost:8080/api/sudo/work/5a602b1e8ea3f4495837ccdd",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -381,7 +381,7 @@
 							"path": [
 								"api",
 								"sudo",
-								"tickets",
+								"workList",
 								"5a602b1e8ea3f4495837ccdd"
 							]
 						},
@@ -390,7 +390,7 @@
 					"response": []
 				},
 				{
-					"name": "Sudo Update Ticket",
+					"name": "Sudo Update Work",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -408,7 +408,7 @@
 							"raw": "{\n        \"status\": \"unassigned\",\n        \"category\": \"Residential Cleaning\",\n        \"comments\": {\n            \"children\": []\n        },\n        \"requestedDeletion\": false,\n        \"location\": \"27W223 Churchill Road\",\n        \"description\": \"i don't clean my house, can you do it for me\",\n        \"requestedDate\": \"1-22-18\"\n    }"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/sudo/tickets/5a602b1e8ea3f4495837ccdd",
+							"raw": "http://localhost:8080/api/sudo/work/5a602b1e8ea3f4495837ccdd",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -417,7 +417,7 @@
 							"path": [
 								"api",
 								"sudo",
-								"tickets",
+								"workList",
 								"5a602b1e8ea3f4495837ccdd"
 							]
 						},
@@ -426,7 +426,7 @@
 					"response": []
 				},
 				{
-					"name": "Sudo Delete Ticket",
+					"name": "Sudo Delete Work",
 					"request": {
 						"method": "DELETE",
 						"header": [
@@ -444,7 +444,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/sudo/tickets/5a602b1e8ea3f4495837ccdd",
+							"raw": "http://localhost:8080/api/sudo/work/5a602b1e8ea3f4495837ccdd",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -453,7 +453,7 @@
 							"path": [
 								"api",
 								"sudo",
-								"tickets",
+								"workList",
 								"5a602b1e8ea3f4495837ccdd"
 							]
 						},
@@ -540,7 +540,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"latitude\": 41.88,\n    \"longitude\": -87.00,\n    \"tickets\": [],\n    \"name\": \"Home\",\n    \"addressOne\": \"27W223 Churchill Road\",\n    \"addressTwo\": \"\",\n    \"city\": \"Winfield\",\n    \"state\": \"IL\",\n    \"zipcode\": \"60190\"\n}"
+							"raw": "{\n    \"latitude\": 41.88,\n    \"longitude\": -87.00,\n    \"workList\": [],\n    \"name\": \"Home\",\n    \"addressOne\": \"27W223 Churchill Road\",\n    \"addressTwo\": \"\",\n    \"city\": \"Winfield\",\n    \"state\": \"IL\",\n    \"zipcode\": \"60190\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/api/sudo/locations/5a5510c80461ee2ff05e3358",
@@ -809,7 +809,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstName\": \"Tom\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": 1,\n    \"phone\": 6306530495,\n    \"admin\": false,\n    \"tickets\": [],\n    \"locations\": [],\n    \"verified\": true,\n    \"email\": \"tom@gmail.com\",\n    \"profilePicture\": \"https://google.com\"\n}"
+							"raw": "{\n    \"firstName\": \"Tom\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": 1,\n    \"phone\": 6306530495,\n    \"admin\": false,\n    \"workList\": [],\n    \"locations\": [],\n    \"verified\": true,\n    \"email\": \"tom@gmail.com\",\n    \"profilePicture\": \"https://google.com\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/users",
@@ -874,7 +874,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": 1,\n    \"phone\": 6303862219,\n    \"admin\": true,\n    \"tickets\": [],\n    \"locations\": [],\n    \"verified\": true,\n    \"_id\": \"5a4c80201a1ca52ae4c9c50a\",\n    \"email\": \"josephmgrotto@gmail.com\",\n    \"profilePicture\": \"https://google.com\"\n}"
+							"raw": "{\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": 1,\n    \"phone\": 6303862219,\n    \"admin\": true,\n    \"workList\": [],\n    \"locations\": [],\n    \"verified\": true,\n    \"_id\": \"5a4c80201a1ca52ae4c9c50a\",\n    \"email\": \"josephmgrotto@gmail.com\",\n    \"profilePicture\": \"https://google.com\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/users/5a4c80201a1ca52ae4c9c50a",
@@ -929,7 +929,7 @@
 					"response": []
 				},
 				{
-					"name": "Admin All Tickets",
+					"name": "Admin All WorkList",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -943,7 +943,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/tickets",
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/work",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -953,7 +953,7 @@
 								"api",
 								"admin",
 								"5a612ea23a029a0a70e5799e",
-								"tickets"
+								"workList"
 							]
 						},
 						"description": ""
@@ -961,7 +961,7 @@
 					"response": []
 				},
 				{
-					"name": "Admin Create Ticket",
+					"name": "Admin Create Work",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -975,7 +975,7 @@
 							"raw": "{\n    \"status\": \"unassigned\",\n    \"category\": \"Plumbing\",\n    \"comments\": {\n        \"children\": []\n    },\n    \"requestedDeletion\": false,\n    \"location\": \"27W223 Churchill Road\",\n    \"description\": \"i don't clean my house, can you do it for me\",\n    \"requestedDate\": \"3-22-18\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/tickets",
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/work",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -985,7 +985,7 @@
 								"api",
 								"admin",
 								"5a612ea23a029a0a70e5799e",
-								"tickets"
+								"workList"
 							]
 						},
 						"description": ""
@@ -993,7 +993,7 @@
 					"response": []
 				},
 				{
-					"name": "Admin Read Ticket",
+					"name": "Admin Read Work",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -1007,7 +1007,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/tickets/5a602b1e8ea3f4495837ccdd",
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/work/5a602b1e8ea3f4495837ccdd",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1017,7 +1017,7 @@
 								"api",
 								"admin",
 								"5a612ea23a029a0a70e5799e",
-								"tickets",
+								"workList",
 								"5a602b1e8ea3f4495837ccdd"
 							]
 						},
@@ -1026,7 +1026,7 @@
 					"response": []
 				},
 				{
-					"name": "Admin Update Ticket",
+					"name": "Admin Update Work",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -1040,7 +1040,7 @@
 							"raw": "{\n    \"status\": \"unassigned\",\n    \"category\": \"Residential Cleaning\",\n    \"comments\": {\n        \"children\": []\n    },\n    \"requestedDeletion\": false,\n    \"_id\": \"5a602b1e8ea3f4495837ccdd\",\n    \"userId\": \"5a4c7998fb4fb526c0100abe\",\n    \"location\": \"27W223 Churchill Road\",\n    \"description\": \"i don't clean my house, can you do it for me\",\n    \"requestedDate\": \"3-22-18\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/tickets/5a602b1e8ea3f4495837ccdd",
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/work/5a602b1e8ea3f4495837ccdd",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1050,7 +1050,7 @@
 								"api",
 								"admin",
 								"5a612ea23a029a0a70e5799e",
-								"tickets",
+								"workList",
 								"5a602b1e8ea3f4495837ccdd"
 							]
 						},
@@ -1059,7 +1059,7 @@
 					"response": []
 				},
 				{
-					"name": "Admin Delete Ticket",
+					"name": "Admin Delete Work",
 					"request": {
 						"method": "DELETE",
 						"header": [
@@ -1073,7 +1073,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/tickets/5a602b1e8ea3f4495837ccdd",
+							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/work/5a602b1e8ea3f4495837ccdd",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1083,7 +1083,7 @@
 								"api",
 								"admin",
 								"5a612ea23a029a0a70e5799e",
-								"tickets",
+								"workList",
 								"5a602b1e8ea3f4495837ccdd"
 							]
 						},
@@ -1168,7 +1168,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"latitude\": 100,\n    \"longitude\": -200,\n    \"tickets\": [],\n    \"name\": \"madeup\",\n    \"addressOne\": \"is this real\",\n    \"addressTwo\": \"\",\n    \"city\": \"idk\",\n    \"state\": \"al\",\n    \"zipcode\": \"12345\"\n}"
+							"raw": "{\n    \"latitude\": 100,\n    \"longitude\": -200,\n    \"workList\": [],\n    \"name\": \"madeup\",\n    \"addressOne\": \"is this real\",\n    \"addressTwo\": \"\",\n    \"city\": \"idk\",\n    \"state\": \"al\",\n    \"zipcode\": \"12345\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/locations",
@@ -1200,7 +1200,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"latitude\": 41.88,\n    \"longitude\": -88,\n    \"tickets\": [],\n    \"name\": \"Home\",\n    \"addressOne\": \"27W223 Churchill Road\",\n    \"addressTwo\": \"\",\n    \"city\": \"Winfield\",\n    \"state\": \"IL\",\n    \"zipcode\": \"60190\"\n}"
+							"raw": "{\n    \"latitude\": 41.88,\n    \"longitude\": -88,\n    \"workList\": [],\n    \"name\": \"Home\",\n    \"addressOne\": \"27W223 Churchill Road\",\n    \"addressTwo\": \"\",\n    \"city\": \"Winfield\",\n    \"state\": \"IL\",\n    \"zipcode\": \"60190\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/locations/5a5510c80461ee2ff05e3358",
@@ -1456,11 +1456,11 @@
 			]
 		},
 		{
-			"name": "Tickets",
+			"name": "WorkList",
 			"description": "",
 			"item": [
 				{
-					"name": "Ticket Schema",
+					"name": "Work Schema",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -1477,14 +1477,14 @@
 							"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/tickets",
+							"raw": "http://localhost:8080/work",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"tickets"
+								"workList"
 							]
 						},
 						"description": ""
@@ -1492,7 +1492,7 @@
 					"response": []
 				},
 				{
-					"name": "All Tickets",
+					"name": "All WorkList",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -1509,7 +1509,7 @@
 							"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/admin/tickets",
+							"raw": "http://localhost:8080/api/admin/work",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1518,7 +1518,7 @@
 							"path": [
 								"api",
 								"admin",
-								"tickets"
+								"workList"
 							]
 						},
 						"description": ""
@@ -1526,7 +1526,7 @@
 					"response": []
 				},
 				{
-					"name": "User Tickets",
+					"name": "User WorkList",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -1547,7 +1547,7 @@
 							"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/tickets",
+							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/work",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1557,7 +1557,7 @@
 								"api",
 								"users",
 								"5a4c7998fb4fb526c0100abe",
-								"tickets"
+								"workList"
 							]
 						},
 						"description": ""
@@ -1565,7 +1565,7 @@
 					"response": []
 				},
 				{
-					"name": "Create Ticket",
+					"name": "Create Work",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -1586,7 +1586,7 @@
 							"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/tickets",
+							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/work",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1596,7 +1596,7 @@
 								"api",
 								"users",
 								"5a4c7998fb4fb526c0100abe",
-								"tickets"
+								"workList"
 							]
 						},
 						"description": ""
@@ -1604,7 +1604,7 @@
 					"response": []
 				},
 				{
-					"name": "Read Ticket",
+					"name": "Read Work",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -1625,7 +1625,7 @@
 							"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/tickets/5a53b2f65f663c1618ae5efa",
+							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/work/5a53b2f65f663c1618ae5efa",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1635,7 +1635,7 @@
 								"api",
 								"users",
 								"5a4c7998fb4fb526c0100abe",
-								"tickets",
+								"workList",
 								"5a53b2f65f663c1618ae5efa"
 							]
 						},
@@ -1644,7 +1644,7 @@
 					"response": []
 				},
 				{
-					"name": "Update Ticket",
+					"name": "Update Work",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -1665,7 +1665,7 @@
 							"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE PLEASE PLEASEEEEE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/tickets/5a53b2f65f663c1618ae5efa",
+							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/work/5a53b2f65f663c1618ae5efa",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1675,7 +1675,7 @@
 								"api",
 								"users",
 								"5a4c7998fb4fb526c0100abe",
-								"tickets",
+								"workList",
 								"5a53b2f65f663c1618ae5efa"
 							]
 						},
@@ -1684,7 +1684,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete Ticket",
+					"name": "Delete Work",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -1705,7 +1705,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/tickets/5a53b2f65f663c1618ae5efa",
+							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/work/5a53b2f65f663c1618ae5efa",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1715,7 +1715,7 @@
 								"api",
 								"users",
 								"5a4c7998fb4fb526c0100abe",
-								"tickets",
+								"workList",
 								"5a53b2f65f663c1618ae5efa"
 							]
 						},

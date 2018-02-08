@@ -4,23 +4,23 @@ exports.readCompanies = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -29,30 +29,30 @@ exports.readCompanies = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.createCompany = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -61,30 +61,30 @@ exports.createCompany = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.readCompany = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -93,30 +93,30 @@ exports.readCompany = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.updateCompany = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -125,30 +125,30 @@ exports.updateCompany = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.deleteCompany = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -157,30 +157,30 @@ exports.deleteCompany = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.readCompanyUsers = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -189,30 +189,30 @@ exports.readCompanyUsers = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.createCompanyUser = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -221,30 +221,30 @@ exports.createCompanyUser = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.readCompanyUser = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -253,30 +253,30 @@ exports.readCompanyUser = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.updateCompanyUser = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -285,30 +285,30 @@ exports.updateCompanyUser = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.deleteCompanyUser = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -317,30 +317,30 @@ exports.deleteCompanyUser = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
-exports.readCompanyTickets = async (req, res, next) => {
+exports.readCompanyWorkList = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -349,30 +349,30 @@ exports.readCompanyTickets = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
-exports.createCompanyTicket = async (req, res, next) => {
+exports.createCompanyWork = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -381,30 +381,30 @@ exports.createCompanyTicket = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
-exports.readCompanyTicket = async (req, res, next) => {
+exports.readCompanyWork = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -413,30 +413,30 @@ exports.readCompanyTicket = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
-exports.updateCompanyTicket = async (req, res, next) => {
+exports.updateCompanyWork = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -445,30 +445,30 @@ exports.updateCompanyTicket = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
-exports.deleteCompanyTicket = async (req, res, next) => {
+exports.deleteCompanyWork = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -477,30 +477,30 @@ exports.deleteCompanyTicket = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
-exports.readCompanyTicketUsers = async (req, res, next) => {
+exports.readCompanyWorkUsers = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -509,30 +509,30 @@ exports.readCompanyTicketUsers = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
-exports.createCompanyTicketUser = async (req, res, next) => {
+exports.createCompanyWorkUser = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -541,30 +541,30 @@ exports.createCompanyTicketUser = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
-exports.readCompanyTicketUser = async (req, res, next) => {
+exports.readCompanyWorkUser = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -573,30 +573,30 @@ exports.readCompanyTicketUser = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
-exports.updateCompanyTicketUser = async (req, res, next) => {
+exports.updateCompanyWorkUser = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -605,30 +605,30 @@ exports.updateCompanyTicketUser = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
-exports.deleteCompanyTicketUser = async (req, res, next) => {
+exports.deleteCompanyWorkUser = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -637,30 +637,30 @@ exports.deleteCompanyTicketUser = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.readCompanyInvoices = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -669,30 +669,30 @@ exports.readCompanyInvoices = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.createCompanyInvoice = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -701,30 +701,30 @@ exports.createCompanyInvoice = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.readCompanyInvoice = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -733,30 +733,30 @@ exports.readCompanyInvoice = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.updateCompanyInvoice = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -765,30 +765,30 @@ exports.updateCompanyInvoice = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.deleteCompanyInvoice = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -797,30 +797,30 @@ exports.deleteCompanyInvoice = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.readCompanyLocations = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -829,30 +829,30 @@ exports.readCompanyLocations = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.createCompanyLocation = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -861,30 +861,30 @@ exports.createCompanyLocation = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.readCompanyLocation = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -893,30 +893,30 @@ exports.readCompanyLocation = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.updateCompanyLocation = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -925,29 +925,29 @@ exports.updateCompanyLocation = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 exports.deleteCompanyLocation = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -956,30 +956,30 @@ exports.deleteCompanyLocation = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.readCompanyLocationsUsers = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -988,30 +988,30 @@ exports.readCompanyLocationsUsers = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.createCompanyLocationUser = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -1020,30 +1020,30 @@ exports.createCompanyLocationUser = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.readCompanyLocationUser = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -1052,30 +1052,30 @@ exports.readCompanyLocationUser = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.updateCompanyLocationUser = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -1084,30 +1084,30 @@ exports.updateCompanyLocationUser = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.deleteCompanyLocationUser = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -1116,30 +1116,30 @@ exports.deleteCompanyLocationUser = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
-exports.readCompanyLocationTickets = async (req, res, next) => {
+exports.readCompanyLocationWorkList = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -1148,30 +1148,30 @@ exports.readCompanyLocationTickets = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
-exports.createCompanyLocationTicket = async (req, res, next) => {
+exports.createCompanyLocationWork = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -1180,30 +1180,30 @@ exports.createCompanyLocationTicket = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
-exports.readCompanyLocationTicket = async (req, res, next) => {
+exports.readCompanyLocationWork = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -1212,30 +1212,30 @@ exports.readCompanyLocationTicket = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
-exports.updateCompanyLocationTicket = async (req, res, next) => {
+exports.updateCompanyLocationWork = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -1244,30 +1244,30 @@ exports.updateCompanyLocationTicket = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
-exports.deleteCompanyLocationTicket = async (req, res, next) => {
+exports.deleteCompanyLocationWork = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -1276,30 +1276,30 @@ exports.deleteCompanyLocationTicket = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.readCompanyLocationInvoices = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -1308,30 +1308,30 @@ exports.readCompanyLocationInvoices = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.createCompanyLocationInvoice = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -1340,30 +1340,30 @@ exports.createCompanyLocationInvoice = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.readCompanyLocationInvoice = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -1372,30 +1372,30 @@ exports.readCompanyLocationInvoice = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.updateCompanyLocationInvoice = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -1404,30 +1404,30 @@ exports.updateCompanyLocationInvoice = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.deleteCompanyLocationInvoice = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -1436,30 +1436,30 @@ exports.deleteCompanyLocationInvoice = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
-exports.readCompanyLocationTicketUsers = async (req, res, next) => {
+exports.readCompanyLocationWorkUsers = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -1468,30 +1468,30 @@ exports.readCompanyLocationTicketUsers = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
-exports.createCompanyLocationUserTicketUser = async (req, res, next) => {
+exports.createCompanyLocationUserWorkUser = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -1500,30 +1500,30 @@ exports.createCompanyLocationUserTicketUser = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
-exports.readCompanyLocationTicketUser = async (req, res, next) => {
+exports.readCompanyLocationWorkUser = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -1532,30 +1532,30 @@ exports.readCompanyLocationTicketUser = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
-exports.updateCompanyLocationTicketUser = async (req, res, next) => {
+exports.updateCompanyLocationWorkUser = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -1564,30 +1564,30 @@ exports.updateCompanyLocationTicketUser = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
-exports.deleteCompanyLocationTicketUser = async (req, res, next) => {
+exports.deleteCompanyLocationWorkUser = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
   console.log(company);
 
   let users = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let locations = await database.Locations.find({ company: company._id })
     .populate("company")
     .populate("userId")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
-  let tickets = await database.Tickets.find({ company: company._id })
+  let workList = await database.WorkList.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location");
@@ -1596,31 +1596,31 @@ exports.deleteCompanyLocationTicketUser = async (req, res, next) => {
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
-// exports.readCompanyTickets = async (req, res, next) => {
+// exports.readCompanyWorkList = async (req, res, next) => {
 //   let user = await database.Users.findById(req.params.userId);
 //   console.log(user);
-//   let tickets = [];
+//   let workList = [];
 
 //   switch (user.role) {
 //     case "Super Admin":
-//       tickets = await database.Tickets.find();
+//       workList = await database.WorkList.find();
 //     case "Owner":
-//       tickets = await database.Tickets.find({ company: user.company })
+//       workList = await database.WorkList.find({ company: user.company })
 //         .populate("userId")
 //         .populate("company")
 //         .populate("location")
 //         .populate("team");
 //     case "Admin":
-//       tickets = await database.Tickets.find({ company: user.company })
+//       workList = await database.WorkList.find({ company: user.company })
 //         .populate("userId")
 //         .populate("company")
 //         .populate("location")
 //         .populate("team");
 //     case "User":
-//       tickets = await database.Tickets.find({
+//       workList = await database.WorkList.find({
 //         company: user.company,
 //         $match: { team: user._id }
 //       })
@@ -1629,13 +1629,13 @@ exports.deleteCompanyLocationTicketUser = async (req, res, next) => {
 //         .populate("location")
 //         .populate("team");
 //     default:
-//       tickets = await database.Tickets.find({ company: user.company })
+//       workList = await database.WorkList.find({ company: user.company })
 //         .populate("userId")
 //         .populate("company")
 //         .populate("location")
 //         .populate("team");
 //   }
 
-//   console.log(tickets);
-//   return res.status(200).json(tickets);
+//   console.log(workList);
+//   return res.status(200).json(workList);
 // };

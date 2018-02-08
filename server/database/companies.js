@@ -30,10 +30,10 @@ const companiesSchema = new mongoose.Schema(
         ref: "Locations"
       }
     ],
-    tickets: [
+    workList: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Tickets"
+        ref: "WorkList"
       }
     ]
   },

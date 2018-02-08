@@ -36,7 +36,7 @@ exports.authorizeUser = (req, res, next) => {
   database.Users.findById(req.user)
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .then(user => {
       req.user = user;
       // console.log("[USER FOUND]", user);

@@ -1,0 +1,27 @@
+.WorkForm {
+}
+
+.WorkFormInputContainer {
+  margin-top: 1.5rem;
+}
+
+.WorkFormAddLocation {
+  box-sizing: inherit;
+  padding: 10px;
+  width: 100%;
+}
+
+.WorkFormAddLocationLabel {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 14px;
+}
+
+.WorkFormAddLocationButton {
+  background-color: #006eb6;
+  border-radius: 5px;
+  color: white;
+  font-weight: 500;
+  padding: 6px 10px;
+  text-decoration: none;
+}

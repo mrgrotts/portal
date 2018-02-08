@@ -1,20 +1,20 @@
-import api from "../../../api";
+import api from '../../../api';
 
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
 
-import { wrapper as googleAPIComponent } from "../../../hoc/googleAPIComponent";
-import handleErrors from "../../../hoc/handleErrors";
+import { wrapper as googleAPIComponent } from '../../../hoc/googleAPIComponent';
+import handleErrors from '../../../hoc/handleErrors';
 
-import AutocompleteWrapper from "../../../components/UI/Maps/Autocomplete/Autocomplete";
-import Map from "../../../components/UI/Maps";
-import InfoWindow from "../../../components/UI/Maps/InfoWindow/InfoWindow";
-import Marker from "../../../components/UI/Maps/Marker/Marker";
+import AutocompleteWrapper from '../../../components/UI/Maps/Autocomplete/Autocomplete';
+import Map from '../../../components/UI/Maps';
+import InfoWindow from '../../../components/UI/Maps/InfoWindow/InfoWindow';
+import Marker from '../../../components/UI/Maps/Marker/Marker';
 
-import * as actions from "../../../actions";
+import * as actions from '../../../actions';
 
-import classes from "./Builder.css";
+import classes from './Builder.css';
 
 class Builder extends Component {
   state = {
@@ -50,8 +50,7 @@ class Builder extends Component {
     });
   };
 
-  onSearch = (location, lat, lng, phone) =>
-    console.log(location, lat, lng, phone);
+  onSearch = (location, lat, lng, phone) => console.log(location, lat, lng, phone);
 
   render() {
     let counter = 0;
@@ -66,7 +65,7 @@ class Builder extends Component {
           <div className={classes.columnTwo}>
             <div className={classes.widget}>
               <div>
-                <h4>Job Number</h4>
+                <h4>Work Number</h4>
               </div>
               <div>
                 <h4>Category</h4>
@@ -91,28 +90,14 @@ class Builder extends Component {
             <div className={classes.widget}>
               <div
                 style={{
-                  height: "300px",
-                  width: "300px"
+                  height: '300px',
+                  width: '300px'
                 }}>
-                <Map
-                  center={position}
-                  id={JSON.stringify(counter++)}
-                  google={this.props.google}
-                  onClick={this.onMapClick}
-                  zoom={10}>
-                  <Marker
-                    name={"Test Marker"}
-                    onClick={this.onMarkerClick}
-                    position={position}
-                  />
-                  <InfoWindow
-                    marker={this.state.activeMarker}
-                    visible={this.state.showingInfoWindow}
-                    onClose={this.onInfoWindowClose}>
+                <Map center={position} id={JSON.stringify(counter++)} google={this.props.google} onClick={this.onMapClick} zoom={10}>
+                  <Marker name={'Test Marker'} onClick={this.onMarkerClick} position={position} />
+                  <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow} onClose={this.onInfoWindowClose}>
                     <div>
-                      <p style={{ color: "black" }}>
-                        {this.state.selectedPlace.name}
-                      </p>
+                      <p style={{ color: 'black' }}>{this.state.selectedPlace.name}</p>
                     </div>
                   </InfoWindow>
                 </Map>
@@ -136,7 +121,7 @@ const mapDispatchToProps = dispatch => ({
 export default connect(mapStateToProps, mapDispatchToProps)(
   googleAPIComponent({
     apiKey: process.env.GOOGLE_MAPS_API_KEY,
-    libraries: ["places"]
+    libraries: ['places']
   })(handleErrors(Builder, api))
 );
 

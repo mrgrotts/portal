@@ -1,5 +1,5 @@
 module.exports = {
-  API_WELCOME_MESSAGE: 'Welcome to the Ticket Portal API.',
+  API_WELCOME_MESSAGE: 'Welcome to the Work Portal API.',
   ADMIN_ACCESS_DENIED: 'Not an Admin.',
   ACCOUNT_NOT_AUTHORIZED: 'Unauthorized.',
   ACCOUNT_NOT_VERIFIED: 'Please verify your account.',
@@ -13,9 +13,9 @@ module.exports = {
     'Registration successful. Please check your inbox to verify your email.',
   REGISTRATION_FAILED: 'Email already registered.',
   SESSION_TIMEOUT: 'Please login.',
-  TICKET_UPDATE: 'Ticket updated.',
-  TICKET_SUBMITTE: 'Ticket submitted.',
-  TICKET_DELETE: 'Ticket deletion request submitted.',
+  WORK_UPDATE: 'Work updated.',
+  WORK_SUBMITTE: 'Work submitted.',
+  WORK_DELETE: 'Work deletion request submitted.',
   VERIFICATION_SUCCESS: 'Account has been verified.',
   VERIFICATION_FAILED: 'Verification failed.'
 };
@@ -34,9 +34,9 @@ module.exports = {
   REGISTRATION_SUCCESS,
   REGISTRATION_FAILED,
   SESSION_TIMEOUT,
-  TICKET_UPDATE,
-  TICKET_SUBMITTE,
-  TICKET_DELETE,
+  WORK_UPDATE,
+  WORK_SUBMITTE,
+  WORK_DELETE,
   VERIFICATION_SUCCESS,
   VERIFICATION_FAILED
 } = require('./constants');

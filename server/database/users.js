@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const usersSchema = new mongoose.Schema(
   {
@@ -14,55 +14,47 @@ const usersSchema = new mongoose.Schema(
     },
     company: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Companies"
+      ref: 'Companies'
     },
     firstName: {
       type: String,
-      default: ""
+      default: ''
     },
     lastName: {
       type: String,
-      default: ""
+      default: ''
     },
     countryCode: {
       type: Number,
       trim: true,
-      default: "",
-      match: [/^\+?\d+[\d\s]+$/, "Please use a valid country code"]
+      default: '',
+      match: [/^\+?\d+[\d\s]+$/, 'Please use a valid country code']
     },
     phone: {
       type: Number,
       trim: true,
-      default: "",
-      match: [/^\+?\d+[\d\s]+$/, "Please use a valid phone number"]
+      default: '',
+      match: [/^\+?\d+[\d\s]+$/, 'Please use a valid phone number']
     },
     profilePicture: {
       type: String,
-      default: ""
+      default: ''
     },
     role: {
       type: String,
-      enum: [
-        "New Account",
-        "Customer User",
-        "Customer Manager",
-        "Admin User",
-        "Admin Manager",
-        "Admin Owner",
-        "Super Admin"
-      ],
-      default: "New Account"
+      enum: ['New Account', 'Customer User', 'Customer Manager', 'Admin User', 'Admin Manager', 'Admin Owner', 'Super Admin'],
+      default: 'New Account'
     },
-    tickets: [
+    workList: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Tickets"
+        ref: 'WorkList'
       }
     ],
     locations: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Locations"
+        ref: 'Locations'
       }
     ],
     verified: {
@@ -75,8 +67,8 @@ const usersSchema = new mongoose.Schema(
   }
 );
 
-usersSchema.pre("save", function(next) {
-  if (!this.isModified("password")) {
+usersSchema.pre('save', function(next) {
+  if (!this.isModified('password')) {
     return next();
   }
 
@@ -107,5 +99,5 @@ usersSchema.methods.isVerified = function(next) {
   }
 };
 
-const Users = mongoose.model("Users", usersSchema);
+const Users = mongoose.model('Users', usersSchema);
 module.exports = Users;

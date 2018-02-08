@@ -19,7 +19,7 @@ exports.login = (req, res) =>
   })
     .populate("company")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .then(user => {
       // console.log("[LOGIN]", user);
       if (user.verified) {

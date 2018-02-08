@@ -125,70 +125,70 @@ exports.readInvoices = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let invoices = await database.Invoices.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.createInvoice = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let invoices = await database.Invoices.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.readInvoice = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let invoices = await database.Invoices.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.updateInvoice = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let invoices = await database.Invoices.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 exports.deleteInvoice = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let invoices = await database.Invoices.find({ company: company._id })
     .populate("company")
     .populate("userId")
     .populate("location")
-    .populate("ticket");
+    .populate("work");
 };
 
 /*

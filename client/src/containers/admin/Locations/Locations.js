@@ -1,16 +1,16 @@
-import api from "../../../api";
+import api from '../../../api';
 
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import handleErrors from "../../../hoc/handleErrors";
+import handleErrors from '../../../hoc/handleErrors';
 
-import Spinner from "../../../components/UI/Spinner/Spinner";
-import Location from "../../../components/Location/Location";
+import Spinner from '../../../components/UI/Spinner/Spinner';
+import Location from './Location/Location';
 
-import * as actions from "../../../actions";
+import * as actions from '../../../actions';
 
-import classes from "./Locations.css";
+import classes from './Locations.css';
 
 class Locations extends Component {
   async componentDidMount() {
@@ -18,10 +18,7 @@ class Locations extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return (
-      nextProps.locations !== this.props.locations ||
-      nextProps.children !== this.props.children
-    );
+    return nextProps.locations !== this.props.locations || nextProps.children !== this.props.children;
   }
 
   readLocations = async () => await this.props.readLocations();
@@ -33,11 +30,7 @@ class Locations extends Component {
 
     if (!this.props.loading) {
       locations = this.props.locations.map(location => (
-        <Location
-          key={location._id}
-          {...location}
-          delete={this.deleteLocation.bind(this, location._id)}
-        />
+        <Location key={location._id} {...location} delete={this.deleteLocation.bind(this, location._id)} />
       ));
     }
 
@@ -59,11 +52,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   readLocations: () => dispatch(actions.readLocations()),
-  updateLocation: (id, location) =>
-    dispatch(actions.updateLocation(id, location)),
+  updateLocation: (id, location) => dispatch(actions.updateLocation(id, location)),
   deleteLocation: id => dispatch(actions.deleteLocation(id))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  handleErrors(Locations, api)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(handleErrors(Locations, api));

@@ -2,10 +2,10 @@ import { combineReducers } from 'redux';
 
 import authReducer from './authReducer';
 import locationsReducer from './locationsReducer';
-import ticketsReducer from './ticketsReducer';
+import workReducer from './workReducer';
 
 export default combineReducers({
   auth: authReducer,
   locations: locationsReducer,
-  tickets: ticketsReducer
+  workList: workReducer
 });

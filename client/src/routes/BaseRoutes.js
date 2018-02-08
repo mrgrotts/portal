@@ -3,8 +3,10 @@ import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 
 import asyncComponent from "../hoc/asyncComponent";
 
-import Builder from "../containers/base/Builder/Builder";
-const asyncAuth = asyncComponent(() => import("../containers/Auth/Auth"));
+import Builder from "../containers/Shared/Builder/Builder";
+const asyncAuth = asyncComponent(() =>
+  import("../containers/Shared/Auth/Auth")
+);
 
 const BaseRoutes = props => (
   <Switch>

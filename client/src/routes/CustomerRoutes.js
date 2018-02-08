@@ -1,30 +1,18 @@
-import React from "react";
-import { Redirect, Route, Switch, withRouter } from "react-router-dom";
+import React from 'react';
+import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 
-import asyncComponent from "../hoc/asyncComponent";
+import asyncComponent from '../hoc/asyncComponent';
 
 // CUSTOMER COMPONENTS
-import Builder from "../containers/customer/Builder/Builder";
-import Logout from "../containers/Auth/Logout/Logout";
-const asyncAuth = asyncComponent(() => import("../containers/Auth/Auth"));
-const asyncLocations = asyncComponent(() =>
-  import("../containers/customer/Locations/Locations")
-);
-const asyncLocationCreate = asyncComponent(() =>
-  import("../containers/customer/Locations/LocationForm/LocationCreate")
-);
-const asyncLocationUpdate = asyncComponent(() =>
-  import("../containers/customer/Locations/LocationForm/LocationUpdate")
-);
-const asyncTickets = asyncComponent(() =>
-  import("../containers/customer/Tickets/Tickets")
-);
-const asyncTicketCreate = asyncComponent(() =>
-  import("../containers/customer/Tickets/TicketForm/TicketCreate")
-);
-const asyncTicketUpdate = asyncComponent(() =>
-  import("../containers/customer/Tickets/TicketForm/TicketUpdate")
-);
+import Builder from '../containers/Customer/Builder/Builder';
+import Logout from '../containers/Shared/Auth/Logout/Logout';
+const asyncAuth = asyncComponent(() => import('../containers/Shared/Auth/Auth'));
+const asyncLocations = asyncComponent(() => import('../containers/Customer/Locations/Locations'));
+const asyncLocationCreate = asyncComponent(() => import('../containers/Customer/Locations/LocationForm/LocationCreate'));
+const asyncLocationUpdate = asyncComponent(() => import('../containers/Customer/Locations/LocationForm/LocationUpdate'));
+const asyncWorkList = asyncComponent(() => import('../containers/Customer/WorkList/WorkList'));
+const asyncWorkCreate = asyncComponent(() => import('../containers/Customer/WorkList/WorkForm/WorkCreate'));
+const asyncWorkUpdate = asyncComponent(() => import('../containers/Customer/WorkList/WorkForm/WorkUpdate'));
 
 const CustomerRoutes = props => (
   <Switch>
@@ -33,9 +21,9 @@ const CustomerRoutes = props => (
     <Route path="/locations/create" component={asyncLocationCreate} />
     <Route path="/locations/:id" component={asyncLocationUpdate} />
     <Route path="/locations" component={asyncLocations} />
-    <Route path="/tickets/create" component={asyncTicketCreate} />
-    <Route path="/tickets/:id" component={asyncTicketUpdate} />
-    <Route path="/tickets" component={asyncTickets} />
+    <Route path="/work/create" component={asyncWorkCreate} />
+    <Route path="/work/:id" component={asyncWorkUpdate} />
+    <Route path="/work" component={asyncWorkList} />
     <Route exact path="/" component={Builder} />
     <Redirect to="/" />
   </Switch>

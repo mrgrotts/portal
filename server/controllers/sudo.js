@@ -184,20 +184,20 @@ exports.deleteLocation = (req, res, next) => {
     .catch(error => res.send(error));
 };
 
-exports.getTickets = (req, res, next) => {
-  database.Tickets.find()
+exports.getWorkList = (req, res, next) => {
+  database.WorkList.find()
     .sort({ createAt: 'desc' })
     .populate('userId', { username: true, profileImageUrl: true })
-    .then(tickets => {
-      res.json(tickets);
+    .then(workList => {
+      res.json(workList);
     })
     .catch(error => {
       res.status(500).json(error);
     });
 };
 
-exports.createTicket = (req, res, next) => {
-  const newTicket = {
+exports.createWork = (req, res, next) => {
+  const newWork = {
     userId: req.params.id,
     category: req.body.category,
     location: req.body.location,
@@ -206,26 +206,26 @@ exports.createTicket = (req, res, next) => {
     requestedDate: req.body.requestedDate
   };
 
-  database.Tickets.create(newTicket)
-    .then(ticket => res.status(201).json(ticket))
+  database.WorkList.create(newWork)
+    .then(work => res.status(201).json(work))
     .catch(error => res.send(error));
 
-  // .then(ticket => {
-  //   //   database.Locations.findById(ticket.location._id)
+  // .then(work => {
+  //   //   database.Locations.findById(work.location._id)
   //   //     .then(location => {
-  //   //       location.tickets.push(ticket.id);
+  //   //       location.workList.push(work.id);
   //   //       location.save();
   //   //     })
   //   //     .catch(next);
 
   //   database.Users.findById(req.params.id)
   //     .then(user => {
-  //       user.tickets.push(ticket.id);
-  //       // user.locations.tickets.push(ticket.id);
+  //       user.workList.push(work.id);
+  //       // user.locations.workList.push(work.id);
   //       user
   //         .save()
-  //         .then(ticket =>
-  //           database.Tickets.findById(ticket._id).populate('userId')
+  //         .then(work =>
+  //           database.WorkList.findById(work._id).populate('userId')
   //         )
   //         .then(t => res.status(201).json(t))
   //         .catch(next);
@@ -235,14 +235,14 @@ exports.createTicket = (req, res, next) => {
   // .catch(next);
 };
 
-exports.readTicket = (req, res, next) => {
-  database.Tickets.findById(req.params.id)
-    .then(ticket => res.status(200).json(ticket))
+exports.readWork = (req, res, next) => {
+  database.WorkList.findById(req.params.id)
+    .then(work => res.status(200).json(work))
     .catch(error => res.send(error));
 };
 
-exports.updateTicket = (req, res, next) => {
-  const updatedTicket = {
+exports.updateWork = (req, res, next) => {
+  const updatedWork = {
     status: req.body.status,
     category: req.body.category,
     location: req.body.location,
@@ -262,16 +262,16 @@ exports.updateTicket = (req, res, next) => {
   };
   // console.log(req.body);
 
-  // database.Tickets.findByIdAndUpdate(req.params.id, updatedTicket, { new: true });
-  database.Tickets.findByIdAndUpdate(req.params.id, req.body, { new: true })
-    .populate('ticket')
-    .then(ticket => res.status(201).json(ticket))
+  // database.WorkList.findByIdAndUpdate(req.params.id, updatedWork, { new: true });
+  database.WorkList.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .populate('work')
+    .then(work => res.status(201).json(work))
     .catch(error => res.send(error));
 };
 
-exports.deleteTicket = (req, res, next) => {
-  database.Tickets.findByIdAndRemove(req.params.id)
-    .then(ticket => res.json(ticket))
+exports.deleteWork = (req, res, next) => {
+  database.WorkList.findByIdAndRemove(req.params.id)
+    .then(work => res.json(work))
     .catch(error => res.send(error));
 };
 

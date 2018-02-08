@@ -1,18 +1,18 @@
-import "react-dates/initialize";
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
+import 'react-dates/initialize';
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import BaseRoutes from "./routes/BaseRoutes";
-import AdminRoutes from "./routes/AdminRoutes";
-import CustomerRoutes from "./routes/CustomerRoutes";
+import BaseRoutes from './routes/BaseRoutes';
+import AdminRoutes from './routes/AdminRoutes';
+import CustomerRoutes from './routes/CustomerRoutes';
 
-import Auxiliary from "./hoc/Auxiliary";
+import Auxiliary from './hoc/Auxiliary';
 
-import Layout from "./containers/Layout/Layout";
-import Portal from "./containers/Portal/Portal";
+import Layout from './containers/Shared/Layout/Layout';
+import Portal from './containers/Shared/Portal/Portal';
 
-import * as actions from "./actions";
+import * as actions from './actions';
 
 class App extends Component {
   async componentDidMount() {
@@ -26,13 +26,13 @@ class App extends Component {
     if (this.props.isAuthenticated && this.props.user) {
       // console.log(this.props.user.role);
       switch (this.props.user.role) {
-        case "New Account":
+        case 'New Account':
           routes = <AdminRoutes />;
           break;
-        case "Customer User" || "Customer Manager":
+        case 'Customer User' || 'Customer Manager':
           routes = <CustomerRoutes />;
           break;
-        case "Admin User" || "Admin Manager" || "Owner":
+        case 'Admin User' || 'Admin Manager' || 'Owner':
           routes = <AdminRoutes />;
           break;
         default:

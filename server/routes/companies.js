@@ -12,11 +12,11 @@ const {
   readCompanyUser,
   updateCompanyUser,
   deleteCompanyUser,
-  readCompanyTickets,
-  createCompanyTicket,
-  readCompanyTicket,
-  updateCompanyTicket,
-  deleteCompanyTicket,
+  readCompanyWorkList,
+  createCompanyWork,
+  readCompanyWork,
+  updateCompanyWork,
+  deleteCompanyWork,
   readCompanyInvoices,
   createCompanyInvoice,
   readCompanyInvoice,
@@ -27,31 +27,31 @@ const {
   readCompanyLocation,
   updateCompanyLocation,
   deleteCompanyLocation,
-  readCompanyLocationTickets,
-  createCompanyLocationTicket,
-  readCompanyLocationTicket,
-  updateCompanyLocationTicket,
-  deleteCompanyLocationTicket,
+  readCompanyLocationWorkList,
+  createCompanyLocationWork,
+  readCompanyLocationWork,
+  updateCompanyLocationWork,
+  deleteCompanyLocationWork,
   readCompanyLocationInvoices,
   createCompanyLocationInvoice,
   readCompanyLocationInvoice,
   updateCompanyLocationInvoice,
   deleteCompanyLocationInvoice,
-  readCompanyTicketUsers,
-  createCompanyTicketUser,
-  readCompanyTicketUser,
-  updateCompanyTicketUser,
-  deleteCompanyTicketUser,
+  readCompanyWorkUsers,
+  createCompanyWorkUser,
+  readCompanyWorkUser,
+  updateCompanyWorkUser,
+  deleteCompanyWorkUser,
   readCompanyLocationsUsers,
   createCompanyLocationUser,
   readCompanyLocationUser,
   updateCompanyLocationUser,
   deleteCompanyLocationUser,
-  readCompanyLocationTicketUsers,
-  createCompanyLocationUserTicketUser,
-  readCompanyLocationTicketUser,
-  updateCompanyLocationTicketUser,
-  deleteCompanyLocationTicketUser
+  readCompanyLocationWorkUsers,
+  createCompanyLocationUserWorkUser,
+  readCompanyLocationWorkUser,
+  updateCompanyLocationWorkUser,
+  deleteCompanyLocationWorkUser
 } = require("../controllers/companies");
 
 const router = express.Router({ mergeParams: true });
@@ -79,26 +79,26 @@ router
   .delete(deleteCompanyUser);
 
 router
-  .route("/:companyId/tickets")
-  .get(readCompanyTickets)
-  .post(createCompanyTicket);
+  .route("/:companyId/work")
+  .get(readCompanyWorkList)
+  .post(createCompanyWork);
 
 router
-  .route("/:companyId/tickets/:ticketId")
-  .get(readCompanyTicket)
-  .put(updateCompanyTicket)
-  .delete(deleteCompanyTicket);
+  .route("/:companyId/work/:workId")
+  .get(readCompanyWork)
+  .put(updateCompanyWork)
+  .delete(deleteCompanyWork);
 
 router
-  .route("/:companyId/tickets/companyUsers")
-  .get(readCompanyTicketUsers)
-  .post(createCompanyTicketUser);
+  .route("/:companyId/work/companyUsers")
+  .get(readCompanyWorkUsers)
+  .post(createCompanyWorkUser);
 
 router
-  .route("/:companyId/tickets/:ticketId/companyUsers/:companyUserId")
-  .get(readCompanyTicketUser)
-  .put(updateCompanyTicketUser)
-  .delete(deleteCompanyTicketUser);
+  .route("/:companyId/work/:workId/companyUsers/:companyUserId")
+  .get(readCompanyWorkUser)
+  .put(updateCompanyWorkUser)
+  .delete(deleteCompanyWorkUser);
 
 router
   .route("/:companyId/invoices")
@@ -134,15 +134,15 @@ router
   .delete(deleteCompanyLocationUser);
 
 router
-  .route("/:companyId/locations/:locationId/tickets")
-  .get(readCompanyLocationTickets)
-  .post(createCompanyLocationTicket);
+  .route("/:companyId/locations/:locationId/work")
+  .get(readCompanyLocationWorkList)
+  .post(createCompanyLocationWork);
 
 router
-  .route("/:companyId/locations/:locationId/tickets/:ticketId")
-  .get(readCompanyLocationTicket)
-  .put(updateCompanyLocationTicket)
-  .delete(deleteCompanyLocationTicket);
+  .route("/:companyId/locations/:locationId/work/:workId")
+  .get(readCompanyLocationWork)
+  .put(updateCompanyLocationWork)
+  .delete(deleteCompanyLocationWork);
 
 router
   .route("/:companyId/locations/:locationId/invoices")
@@ -156,16 +156,16 @@ router
   .delete(deleteCompanyLocationInvoice);
 
 router
-  .route("/:companyId/locations/:locationId/tickets/:ticketId/companyUsers")
-  .get(readCompanyLocationTicketUsers)
-  .post(createCompanyLocationUserTicketUser);
+  .route("/:companyId/locations/:locationId/work/:workId/companyUsers")
+  .get(readCompanyLocationWorkUsers)
+  .post(createCompanyLocationUserWorkUser);
 
 router
   .route(
-    "/:companyId/locations/:locationId/tickets/:ticketId/companyUsers/:companyUserId"
+    "/:companyId/locations/:locationId/work/:workId/companyUsers/:companyUserId"
   )
-  .get(readCompanyLocationTicketUser)
-  .put(updateCompanyLocationTicketUser)
-  .delete(deleteCompanyLocationTicketUser);
+  .get(readCompanyLocationWorkUser)
+  .put(updateCompanyLocationWorkUser)
+  .delete(deleteCompanyLocationWorkUser);
 
 module.exports = router;

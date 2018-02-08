@@ -11,11 +11,11 @@ const {
   readLocation,
   updateLocation,
   deleteLocation,
-  getTickets,
-  createTicket,
-  readTicket,
-  updateTicket,
-  deleteTicket
+  getWorkList,
+  createWork,
+  readWork,
+  updateWork,
+  deleteWork
 } = require("../controllers/sudo");
 
 const router = express.Router();
@@ -43,14 +43,14 @@ router
   .delete(deleteLocation);
 
 router
-  .route("/tickets")
-  .get(getTickets)
-  .post(createTicket);
+  .route("/work")
+  .get(getWorkList)
+  .post(createWork);
 
 router
-  .route("/tickets/:id")
-  .get(readTicket)
-  .put(updateTicket)
-  .delete(deleteTicket);
+  .route("/work/:id")
+  .get(readWork)
+  .put(updateWork)
+  .delete(deleteWork);
 
 module.exports = router;

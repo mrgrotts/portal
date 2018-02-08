@@ -17,9 +17,9 @@ const invoicesSchema = new mongoose.Schema(
       ref: "Locations",
       required: true
     },
-    ticket: {
+    work: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Tickets",
+      ref: "WorkList",
       required: true
     },
     number: {

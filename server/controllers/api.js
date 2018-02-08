@@ -5,7 +5,7 @@ exports.restAPI = (req, res, next) => {
     message: API_WELCOME_MESSAGE,
     usersSchema: '/users',
     locationsSchema: '/locations',
-    ticketsSchema: '/tickets'
+    workListSchema: '/work'
   });
 };
 
@@ -35,7 +35,7 @@ exports.locationsAPI = (req, res, next) => {
   ]);
 };
 
-exports.ticketsAPI = (req, res, next) => {
+exports.workAPI = (req, res, next) => {
   res.json([
     {
       _id: 'Unique Identifier',

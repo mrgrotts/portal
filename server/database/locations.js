@@ -73,10 +73,10 @@ const locationsSchema = new mongoose.Schema(
       type: Number,
       default: -87.65
     },
-    tickets: [
+    workList: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Tickets"
+        ref: "WorkList"
       }
     ]
   },

@@ -4,26 +4,26 @@ exports.readUsers = async (req, res, next) => {
   let company = await database.Companies.find({ company: company._id })
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let user = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets");
+    .populate("workList");
 };
 
 exports.createUser = async (req, res, next) => {
   let company = await database.Companies.find({ company: company._id })
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let user = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets");
+    .populate("workList");
 };
 
 exports.readUser = (req, res, next) => {
@@ -31,7 +31,7 @@ exports.readUser = (req, res, next) => {
     // console.log("[PARAMS]", req.params.userId);
     database.Users.findById(req.params.userId)
       .populate("locations")
-      .populate("tickets")
+      .populate("workList")
       .then(user => {
         res.json(user);
         next();
@@ -47,24 +47,24 @@ exports.updateUser = async (req, res, next) => {
   let company = await database.Companies.find({ company: company._id })
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let user = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets");
+    .populate("workList");
 };
 
 exports.deleteUser = async (req, res, next) => {
   let company = await database.Companies.find({ company: company._id })
     .populate("users")
     .populate("locations")
-    .populate("tickets")
+    .populate("workList")
     .populate("invoices");
 
   let user = await database.Users.find({ company: company._id })
     .populate("company")
     .populate("locations")
-    .populate("tickets");
+    .populate("workList");
 };

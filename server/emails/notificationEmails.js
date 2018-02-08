@@ -1,11 +1,11 @@
-const transporter = require("./transporter");
+const transporter = require('./transporter');
 
 module.exports = {
   sendStatusUpdate: function(result, status, callback) {
     const mailOptions = {
-      from: "<rozalado@gmail.com>",
+      from: '<rozalado@gmail.com>',
       to: result[0].user,
-      subject: `Ticket ${result[0]._id} Has Been Updated.`,
+      subject: `Work Order ${result[0]._id} Has Been Updated.`,
       text: `
       Description: ${result[0].description} \n
       Location: ${result[0].location} \n

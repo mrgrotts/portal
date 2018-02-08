@@ -40,11 +40,11 @@ class LocationForm extends Component {
     latitude: this.props.location ? this.props.location.latitude : "",
     longitude: this.props.location ? this.props.location.longitude : "",
     phone: this.props.location ? this.props.location.phone : "",
-    createdAt: this.props.ticket
-      ? moment(this.props.ticket.createdAt)
+    createdAt: this.props.work
+      ? moment(this.props.work.createdAt)
       : moment(),
-    updatedAt: this.props.ticket
-      ? moment(this.props.ticket.updatedAt)
+    updatedAt: this.props.work
+      ? moment(this.props.work.updatedAt)
       : moment()
   };
 
@@ -116,11 +116,11 @@ class LocationForm extends Component {
       latitude: this.props.location ? this.props.location.latitude : "",
       longitude: this.props.location ? this.props.location.longitude : "",
       phone: this.props.location ? this.props.location.phone : "",
-      createdAt: this.props.ticket
-        ? moment(this.props.ticket.createdAt)
+      createdAt: this.props.work
+        ? moment(this.props.work.createdAt)
         : moment(),
-      updatedAt: this.props.ticket
-        ? moment(this.props.ticket.updatedAt)
+      updatedAt: this.props.work
+        ? moment(this.props.work.updatedAt)
         : moment()
     });
   };
