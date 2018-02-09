@@ -4,7 +4,7 @@ import classes from './FloatingButton.css';
 
 const FloatingButton = props => (
   <div>
-    <button className={classes.FloatingButton} onClick={props.clicked}>
+    <button className={classes.FloatingButton} disabled={props.disabled} onClick={props.clicked}>
       <i className="material-icons">{props.children}</i>
     </button>
   </div>

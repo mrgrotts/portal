@@ -36,7 +36,7 @@ class Locations extends Component {
 
     return (
       <div className={classes.Locations}>
-        <h1>You Have {locations.length} Locations</h1>
+        <h1 className={classes.LocationsTitle}>You Have {locations.length} Locations</h1>
         {locations}
       </div>
     );

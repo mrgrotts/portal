@@ -1,25 +1,25 @@
-import api from "../../../../api";
+import api from '../../../../api';
 
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { SingleDatePicker } from "react-dates";
-import moment from "moment";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { SingleDatePicker } from 'react-dates';
+import moment from 'moment';
 
-import Auxiliary from "../../../../hoc/Auxiliary";
-import handleErrors from "../../../../hoc/handleErrors";
+import Auxiliary from '../../../../hoc/Auxiliary';
+import handleErrors from '../../../../hoc/handleErrors';
 
-import Button from "../../../../components/UI/Button/Button";
-import Input from "../../../../components/UI/Input/Input";
-import ProgressBar from "../../../../components/UI/ProgressBar/ProgressBar";
-import Spinner from "../../../../components/UI/Spinner/Spinner";
+import Button from '../../../../components/UI/Button/Button';
+import Input from '../../../../components/UI/Input/Input';
+import ProgressBar from '../../../../components/UI/ProgressBar/ProgressBar';
+import Spinner from '../../../../components/UI/Spinner/Spinner';
 
-import { toTitleCase } from "../../../../utils/transformString";
-import validateFields from "../../../../utils/validateFields";
+import { toTitleCase } from '../../../../utils/transformString';
+import validateFields from '../../../../utils/validateFields';
 
-import * as actions from "../../../../actions";
+import * as actions from '../../../../actions';
 
-import classes from "./WorkForm.css";
+import classes from './WorkForm.css';
 
 class WorkForm extends Component {
   static defaultProps = {
@@ -30,44 +30,44 @@ class WorkForm extends Component {
   state = {
     workForm: {
       status: {
-        fieldType: "select",
+        fieldType: 'select',
         fieldConfig: {
           options: [
             {
-              label: "Unassigned",
-              value: "Unassigned"
+              label: 'Unassigned',
+              value: 'Unassigned'
             },
             {
-              label: "Prep",
-              value: "Prep"
+              label: 'Prep',
+              value: 'Prep'
             },
             {
-              label: "On Hold",
-              value: "On Hold"
+              label: 'On Hold',
+              value: 'On Hold'
             },
             {
-              label: "In Progress",
-              value: "In Progress"
+              label: 'In Progress',
+              value: 'In Progress'
             },
             {
-              label: "Pending",
-              value: "Pending"
+              label: 'Pending',
+              value: 'Pending'
             },
             {
-              label: "Purchasing Parts",
-              value: "Purchasing Parts"
+              label: 'Purchasing Parts',
+              value: 'Purchasing Parts'
             },
             {
-              label: "Ordered Parts",
-              value: "Ordered Parts"
+              label: 'Ordered Parts',
+              value: 'Ordered Parts'
             },
             {
-              label: "Closed",
-              value: "Closed"
+              label: 'Closed',
+              value: 'Closed'
             }
           ]
         },
-        value: this.props.work ? this.props.work.status : "Unassigned",
+        value: this.props.work ? this.props.work.status : 'Unassigned',
         validation: {
           required: true
         },
@@ -75,58 +75,56 @@ class WorkForm extends Component {
         valid: this.props.work ? true : false
       },
       category: {
-        fieldType: "select",
+        fieldType: 'select',
         fieldConfig: {
           options: [
             {
-              label: "Commercial Cleaning",
-              value: "Commercial Cleaning"
+              label: 'Commercial Cleaning',
+              value: 'Commercial Cleaning'
             },
             {
-              label: "Residential Cleaning",
-              value: "Residential Cleaning"
+              label: 'Residential Cleaning',
+              value: 'Residential Cleaning'
             },
             {
-              label: "Drywall Installation",
-              value: "Drywall Installation"
+              label: 'Drywall Installation',
+              value: 'Drywall Installation'
             },
             {
-              label: "Electrician",
-              value: "Electrician"
+              label: 'Electrician',
+              value: 'Electrician'
             },
             {
-              label: "Floor Services",
-              value: "Floor Services"
+              label: 'Floor Services',
+              value: 'Floor Services'
             },
             {
-              label: "Maintenance",
-              value: "Maintenance"
+              label: 'Maintenance',
+              value: 'Maintenance'
             },
             {
-              label: "Painter",
-              value: "Painter"
+              label: 'Painter',
+              value: 'Painter'
             },
             {
-              label: "Pest Control",
-              value: "Pest Control"
+              label: 'Pest Control',
+              value: 'Pest Control'
             },
             {
-              label: "Plumber",
-              value: "Plumber"
+              label: 'Plumber',
+              value: 'Plumber'
             },
             {
-              label: "Post Construction",
-              value: "Post Construction"
+              label: 'Post Construction',
+              value: 'Post Construction'
             },
             {
-              label: "Window Washing",
-              value: "Window Washing"
+              label: 'Window Washing',
+              value: 'Window Washing'
             }
           ]
         },
-        value: this.props.work
-          ? this.props.work.category
-          : "Commercial Cleaning",
+        value: this.props.work ? this.props.work.category : 'Commercial Cleaning',
         validation: {
           required: true
         },
@@ -134,16 +132,16 @@ class WorkForm extends Component {
         valid: this.props.work ? true : false
       },
       location: {
-        fieldType: "select",
+        fieldType: 'select',
         fieldConfig: {
           options: [
             {
-              label: "No Locations",
-              value: "No Locations"
+              label: 'No Locations',
+              value: 'No Locations'
             }
           ]
         },
-        value: this.props.work ? this.props.work.location : "",
+        value: this.props.work ? this.props.work.location : '',
         validation: {
           required: true
         },
@@ -151,12 +149,12 @@ class WorkForm extends Component {
         valid: this.props.work ? true : false
       },
       description: {
-        fieldType: "textarea",
+        fieldType: 'textarea',
         fieldConfig: {
-          type: "text",
-          placeholder: "Description"
+          type: 'text',
+          placeholder: 'Description'
         },
-        value: this.props.work ? this.props.work.description : "",
+        value: this.props.work ? this.props.work.description : '',
         validation: {
           required: true,
           minLength: 1
@@ -165,10 +163,10 @@ class WorkForm extends Component {
         valid: this.props.work ? true : false
       },
       media: {
-        fieldType: "file",
+        fieldType: 'file',
         fieldConfig: {
-          type: "file",
-          placeholder: "No files uploaded"
+          type: 'file',
+          placeholder: 'No files uploaded'
         },
         value: this.props.work ? this.props.work.media : [],
         validation: {},
@@ -176,17 +174,11 @@ class WorkForm extends Component {
         valid: this.props.work ? true : false
       }
     },
-    previousLocation: this.props.work ? this.props.work.location : "",
+    previousLocation: this.props.work ? this.props.work.location : '',
     // media: this.props.work ? this.props.work.media : [],
-    requestedDate: this.props.work
-      ? moment(this.props.work.requestedDate)
-      : moment(),
-    createdAt: this.props.work
-      ? moment(this.props.work.createdAt)
-      : moment(),
-    updatedAt: this.props.work
-      ? moment(this.props.work.updatedAt)
-      : moment(),
+    requestedDate: this.props.work ? moment(this.props.work.requestedDate) : moment(),
+    createdAt: this.props.work ? moment(this.props.work.createdAt) : moment(),
+    updatedAt: this.props.work ? moment(this.props.work.updatedAt) : moment(),
     focused: false,
     formValid: false
   };
@@ -195,7 +187,7 @@ class WorkForm extends Component {
     await this.props.readLocations();
     // console.log(this.props.locations);
 
-    if (this.state.location === "" && this.props.locations.length !== 0) {
+    if (this.state.location === '' && this.props.locations.length !== 0) {
       this.setState({
         location: this.props.locations[0]._id
       });
@@ -231,10 +223,7 @@ class WorkForm extends Component {
       [field]: {
         ...this.state.workForm[field],
         value: event.target.value,
-        valid: validateFields(
-          event.target.value,
-          this.state.workForm[field].validation
-        ),
+        valid: validateFields(event.target.value, this.state.workForm[field].validation),
         touched: true
       }
     };
@@ -249,8 +238,7 @@ class WorkForm extends Component {
     return this.setState({ workForm, formValid });
   };
 
-  handleChange = event =>
-    this.setState({ [event.target.name]: event.target.value });
+  handleChange = event => this.setState({ [event.target.name]: event.target.value });
 
   onCalendarDateChange = requestedDate => this.setState({ requestedDate });
 
@@ -278,34 +266,24 @@ class WorkForm extends Component {
     this.setState({
       workForm: {
         status: {
-          value: this.props.work ? this.props.work.status : "Unassigned"
+          value: this.props.work ? this.props.work.status : 'Unassigned'
         },
         category: {
-          value: this.props.work
-            ? this.props.work.category
-            : "Commercial Cleaning"
+          value: this.props.work ? this.props.work.category : 'Commercial Cleaning'
         },
         location: {
-          value: this.props.work ? this.props.work.location._id : ""
+          value: this.props.work ? this.props.work.location._id : ''
         },
         description: {
-          value: this.props.work ? this.props.work.description : ""
+          value: this.props.work ? this.props.work.description : ''
         },
         media: this.props.work ? this.props.work.media : []
       },
-      previousLocation: this.props.work
-        ? this.props.work.previousLocation
-        : "",
+      previousLocation: this.props.work ? this.props.work.previousLocation : '',
       // media: this.props.work ? this.props.work.media : [],
-      requestedDate: this.props.work
-        ? moment(this.props.work.requestedDate)
-        : moment(),
-      createdAt: this.props.work
-        ? moment(this.props.work.createdAt)
-        : moment(),
-      updatedAt: this.props.work
-        ? moment(this.props.work.updatedAt)
-        : moment()
+      requestedDate: this.props.work ? moment(this.props.work.requestedDate) : moment(),
+      createdAt: this.props.work ? moment(this.props.work.createdAt) : moment(),
+      updatedAt: this.props.work ? moment(this.props.work.updatedAt) : moment()
     });
   };
 
@@ -325,26 +303,20 @@ class WorkForm extends Component {
 
     if (!this.props.loading) {
       form = (
-        <form onSubmit={this.onSubmit}>
+        <form className={classes.WorkForm} onSubmit={this.onSubmit}>
           {workFields.map(field => {
-            if (!this.props.work && field.id === "status") {
+            if (!this.props.work && field.id === 'status') {
               return null;
             }
 
-            if (this.props.locations.length === 0 && field.id === "location") {
+            if (this.props.locations.length === 0 && field.id === 'location') {
               return (
-                <div
-                  key={field.id}
-                  className={classes.WorkFormInputContainer}>
+                <div key={field.id} className={classes.WorkFormInputContainer}>
                   <div className={classes.WorkFormAddLocation}>
-                    <label
-                      className={classes.WorkFormAddLocationLabel}
-                      htmlFor={field.id}>
+                    <label className={classes.WorkFormAddLocationLabel} htmlFor={field.id}>
                       {toTitleCase(field.id)}
                     </label>
-                    <Link
-                      className={classes.WorkFormAddLocationButton}
-                      to="/locations/create">
+                    <Link className={classes.WorkFormAddLocationButton} to="/locations/create">
                       Add Location
                     </Link>
                   </div>
@@ -412,9 +384,7 @@ const mapDispatchToProps = dispatch => ({
   readLocations: () => dispatch(actions.readLocations())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  handleErrors(WorkForm, api)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(handleErrors(WorkForm, api));
 
 // <input
 //   id="requested-date"

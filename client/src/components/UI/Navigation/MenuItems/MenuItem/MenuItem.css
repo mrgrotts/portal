@@ -23,9 +23,10 @@
   .MenuItem {
     align-items: center;
     display: flex;
-    height: 100%;
+    /* height: 100%; */
     margin: 0;
-    width: auto;
+    /* width: auto; */
+    width: 100%;
   }
 
   .MenuItem a {

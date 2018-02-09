@@ -1,15 +1,15 @@
-import api from "../../../../api";
+import api from '../../../../api';
 
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter, Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Redirect } from 'react-router-dom';
 
-import handleErrors from "../../../../hoc/handleErrors";
+import handleErrors from '../../../../hoc/handleErrors';
 
-import Spinner from "../../../../components/UI/Spinner/Spinner";
-import LocationForm from "./LocationForm";
+import Spinner from '../../../../components/UI/Spinner/Spinner';
+import LocationForm from './LocationForm';
 
-import * as actions from "../../../../actions";
+import * as actions from '../../../../actions';
 
 class LocationUpdate extends Component {
   updateLocation = async location => {
@@ -17,30 +17,22 @@ class LocationUpdate extends Component {
   };
 
   onCancel = () => {
-    this.props.history.push("/locations");
+    this.props.history.push('/locations');
   };
 
   render() {
     let form = <Spinner />;
 
     if (!this.props.loading) {
-      form = (
-        <LocationForm
-          onSubmit={this.updateLocation}
-          onCancel={this.onCancel}
-          location={this.props.location}
-        />
-      );
+      form = <LocationForm onSubmit={this.updateLocation} onCancel={this.onCancel} location={this.props.location} />;
     }
 
-    const redirectAfterSubmit = this.props.success ? (
-      <Redirect to="/locations" />
-    ) : null;
+    const redirectAfterSubmit = this.props.success ? <Redirect to="/locations" /> : null;
 
     return (
-      <div>
+      <div style={{ height: '100%', width: '100%' }}>
         {redirectAfterSubmit}
-        <h1>Update Location Form</h1>
+        <h1 style={{ marginBottom: '2rem', textAlign: 'center' }}>Update Location Form</h1>
         {form}
       </div>
     );
@@ -48,9 +40,7 @@ class LocationUpdate extends Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  location: state.locations.locations.find(
-    location => location._id === props.match.params.id
-  ),
+  location: state.locations.locations.find(location => location._id === props.match.params.id),
   id: state.auth.id,
   token: state.auth.token,
   loading: state.locations.loading,
@@ -58,12 +48,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateLocation: (id, location) =>
-    dispatch(actions.updateLocation(id, location))
+  updateLocation: (id, location) => dispatch(actions.updateLocation(id, location))
 });
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(
-    handleErrors(LocationUpdate, api)
-  )
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(handleErrors(LocationUpdate, api)));

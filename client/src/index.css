@@ -22,21 +22,6 @@ h1 {
   font-weight: 400;
 }
 
-.CalendarDay__highlighted_calendar {
-  background: #82e0aa;
-  color: #186a3b;
-}
-
-.CalendarDay__highlighted_calendar:hover {
-  background: #58d68d;
-  color: #186a3b;
-}
-
-.CalendarDay__highlighted_calendar:active {
-  background: #58d68d;
-  color: #186a3b;
-}
-
 /* Smartphones (portrait and landscape) ----------- */
 
 /* @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {

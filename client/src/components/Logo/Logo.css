@@ -2,8 +2,11 @@
   background-color: #ffffff;
   border-radius: 5px;
   box-sizing: border-box;
-  height: 100%;
+  height: 48px;
+  margin-bottom: 1.25rem;
+  margin-top: 1.25rem;
   padding: 0.1rem;
+  width: 48px;
 }
 
 .Logo img {

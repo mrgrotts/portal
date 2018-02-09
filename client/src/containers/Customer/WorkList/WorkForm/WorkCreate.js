@@ -27,14 +27,12 @@ class WorkCreate extends Component {
       form = <WorkForm onSubmit={this.onSubmit} onCancel={this.onCancel} />;
     }
 
-    const redirectAfterSubmit = this.props.success ? (
-      <Redirect to="/work" {...this.props.work} />
-    ) : null;
+    const redirectAfterSubmit = this.props.success ? <Redirect to="/work" {...this.props.work} /> : null;
 
     return (
-      <div>
+      <div style={{ height: '100%', width: '100%' }}>
         {redirectAfterSubmit}
-        <h1>Create Work Form</h1>
+        <h1 style={{ marginBottom: '2rem', textAlign: 'center' }}>Create Work Form</h1>
         {form}
       </div>
     );
@@ -52,6 +50,4 @@ const mapDispatchToProps = dispatch => ({
   createWork: work => dispatch(actions.createWork(work))
 });
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(handleErrors(WorkCreate, api))
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(handleErrors(WorkCreate, api)));
