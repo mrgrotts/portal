@@ -20,10 +20,10 @@ const AdminRoutes = props => (
     <Route path="/logout" component={Logout} />
     <Route path="/locations/create" component={asyncLocationCreate} />
     <Route path="/locations/:id" component={asyncLocationUpdate} />
-    <Route path="/locations" component={asyncLocations} />
+    <Route exact path="/locations" component={asyncLocations} />
     <Route path="/work/create" component={asyncWorkCreate} />
     <Route path="/work/:id" component={asyncWorkUpdate} />
-    <Route path="/work" component={asyncWorkList} />
+    <Route exact path="/work" component={asyncWorkList} />
     <Route exact path="/" component={Builder} />
     <Redirect to="/" />
   </Switch>

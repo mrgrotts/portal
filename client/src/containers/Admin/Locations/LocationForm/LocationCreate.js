@@ -1,15 +1,15 @@
-import api from "../../../../api";
+import api from '../../../../api';
 
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter, Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Redirect } from 'react-router-dom';
 
-import handleErrors from "../../../../hoc/handleErrors";
+import handleErrors from '../../../../hoc/handleErrors';
 
-import Spinner from "../../../../components/UI/Spinner/Spinner";
-import LocationForm from "./LocationForm";
+import Spinner from '../../../../components/UI/Spinner/Spinner';
+import LocationForm from './LocationForm';
 
-import * as actions from "../../../../actions";
+import * as actions from '../../../../actions';
 
 class LocationCreate extends Component {
   onSubmit = async location => {
@@ -17,7 +17,7 @@ class LocationCreate extends Component {
   };
 
   onCancel = () => {
-    this.props.history.push("/locations");
+    this.props.history.push('/locations');
   };
 
   render() {
@@ -27,14 +27,12 @@ class LocationCreate extends Component {
       form = <LocationForm onSubmit={this.onSubmit} onCancel={this.onCancel} />;
     }
 
-    const redirectAfterSubmit = this.props.success ? (
-      <Redirect to="/locations" />
-    ) : null;
+    const redirectAfterSubmit = this.props.success ? <Redirect to="/locations" /> : null;
 
     return (
-      <div>
+      <div style={{ height: '100%', width: '100%' }}>
         {redirectAfterSubmit}
-        <h1>Create Location Form</h1>
+        <h1 style={{ marginBottom: '2rem', textAlign: 'center' }}>Create Location Form</h1>
         {form}
       </div>
     );
@@ -50,8 +48,4 @@ const mapDispatchToProps = dispatch => ({
   createLocation: location => dispatch(actions.createLocation(location))
 });
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(
-    handleErrors(LocationCreate, api)
-  )
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(handleErrors(LocationCreate, api)));

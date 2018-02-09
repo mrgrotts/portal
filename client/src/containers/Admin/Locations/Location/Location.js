@@ -80,22 +80,11 @@ class Location extends Component {
             google={this.props.google}
             onClick={this.onMapClicked}
             style={style}
-            zoom={10}
-          >
-            <Marker
-              name={this.props.name}
-              onClick={this.onMarkerClick}
-              position={{ lat: this.props.latitude, lng: this.props.longitude }}
-            />
-            <InfoWindow
-              marker={this.state.activeMarker}
-              visible={this.state.showingInfoWindow}
-              onClose={this.onInfoWindowClose}
-            >
+            zoom={10}>
+            <Marker name={this.props.name} onClick={this.onMarkerClick} position={{ lat: this.props.latitude, lng: this.props.longitude }} />
+            <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow} onClose={this.onInfoWindowClose}>
               <div>
-                <p style={{ color: 'black', fontWeight: '600' }}>
-                  {this.state.selectedPlace.name}
-                </p>
+                <p style={{ color: 'black', fontWeight: '600' }}>{this.state.selectedPlace.name}</p>
                 <p style={{ color: 'black' }}>{this.props.addressOne}</p>
                 <p style={{ color: 'black' }}>{this.props.addressTwo}</p>
                 <p style={{ color: 'black' }}>
@@ -105,35 +94,37 @@ class Location extends Component {
             </InfoWindow>
           </Map>
         </div>
-        <h1>
-          <strong>{this.props.name}</strong>
-        </h1>
-        <h4>{this.props._id}</h4>
-        <p>
-          <a href={`tel:${this.props.phone}`}>{this.props.phone}</a>
-        </p>
-        <p>{this.props.addressOne}</p>
-        <p>{this.props.addressTwo}</p>
-        <p>
-          {this.props.city}, {this.props.state} {this.props.zipcode}
-        </p>
-        <p>
-          {this.props.latitude}, {this.props.longitude}
-        </p>
-        <hr style={{ margin: '5px 0' }} />
-        {workList}
-        <p>Created By: {this.props.userId.email}</p>
-        <p>Created At: {this.props.createdAt}</p>
-        <p>Updated At: {this.props.updatedAt}</p>
+        <div className={classes.LocationDetails}>
+          <h1>
+            <strong>{this.props.name}</strong>
+          </h1>
+          <h4>{this.props._id}</h4>
+          <p>
+            <a href={`tel:${this.props.phone}`}>{this.props.phone}</a>
+          </p>
+          <p>{this.props.addressOne}</p>
+          <p>{this.props.addressTwo}</p>
+          <p>
+            {this.props.city}, {this.props.state} {this.props.zipcode}
+          </p>
+          <p>
+            {this.props.latitude}, {this.props.longitude}
+          </p>
+          <hr style={{ margin: '5px 0' }} />
+          {workList}
+          <p>Created By: {this.props.userId.email}</p>
+          <p>Created At: {this.props.createdAt}</p>
+          <p>Updated At: {this.props.updatedAt}</p>
 
-        <Link to={`/locations/${this.props._id}`}>
-          <Button ButtonType="Success" clicked={this.props.update}>
-            Modify
+          <Link to={`/locations/${this.props._id}`}>
+            <Button ButtonType="Success" clicked={this.props.update}>
+              Modify
+            </Button>
+          </Link>
+          <Button ButtonType="Failure" clicked={this.props.delete}>
+            Delete
           </Button>
-        </Link>
-        <Button ButtonType="Failure" clicked={this.props.delete}>
-          Delete
-        </Button>
+        </div>
       </div>
     );
   }

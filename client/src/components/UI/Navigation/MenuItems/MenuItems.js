@@ -10,11 +10,19 @@ const MenuItems = props => (
       Dashboard
     </MenuItem>
 
-    {props.isAuthenticated ? <MenuItem link="/locations/create">Add Location</MenuItem> : null}
+    {props.isAuthenticated ? (
+      <MenuItem exact link="/locations/create">
+        Add Location
+      </MenuItem>
+    ) : null}
 
     {props.isAuthenticated ? <MenuItem link="/work">Work</MenuItem> : null}
 
-    {props.isAuthenticated ? <MenuItem link="/locations">Locations</MenuItem> : null}
+    {props.isAuthenticated ? (
+      <MenuItem exact link="/locations">
+        Locations
+      </MenuItem>
+    ) : null}
 
     {props.isAuthenticated ? <MenuItem link="/logout">Logout</MenuItem> : <MenuItem link="/login">Login</MenuItem>}
   </ul>

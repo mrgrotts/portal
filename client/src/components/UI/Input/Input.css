@@ -44,13 +44,17 @@
   width: 100%;
 }
 
+textarea {
+  line-height: 3rem !important;
+}
+
 .Field:focus {
-  background: #ccc;
+  background-color: #ccc;
   outline: none;
 }
 
 .Invalid {
-  background: #fda49a;
+  background-color: #fda49a;
   border: 1px solid red;
 }
 

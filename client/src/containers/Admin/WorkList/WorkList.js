@@ -35,7 +35,7 @@ class WorkList extends Component {
     if (!this.props.loading) {
       workList = this.props.work.reverse().map(work => <Work key={work._id} {...work} delete={this.deleteWork.bind(this, work._id)} />);
 
-      title = workList.length === 1 ? `You have ${workList.length} Work Order` : title;
+      title = workList.length === 1 ? `You have ${workList.length} Work Order` : `You Have ${workList.length} Work Orders`;
     }
 
     return (

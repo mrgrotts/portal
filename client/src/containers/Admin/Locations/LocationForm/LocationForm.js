@@ -1,21 +1,21 @@
-import api from "../../../../api";
+import api from '../../../../api';
 
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import moment from "moment";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import moment from 'moment';
 
-import Auxiliary from "../../../../hoc/Auxiliary";
-import handleErrors from "../../../../hoc/handleErrors";
+import Auxiliary from '../../../../hoc/Auxiliary';
+import handleErrors from '../../../../hoc/handleErrors';
 
-import AutocompleteWrapper from "../../../../components/UI/Maps/Autocomplete/Autocomplete";
-import Button from "../../../../components/UI/Button/Button";
+import AutocompleteWrapper from '../../../../components/UI/Maps/Autocomplete/Autocomplete';
+import Button from '../../../../components/UI/Button/Button';
 // import Input from '../../components/UI/Input/Input';
 
 // import validateFields from '../../utils/validateFields';
 
-import * as actions from "../../../../actions";
+import * as actions from '../../../../actions';
 
-import classes from "./LocationForm.css";
+import classes from './LocationForm.css';
 
 class LocationForm extends Component {
   static defaultProps = {
@@ -24,32 +24,27 @@ class LocationForm extends Component {
   };
 
   state = {
-    name: this.props.location ? this.props.location.name : "",
-    streetNumber: this.props.location ? this.props.location.streetNumber : "",
-    route: this.props.location ? this.props.location.route : "",
-    addressOne: this.props.location ? this.props.location.addressOne : "",
-    addressTwo: this.props.location ? this.props.location.addressTwo : "",
-    neighborhood: this.props.location ? this.props.location.neighborhood : "",
-    city: this.props.location ? this.props.location.city : "",
-    township: this.props.location ? this.props.location.township : "",
-    county: this.props.location ? this.props.location.county : "",
-    state: this.props.location ? this.props.location.state : "",
-    zipcode: this.props.location ? this.props.location.zipcode : "",
-    zipcodeSuffix: this.props.location ? this.props.location.zipcodeSuffix : "",
-    country: this.props.location ? this.props.location.country : "",
-    latitude: this.props.location ? this.props.location.latitude : "",
-    longitude: this.props.location ? this.props.location.longitude : "",
-    phone: this.props.location ? this.props.location.phone : "",
-    createdAt: this.props.work
-      ? moment(this.props.work.createdAt)
-      : moment(),
-    updatedAt: this.props.work
-      ? moment(this.props.work.updatedAt)
-      : moment()
+    name: this.props.location ? this.props.location.name : '',
+    streetNumber: this.props.location ? this.props.location.streetNumber : '',
+    route: this.props.location ? this.props.location.route : '',
+    addressOne: this.props.location ? this.props.location.addressOne : '',
+    addressTwo: this.props.location ? this.props.location.addressTwo : '',
+    neighborhood: this.props.location ? this.props.location.neighborhood : '',
+    city: this.props.location ? this.props.location.city : '',
+    township: this.props.location ? this.props.location.township : '',
+    county: this.props.location ? this.props.location.county : '',
+    state: this.props.location ? this.props.location.state : '',
+    zipcode: this.props.location ? this.props.location.zipcode : '',
+    zipcodeSuffix: this.props.location ? this.props.location.zipcodeSuffix : '',
+    country: this.props.location ? this.props.location.country : '',
+    latitude: this.props.location ? this.props.location.latitude : '',
+    longitude: this.props.location ? this.props.location.longitude : '',
+    phone: this.props.location ? this.props.location.phone : '',
+    createdAt: this.props.work ? moment(this.props.work.createdAt) : moment(),
+    updatedAt: this.props.work ? moment(this.props.work.updatedAt) : moment()
   };
 
-  handleChange = event =>
-    this.setState({ [event.target.name]: event.target.value });
+  handleChange = event => this.setState({ [event.target.name]: event.target.value });
 
   onSearch = (location, lat, lng, phone) => {
     return this.setState({
@@ -98,51 +93,38 @@ class LocationForm extends Component {
     this.props.onCancel();
 
     this.setState({
-      name: this.props.location ? this.props.location.name : "",
-      streetNumber: this.props.location ? this.props.location.streetNumber : "",
-      route: this.props.location ? this.props.location.route : "",
-      addressOne: this.props.location ? this.props.location.addressOne : "",
-      addressTwo: this.props.location ? this.props.location.addressTwo : "",
-      neighborhood: this.props.location ? this.props.location.neighborhood : "",
-      city: this.props.location ? this.props.location.city : "",
-      township: this.props.location ? this.props.location.township : "",
-      county: this.props.location ? this.props.location.county : "",
-      state: this.props.location ? this.props.location.state : "",
-      zipcode: this.props.location ? this.props.location.zipcode : "",
-      zipcodeSuffix: this.props.location
-        ? this.props.location.zipcodeSuffix
-        : "",
-      country: this.props.location ? this.props.location.country : "",
-      latitude: this.props.location ? this.props.location.latitude : "",
-      longitude: this.props.location ? this.props.location.longitude : "",
-      phone: this.props.location ? this.props.location.phone : "",
-      createdAt: this.props.work
-        ? moment(this.props.work.createdAt)
-        : moment(),
-      updatedAt: this.props.work
-        ? moment(this.props.work.updatedAt)
-        : moment()
+      name: this.props.location ? this.props.location.name : '',
+      streetNumber: this.props.location ? this.props.location.streetNumber : '',
+      route: this.props.location ? this.props.location.route : '',
+      addressOne: this.props.location ? this.props.location.addressOne : '',
+      addressTwo: this.props.location ? this.props.location.addressTwo : '',
+      neighborhood: this.props.location ? this.props.location.neighborhood : '',
+      city: this.props.location ? this.props.location.city : '',
+      township: this.props.location ? this.props.location.township : '',
+      county: this.props.location ? this.props.location.county : '',
+      state: this.props.location ? this.props.location.state : '',
+      zipcode: this.props.location ? this.props.location.zipcode : '',
+      zipcodeSuffix: this.props.location ? this.props.location.zipcodeSuffix : '',
+      country: this.props.location ? this.props.location.country : '',
+      latitude: this.props.location ? this.props.location.latitude : '',
+      longitude: this.props.location ? this.props.location.longitude : '',
+      phone: this.props.location ? this.props.location.phone : '',
+      createdAt: this.props.work ? moment(this.props.work.createdAt) : moment(),
+      updatedAt: this.props.work ? moment(this.props.work.updatedAt) : moment()
     });
   };
 
   render() {
     return (
       <Auxiliary>
-        <form>
-          <div style={{ marginTop: "1.5rem" }}>
+        <form className={classes.LocationForm}>
+          <div style={{ marginTop: '1.5rem' }}>
             <label htmlFor="name">
               Name
-              <input
-                id="name"
-                className={classes.LocationFormControl}
-                name="name"
-                onChange={this.handleChange}
-                type="text"
-                value={this.state.name}
-              />
+              <input id="name" className={classes.LocationFormControl} name="name" onChange={this.handleChange} type="text" value={this.state.name} />
             </label>
           </div>
-          <div style={{ marginTop: "1.5rem" }}>
+          <div style={{ marginTop: '1.5rem' }}>
             <label htmlFor="phone">
               Phone
               <input
@@ -155,10 +137,10 @@ class LocationForm extends Component {
               />
             </label>
           </div>
-          <div style={{ marginTop: "3rem" }}>
+          <div style={{ marginTop: '3rem' }}>
             <AutocompleteWrapper onSearch={this.onSearch} />
           </div>
-          <div style={{ marginTop: "1.5rem" }}>
+          <div style={{ marginTop: '1.5rem' }}>
             <label htmlFor="address-one">
               Address One
               <input
@@ -171,7 +153,7 @@ class LocationForm extends Component {
               />
             </label>
           </div>
-          <div style={{ marginTop: "1.5rem" }}>
+          <div style={{ marginTop: '1.5rem' }}>
             <label htmlFor="address-two">
               Address Two
               <input
@@ -184,20 +166,13 @@ class LocationForm extends Component {
               />
             </label>
           </div>
-          <div style={{ marginTop: "1.5rem" }}>
+          <div style={{ marginTop: '1.5rem' }}>
             <label htmlFor="city">
               City
-              <input
-                id="city"
-                className={classes.LocationFormControl}
-                name="city"
-                onChange={this.handleChange}
-                type="text"
-                value={this.state.city}
-              />
+              <input id="city" className={classes.LocationFormControl} name="city" onChange={this.handleChange} type="text" value={this.state.city} />
             </label>
           </div>
-          <div style={{ marginTop: "1.5rem" }}>
+          <div style={{ marginTop: '1.5rem' }}>
             <label htmlFor="state">
               State
               <input
@@ -210,7 +185,7 @@ class LocationForm extends Component {
               />
             </label>
           </div>
-          <div style={{ marginTop: "1.5rem" }}>
+          <div style={{ marginTop: '1.5rem' }}>
             <label htmlFor="zipcode">
               Zipcode
               <input
@@ -244,6 +219,4 @@ const mapDispatchToProps = dispatch => ({
   readLocations: () => dispatch(actions.readLocations())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  handleErrors(LocationForm, api)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(handleErrors(LocationForm, api));

@@ -4,12 +4,22 @@
   border-radius: 5px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   margin: 0 auto;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
+}
+
+.Location:first-child {
+  margin-top: 1.25rem;
+}
+
+.LocationDetails {
   padding: 20px;
 }
 
+/* Top, Right, Bottom, Left */
 .LocationMap {
   height: 300px;
-  margin: -20px -20px 20px;
-  width: 80%;
+  margin: 0px 0px 20px 0px;
+  padding: 0;
+  position: relative; 
+  width: 100%;
 }

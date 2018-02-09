@@ -124,9 +124,7 @@ class WorkForm extends Component {
             }
           ]
         },
-        value: this.props.work
-          ? this.props.work.category
-          : 'Commercial Cleaning',
+        value: this.props.work ? this.props.work.category : 'Commercial Cleaning',
         validation: {
           required: true
         },
@@ -178,9 +176,7 @@ class WorkForm extends Component {
     },
     previousLocation: this.props.work ? this.props.work.location : '',
     // media: this.props.work ? this.props.work.media : [],
-    requestedDate: this.props.work
-      ? moment(this.props.work.requestedDate)
-      : moment(),
+    requestedDate: this.props.work ? moment(this.props.work.requestedDate) : moment(),
     createdAt: this.props.work ? moment(this.props.work.createdAt) : moment(),
     updatedAt: this.props.work ? moment(this.props.work.updatedAt) : moment(),
     focused: false,
@@ -227,10 +223,7 @@ class WorkForm extends Component {
       [field]: {
         ...this.state.workForm[field],
         value: event.target.value,
-        valid: validateFields(
-          event.target.value,
-          this.state.workForm[field].validation
-        ),
+        valid: validateFields(event.target.value, this.state.workForm[field].validation),
         touched: true
       }
     };
@@ -245,8 +238,7 @@ class WorkForm extends Component {
     return this.setState({ workForm, formValid });
   };
 
-  handleChange = event =>
-    this.setState({ [event.target.name]: event.target.value });
+  handleChange = event => this.setState({ [event.target.name]: event.target.value });
 
   onCalendarDateChange = requestedDate => this.setState({ requestedDate });
 
@@ -277,9 +269,7 @@ class WorkForm extends Component {
           value: this.props.work ? this.props.work.status : 'Unassigned'
         },
         category: {
-          value: this.props.work
-            ? this.props.work.category
-            : 'Commercial Cleaning'
+          value: this.props.work ? this.props.work.category : 'Commercial Cleaning'
         },
         location: {
           value: this.props.work ? this.props.work.location._id : ''
@@ -291,9 +281,7 @@ class WorkForm extends Component {
       },
       previousLocation: this.props.work ? this.props.work.previousLocation : '',
       // media: this.props.work ? this.props.work.media : [],
-      requestedDate: this.props.work
-        ? moment(this.props.work.requestedDate)
-        : moment(),
+      requestedDate: this.props.work ? moment(this.props.work.requestedDate) : moment(),
       createdAt: this.props.work ? moment(this.props.work.createdAt) : moment(),
       updatedAt: this.props.work ? moment(this.props.work.updatedAt) : moment()
     });
@@ -315,7 +303,7 @@ class WorkForm extends Component {
 
     if (!this.props.loading) {
       form = (
-        <form onSubmit={this.onSubmit}>
+        <form className={classes.WorkForm} onSubmit={this.onSubmit}>
           {workFields.map(field => {
             if (!this.props.work && field.id === 'status') {
               return null;
@@ -325,16 +313,10 @@ class WorkForm extends Component {
               return (
                 <div key={field.id} className={classes.WorkFormInputContainer}>
                   <div className={classes.WorkFormAddLocation}>
-                    <label
-                      className={classes.WorkFormAddLocationLabel}
-                      htmlFor={field.id}
-                    >
+                    <label className={classes.WorkFormAddLocationLabel} htmlFor={field.id}>
                       {toTitleCase(field.id)}
                     </label>
-                    <Link
-                      className={classes.WorkFormAddLocationButton}
-                      to="/locations/create"
-                    >
+                    <Link className={classes.WorkFormAddLocationButton} to="/locations/create">
                       Add Location
                     </Link>
                   </div>
@@ -402,9 +384,7 @@ const mapDispatchToProps = dispatch => ({
   readLocations: () => dispatch(actions.readLocations())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  handleErrors(WorkForm, api)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(handleErrors(WorkForm, api));
 
 // <input
 //   id="requested-date"

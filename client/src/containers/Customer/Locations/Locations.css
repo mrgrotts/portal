@@ -1,3 +1,7 @@
 .Locations {
-  width: 80%;
+  width: calc(100% - 240px);
+}
+
+.LocationsTitle {
+  text-align: center;
 }

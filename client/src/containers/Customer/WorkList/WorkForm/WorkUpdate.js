@@ -24,23 +24,15 @@ class WorkUpdate extends Component {
     let form = <Spinner />;
 
     if (!this.props.loading) {
-      form = (
-        <WorkForm
-          onSubmit={this.updateWork}
-          onCancel={this.onCancel}
-          work={this.props.work}
-        />
-      );
+      form = <WorkForm onSubmit={this.updateWork} onCancel={this.onCancel} work={this.props.work} />;
     }
 
-    const redirectAfterSubmit = this.props.success ? (
-      <Redirect to="/work" />
-    ) : null;
+    const redirectAfterSubmit = this.props.success ? <Redirect to="/work" /> : null;
 
     return (
-      <div>
+      <div style={{ height: '100%', width: '100%' }}>
         {redirectAfterSubmit}
-        <h1>Update Work Form</h1>
+        <h1 style={{ marginBottom: '2rem', textAlign: 'center' }}>Update Work Form</h1>
         {form}
       </div>
     );
@@ -59,6 +51,4 @@ const mapDispatchToProps = dispatch => ({
   updateWork: (id, work) => dispatch(actions.updateWork(id, work))
 });
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(handleErrors(WorkUpdate, api))
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(handleErrors(WorkUpdate, api)));
