@@ -33,14 +33,11 @@ const Work = props => {
     ResidentialCleaning
   ];
 
-  let matchCategory = category =>
-    images.find(image => image.includes(category));
+  let matchCategory = category => images.find(image => image.includes(category));
 
   return (
     <TableRow>
-      <TableItem
-        TableItemStyle={['Status', props.status.replace(/[^\w]/g, '')]}
-      >
+      <TableItem TableItemStyle={['Status', props.status.replace(/[^\w]/g, '')]}>
         <p style={{ color: 'white' }}>
           <strong>{props.status}</strong>
         </p>
@@ -50,6 +47,7 @@ const Work = props => {
         <strong>{props.category}</strong>
         <div className={classes.WorkCategory}>
           <img
+            style={{ height: '80px' }}
             alt={props.category}
             className={classes.WorkImage}
             src={matchCategory(props.category.replace(/[^\w]/g, ''))}
@@ -60,9 +58,7 @@ const Work = props => {
         <Link to={`/work/${props._id}`}>{props._id}</Link>
       </TableItem>
       <TableItem>
-        <Link to={`/locations/${props.location._id}`}>
-          {props.location.name}
-        </Link>
+        <Link to={`/locations/${props.location._id}`}>{props.location.name}</Link>
         <p>{props.location.addressOne}</p>
         <p>{props.location.addressTwo}</p>
         <p>

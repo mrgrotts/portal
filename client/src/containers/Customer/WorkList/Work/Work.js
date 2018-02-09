@@ -37,18 +37,25 @@ const Work = props => {
 
   return (
     <TableRow>
+      <TableItem TableItemStyle={['Status', props.status.replace(/[^\w]/g, '')]}>
+        <p style={{ color: 'white' }}>
+          <strong>{props.status}</strong>
+        </p>
+        {props.status === 'Unassigned' ? null : <p>{props.assignedTo}</p>}
+      </TableItem>
       <TableItem>
-        {props.category}
+        <strong>{props.category}</strong>
         <div className={classes.WorkCategory}>
-          <img alt={props.category} className={classes.WorkImage} src={matchCategory(props.category.replace(/[^\w]/g, ''))} />
+          <img
+            style={{ height: '80px' }}
+            alt={props.category}
+            className={classes.WorkImage}
+            src={matchCategory(props.category.replace(/[^\w]/g, ''))}
+          />
         </div>
       </TableItem>
       <TableItem>
         <Link to={`/work/${props._id}`}>{props._id}</Link>
-      </TableItem>
-      <TableItem>
-        <p>{props.status}</p>
-        {props.status === 'Unassigned' ? null : <p>{props.assignedTo}</p>}
       </TableItem>
       <TableItem>
         <Link to={`/locations/${props.location._id}`}>{props.location.name}</Link>

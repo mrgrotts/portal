@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 
 import handleErrors from '../../../hoc/handleErrors';
 
-import Table from '../../../components/UI/Table/Table';
-
-import Spinner from '../../../components/UI/Spinner/Spinner';
 import Work from './Work/Work';
+
+import Table from '../../../components/UI/Table/Table';
+import Spinner from '../../../components/UI/Spinner/Spinner';
 
 import * as actions from '../../../actions';
 
@@ -20,10 +20,7 @@ class WorkList extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return (
-      nextProps.work !== this.props.work ||
-      nextProps.children !== this.props.children
-    );
+    return nextProps.work !== this.props.work || nextProps.children !== this.props.children;
   }
 
   readWorkList = async () => await this.props.readWorkList();
@@ -32,32 +29,18 @@ class WorkList extends Component {
 
   render() {
     let workList = <Spinner />;
+    let title = `You Have ${workList.length} Work Orders`;
+    let headers = ['Status', 'Category', 'Number', 'Location', 'Description', 'Date Received', 'Actions'];
 
     if (!this.props.loading) {
-      workList = this.props.work
-        .reverse()
-        .map(work => (
-          <Work
-            key={work._id}
-            {...work}
-            delete={this.deleteWork.bind(this, work._id)}
-          />
-        ));
-    }
+      workList = this.props.work.reverse().map(work => <Work key={work._id} {...work} delete={this.deleteWork.bind(this, work._id)} />);
 
-    let headers = [
-      'Category',
-      'Number',
-      'Status',
-      'Location',
-      'Description',
-      'Date Received',
-      'Actions'
-    ];
+      title = workList.length === 1 ? `You have ${workList.length} Work Order` : title;
+    }
 
     return (
       <div className={classes.WorkList}>
-        <h1>You Have {workList.length} Work Orders</h1>
+        <h1 style={{ marginBottom: '2rem', textAlign: 'center' }}>{title}</h1>
         <Table headers={headers}>{workList}</Table>
       </div>
     );
@@ -77,6 +60,4 @@ const mapDispatchToProps = dispatch => ({
   readLocation: id => dispatch(actions.readLocation(id))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  handleErrors(WorkList, api)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(handleErrors(WorkList, api));

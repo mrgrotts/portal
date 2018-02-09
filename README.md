@@ -3,8 +3,9 @@
 **Portal** is a platform developed with **React, Express, NodeJS and MongoDB**. It uses **JSON Web Tokens (JWT)** for authentication and features multiple user types:
 
 * Super Admin - Global Access
+* Owner - Account Access, Primary User & Admin
 * Admin Manager - Account Access
-* Admin Manager - Scoped Account Access
+* Admin User - Scoped Account Access
 * Customer Manager - Company Access
 * Customer User - Scoped Company Access
 * New Account - Disabled Account Access
@@ -74,7 +75,7 @@ All henceforth stated goals are by end of quarter.
 
 ### Q3 2018
 
-* Calendar
+* Google Calendar
 * Offline Mode - IMPLEMENTED
 * Push Notifications
 * Real Time Geolocation
@@ -86,4 +87,5 @@ All henceforth stated goals are by end of quarter.
 * Drag and Drop
 * E-Commerce
 * Live Chat Agent
-* Workbox
+* Reports
+

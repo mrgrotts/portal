@@ -14,9 +14,7 @@ const TableItem = props => {
 
   return (
     <Auxiliary>
-      <td className={`${classes.TableItem} ${TableItemStyles}`}>
-        {props.children}
-      </td>
+      <td className={`${classes.TableItem} ${TableItemStyles}`}>{props.children}</td>
     </Auxiliary>
   );
 };
