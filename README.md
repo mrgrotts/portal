@@ -2,9 +2,12 @@
 
 **Portal** is a platform developed with **React, Express, NodeJS and MongoDB**. It uses **JSON Web Tokens (JWT)** for authentication and features multiple user types:
 
-* Admin - Global Access
-* User Admin - Team Access
-* User - Basic Access
+* Super Admin - Global Access
+* Admin Manager - Account Access
+* Admin Manager - Scoped Account Access
+* Customer Manager - Company Access
+* Customer User - Scoped Company Access
+* New Account - Disabled Account Access
 
 **Create React App** was used to generate client side boilerplate. This project has already been ejected to enable CSS Modules and other customizations.
 
@@ -31,6 +34,9 @@ You could be building sick Portals too:
 
 ```
 APP_NAME=YOUR_APP_NAME
+APP_DOMAIN=YOUR_DOMAIN
+ADMIN_EMAIL=YOUR_EMAIL (FOR NODEMAILER)
+ADMIN_PASSWORD=YOUR_PASSWORD (FOR NODEMAILER)
 DATABASE_URI=YOUR_MONGO_DB_URI
 JWT_KEY=YOUR_RANDOM_JWT_STRING
 QUICKBOOKS_KEY=YOUR_QUICKBOOKS_KEY
@@ -58,18 +64,18 @@ All henceforth stated goals are by end of quarter.
 
 ### Q2 2018
 
-* Admin Users
-* Email (NodeMailer)
-* Google Cloud Platform
-* Location Collections
+* Admin Users - IMPLEMENTED
+* Email (NodeMailer) - IMPLEMENTED
+* Google Cloud Platform - IN PROCESS
+* Location Collections - IMPLEMENTED
 * Media Gallery
-* QuickBooks
+* QuickBooks - IN PROCESS
 * Universal Search
 
 ### Q3 2018
 
 * Calendar
-* Offline Mode
+* Offline Mode - IMPLEMENTED
 * Push Notifications
 * Real Time Geolocation
 * Stripe
@@ -80,13 +86,4 @@ All henceforth stated goals are by end of quarter.
 * Drag and Drop
 * E-Commerce
 * Live Chat Agent
-
-## Contributing
-
-Interested in building more functionality for Portal? Please connect with **Joe Grotto** by email at **josephmgrotto@gmail.com**. We'd love help creating more component modules and popular API integrations that others can enjoy for their own projects.
-
-## Special Thanks
-
-I wanted to personally take a moment to appreciate all of the great instructors at [Udemy](http://www.udemy.com/) and [Udacity](http://www.udacity.com/) for providing outstanding educational content. I would recommend them both to anyone.
-
-Shout out to Ricky and [Rozalado](https://rozaladocleaning.com/) for believing in Portal and our work. You guys are amazing.
+* Workbox
