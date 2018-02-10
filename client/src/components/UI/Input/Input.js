@@ -1,123 +1,125 @@
-import React from "react";
+import React, { Component } from 'react';
 
-import classes from "./Input.css";
+import classes from './Input.css';
 
-const Input = props => {
-  let field = null;
-  const inputClasses = [classes.Field];
-  const labelClasses = [classes.Label];
+class Input extends Component {
+  render() {
+    let field = null;
+    const inputClasses = [classes.Field];
+    const labelClasses = [classes.Label];
 
-  if (props.invalid && props.validation && props.touched) {
-    inputClasses.push(classes.Invalid);
+    if (this.props.invalid && this.props.validation && this.props.touched) {
+      inputClasses.push(classes.Invalid);
+    }
+
+    // these properties come from a form's state
+    switch (this.props.fieldType) {
+      case 'input':
+        field = (
+          <input
+            id={this.props.name}
+            className={inputClasses.join(' ')}
+            {...this.props.fieldConfig}
+            name={this.props.name}
+            value={this.props.value}
+            onChange={this.props.update}
+          />
+        );
+        break;
+      case 'textarea':
+        field = (
+          <textarea
+            id={this.props.name}
+            className={inputClasses.join(' ')}
+            {...this.props.fieldConfig}
+            name={this.props.name}
+            value={this.props.value}
+            onChange={this.props.update}
+          />
+        );
+        break;
+      case 'select':
+        field = (
+          <select
+            id={this.props.name}
+            className={inputClasses.join(' ')}
+            name={this.props.name}
+            value={this.props.value}
+            onChange={this.props.update}>
+            {this.props.fieldConfig.options.map(option => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        );
+        break;
+      case 'file':
+        inputClasses.push(classes.FileInput);
+        labelClasses.push(classes.FileUpload);
+        // const fileInputs = document.querySelectorAll(`.${classes.FileInput}`);
+        // const fileUpload = document.querySelectorAll(`.${classes.FileUpload}`);
+        // const fileUploadLabel = document.querySelectorAll(
+        //   `label[for=${this.props.name}]`
+        // );
+        // console.log(fileInputs, fileUpload, fileUploadLabel);
+
+        field = (
+          <input
+            id={this.props.name}
+            className={inputClasses.join(' ')}
+            {...this.props.fieldConfig}
+            name={this.props.name}
+            value={this.props.value}
+            onChange={this.props.update}
+            multiple
+          />
+        );
+        break;
+      case 'button':
+        field = (
+          <input
+            id={this.props.name}
+            className={inputClasses.join(' ')}
+            {...this.props.fieldConfig}
+            name={this.props.name}
+            value={this.props.value}
+            onChange={this.props.update}
+          />
+        );
+        break;
+      default:
+        field = (
+          <input
+            id={this.props.name}
+            className={inputClasses.join(' ')}
+            {...this.props.fieldConfig}
+            name={this.props.name}
+            value={this.props.value}
+            onChange={this.props.update}
+          />
+        );
+    }
+
+    let validationError = null;
+    if (this.props.invalid && this.props.touched) {
+      validationError = <p className={classes.ValidationError}>{this.props.errorMessage}</p>;
+    }
+
+    let input =
+      this.props.fieldConfig.type !== 'hidden' ? (
+        <div className={classes.Input}>
+          <label className={labelClasses.join(' ')} htmlFor={this.props.name}>
+            {this.props.label}
+          </label>
+          {field}
+          {validationError}
+        </div>
+      ) : null;
+
+    return input;
   }
-
-  // these properties come from a form's state, like Customer.js
-  switch (props.fieldType) {
-    case "input":
-      field = (
-        <input
-          id={props.name}
-          className={inputClasses.join(" ")}
-          {...props.fieldConfig}
-          name={props.name}
-          value={props.value}
-          onChange={props.update}
-        />
-      );
-      break;
-    case "textarea":
-      field = (
-        <textarea
-          id={props.name}
-          className={inputClasses.join(" ")}
-          {...props.fieldConfig}
-          name={props.name}
-          value={props.value}
-          onChange={props.update}
-        />
-      );
-      break;
-    case "select":
-      field = (
-        <select
-          id={props.name}
-          className={inputClasses.join(" ")}
-          name={props.name}
-          value={props.value}
-          onChange={props.update}>
-          {props.fieldConfig.options.map(option => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      );
-      break;
-    case "file":
-      inputClasses.push(classes.FileInput);
-      labelClasses.push(classes.FileUpload);
-
-      // const fileInputs = document.querySelectorAll(`.${classes.FileInput}`);
-      // const fileUpload = document.querySelectorAll(`.${classes.FileUpload}`);
-      // const fileUploadLabel = document.querySelectorAll(
-      //   `label[for=${props.name}]`
-      // );
-      // console.log(fileInputs, fileUpload, fileUploadLabel);
-
-      field = (
-        <input
-          id={props.name}
-          className={inputClasses.join(" ")}
-          {...props.fieldConfig}
-          name={props.name}
-          value={props.value}
-          onChange={props.update}
-          multiple
-        />
-      );
-      break;
-    case "button":
-      field = (
-        <input
-          id={props.name}
-          className={inputClasses.join(" ")}
-          {...props.fieldConfig}
-          name={props.name}
-          value={props.value}
-          onChange={props.update}
-        />
-      );
-      break;
-    default:
-      field = (
-        <input
-          id={props.name}
-          className={inputClasses.join(" ")}
-          {...props.fieldConfig}
-          name={props.name}
-          value={props.value}
-          onChange={props.update}
-        />
-      );
-  }
-
-  let validationError = null;
-  if (props.invalid && props.touched) {
-    validationError = (
-      <p className={classes.ValidationError}>{props.errorMessage}</p>
-    );
-  }
-
-  return (
-    <div className={classes.Input}>
-      <label className={labelClasses.join(" ")} htmlFor={props.name}>
-        {props.label}
-      </label>
-      {field}
-      {validationError}
-    </div>
-  );
-};
+}
 
 export default Input;
 
@@ -125,7 +127,7 @@ export default Input;
 
 // const fileInputs = document.querySelectorAll(`.${classes.FileInput}`);
 // const fileUpload = document.querySelectorAll(`.${classes.FileUpload}`);
-// const fileUploadLabel = document.querySelectorAll(`label[for=${props.name}]`);
+// const fileUploadLabel = document.querySelectorAll(`label[for=${this.props.name}]`);
 // console.log(fileInputs, fileUpload, fileUploadLabel);
 
 // Array.prototype.forEach.call(fileInputs, input => {
@@ -157,12 +159,12 @@ export default Input;
 //     <label className={classes.FileUpload}>
 //       Upload Files
 //       <input
-//         id={props.name}
+//         id={this.props.name}
 //         className={inputClasses.join(" ")}
-//         {...props.fieldConfig}
-//         name={props.name}
-//         value={props.value}
-//         onChange={props.update}
+//         {...this.props.fieldConfig}
+//         name={this.props.name}
+//         value={this.props.value}
+//         onChange={this.props.update}
 //         multiple
 //         data-multiple-caption={"{count} files selected"}
 //       />

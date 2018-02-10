@@ -16,7 +16,11 @@ const MenuItems = props => (
       </MenuItem>
     ) : null}
 
-    {props.isAuthenticated ? <MenuItem link="/work">Work</MenuItem> : null}
+    {props.isAuthenticated ? (
+      <MenuItem exact link="/work">
+        Work
+      </MenuItem>
+    ) : null}
 
     {props.isAuthenticated ? (
       <MenuItem exact link="/locations">
@@ -24,7 +28,15 @@ const MenuItems = props => (
       </MenuItem>
     ) : null}
 
-    {props.isAuthenticated ? <MenuItem link="/logout">Logout</MenuItem> : <MenuItem link="/login">Login</MenuItem>}
+    {props.isAuthenticated ? (
+      <MenuItem exact link="/logout">
+        Logout
+      </MenuItem>
+    ) : (
+      <MenuItem exact link="/login">
+        Login
+      </MenuItem>
+    )}
   </ul>
 );
 

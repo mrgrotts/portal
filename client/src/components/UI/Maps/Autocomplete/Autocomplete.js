@@ -14,7 +14,7 @@ export class Autocomplete extends Component {
     place: null,
     location: null,
     position: null,
-    phone: null
+    phone: ''
   };
 
   componentDidMount() {
@@ -29,6 +29,7 @@ export class Autocomplete extends Component {
 
   onSearch = event => {
     event.preventDefault();
+
     let lat = this.state.position.lat();
     let lng = this.state.position.lng();
 
@@ -80,12 +81,7 @@ export class Autocomplete extends Component {
       <div className={classes.Autocomplete}>
         <div className={classes.AutocompleteContainer}>
           <div className={classes.AutocompleteForm}>
-            <input
-              className={classes.input}
-              ref="autocomplete"
-              type="text"
-              placeholder="Enter a location"
-            />
+            <input className={classes.input} ref="autocomplete" type="text" placeholder="Enter a location" />
             <Button ButtonType="Success" clicked={this.onSearch}>
               Search
             </Button>
@@ -114,13 +110,7 @@ class AutocompleteWrapper extends Component {
   render() {
     return (
       <div className={classes.AutocompleteWrapper}>
-        <Map
-          google={this.props.google}
-          center={this.state.center}
-          className={classes.AutocompleteMap}
-          visible={this.state.showingMap}
-          zoom={10}
-        >
+        <Map google={this.props.google} center={this.state.center} className={classes.AutocompleteMap} visible={this.state.showingMap} zoom={10}>
           <Marker name={'Search Results'} position={this.state.center} />
           <Autocomplete {...this.props} updateMap={this.updateMap} />
         </Map>

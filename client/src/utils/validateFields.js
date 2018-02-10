@@ -28,6 +28,17 @@ export const validateFields = (value, rules) => {
     valid = pattern.test(value) && valid;
   }
 
+  if (rules.isPhoneNumber) {
+    // const pattern = /^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$/;
+    const pattern = /^(?:\+?1[-.●]?)?\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$/;
+    valid = pattern.test(value) && valid;
+  }
+
+  if (rules.isIPAddress) {
+    const pattern = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+    valid = pattern.test(value) && valid;
+  }
+
   // returns true or false
   return valid;
 };

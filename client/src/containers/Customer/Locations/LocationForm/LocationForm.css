@@ -8,6 +8,10 @@
   padding: 20px;
 }
 
+.LocationFormInputContainer {
+  margin-top: 1.5rem;
+}
+
 .LocationFormAutocomplete {
   margin-top: -30px;
   align-items: center;

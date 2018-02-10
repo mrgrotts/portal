@@ -40,7 +40,7 @@
   .MenuItem a:active,
   .MenuItem a.active {
     background: #333;
-    border-bottom: 4px solid #40a4c8;
+    border-bottom: 4px solid #006eb6;
     color: #ffffff;
   }
 }

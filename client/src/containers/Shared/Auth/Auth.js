@@ -1,32 +1,32 @@
-import api from "../../../api";
+import api from '../../../api';
 
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
-import Auxiliary from "../../../hoc/Auxiliary";
-import handleErrors from "../../../hoc/handleErrors";
+import Auxiliary from '../../../hoc/Auxiliary';
+import handleErrors from '../../../hoc/handleErrors';
 
-import Button from "../../../components/UI/Button/Button";
-import Input from "../../../components/UI/Input/Input";
-import Spinner from "../../../components/UI/Spinner/Spinner";
+import Button from '../../../components/UI/Button/Button';
+import Input from '../../../components/UI/Input/Input';
+import Spinner from '../../../components/UI/Spinner/Spinner';
 
-import * as actions from "../../../actions";
+import * as actions from '../../../actions';
 
-import validateFields from "../../../utils/validateFields";
+import validateFields from '../../../utils/validateFields';
 
-import classes from "./Auth.css";
+import classes from './Auth.css';
 
 class Auth extends Component {
   state = {
     user: {
       email: {
-        fieldType: "input",
+        fieldType: 'input',
         fieldConfig: {
-          type: "email",
-          placeholder: "Email"
+          type: 'email',
+          placeholder: 'Email'
         },
-        value: "",
+        value: '',
         validation: {
           required: true,
           isEmail: true
@@ -35,12 +35,12 @@ class Auth extends Component {
         valid: false
       },
       password: {
-        fieldType: "input",
+        fieldType: 'input',
         fieldConfig: {
-          type: "password",
-          placeholder: "Password"
+          type: 'password',
+          placeholder: 'Password'
         },
-        value: "",
+        value: '',
         validation: {
           required: true,
           minLength: 6
@@ -54,9 +54,8 @@ class Auth extends Component {
   };
 
   componentDidMount() {
-    const path = "/";
-    // check if we are not building and trying to go to checkout
-    if (this.props.redirectPath !== "/") {
+    const path = '/';
+    if (this.props.redirectPath !== '/') {
       this.props.authRedirectPath(path);
     }
   }
@@ -68,10 +67,7 @@ class Auth extends Component {
       [field]: {
         ...this.state.user[field],
         value: event.target.value,
-        valid: validateFields(
-          event.target.value,
-          this.state.user[field].validation
-        ),
+        valid: validateFields(event.target.value, this.state.user[field].validation),
         touched: true
       }
     };
@@ -89,11 +85,7 @@ class Auth extends Component {
   authSubmit = event => {
     event.preventDefault();
 
-    this.props.auth(
-      this.state.user.email.value,
-      this.state.user.password.value,
-      this.state.registration
-    );
+    this.props.auth(this.state.user.email.value, this.state.user.password.value, this.state.registration);
   };
 
   authSwitch = () => {
@@ -142,13 +134,11 @@ class Auth extends Component {
             />
           ))}
           <Button ButtonType="Success" disabled={!this.state.formValid}>
-            {this.state.registration ? "Register" : "Login"}
+            {this.state.registration ? 'Register' : 'Login'}
           </Button>
         </form>
         <Button ButtonType="Failure" clicked={this.authSwitch}>
-          {this.state.registration
-            ? "Switch To Login"
-            : "Switch to Registration"}
+          {this.state.registration ? 'Switch To Login' : 'Switch to Registration'}
         </Button>
       </Auxiliary>
     );
@@ -174,11 +164,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  auth: (email, password, registration) =>
-    dispatch(actions.auth(email, password, registration)),
+  auth: (email, password, registration) => dispatch(actions.auth(email, password, registration)),
   authRedirectPath: path => dispatch(actions.authRedirectPath(path))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  handleErrors(Auth, api)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(handleErrors(Auth, api));

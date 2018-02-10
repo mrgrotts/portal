@@ -19,7 +19,7 @@ const locationsSchema = new mongoose.Schema(
       type: Boolean
     },
     phone: {
-      type: Number
+      type: String
     },
     streetNumber: {
       type: String
