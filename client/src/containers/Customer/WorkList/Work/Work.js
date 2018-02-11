@@ -33,6 +33,21 @@ const Work = props => {
     ResidentialCleaning
   ];
 
+  let locationRow = props.location ? (
+    <TableItem>
+      <Link to={`/locations/${props.location._id}`}>{props.location.name}</Link>
+      <p>{props.location.addressOne}</p>
+      <p>{props.location.addressTwo}</p>
+      <p>
+        {props.location.city}, {props.location.state} {props.location.zipcode}
+      </p>
+    </TableItem>
+  ) : (
+    <TableItem>
+      <p>No Location Assigned</p>
+    </TableItem>
+  );
+
   let matchCategory = category => images.find(image => image.includes(category));
 
   return (
@@ -57,14 +72,7 @@ const Work = props => {
       <TableItem>
         <Link to={`/work/${props._id}`}>{props._id}</Link>
       </TableItem>
-      <TableItem>
-        <Link to={`/locations/${props.location._id}`}>{props.location.name}</Link>
-        <p>{props.location.addressOne}</p>
-        <p>{props.location.addressTwo}</p>
-        <p>
-          {props.location.city}, {props.location.state} {props.location.zipcode}
-        </p>
-      </TableItem>
+      {locationRow}
       <TableItem>{props.description}</TableItem>
       <TableItem>{moment(props.requestedDate).format('LLL')}</TableItem>
       <TableItem>

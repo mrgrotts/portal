@@ -100,7 +100,12 @@ exports.updateLocation = (req, res, next) => {
 
 exports.deleteLocation = (req, res, next) => {
   database.Locations.findByIdAndRemove(req.params.locationId)
-    .then(location => res.json(location))
+    .then(location => {
+      location.tickets.forEach(ticket => {
+        database.Tickets.findByIdAndRemove(ticket._id).catch(next);
+      });
+    })
+    .then(ticket => res.json(location))
     .catch(error => res.send(error));
 };
 

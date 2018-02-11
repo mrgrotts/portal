@@ -97,13 +97,9 @@ exports.updateWork = async (req, res, next) => {
     requestedDeletion: req.body.requestedDeletion
   };
 
-  const work = await database.Work.findByIdAndUpdate(
-    req.params.workId,
-    updatedWork,
-    {
-      new: true
-    }
-  ).catch(error => console.log(error));
+  const work = await database.Work.findByIdAndUpdate(req.params.workId, updatedWork, {
+    new: true
+  }).catch(error => console.log(error));
 
   work
     .save()

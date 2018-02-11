@@ -18,10 +18,12 @@ const workReducer = (state = initialState, action) => {
       };
     case actions.CREATE_WORK_SUCCESS:
       const newWork = { ...action.work };
+      console.log(newWork);
+      console.log(state);
 
       return {
         ...state,
-        workList: state.work.concat(newWork),
+        workList: state.workList.concat(newWork),
         error: null,
         loading: false,
         success: true
@@ -73,7 +75,7 @@ const workReducer = (state = initialState, action) => {
       const work = { ...action.work };
       return {
         ...state,
-        workList: state.work.filter(t => t._id === work._id),
+        workList: state.workList.filter(w => w._id === work._id),
         loading: false,
         success: true
       };
@@ -101,7 +103,7 @@ const workReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        workList: state.work.concat(updatedWork),
+        workList: state.workList.concat(updatedWork),
         error: null,
         loading: false,
         success: true
@@ -130,7 +132,7 @@ const workReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        workList: state.work.filter(work => work._id !== deletedWork._id),
+        workList: state.workList.filter(work => work._id !== deletedWork._id),
         error: null,
         loading: false,
         success: true

@@ -32,9 +32,7 @@ export const auth = (email, password, registration) => async dispatch => {
     .then(response => {
       console.log(response);
       // create new date using the current date + expiration time in seconds
-      const expiration = new Date(
-        new Date().getTime() + response.data.expiresIn * 1000
-      );
+      const expiration = new Date(new Date().getTime() + response.data.expiresIn * 1000);
 
       localStorage.setItem('userId', response.data.user._id);
       localStorage.setItem('token', response.data.token);
@@ -92,9 +90,7 @@ export const authRedirectPath = path => ({
   path
 });
 
-export const authCurrentUser = (
-  userId = localStorage.getItem('userId')
-) => async dispatch => {
+export const authCurrentUser = (userId = localStorage.getItem('userId')) => async dispatch => {
   // console.log("[UserId]", userId);
 
   if (userId) {
@@ -220,7 +216,10 @@ export const createWork = work => async dispatch => {
 
   await api
     .post(url, work)
-    .then(response => dispatch(createWorkSuccess(response.data)))
+    .then(response => {
+      console.log(response.data);
+      dispatch(createWorkSuccess(response.data));
+    })
     .then(() => dispatch(createWorkEnd()))
     .catch(error => {
       console.log(error);

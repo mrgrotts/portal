@@ -185,13 +185,8 @@ class WorkForm extends Component {
 
   async componentDidMount() {
     await this.props.readLocations();
-    // console.log(this.props.locations);
-
-    if (this.state.location === '' && this.props.locations.length !== 0) {
-      this.setState({
-        location: this.props.locations[0]._id
-      });
-    }
+    // console.log(this.props.locations[0]._id);
+    // console.log(this.state.workForm.location.value);
 
     let options = [];
     this.props.locations.map(location => {
@@ -209,11 +204,13 @@ class WorkForm extends Component {
         ...this.state.workForm.location,
         fieldConfig: {
           options
-        }
+        },
+        value: this.props.locations[0]._id
       }
     };
 
-    this.setState({ workForm });
+    // console.log(workForm);
+    return this.setState({ workForm });
   }
 
   updateField = (event, field) => {
@@ -235,6 +232,7 @@ class WorkForm extends Component {
       formValid = workForm[field].valid && formValid;
     }
 
+    // console.log(workForm);
     return this.setState({ workForm, formValid });
   };
 
@@ -257,7 +255,7 @@ class WorkForm extends Component {
       requestedDate: this.state.requestedDate
     });
 
-    // console.log(this.state);
+    console.log(this.state);
   };
 
   onCancel = event => {
@@ -368,7 +366,7 @@ class WorkForm extends Component {
 
     return (
       <Auxiliary>
-        <div style={{ width: '100%' }}>{progress}</div>
+        {progress}
         {form}
       </Auxiliary>
     );
