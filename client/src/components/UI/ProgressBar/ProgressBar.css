@@ -43,126 +43,126 @@ ul.ProgressBar li:last-child:after {
   content: '';
 }
 
-ul.ProgressBar li.active {
+ul.ProgressBar li.Active {
   color: #006eb6;
   font-weight: bold;
 }
 
-ul.ProgressBar li.active-black:before {
+ul.ProgressBar li.ActiveBlack:before {
   background: #000000;
   z-index: 2;
   box-shadow: -4px 0px 0px 0px #006eb6;
 }
 
-ul.ProgressBar li.active-blue:before {
+ul.ProgressBar li.ActiveBlue:before {
   background: #006eb6;
   z-index: 2;
   box-shadow: -4px 0px 0px 0px #006eb6;
 }
 
-ul.ProgressBar li.active-green:before {
+ul.ProgressBar li.ActiveGreen:before {
   background: #8bc53f;
   z-index: 2;
   box-shadow: -4px 0px 0px 0px #006eb6;
 }
 
-ul.ProgressBar li.active-orange:before {
+ul.ProgressBar li.ActiveOrange:before {
   background: #ff9900;
   z-index: 2;
   box-shadow: -4px 0px 0px 0px #006eb6;
 }
 
-ul.ProgressBar li.active-red:before {
+ul.ProgressBar li.ActiveRed:before {
   background: #a00000;
   z-index: 2;
   box-shadow: -4px 0px 0px 0px #006eb6;
 }
 
-ul.ProgressBar li.active-yellow:before {
+ul.ProgressBar li.ActiveYellow:before {
   background: #ffee00;
   z-index: 2;
   box-shadow: -4px 0px 0px 0px #006eb6;
 }
 
-ul.ProgressBar li.visited {
+ul.ProgressBar li.Visited {
   background: #006eb6;
   color: #57aed1;
   z-index: 2;
 }
 
-ul.ProgressBar li.visited:before {
+ul.ProgressBar li.Visited:before {
   background: #006eb6;
   z-index: 2;
   box-shadow: -4px 0px 0px 0px #006eb6;
 }
 
-ul.ProgressBar li.visited-black {
+ul.ProgressBar li.VisitedBlack {
   background: #000000;
   color: #57aed1;
   z-index: 2;
 }
 
-ul.ProgressBar li.visited-black:before {
+ul.ProgressBar li.VisitedBlack:before {
   background: #000000;
   z-index: 2;
   box-shadow: -4px 0px 0px 0px #006eb6;
 }
 
-ul.ProgressBar li.visited-blue {
+ul.ProgressBar li.VisitedBlue {
   background: #006eb6;
   color: #57aed1;
   z-index: 2;
 }
 
-ul.ProgressBar li.visited-blue:before {
+ul.ProgressBar li.VisitedBlue:before {
   background: #006eb6;
   z-index: 2;
   box-shadow: -4px 0px 0px 0px #006eb6;
 }
 
-ul.ProgressBar li.visited-green {
+ul.ProgressBar li.VisitedGreen {
   background: #8bc53f;
   color: #57aed1;
   z-index: 2;
 }
 
-ul.ProgressBar li.visited-green:before {
+ul.ProgressBar li.VisitedGreen:before {
   background: #8bc53f;
   z-index: 2;
   box-shadow: -4px 0px 0px 0px #006eb6;
 }
 
-ul.ProgressBar li.visited-orange {
+ul.ProgressBar li.VisitedOrange {
   background: #ff9900;
   color: #57aed1;
   z-index: 2;
 }
 
-ul.ProgressBar li.visited-orange:before {
+ul.ProgressBar li.VisitedOrange:before {
   background: #ff9900;
   z-index: 2;
   box-shadow: -4px 0px 0px 0px #006eb6;
 }
 
-ul.ProgressBar li.visited-red {
+ul.ProgressBar li.VisitedRed {
   background: #a00000;
   color: #57aed1;
   z-index: 2;
 }
 
-ul.ProgressBar li.visited-red:before {
+ul.ProgressBar li.VisitedRed:before {
   background: #a00000;
   z-index: 2;
   box-shadow: -4px 0px 0px 0px #006eb6;
 }
 
-ul.ProgressBar li.visited-yellow {
+ul.ProgressBar li.VisitedYellow {
   background: #ffee00;
   color: #57aed1;
   z-index: 2;
 }
 
-ul.ProgressBar li.visited-yellow:before {
+ul.ProgressBar li.VisitedYellow:before {
   background: #ffee00;
   z-index: 2;
   box-shadow: -4px 0px 0px 0px #006eb6;
@@ -217,13 +217,13 @@ ul.ProgressBar li:nth-child(6):before {
 }
 
 @media all {
-  .ProgressBar li.active:after,
-  .ProgressBar li.active-black:after,
-  .ProgressBar li.active-blue:after,
-  .ProgressBar li.active-green:after,
-  .ProgressBar li.active-orange:after,
-  .ProgressBar li.active-red:after,
-  .ProgressBar li.active-yellow:after {
+  .ProgressBar li.Active:after,
+  .ProgressBar li.ActiveBlack:after,
+  .ProgressBar li.ActiveBlue:after,
+  .ProgressBar li.ActiveGreen:after,
+  .ProgressBar li.ActiveOrange:after,
+  .ProgressBar li.ActiveRed:after,
+  .ProgressBar li.ActiveYellow:after {
     background-size: 35px 35px;
     content: '';
     height: 5px;
@@ -274,23 +274,23 @@ ul.ProgressBar li:nth-child(6):before {
     z-index: 1;
   }
 
-  ul.ProgressBar li.visited,
-  ul.ProgressBar li.visited-black,
-  ul.ProgressBar li.visited-blue,
-  ul.ProgressBar li.visited-green,
-  ul.ProgressBar li.visited-orange,
-  ul.ProgressBar li.visited-red,
-  ul.ProgressBar li.visited-yellow {
+  ul.ProgressBar li.Visited,
+  ul.ProgressBar li.VisitedBlack,
+  ul.ProgressBar li.VisitedBlue,
+  ul.ProgressBar li.VisitedGreen,
+  ul.ProgressBar li.VisitedOrange,
+  ul.ProgressBar li.VisitedRed,
+  ul.ProgressBar li.VisitedYellow {
     background: none;
   }
 
-  ul.ProgressBar li.visited:after,
-  ul.ProgressBar li.visited-black:after,
-  ul.ProgressBar li.visited-blue:after,
-  ul.ProgressBar li.visited-green:after,
-  ul.ProgressBar li.visited-orange:after,
-  ul.ProgressBar li.visited-red:after,
-  ul.ProgressBar li.visited-yellow:after {
+  ul.ProgressBar li.Visited:after,
+  ul.ProgressBar li.VisitedBlack:after,
+  ul.ProgressBar li.VisitedBlue:after,
+  ul.ProgressBar li.VisitedGreen:after,
+  ul.ProgressBar li.VisitedOrange:after,
+  ul.ProgressBar li.VisitedRed:after,
+  ul.ProgressBar li.VisitedYellow:after {
     background-size: 35px 35px;
     background-color: #006eb6;
     content: '';

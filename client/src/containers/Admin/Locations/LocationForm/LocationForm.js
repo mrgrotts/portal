@@ -30,7 +30,7 @@ class LocationForm extends Component {
     locationForm: {
       name: {
         fieldType: 'input',
-        fieldConfig: { type: 'text', placeholder: 'Location Name', ref: 'name' },
+        fieldConfig: { type: 'text', placeholder: 'Location Name' },
         value: this.props.location ? this.props.location.name : '',
         validation: { required: true },
         touched: false,
@@ -38,7 +38,7 @@ class LocationForm extends Component {
       },
       phone: {
         fieldType: 'input',
-        fieldConfig: { type: 'tel', placeholder: 'Phone Number', ref: 'phone' },
+        fieldConfig: { type: 'tel', placeholder: 'Phone Number' },
         value: this.props.location ? this.props.location.phone : '',
         validation: { required: false, isPhoneNumber: true },
         touched: false,
@@ -46,7 +46,7 @@ class LocationForm extends Component {
       },
       streetNumber: {
         fieldType: 'input',
-        fieldConfig: { type: 'hidden', placeholder: 'Street Number', ref: 'streetNumber' },
+        fieldConfig: { type: 'hidden', placeholder: 'Street Number' },
         value: this.props.location ? this.props.location.streetNumber : '',
         validation: { required: false, isNumeric: true },
         touched: false,
@@ -54,7 +54,7 @@ class LocationForm extends Component {
       },
       route: {
         fieldType: 'input',
-        fieldConfig: { type: 'hidden', placeholder: 'Route', ref: 'route' },
+        fieldConfig: { type: 'hidden', placeholder: 'Route' },
         value: this.props.location ? this.props.location.route : '',
         validation: { required: false },
         touched: false,
@@ -62,7 +62,7 @@ class LocationForm extends Component {
       },
       addressOne: {
         fieldType: 'input',
-        fieldConfig: { type: 'text', placeholder: 'Address One', ref: 'addressOne' },
+        fieldConfig: { type: 'text', placeholder: 'Address One' },
         value: this.props.location ? this.props.location.addressOne : '',
         validation: { required: true },
         touched: false,
@@ -70,7 +70,7 @@ class LocationForm extends Component {
       },
       addressTwo: {
         fieldType: 'input',
-        fieldConfig: { type: 'text', placeholder: 'Address Two', ref: 'addressTwo' },
+        fieldConfig: { type: 'text', placeholder: 'Address Two' },
         value: this.props.location ? this.props.location.addressTwo : '',
         validation: { required: false },
         touched: false,
@@ -78,7 +78,7 @@ class LocationForm extends Component {
       },
       neighborhood: {
         fieldType: 'input',
-        fieldConfig: { type: 'hidden', placeholder: 'Neighborhood', ref: 'neighborhood' },
+        fieldConfig: { type: 'hidden', placeholder: 'Neighborhood' },
         value: this.props.location ? this.props.location.neighborhood : '',
         validation: { required: false },
         touched: false,
@@ -86,7 +86,7 @@ class LocationForm extends Component {
       },
       city: {
         fieldType: 'input',
-        fieldConfig: { type: 'text', placeholder: 'City', ref: 'city' },
+        fieldConfig: { type: 'text', placeholder: 'City' },
         value: this.props.location ? this.props.location.city : '',
         validation: { required: true },
         touched: false,
@@ -94,7 +94,7 @@ class LocationForm extends Component {
       },
       township: {
         fieldType: 'input',
-        fieldConfig: { type: 'hidden', placeholder: 'Township', ref: 'township' },
+        fieldConfig: { type: 'hidden', placeholder: 'Township' },
         value: this.props.location ? this.props.location.township : '',
         validation: { required: false },
         touched: false,
@@ -102,7 +102,7 @@ class LocationForm extends Component {
       },
       county: {
         fieldType: 'input',
-        fieldConfig: { type: 'hidden', placeholder: 'County', ref: 'county' },
+        fieldConfig: { type: 'hidden', placeholder: 'County' },
         value: this.props.location ? this.props.location.county : '',
         validation: { required: false },
         touched: false,
@@ -110,7 +110,7 @@ class LocationForm extends Component {
       },
       state: {
         fieldType: 'input',
-        fieldConfig: { type: 'text', placeholder: 'State', ref: 'state' },
+        fieldConfig: { type: 'text', placeholder: 'State' },
         value: this.props.location ? this.props.location.state : '',
         validation: { required: true, minLength: 2, maxLength: 2 },
         touched: false,
@@ -118,7 +118,7 @@ class LocationForm extends Component {
       },
       zipcode: {
         fieldType: 'input',
-        fieldConfig: { type: 'text', placeholder: 'Zip Code', ref: 'zipcode' },
+        fieldConfig: { type: 'text', placeholder: 'Zip Code' },
         value: this.props.location ? this.props.location.zipcode : '',
         validation: { required: true, minLength: 5, maxLength: 5, isNumeric: true },
         touched: false,
@@ -126,7 +126,7 @@ class LocationForm extends Component {
       },
       zipcodeSuffix: {
         fieldType: 'input',
-        fieldConfig: { type: 'hidden', placeholder: 'Zip Code Suffix', ref: 'zipcodeSuffix' },
+        fieldConfig: { type: 'hidden', placeholder: 'Zip Code Suffix' },
         value: this.props.location ? this.props.location.zipcodeSuffix : '',
         validation: { required: false, isNumeric: true },
         touched: false,
@@ -134,7 +134,7 @@ class LocationForm extends Component {
       },
       country: {
         fieldType: 'input',
-        fieldConfig: { type: 'hidden', placeholder: 'Country', ref: 'country' },
+        fieldConfig: { type: 'hidden', placeholder: 'Country' },
         value: this.props.location ? this.props.location.country : '',
         validation: { required: false },
         touched: false,
@@ -142,7 +142,7 @@ class LocationForm extends Component {
       },
       latitude: {
         fieldType: 'input',
-        fieldConfig: { type: 'hidden', placeholder: 'Latitude', ref: 'latitude' },
+        fieldConfig: { type: 'hidden', placeholder: 'Latitude' },
         value: this.props.location ? this.props.location.latitude : '',
         validation: { required: false, isNumeric: true },
         touched: false,
@@ -150,7 +150,7 @@ class LocationForm extends Component {
       },
       longitude: {
         fieldType: 'input',
-        fieldConfig: { type: 'hidden', placeholder: 'Longitude', ref: 'longitude' },
+        fieldConfig: { type: 'hidden', placeholder: 'Longitude' },
         value: this.props.location ? this.props.location.longitude : '',
         validation: { required: false, isNumeric: true },
         touched: false,

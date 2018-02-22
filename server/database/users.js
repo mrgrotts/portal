@@ -42,16 +42,8 @@ const usersSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: [
-        'New Account',
-        'Customer User',
-        'Customer Manager',
-        'Admin User',
-        'Admin Manager',
-        'Admin Owner',
-        'Super Admin'
-      ],
-      default: 'New Account'
+      enum: ['New Account', 'Customer User', 'Customer Manager', 'Admin User', 'Admin Manager', 'Admin Owner', 'Super Admin'],
+      default: 'Admin Owner'
     },
     work: [
       {

@@ -1,45 +1,116 @@
-import React from "react";
+import React from 'react';
 
-import classes from "./ProgressBar.css";
+import Auxiliary from '../../../hoc/Auxiliary';
+
+import classes from './ProgressBar.css';
 
 const ProgressBar = props => {
-  // switch (statusDiv) {
-  //   case "Unassigned":
-  //     pBarLi.eq(0).addClass("active-yellow");
-  //     break;
-  //   case "Pending":
-  //     pBarLi.eq(0).addClass("visited-yellow");
-  //     pBarLi.eq(1).addClass("active-orange");
-  //     break;
-  //   case "Prep":
-  //     pBarLi.eq(0).addClass("visited-yellow");
-  //     pBarLi.eq(1).addClass("visited-orange");
-  //     pBarLi.eq(2).addClass("active-green");
-  //     break;
-  //   case "In Progress":
-  //     pBarLi.eq(0).addClass("visited-yellow");
-  //     pBarLi.eq(1).addClass("visited-orange");
-  //     pBarLi.eq(2).addClass("visited-green");
-  //     pBarLi.eq(3).addClass("active-red");
-  //     break;
-  //   case "Closed":
-  //     pBarLi.eq(0).addClass("visited-yellow");
-  //     pBarLi.eq(1).addClass("visited-orange");
-  //     pBarLi.eq(2).addClass("visited-green");
-  //     pBarLi.eq(3).addClass("visited-red");
-  //     pBarLi.eq(4).addClass("active-black");
-  //     break;
-  // }
+  let progress;
+
+  switch (props.status) {
+    case 'Unassigned':
+      progress = (
+        <Auxiliary>
+          <li className={classes.ActiveYellow} />
+          <li className={''} />
+          <li className={''} />
+          <li className={''} />
+          <li className={''} />
+        </Auxiliary>
+      );
+      break;
+    case 'Pending':
+      progress = (
+        <Auxiliary>
+          <li className={classes.VisitedYellow} />
+          <li className={classes.ActiveOrange} />
+          <li className={''} />
+          <li className={''} />
+          <li className={''} />
+        </Auxiliary>
+      );
+      break;
+    case 'Prep':
+      progress = (
+        <Auxiliary>
+          <li className={classes.VisitedYellow} />
+          <li className={classes.VisitedOrange} />
+          <li className={classes.ActiveGreen} />
+          <li className={''} />
+          <li className={''} />
+        </Auxiliary>
+      );
+      break;
+    case 'In Progress':
+      progress = (
+        <Auxiliary>
+          <li className={classes.VisitedYellow} />
+          <li className={classes.VisitedOrange} />
+          <li className={classes.VisitedGreen} />
+          <li className={classes.ActiveRed} />
+          <li className={''} />
+        </Auxiliary>
+      );
+      break;
+    case 'On Hold':
+      progress = (
+        <Auxiliary>
+          <li className={classes.VisitedYellow} />
+          <li className={classes.VisitedOrange} />
+          <li className={classes.VisitedGreen} />
+          <li className={classes.ActiveRed} />
+          <li className={''} />
+        </Auxiliary>
+      );
+      break;
+    case 'Purchasing Parts':
+      progress = (
+        <Auxiliary>
+          <li className={classes.VisitedYellow} />
+          <li className={classes.VisitedOrange} />
+          <li className={classes.VisitedGreen} />
+          <li className={classes.ActiveRed} />
+          <li className={''} />
+        </Auxiliary>
+      );
+      break;
+    case 'Ordered Parts':
+      progress = (
+        <Auxiliary>
+          <li className={classes.VisitedYellow} />
+          <li className={classes.VisitedOrange} />
+          <li className={classes.VisitedGreen} />
+          <li className={classes.ActiveRed} />
+          <li className={''} />
+        </Auxiliary>
+      );
+      break;
+    case 'Closed':
+      progress = (
+        <Auxiliary>
+          <li className={classes.VisitedYellow} />
+          <li className={classes.VisitedOrange} />
+          <li className={classes.VisitedGreen} />
+          <li className={classes.VisitedRed} />
+          <li className={classes.ActiveBlack} />
+        </Auxiliary>
+      );
+      break;
+    default:
+      progress = (
+        <Auxiliary>
+          <li className={classes.ActiveYellow} />
+          <li className={''} />
+          <li className={''} />
+          <li className={''} />
+          <li className={''} />
+        </Auxiliary>
+      );
+  }
 
   return (
     <div className={classes.ProgressWrap}>
-      <ul className={classes.ProgressBar}>
-        <li className={classes.active} />
-        <li className={""} />
-        <li className={""} />
-        <li className={""} />
-        <li className={""} />
-      </ul>
+      <ul className={classes.ProgressBar}>{progress}</ul>
     </div>
   );
 };

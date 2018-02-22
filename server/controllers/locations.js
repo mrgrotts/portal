@@ -2,7 +2,7 @@ const database = require('../database');
 
 exports.readLocations = (req, res, next) => {
   database.Users.findById(req.params.userId).then(user => {
-    if (user.role === 'Owner') {
+    if (user.role === 'Super Admin') {
       database.Locations.find()
         .sort({ createdAt: 'asc' })
         .populate('work')

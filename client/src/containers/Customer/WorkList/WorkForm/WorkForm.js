@@ -20,7 +20,6 @@ import validateFields from '../../../../utils/validateFields';
 import * as actions from '../../../../actions';
 
 import classes from './WorkForm.css';
-
 class WorkForm extends Component {
   static defaultProps = {
     onSubmit() {},
@@ -33,44 +32,18 @@ class WorkForm extends Component {
         fieldType: 'select',
         fieldConfig: {
           options: [
-            {
-              label: 'Unassigned',
-              value: 'Unassigned'
-            },
-            {
-              label: 'Prep',
-              value: 'Prep'
-            },
-            {
-              label: 'On Hold',
-              value: 'On Hold'
-            },
-            {
-              label: 'In Progress',
-              value: 'In Progress'
-            },
-            {
-              label: 'Pending',
-              value: 'Pending'
-            },
-            {
-              label: 'Purchasing Parts',
-              value: 'Purchasing Parts'
-            },
-            {
-              label: 'Ordered Parts',
-              value: 'Ordered Parts'
-            },
-            {
-              label: 'Closed',
-              value: 'Closed'
-            }
+            { label: 'Unassigned', value: 'Unassigned' },
+            { label: 'Pending', value: 'Pending' },
+            { label: 'Prep', value: 'Prep' },
+            { label: 'In Progress', value: 'In Progress' },
+            { label: 'On Hold', value: 'On Hold' },
+            { label: 'Purchasing Parts', value: 'Purchasing Parts' },
+            { label: 'Ordered Parts', value: 'Ordered Parts' },
+            { label: 'Closed', value: 'Closed' }
           ]
         },
         value: this.props.work ? this.props.work.status : 'Unassigned',
-        validation: {
-          required: true
-        },
+        validation: { required: true },
         touched: false,
         valid: this.props.work ? true : false
       },
@@ -78,96 +51,43 @@ class WorkForm extends Component {
         fieldType: 'select',
         fieldConfig: {
           options: [
-            {
-              label: 'Commercial Cleaning',
-              value: 'Commercial Cleaning'
-            },
-            {
-              label: 'Residential Cleaning',
-              value: 'Residential Cleaning'
-            },
-            {
-              label: 'Drywall Installation',
-              value: 'Drywall Installation'
-            },
-            {
-              label: 'Electrician',
-              value: 'Electrician'
-            },
-            {
-              label: 'Floor Services',
-              value: 'Floor Services'
-            },
-            {
-              label: 'Maintenance',
-              value: 'Maintenance'
-            },
-            {
-              label: 'Painter',
-              value: 'Painter'
-            },
-            {
-              label: 'Pest Control',
-              value: 'Pest Control'
-            },
-            {
-              label: 'Plumber',
-              value: 'Plumber'
-            },
-            {
-              label: 'Post Construction',
-              value: 'Post Construction'
-            },
-            {
-              label: 'Window Washing',
-              value: 'Window Washing'
-            }
+            { label: 'Commercial Cleaning', value: 'Commercial Cleaning' },
+            { label: 'Residential Cleaning', value: 'Residential Cleaning' },
+            { label: 'Drywall Installation', value: 'Drywall Installation' },
+            { label: 'Electrician', value: 'Electrician' },
+            { label: 'Floor Services', value: 'Floor Services' },
+            { label: 'Maintenance', value: 'Maintenance' },
+            { label: 'Painter', value: 'Painter' },
+            { label: 'Pest Control', value: 'Pest Control' },
+            { label: 'Plumber', value: 'Plumber' },
+            { label: 'Post Construction', value: 'Post Construction' },
+            { label: 'Window Washing', value: 'Window Washing' }
           ]
         },
         value: this.props.work ? this.props.work.category : 'Commercial Cleaning',
-        validation: {
-          required: true
-        },
+        validation: { required: true },
         touched: false,
         valid: this.props.work ? true : false
       },
       location: {
         fieldType: 'select',
-        fieldConfig: {
-          options: [
-            {
-              label: 'No Locations',
-              value: 'No Locations'
-            }
-          ]
-        },
+        fieldConfig: { options: [{ label: 'No Locations', value: 'No Locations' }] },
         value: this.props.work ? this.props.work.location : '',
-        validation: {
-          required: true
-        },
+        validation: { required: true },
         touched: false,
         valid: this.props.work ? true : false
       },
       description: {
         fieldType: 'textarea',
-        fieldConfig: {
-          type: 'text',
-          placeholder: 'Description'
-        },
+        fieldConfig: { type: 'text', placeholder: 'Description' },
         value: this.props.work ? this.props.work.description : '',
-        validation: {
-          required: true,
-          minLength: 1
-        },
+        validation: { required: true, minLength: 1 },
         touched: false,
         valid: this.props.work ? true : false
       },
       media: {
         fieldType: 'file',
-        fieldConfig: {
-          type: 'file',
-          placeholder: 'No files uploaded'
-        },
+        fieldConfig: { type: 'file', placeholder: 'No files uploaded' },
         value: this.props.work ? this.props.work.media : [],
         validation: {},
         touched: false,
@@ -255,7 +175,7 @@ class WorkForm extends Component {
       requestedDate: this.state.requestedDate
     });
 
-    console.log(this.state);
+    // console.log(this.state);
   };
 
   onCancel = event => {
@@ -263,18 +183,10 @@ class WorkForm extends Component {
 
     this.setState({
       workForm: {
-        status: {
-          value: this.props.work ? this.props.work.status : 'Unassigned'
-        },
-        category: {
-          value: this.props.work ? this.props.work.category : 'Commercial Cleaning'
-        },
-        location: {
-          value: this.props.work ? this.props.work.location._id : ''
-        },
-        description: {
-          value: this.props.work ? this.props.work.description : ''
-        },
+        status: { value: this.props.work ? this.props.work.status : 'Unassigned' },
+        category: { value: this.props.work ? this.props.work.category : 'Commercial Cleaning' },
+        location: { value: this.props.work ? this.props.work.location._id : '' },
+        description: { value: this.props.work ? this.props.work.description : '' },
         media: this.props.work ? this.props.work.media : []
       },
       previousLocation: this.props.work ? this.props.work.previousLocation : '',
@@ -283,6 +195,10 @@ class WorkForm extends Component {
       createdAt: this.props.work ? moment(this.props.work.createdAt) : moment(),
       updatedAt: this.props.work ? moment(this.props.work.updatedAt) : moment()
     });
+  };
+
+  updateProgress = progress => {
+    return this.props.updateProgress(progress);
   };
 
   render() {
@@ -295,7 +211,7 @@ class WorkForm extends Component {
       });
     }
 
-    let progress = this.props.work === undefined ? null : <ProgressBar />;
+    let progress = this.props.work === undefined ? null : <ProgressBar status={this.state.workForm.status.value} />;
 
     let form = <Spinner />;
 
