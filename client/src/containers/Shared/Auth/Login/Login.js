@@ -52,7 +52,10 @@ class Auth extends Component {
       [field]: {
         ...this.state.loginForm[field],
         value: event.target.value,
-        valid: validateFields(event.target.value, this.state.loginForm[field].validation),
+        valid: validateFields(
+          event.target.value,
+          this.state.loginForm[field].validation
+        ),
         touched: true
       }
     };
@@ -70,7 +73,10 @@ class Auth extends Component {
   authSubmit = event => {
     event.preventDefault();
 
-    this.props.authLogin(this.state.loginForm.email.value, this.state.loginForm.password.value);
+    this.props.authLogin(
+      this.state.loginForm.email.value,
+      this.state.loginForm.password.value
+    );
   };
 
   render() {
@@ -139,4 +145,6 @@ const mapDispatchToProps = dispatch => ({
   authRedirectPath: path => dispatch(actions.authRedirectPath(path))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(handleErrors(Auth, api));
+export default connect(mapStateToProps, mapDispatchToProps)(
+  handleErrors(Auth, api)
+);

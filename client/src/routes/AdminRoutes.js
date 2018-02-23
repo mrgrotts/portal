@@ -6,13 +6,27 @@ import asyncComponent from '../hoc/asyncComponent';
 // ADMIN COMPONENTS
 import Builder from '../containers/Admin/Builder/Builder';
 import Logout from '../containers/Shared/Auth/Logout/Logout';
-const asyncAuth = asyncComponent(() => import('../containers/Shared/Auth/Auth'));
-const asyncLocations = asyncComponent(() => import('../containers/Admin/Locations/Locations'));
-const asyncLocationCreate = asyncComponent(() => import('../containers/Admin/Locations/LocationForm/LocationCreate'));
-const asyncLocationUpdate = asyncComponent(() => import('../containers/Admin/Locations/LocationForm/LocationUpdate'));
-const asyncWorkList = asyncComponent(() => import('../containers/Admin/WorkList/WorkList'));
-const asyncWorkCreate = asyncComponent(() => import('../containers/Admin/WorkList/WorkForm/WorkCreate'));
-const asyncWorkUpdate = asyncComponent(() => import('../containers/Admin/WorkList/WorkForm/WorkUpdate'));
+const asyncAuth = asyncComponent(() =>
+  import('../containers/Shared/Auth/Auth')
+);
+const asyncLocations = asyncComponent(() =>
+  import('../containers/Admin/Locations/Locations')
+);
+const asyncLocationCreate = asyncComponent(() =>
+  import('../containers/Admin/Locations/LocationForm/LocationCreate')
+);
+const asyncLocationUpdate = asyncComponent(() =>
+  import('../containers/Admin/Locations/LocationForm/LocationUpdate')
+);
+const asyncWorkList = asyncComponent(() =>
+  import('../containers/Admin/WorkList/WorkList')
+);
+const asyncWorkCreate = asyncComponent(() =>
+  import('../containers/Admin/WorkList/WorkForm/WorkCreate')
+);
+const asyncWorkUpdate = asyncComponent(() =>
+  import('../containers/Admin/WorkList/WorkForm/WorkUpdate')
+);
 
 const AdminRoutes = props => (
   <Switch>

@@ -11,13 +11,13 @@ const companiesSchema = new mongoose.Schema(
       type: String,
       required: 'Please enter a company name'
     },
-    headquarters: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Locations',
-      required: true,
-      min: 1,
-      max: 1
-    },
+    // headquarters: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: 'Locations',
+    //   required: true,
+    //   min: 1,
+    //   max: 1
+    // },
     users: [
       {
         type: mongoose.Schema.Types.ObjectId,

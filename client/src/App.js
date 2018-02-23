@@ -41,7 +41,7 @@ class App extends Component {
         case 'Admin Manager':
           routes = <AdminRoutes />;
           break;
-        case 'Owner':
+        case 'Admin Owner':
           routes = <AdminRoutes />;
           break;
         default:

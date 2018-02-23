@@ -28,7 +28,9 @@ export const authLogin = (email, password) => async dispatch => {
     .then(response => {
       // console.log(response);
       // create new date using the current date + expiration time in seconds
-      const expiration = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+      const expiration = new Date(
+        new Date().getTime() + response.data.expiresIn * 1000
+      );
 
       localStorage.setItem('userId', response.data.user._id);
       localStorage.setItem('token', response.data.token);
@@ -48,7 +50,7 @@ export const authLogin = (email, password) => async dispatch => {
     });
 };
 
-export const authRegister = (email, password, company) => async dispatch => {
+export const authRegister = (email, password) => async dispatch => {
   let url = `/auth/register`;
 
   dispatch(authStart());
@@ -56,13 +58,14 @@ export const authRegister = (email, password, company) => async dispatch => {
   await api
     .post(url, {
       email,
-      password,
-      company
+      password
     })
     .then(response => {
-      // console.log(response);
+      console.log(response);
       // create new date using the current date + expiration time in seconds
-      const expiration = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+      const expiration = new Date(
+        new Date().getTime() + response.data.expiresIn * 1000
+      );
 
       localStorage.setItem('userId', response.data.user._id);
       localStorage.setItem('token', response.data.token);
@@ -81,6 +84,40 @@ export const authRegister = (email, password, company) => async dispatch => {
       dispatch(authFail(error.message));
     });
 };
+
+// export const authRegister = (email, password, company) => async dispatch => {
+//   let url = `/auth/register`;
+
+//   dispatch(authStart());
+
+//   await api
+//     .post(url, {
+//       email,
+//       password,
+//       company
+//     })
+//     .then(response => {
+//       // console.log(response);
+//       // create new date using the current date + expiration time in seconds
+//       const expiration = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+
+//       localStorage.setItem('userId', response.data.user._id);
+//       localStorage.setItem('token', response.data.token);
+//       localStorage.setItem('expiration', expiration);
+
+//       dispatch(authSuccess(response.data.user, response.data.token));
+//       dispatch(authTimeout(response.data.expiresIn));
+//       // Primary Data API Calls
+//       // dispatch(readWorkList());
+//       // dispatch(readLocations());
+
+//       generateAuthorizationHeader(response.data.token);
+//     })
+//     .catch(error => {
+//       console.log(error);
+//       dispatch(authFail(error.message));
+//     });
+// };
 
 export const authStart = () => ({
   type: AUTH_START
@@ -120,7 +157,9 @@ export const authRedirectPath = path => ({
   path
 });
 
-export const authCurrentUser = (userId = localStorage.getItem('userId')) => async dispatch => {
+export const authCurrentUser = (
+  userId = localStorage.getItem('userId')
+) => async dispatch => {
   // console.log("[UserId]", userId);
 
   if (userId) {

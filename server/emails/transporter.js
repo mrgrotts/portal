@@ -1,11 +1,11 @@
-require("dotenv").load();
-const nodemailer = require("nodemailer");
-const smtpTransport = require("nodemailer-smtp-transport");
+// require("dotenv").load();
+const nodemailer = require('nodemailer');
+const smtpTransport = require('nodemailer-smtp-transport');
 
 module.exports.transporter = nodemailer.createTransport(
   smtpTransport({
-    service: "Gmail",
-    auth: { user: "rozalado@gmail.com", pass: "Roscoe007" }
+    service: 'Gmail',
+    auth: { user: 'rozalado@gmail.com', pass: 'Roscoe007' }
   })
 );
 
