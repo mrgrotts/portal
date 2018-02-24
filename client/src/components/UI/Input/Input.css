@@ -43,6 +43,10 @@
   outline: none;
   padding: 6px 10px;
   width: 100%;
+    /* FOR TOUCH STYLES ON SAFARI AND CHROME 
+  -webkit-tap-highlight-color: transparent; */
+  /* PASS TOUCH EVENTS TO JAVASCRIPT 
+  touch-action: none;*/
 }
 
 textarea {

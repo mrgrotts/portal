@@ -8,6 +8,10 @@
   padding: 10px;
   margin: 10px;
   font-weight: bold;
+  /* FOR TOUCH STYLES ON SAFARI AND CHROME 
+  -webkit-tap-highlight-color: transparent; */
+  /* PASS TOUCH EVENTS TO JAVASCRIPT 
+  touch-action: none;*/
 }
 
 .Button:first-of-type {
