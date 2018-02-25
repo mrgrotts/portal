@@ -31,69 +31,38 @@ exports.readCompanies = async (req, res, next) => {
     .populate('location')
     .populate('work');
 };
-
+/* MARK BEGIN */
 exports.createCompany = async (req, res, next) => {
-  let company = await database.Companies.findById(req.params.companyId)
-    .populate('users')
-    .populate('locations')
-    .populate('work')
-    .populate('invoices');
-  console.log(company);
+  //
+  const newCompany = {
+    userId: req.params.userId,
+    name: req.body.name,
+    domain: req.body.domain,
+    phone: req.body.phone
+  };
 
-  let users = await database.Users.find({ company: company._id })
-    .populate('company')
-    .populate('locations')
-    .populate('work')
-    .populate('invoices');
-
-  let locations = await database.Locations.find({ company: company._id })
-    .populate('company')
-    .populate('userId')
-    .populate('work')
-    .populate('invoices');
-
-  let work = await database.Work.find({ company: company._id })
-    .populate('company')
-    .populate('userId')
-    .populate('location');
-
-  let invoices = await database.Invoices.find({ company: company._id })
-    .populate('company')
-    .populate('userId')
-    .populate('location')
-    .populate('work');
+  database.Companies.create(newCompany)
+    .then(company => {
+      database.Users.findById(req.params.userId)
+        .then(user => {
+          user.company = company._id;
+          user.save().then(user => {
+            database.Companies.findById(company._id)
+              .populate('userId')
+              .populate('users')
+              .then(c => res.status(200).json(c))
+              .catch(next);
+          });
+        })
+        .catch(next);
+    })
+    .catch(next);
 };
 
 exports.readCompany = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
-    .populate('users')
-    .populate('locations')
-    .populate('work')
-    .populate('invoices');
-  console.log(company);
-
-  let users = await database.Users.find({ company: company._id })
-    .populate('company')
-    .populate('locations')
-    .populate('work')
-    .populate('invoices');
-
-  let locations = await database.Locations.find({ company: company._id })
-    .populate('company')
-    .populate('userId')
-    .populate('work')
-    .populate('invoices');
-
-  let work = await database.Work.find({ company: company._id })
-    .populate('company')
-    .populate('userId')
-    .populate('location');
-
-  let invoices = await database.Invoices.find({ company: company._id })
-    .populate('company')
-    .populate('userId')
-    .populate('location')
-    .populate('work');
+    .then(company => res.json(company))
+    .catch(error => res.send(error));
 };
 
 exports.updateCompany = async (req, res, next) => {
@@ -319,7 +288,7 @@ exports.deleteCompanyUser = async (req, res, next) => {
     .populate('location')
     .populate('work');
 };
-
+/* MARK */
 exports.readCompanyWorkList = async (req, res, next) => {
   let company = await database.Companies.findById(req.params.companyId)
     .populate('users')

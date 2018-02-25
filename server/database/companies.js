@@ -11,6 +11,14 @@ const companiesSchema = new mongoose.Schema(
       type: String,
       required: 'Please enter a company name'
     },
+    domain: {
+      type: String,
+      required: 'Please enter a company domain'
+    },
+    phone: {
+      type: String,
+      required: 'Please enter a company phone'
+    },
     // headquarters: {
     //   type: mongoose.Schema.Types.ObjectId,
     //   ref: 'Locations',
