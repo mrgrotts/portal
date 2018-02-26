@@ -14,7 +14,6 @@ import Spinner from '../../../../components/UI/Spinner/Spinner';
 import * as actions from '../../../../actions';
 
 import validateFields from '../../../../utils/validateFields';
-
 class Auth extends Component {
   state = {
     registrationForm: {
@@ -52,10 +51,7 @@ class Auth extends Component {
       [field]: {
         ...this.state.registrationForm[field],
         value: event.target.value,
-        valid: validateFields(
-          event.target.value,
-          this.state.registrationForm[field].validation
-        ),
+        valid: validateFields(event.target.value, this.state.registrationForm[field].validation),
         touched: true
       }
     };
@@ -74,10 +70,7 @@ class Auth extends Component {
   authSubmit = event => {
     event.preventDefault();
 
-    this.props.authRegister(
-      this.state.registrationForm.email.value,
-      this.state.registrationForm.password.value
-    );
+    this.props.authRegister(this.state.registrationForm.email.value, this.state.registrationForm.password.value);
   };
 
   render() {
@@ -112,8 +105,7 @@ class Auth extends Component {
               display: 'flex',
               flexFlow: 'row nowrap',
               justifyContent: 'space-around'
-            }}
-          >
+            }}>
             <div style={{ display: 'flex', flexFlow: 'column nowrap' }}>
               {formFields.map(field => (
                 <Input
@@ -152,11 +144,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  authRegister: (email, password) =>
-    dispatch(actions.authRegister(email, password)),
+  authRegister: (email, password) => dispatch(actions.authRegister(email, password)),
   authRedirectPath: path => dispatch(actions.authRedirectPath(path))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  handleErrors(Auth, api)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(handleErrors(Auth, api));

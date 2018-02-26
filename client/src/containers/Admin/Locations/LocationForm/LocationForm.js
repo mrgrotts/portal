@@ -158,8 +158,8 @@ class LocationForm extends Component {
       }
     },
     formValid: false,
-    createdAt: this.props.work ? moment(this.props.work.createdAt) : moment(),
-    updatedAt: this.props.work ? moment(this.props.work.updatedAt) : moment()
+    createdAt: this.props.location ? moment(this.props.location.createdAt) : moment(),
+    updatedAt: this.props.location ? moment(this.props.location.updatedAt) : moment()
   };
 
   handleChange = event => this.setState({ [event.target.name]: event.target.value });
@@ -282,8 +282,8 @@ class LocationForm extends Component {
         latitude: this.props.location ? this.props.location.latitude : '',
         longitude: this.props.location ? this.props.location.longitude : ''
       },
-      createdAt: this.props.work ? moment(this.props.work.createdAt) : moment(),
-      updatedAt: this.props.work ? moment(this.props.work.updatedAt) : moment()
+      createdAt: this.props.location ? moment(this.props.location.createdAt) : moment(),
+      updatedAt: this.props.location ? moment(this.props.location.updatedAt) : moment()
     });
   };
 

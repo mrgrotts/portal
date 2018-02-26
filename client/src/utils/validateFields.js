@@ -23,6 +23,11 @@ export const validateFields = (value, rules) => {
     valid = pattern.test(value) && valid;
   }
 
+  if (rules.isURL) {
+    const pattern = /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/;
+    valid = pattern.test(value) && valid;
+  }
+
   if (rules.isNumeric) {
     const pattern = /^\d+$/;
     valid = pattern.test(value) && valid;

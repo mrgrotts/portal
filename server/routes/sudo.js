@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 
 const {
   getUsers,
@@ -16,39 +16,39 @@ const {
   readWork,
   updateWork,
   deleteWork
-} = require("../controllers/sudo");
+} = require('../controllers/sudo');
 
 const router = express.Router();
 
 router
-  .route("/users")
+  .route('/users')
   .get(getUsers)
   .post(createUser);
 
 router
-  .route("/users/:id")
+  .route('/users/:userId')
   .get(readUser)
   .put(updateUser)
   .delete(deleteUser);
 
 router
-  .route("/locations")
+  .route('/locations')
   .get(getLocations)
   .post(createLocation);
 
 router
-  .route("/locations/:id")
+  .route('/locations/:locationId')
   .get(readLocation)
   .put(updateLocation)
   .delete(deleteLocation);
 
 router
-  .route("/work")
+  .route('/work')
   .get(getWorkList)
   .post(createWork);
 
 router
-  .route("/work/:id")
+  .route('/work/:workId')
   .get(readWork)
   .put(updateWork)
   .delete(deleteWork);

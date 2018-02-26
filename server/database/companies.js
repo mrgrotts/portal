@@ -13,19 +13,11 @@ const companiesSchema = new mongoose.Schema(
     },
     domain: {
       type: String,
-      required: 'Please enter a company domain'
+      required: 'Please enter a domain'
     },
     phone: {
-      type: String,
-      required: 'Please enter a company phone'
+      type: String
     },
-    // headquarters: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: 'Locations',
-    //   required: true,
-    //   min: 1,
-    //   max: 1
-    // },
     users: [
       {
         type: mongoose.Schema.Types.ObjectId,
