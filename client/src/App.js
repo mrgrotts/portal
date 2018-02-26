@@ -13,7 +13,6 @@ import Layout from './containers/Shared/Layout/Layout';
 import Portal from './containers/Shared/Portal/Portal';
 
 import * as actions from './actions';
-
 class App extends Component {
   async componentDidMount() {
     await this.props.authState();

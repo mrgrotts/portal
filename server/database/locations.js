@@ -15,9 +15,6 @@ const locationsSchema = new mongoose.Schema(
       type: String,
       required: 'Please enter a location name'
     },
-    headquarters: {
-      type: Boolean
-    },
     phone: {
       type: String
     },
