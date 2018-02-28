@@ -1,173 +1,15 @@
 {
 	"info": {
 		"name": "Express Mongo React API",
-		"_postman_id": "dc527862-eb4f-74cb-fd2b-0095d452a651",
+		"_postman_id": "2781d67c-3dd7-2d40-7708-e4e5cd83c014",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Sudo",
-			"description": "",
+			"description": null,
 			"item": [
-				{
-					"name": "Sudo All Admins",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"email\": \"josephmgrotto@gmail.com\",\n    \"password\": \"theone19\",\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": \"1\",\n    \"phone\": \"6303862219\",\n    \"profilePicture\": \"\",\n    \"verified\": \"true\"\n}\n\n"
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/sudo/admins",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"sudo",
-								"admins"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Sudo Create Admin",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"email\": \"josephmgrotto@gmail.com\",\n    \"password\": \"theone19\",\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": \"1\",\n    \"phone\": \"6303862219\",\n    \"profilePicture\": \"\",\n    \"verified\": \"true\"\n}\n\n"
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/sudo/admins",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"sudo",
-								"admins"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Sudo Read Admin",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"email\": \"josephmgrotto@gmail.com\",\n    \"password\": \"theone19\",\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": \"1\",\n    \"phone\": \"6303862219\",\n    \"profilePicture\": \"\",\n    \"verified\": \"true\"\n}\n\n"
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/sudo/admins/5a612ea23a029a0a70e5799e",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"sudo",
-								"admins",
-								"5a612ea23a029a0a70e5799e"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Sudo Update Admin",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"email\": \"josephmgrotto@gmail.com\",\n    \"password\": \"theone19\",\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": \"1\",\n    \"phone\": \"6303862219\",\n    \"profilePicture\": \"\",\n    \"verified\": \"true\"\n}\n\n"
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/sudo/admins/5a612ea23a029a0a70e5799e",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"sudo",
-								"admins",
-								"5a612ea23a029a0a70e5799e"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Sudo Delete Admin",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/sudo/admins/5a612ea23a029a0a70e5799e",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"sudo",
-								"admins",
-								"5a612ea23a029a0a70e5799e"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
 				{
 					"name": "Sudo All Users",
 					"request": {
@@ -195,7 +37,7 @@
 								"users"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -227,7 +69,7 @@
 								"5a4c80201a1ca52ae4c9c50a"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -243,7 +85,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": 1,\n    \"phone\": 6303862219,\n    \"admin\": false,\n    \"workList\": [],\n    \"locations\": [],\n    \"verified\": true,\n    \"email\": \"tom@gmail.com\",\n    \"password\": \"things123\",\n    \"__v\": 0,\n    \"updatedAt\": \"2018-01-18T21:51:51.688Z\",\n    \"profilePicture\": \"\"\n}"
+							"raw": "{\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": 1,\n    \"phone\": 6303862219,\n    \"admin\": false,\n    \"tickets\": [],\n    \"locations\": [],\n    \"verified\": true,\n    \"email\": \"tom@gmail.com\",\n    \"password\": \"things123\",\n    \"__v\": 0,\n    \"updatedAt\": \"2018-01-18T21:51:51.688Z\",\n    \"profilePicture\": \"\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/api/sudo/users",
@@ -258,7 +100,7 @@
 								"users"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -274,7 +116,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": 1,\n    \"phone\": 6303862219,\n    \"admin\": true,\n    \"workList\": [],\n    \"locations\": [],\n    \"verified\": true,\n    \"_id\": \"5a4c80201a1ca52ae4c9c50a\",\n    \"email\": \"josephmgrotto@gmail.com\",\n    \"password\": \"$2a$10$CpMxLl42O01ql4T0zEgJee91rziTZ49z/oKAnJCRWA5Pkvw1RC5ve\",\n    \"__v\": 0,\n    \"updatedAt\": \"2018-01-18T21:51:51.688Z\",\n    \"profilePicture\": \"\"\n}"
+							"raw": "{\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": 1,\n    \"phone\": 6303862219,\n    \"admin\": true,\n    \"tickets\": [],\n    \"locations\": [],\n    \"verified\": true,\n    \"_id\": \"5a4c80201a1ca52ae4c9c50a\",\n    \"email\": \"josephmgrotto@gmail.com\",\n    \"password\": \"$2a$10$CpMxLl42O01ql4T0zEgJee91rziTZ49z/oKAnJCRWA5Pkvw1RC5ve\",\n    \"__v\": 0,\n    \"updatedAt\": \"2018-01-18T21:51:51.688Z\",\n    \"profilePicture\": \"\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/api/sudo/users/5a612ea23a029a0a70e5799e",
@@ -290,7 +132,7 @@
 								"5a612ea23a029a0a70e5799e"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -322,12 +164,12 @@
 								"5a6135bf22afb8410085441e"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
 				{
-					"name": "Sudo All WorkList",
+					"name": "Sudo All Work",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -350,10 +192,10 @@
 							"path": [
 								"api",
 								"sudo",
-								"workList"
+								"work"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -372,7 +214,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/sudo/work/5a602b1e8ea3f4495837ccdd",
+							"raw": "http://localhost:8080/api/sudo/work/5a7cf269bac5513e1c25b860",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -381,11 +223,11 @@
 							"path": [
 								"api",
 								"sudo",
-								"workList",
-								"5a602b1e8ea3f4495837ccdd"
+								"work",
+								"5a7cf269bac5513e1c25b860"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -417,11 +259,11 @@
 							"path": [
 								"api",
 								"sudo",
-								"workList",
+								"work",
 								"5a602b1e8ea3f4495837ccdd"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -453,11 +295,11 @@
 							"path": [
 								"api",
 								"sudo",
-								"workList",
+								"work",
 								"5a602b1e8ea3f4495837ccdd"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -488,7 +330,7 @@
 								"locations"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -520,7 +362,7 @@
 								"5a5510c80461ee2ff05e3358"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -540,7 +382,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"latitude\": 41.88,\n    \"longitude\": -87.00,\n    \"workList\": [],\n    \"name\": \"Home\",\n    \"addressOne\": \"27W223 Churchill Road\",\n    \"addressTwo\": \"\",\n    \"city\": \"Winfield\",\n    \"state\": \"IL\",\n    \"zipcode\": \"60190\"\n}"
+							"raw": "{\n    \"latitude\": 41.88,\n    \"longitude\": -87.00,\n    \"tickets\": [],\n    \"name\": \"Home\",\n    \"addressOne\": \"27W223 Churchill Road\",\n    \"addressTwo\": \"\",\n    \"city\": \"Winfield\",\n    \"state\": \"IL\",\n    \"zipcode\": \"60190\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/api/sudo/locations/5a5510c80461ee2ff05e3358",
@@ -556,7 +398,7 @@
 								"5a5510c80461ee2ff05e3358"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -592,154 +434,28 @@
 								"5a5510c80461ee2ff05e3358"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				}
 			]
 		},
 		{
-			"name": "Admins",
+			"name": "Companies",
 			"description": "",
 			"item": [
 				{
-					"name": "All Admins",
+					"name": "Company Schema",
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"email\": \"josephmgrotto@gmail.com\",\n    \"password\": \"theone19\",\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": \"1\",\n    \"phone\": \"6303862219\",\n    \"profilePicture\": \"\",\n    \"verified\": \"true\"\n}\n\n"
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/admins",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"admin",
-								"5a612ea23a029a0a70e5799e",
-								"admins"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Create Admin",
-					"request": {
-						"method": "POST",
-						"header": [
+							},
 							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"email\": \"grottoj@gmail.com\",\n    \"password\": \"theone19\",\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": \"1\",\n    \"phone\": \"6303862219\",\n    \"profilePicture\": \"\",\n    \"verified\": \"true\"\n}\n\n"
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/admins",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"admin",
-								"5a612ea23a029a0a70e5799e",
-								"admins"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Read Admin",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"email\": \"josephmgrotto@gmail.com\",\n    \"password\": \"theone19\",\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": \"1\",\n    \"phone\": \"6303862219\",\n    \"profilePicture\": \"\",\n    \"verified\": \"true\"\n}\n\n"
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/admins/5a6132c022afb8410085441a",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"admin",
-								"5a612ea23a029a0a70e5799e",
-								"admins",
-								"5a6132c022afb8410085441a"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Update Admin",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"email\": \"grottoj@gmail.com\",\n    \"password\": \"theone19\",\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": \"1\",\n    \"phone\": \"6303862219\",\n    \"profilePicture\": \"\",\n    \"verified\": \"true\"\n}\n\n"
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/admins/5a6132c022afb8410085441a",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"admin",
-								"5a612ea23a029a0a70e5799e",
-								"admins",
-								"5a6132c022afb8410085441a"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Admin",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTkxZTRiODMyZDViZjdmNjA5ZTY5NTEiLCJpYXQiOjE1MTk3Nzk5MzEsImV4cCI6MTUxOTc4MzUzMX0.dFG8DmnPfzhBTHKYw5uqjMDFQerbD6MvNk8NVyYYl8o"
 							}
 						],
 						"body": {
@@ -747,18 +463,14 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/admins/5a6132c022afb8410085441a",
+							"raw": "http://localhost:8080/companies",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"admin",
-								"5a612ea23a029a0a70e5799e",
-								"admins",
-								"5a6132c022afb8410085441a"
+								"companies"
 							]
 						},
 						"description": ""
@@ -766,53 +478,25 @@
 					"response": []
 				},
 				{
-					"name": "Admin All Users",
+					"name": "All Companies",
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/users",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"admin",
-								"5a612ea23a029a0a70e5799e",
-								"users"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Admin Create User",
-					"request": {
-						"method": "POST",
-						"header": [
+							},
 							{
-								"key": "Content-Type",
-								"value": "application/json"
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTkxZTRiODMyZDViZjdmNjA5ZTY5NTEiLCJpYXQiOjE1MTk3Nzk5MzEsImV4cCI6MTUxOTc4MzUzMX0.dFG8DmnPfzhBTHKYw5uqjMDFQerbD6MvNk8NVyYYl8o"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstName\": \"Tom\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": 1,\n    \"phone\": 6306530495,\n    \"admin\": false,\n    \"workList\": [],\n    \"locations\": [],\n    \"verified\": true,\n    \"email\": \"tom@gmail.com\",\n    \"profilePicture\": \"https://google.com\"\n}"
+							"raw": "{\n    \"name\": \"Heir Company\",\n    \"domain\": \"heir.company\",\n    \"phone\": \"6303862219\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/users",
+							"raw": "http://localhost:8080/api/users/5a91e4b832d5bf7f609e6951/companies",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -820,42 +504,9 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"admin",
-								"5a612ea23a029a0a70e5799e",
-								"users"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Admin Read User",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/users/5a4c80201a1ca52ae4c9c50a",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"admin",
-								"5a612ea23a029a0a70e5799e",
 								"users",
-								"5a4c80201a1ca52ae4c9c50a"
+								"5a91e4b832d5bf7f609e6951",
+								"companies"
 							]
 						},
 						"description": ""
@@ -863,119 +514,25 @@
 					"response": []
 				},
 				{
-					"name": "Admin Update User",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"firstName\": \"Joe\",\n    \"lastName\": \"Grotto\",\n    \"countryCode\": 1,\n    \"phone\": 6303862219,\n    \"admin\": true,\n    \"workList\": [],\n    \"locations\": [],\n    \"verified\": true,\n    \"_id\": \"5a4c80201a1ca52ae4c9c50a\",\n    \"email\": \"josephmgrotto@gmail.com\",\n    \"profilePicture\": \"https://google.com\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/users/5a4c80201a1ca52ae4c9c50a",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"admin",
-								"5a612ea23a029a0a70e5799e",
-								"users",
-								"5a4c80201a1ca52ae4c9c50a"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Admin Delete User",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/users/5a4c80201a1ca52ae4c9c50a",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"admin",
-								"5a612ea23a029a0a70e5799e",
-								"users",
-								"5a4c80201a1ca52ae4c9c50a"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Admin All WorkList",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/work",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"admin",
-								"5a612ea23a029a0a70e5799e",
-								"workList"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Admin Create Work",
+					"name": "Create Company",
 					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
 								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTkxZTRiODMyZDViZjdmNjA5ZTY5NTEiLCJpYXQiOjE1MTk3Nzk5MzEsImV4cCI6MTUxOTc4MzUzMX0.dFG8DmnPfzhBTHKYw5uqjMDFQerbD6MvNk8NVyYYl8o"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"status\": \"unassigned\",\n    \"category\": \"Plumbing\",\n    \"comments\": {\n        \"children\": []\n    },\n    \"requestedDeletion\": false,\n    \"location\": \"27W223 Churchill Road\",\n    \"description\": \"i don't clean my house, can you do it for me\",\n    \"requestedDate\": \"3-22-18\"\n}"
+							"raw": "{\n    \"name\": \"Heir Company\",\n    \"domain\": \"heir.company\",\n    \"phone\": \"6303862219\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/work",
+							"raw": "http://localhost:8080/api/users/5a91e4b832d5bf7f609e6951/companies",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -983,9 +540,9 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"admin",
-								"5a612ea23a029a0a70e5799e",
-								"workList"
+								"users",
+								"5a91e4b832d5bf7f609e6951",
+								"companies"
 							]
 						},
 						"description": ""
@@ -993,21 +550,25 @@
 					"response": []
 				},
 				{
-					"name": "Admin Read Work",
+					"name": "Read Company",
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
 								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTkxZTRiODMyZDViZjdmNjA5ZTY5NTEiLCJpYXQiOjE1MTk3Nzk5MzEsImV4cCI6MTUxOTc4MzUzMX0.dFG8DmnPfzhBTHKYw5uqjMDFQerbD6MvNk8NVyYYl8o"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n    \"name\": \"Heir Company\",\n    \"domain\": \"heir.company\",\n    \"phone\": \"6303862219\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/work/5a602b1e8ea3f4495837ccdd",
+							"raw": "http://localhost:8080/api/users/5a91e4b832d5bf7f609e6951/companies/5a9603274f02020a58964653",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1015,10 +576,10 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"admin",
-								"5a612ea23a029a0a70e5799e",
-								"workList",
-								"5a602b1e8ea3f4495837ccdd"
+								"users",
+								"5a91e4b832d5bf7f609e6951",
+								"companies",
+								"5a9603274f02020a58964653"
 							]
 						},
 						"description": ""
@@ -1026,21 +587,25 @@
 					"response": []
 				},
 				{
-					"name": "Admin Update Work",
+					"name": "Update Company",
 					"request": {
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Content-Type",
 								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTkxZTRiODMyZDViZjdmNjA5ZTY5NTEiLCJpYXQiOjE1MTk3Nzk5MzEsImV4cCI6MTUxOTc4MzUzMX0.dFG8DmnPfzhBTHKYw5uqjMDFQerbD6MvNk8NVyYYl8o"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"status\": \"unassigned\",\n    \"category\": \"Residential Cleaning\",\n    \"comments\": {\n        \"children\": []\n    },\n    \"requestedDeletion\": false,\n    \"_id\": \"5a602b1e8ea3f4495837ccdd\",\n    \"userId\": \"5a4c7998fb4fb526c0100abe\",\n    \"location\": \"27W223 Churchill Road\",\n    \"description\": \"i don't clean my house, can you do it for me\",\n    \"requestedDate\": \"3-22-18\"\n}"
+							"raw": "{\n    \"name\": \"Heir Company\",\n    \"domain\": \"heir.company\",\n    \"phone\": \"+16303862219\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/work/5a602b1e8ea3f4495837ccdd",
+							"raw": "http://localhost:8080/api/users/5a91e4b832d5bf7f609e6951/companies/5a9603274f02020a58964653",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1048,10 +613,10 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"admin",
-								"5a612ea23a029a0a70e5799e",
-								"workList",
-								"5a602b1e8ea3f4495837ccdd"
+								"users",
+								"5a91e4b832d5bf7f609e6951",
+								"companies",
+								"5a9603274f02020a58964653"
 							]
 						},
 						"description": ""
@@ -1059,13 +624,17 @@
 					"response": []
 				},
 				{
-					"name": "Admin Delete Work",
+					"name": "Delete Company",
 					"request": {
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Content-Type",
 								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTkxZTRiODMyZDViZjdmNjA5ZTY5NTEiLCJpYXQiOjE1MTk3Nzk5MzEsImV4cCI6MTUxOTc4MzUzMX0.dFG8DmnPfzhBTHKYw5uqjMDFQerbD6MvNk8NVyYYl8o"
 							}
 						],
 						"body": {
@@ -1073,7 +642,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/work/5a602b1e8ea3f4495837ccdd",
+							"raw": "http://localhost:8080/api/users/5a91e4b832d5bf7f609e6951/companies/5a9603274f02020a58964653",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1081,173 +650,10 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"admin",
-								"5a612ea23a029a0a70e5799e",
-								"workList",
-								"5a602b1e8ea3f4495837ccdd"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Admin All Locations",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/locations",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"admin",
-								"5a612ea23a029a0a70e5799e",
-								"locations"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Admin Read Location",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/locations/5a5510c80461ee2ff05e3358",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"admin",
-								"5a612ea23a029a0a70e5799e",
-								"locations",
-								"5a5510c80461ee2ff05e3358"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Admin Create Location",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"latitude\": 100,\n    \"longitude\": -200,\n    \"workList\": [],\n    \"name\": \"madeup\",\n    \"addressOne\": \"is this real\",\n    \"addressTwo\": \"\",\n    \"city\": \"idk\",\n    \"state\": \"al\",\n    \"zipcode\": \"12345\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/locations",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"admin",
-								"5a612ea23a029a0a70e5799e",
-								"locations"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Admin Update Location",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"latitude\": 41.88,\n    \"longitude\": -88,\n    \"workList\": [],\n    \"name\": \"Home\",\n    \"addressOne\": \"27W223 Churchill Road\",\n    \"addressTwo\": \"\",\n    \"city\": \"Winfield\",\n    \"state\": \"IL\",\n    \"zipcode\": \"60190\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/locations/5a5510c80461ee2ff05e3358",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"admin",
-								"5a612ea23a029a0a70e5799e",
-								"locations",
-								"5a5510c80461ee2ff05e3358"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Admin Delete Location",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/admin/5a612ea23a029a0a70e5799e/locations/5a5510c80461ee2ff05e3358",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"admin",
-								"5a612ea23a029a0a70e5799e",
-								"locations",
-								"5a5510c80461ee2ff05e3358"
+								"users",
+								"5a91e4b832d5bf7f609e6951",
+								"companies",
+								"5a9603274f02020a58964653"
 							]
 						},
 						"description": ""
@@ -1258,7 +664,7 @@
 		},
 		{
 			"name": "Users",
-			"description": "",
+			"description": null,
 			"item": [
 				{
 					"name": "User Schema",
@@ -1288,7 +694,7 @@
 								"users"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -1322,7 +728,7 @@
 								"users"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -1353,7 +759,7 @@
 								"users"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -1385,7 +791,7 @@
 								"5a4c80201a1ca52ae4c9c50a"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -1417,7 +823,7 @@
 								"5a4c80201a1ca52ae4c9c50a"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -1449,15 +855,15 @@
 								"5a4c80201a1ca52ae4c9c50a"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				}
 			]
 		},
 		{
-			"name": "WorkList",
-			"description": "",
+			"name": "Work",
+			"description": null,
 			"item": [
 				{
 					"name": "Work Schema",
@@ -1484,15 +890,15 @@
 							],
 							"port": "8080",
 							"path": [
-								"workList"
+								"work"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
 				{
-					"name": "All WorkList",
+					"name": "All Work",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -1509,7 +915,7 @@
 							"raw": "{\n\t\"text\": \"testing testing 123!!\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/admin/work",
+							"raw": "http://localhost:8080/api/users/5a91e4b832d5bf7f609e6951/work",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1517,16 +923,17 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"admin",
-								"workList"
+								"users",
+								"5a91e4b832d5bf7f609e6951",
+								"work"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
 				{
-					"name": "User WorkList",
+					"name": "User Work",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -1547,7 +954,7 @@
 							"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/work",
+							"raw": "http://localhost:8080/api/users/5a91e4b832d5bf7f609e6951/work",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1556,11 +963,11 @@
 							"path": [
 								"api",
 								"users",
-								"5a4c7998fb4fb526c0100abe",
-								"workList"
+								"5a91e4b832d5bf7f609e6951",
+								"work"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -1578,15 +985,15 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTkxZTRiODMyZDViZjdmNjA5ZTY5NTEiLCJpYXQiOjE1MTk3ODM1MzYsImV4cCI6MTUxOTc4NzEzNn0.Pc6r3LTThjU4EW7gzPpFM0cAscYbmnGn3CNVxTdPMEA"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
+							"raw": "{\n    \"status\": \"In Progress\",\n    \"category\": \"Commercial Cleaning\",\n    \"location\": \"5a960f65365854526c922b88\",\n    \"description\": \"PLEASE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/work",
+							"raw": "http://localhost:8080/api/users/5a91e4b832d5bf7f609e6951/work",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1595,11 +1002,11 @@
 							"path": [
 								"api",
 								"users",
-								"5a4c7998fb4fb526c0100abe",
-								"workList"
+								"5a91e4b832d5bf7f609e6951",
+								"work"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -1635,11 +1042,11 @@
 								"api",
 								"users",
 								"5a4c7998fb4fb526c0100abe",
-								"workList",
+								"work",
 								"5a53b2f65f663c1618ae5efa"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -1657,15 +1064,15 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTkxZTRiODMyZDViZjdmNjA5ZTY5NTEiLCJpYXQiOjE1MTk3ODM1MzYsImV4cCI6MTUxOTc4NzEzNn0.Pc6r3LTThjU4EW7gzPpFM0cAscYbmnGn3CNVxTdPMEA"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"status\": \"inprogress\",\n    \"category\": \"commercialcleaning\",\n    \"location\": \"27W223 Churchill Road, Winfield, IL 60190\",\n    \"description\": \"PLEASE PLEASE PLEASEEEEE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
+							"raw": "{\n\t\"company\": \"5a9603274f02020a58964653\",\n    \"status\": \"In Progress\",\n    \"category\": \"Commercial Cleaning\",\n    \"location\": \"5a960f65365854526c922b88\",\n    \"description\": \"PLEASE Clean front and back vestibules, bathrooms, and kitchen\",\n    \"media\": \"\",\n    \"comments\": \"\",\n    \"assignedTo\": \"Mark\",\n    \"requestedDate\": \"Wed, 03 Jan 2018 06:44:41 GMT\",\n    \"scheduledFor\": \"Fri, 05 Jan 2018 12:00:00 GMT\",\n    \"partPurchasedDate\": \"\",\n    \"partArrivedDate\": \"\",\n    \"workCompleted\": \"\",\n    \"hoursSpent\": \"\",\n    \"hourlyRate\": \"\",\n    \"completedDate\": \"\",\n    \"requestedDeletion\": \"false\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/work/5a53b2f65f663c1618ae5efa",
+							"raw": "http://localhost:8080/api/users/5a91e4b832d5bf7f609e6951/work/5a960f83365854526c922b8a",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1674,12 +1081,12 @@
 							"path": [
 								"api",
 								"users",
-								"5a4c7998fb4fb526c0100abe",
-								"workList",
-								"5a53b2f65f663c1618ae5efa"
+								"5a91e4b832d5bf7f609e6951",
+								"work",
+								"5a960f83365854526c922b8a"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -1705,7 +1112,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/work/5a53b2f65f663c1618ae5efa",
+							"raw": "http://localhost:8080/api/users/5a91e4b832d5bf7f609e6951/work/5a960f83365854526c922b8a",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1714,12 +1121,12 @@
 							"path": [
 								"api",
 								"users",
-								"5a4c7998fb4fb526c0100abe",
-								"workList",
-								"5a53b2f65f663c1618ae5efa"
+								"5a91e4b832d5bf7f609e6951",
+								"work",
+								"5a960f83365854526c922b8a"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				}
@@ -1727,7 +1134,7 @@
 		},
 		{
 			"name": "Locations",
-			"description": "",
+			"description": null,
 			"item": [
 				{
 					"name": "Location Schema",
@@ -1757,7 +1164,7 @@
 								"locations"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -1791,7 +1198,7 @@
 								"locations"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -1830,7 +1237,7 @@
 								"locations"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -1848,15 +1255,15 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTRjNzk5OGZiNGZiNTI2YzAxMDBhYmUiLCJpYXQiOjE1MTQ5NjEzMDR9.D6CYwcx8NwJ3xEgnIfNRxcpGrrwyVxTX7t1fhevnlcQ"
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YTkxZTRiODMyZDViZjdmNjA5ZTY5NTEiLCJpYXQiOjE1MTk3ODM1MzYsImV4cCI6MTUxOTc4NzEzNn0.Pc6r3LTThjU4EW7gzPpFM0cAscYbmnGn3CNVxTdPMEA"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"office\",\n    \"addressOne\": \"27W223 Churchill Roads\",\n    \"addressTwo\": \"\",\n    \"city\": \"Winfield\",\n    \"state\": \"IL\",\n    \"zipcode\": \"60190\",\n    \"latitude\": \"41.88\",\n    \"longitude\": \"-87.65\"\n}"
+							"raw": "{\n    \"name\": \"Office\",\n    \"addressOne\": \"27W223 Churchill Roads\",\n    \"addressTwo\": \"\",\n    \"city\": \"Winfield\",\n    \"state\": \"IL\",\n    \"zipcode\": \"60190\",\n    \"latitude\": \"41.88\",\n    \"longitude\": \"-87.65\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/users/5a4c7998fb4fb526c0100abe/locations",
+							"raw": "http://localhost:8080/api/users/5a91e4b832d5bf7f609e6951/locations",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1865,11 +1272,11 @@
 							"path": [
 								"api",
 								"users",
-								"5a4c7998fb4fb526c0100abe",
+								"5a91e4b832d5bf7f609e6951",
 								"locations"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -1909,7 +1316,7 @@
 								"5a5510c80461ee2ff05e3358"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -1949,7 +1356,7 @@
 								"5a5510c80461ee2ff05e3358"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -1989,7 +1396,7 @@
 								"5a5511527e5cd03f1083e0f0"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				}
@@ -2007,7 +1414,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\": \"josephmgrotto@gmail.com\",\n\t\"password\": \"theone19\"\n}"
+					"raw": "{\n  \"email\": \"josephmgrotto@gmail.com\",\n  \"password\": \"theone19\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/auth/register",
@@ -2022,7 +1429,7 @@
 						"register"
 					]
 				},
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
@@ -2038,7 +1445,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\": \"josephmgrotto@gmail.com\",\n\t\"password\": \"theone19\"\n}"
+					"raw": "{\n  \"email\": \"josephmgrotto@gmail.com\",\n  \"password\": \"theone19\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/auth/login",
@@ -2053,7 +1460,7 @@
 						"login"
 					]
 				},
-				"description": ""
+				"description": null
 			},
 			"response": []
 		}
