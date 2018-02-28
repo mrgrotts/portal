@@ -1,3 +1,4 @@
+// https://stackoverflow.com/questions/11904159/automatically-remove-referencing-objects-on-deletion-in-mongodb
 const database = require('../database');
 
 exports.readLocations = (req, res, next) => {

@@ -1,3 +1,4 @@
+// https://stackoverflow.com/questions/11904159/automatically-remove-referencing-objects-on-deletion-in-mongodb
 const QuickBooks = require('node-quickbooks');
 
 const consumerKey = 'Q0aIuU5BcaRH2vuDGblRpRm2dGNprV1g2407AqoFSgFk25yqnd';
@@ -72,9 +73,7 @@ exports.buildInvoice = (invoiceData, callback) => {
     invoice.Line.push({
       Id: i,
       LineNum: i,
-      Description: notes
-        .substring(notes.indexOf(':') + 1, notes.indexOf('\n'))
-        .trim(),
+      Description: notes.substring(notes.indexOf(':') + 1, notes.indexOf('\n')).trim(),
       Amount: 1.0,
       DetailType: 'SalesItemLineDetail',
       SalesItemLineDetail: {
