@@ -1,4 +1,3 @@
-// 'use strict';
 require('dotenv').config();
 const dns = require('dns');
 const http = require('http');
@@ -32,8 +31,12 @@ const invoiceRoutes = require('./routes/invoices');
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 8080;
 const IP = process.env.IP || '127.0.0.1';
-const homedir = os.platform() === 'win32' ? process.env.HOMEPATH : process.env.HOME;
-const serverStreamPath = os.platform() === 'win32' ? `\\\\.\\pipe\\rozalado${Date.now()}.sock` : 'tmp.sock';
+const homedir =
+  os.platform() === 'win32' ? process.env.HOMEPATH : process.env.HOME;
+const serverStreamPath =
+  os.platform() === 'win32'
+    ? `\\\\.\\pipe\\rozalado${Date.now()}.sock`
+    : 'tmp.sock';
 const app = express();
 
 app.title = process.env.APP_NAME;
@@ -49,8 +52,8 @@ app.all('*', (req, res, next) => {
   let responseHeaders = {
     'Access-Control-Allow-Origin': '*',
     'Cache-Control': 'max-age=0, private, must-revalidate',
-    // "Last-Modified": true,
-    // "X-Sent": true,
+    'Last-Modified': Date.now(),
+    'X-Sent': true,
     'X-Request-ID': req.requestId,
     'X-UA-Compatible': 'IE=edge'
   };
@@ -72,7 +75,9 @@ const compressor = compression({
   flush: zlib.Z_PARTIAL_FLUSH
 });
 
-process.env.NODE_ENV === 'production' ? app.use(compressor) : app.use(morgan('dev'));
+process.env.NODE_ENV === 'production'
+  ? app.use(compressor)
+  : app.use(morgan('dev'));
 
 // SUDO MODE -- Enable to use API without Authenticating
 app.use('/api/sudo', sudoRoutes);
@@ -81,10 +86,25 @@ app.use('/api/sudo', sudoRoutes);
 app.use('/', apiRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', authenticateUser, authorizeUser, userRoutes);
-app.use('/api/users/:userId/companies', authenticateUser, authorizeUser, companyRoutes);
-app.use('/api/users/:userId/locations', authenticateUser, authorizeUser, locationRoutes);
+app.use(
+  '/api/users/:userId/companies',
+  authenticateUser,
+  authorizeUser,
+  companyRoutes
+);
+app.use(
+  '/api/users/:userId/locations',
+  authenticateUser,
+  authorizeUser,
+  locationRoutes
+);
 app.use('/api/users/:userId/work', authenticateUser, authorizeUser, workRoutes);
-app.use('/api/users/:userId/invoices', authenticateUser, authorizeUser, invoiceRoutes);
+app.use(
+  '/api/users/:userId/invoices',
+  authenticateUser,
+  authorizeUser,
+  invoiceRoutes
+);
 
 app.get('/ping', (req, res) => {
   res.status(200).json({ ok: true });
@@ -95,15 +115,15 @@ server.listen(PORT, IP, () => {
   console.log(`[${process.env.APP_NAME}]: Launched API on ${HOST}:${PORT}`);
   console.log(`[${process.env.APP_NAME}]: Assigned IP Address ${IP}`);
   console.log(`[${process.env.APP_NAME}]: Found Home Directory ${homedir}`);
-  console.log(`[${process.env.APP_NAME}]: Stream Sync with Directory ${serverStreamPath}`);
+  console.log(
+    `[${process.env.APP_NAME}]: Stream Sync with Directory ${serverStreamPath}`
+  );
 });
 
 if (process.env.NODE_ENV !== 'production') {
-  process.once('uncaughtException', function(error) {
+  process.once('uncaughtException', error => {
     console.error('FATAL: Uncaught exception.');
     console.error(error.stack || error);
-    setTimeout(function() {
-      process.exit(1);
-    }, 100);
+    setTimeout(() => process.exit(1), 100);
   });
 }
