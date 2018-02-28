@@ -160,6 +160,234 @@ export const authStateUpdate = (userId, token) => ({
 });
 
 /**************************************************************************************
+ * COMPANIES                                                                          *
+ **************************************************************************************/
+export const READ_COMPANIES_START = 'read_companies_start';
+export const READ_COMPANIES_SUCCESS = 'read_companies_success';
+export const READ_COMPANIES_FAIL = 'read_companies_fail';
+export const READ_COMPANIES_END = 'read_companies_end';
+
+export const CREATE_COMPANY_START = 'create_company_start';
+export const CREATE_COMPANY_SUCCESS = 'create_company_success';
+export const CREATE_COMPANY_FAIL = 'create_company_fail';
+export const CREATE_COMPANY_END = 'create_company_end';
+
+export const READ_COMPANY_START = 'read_company_start';
+export const READ_COMPANY_SUCCESS = 'read_company_success';
+export const READ_COMPANY_FAIL = 'read_company_fail';
+export const READ_COMPANY_END = 'read_company_end';
+
+export const UPDATE_COMPANY_START = 'update_company_start';
+export const UPDATE_COMPANY_SUCCESS = 'update_company_success';
+export const UPDATE_COMPANY_FAIL = 'update_company_fail';
+export const UPDATE_COMPANY_END = 'update_company_end';
+
+export const DELETE_COMPANY_START = 'delete_company_start';
+export const DELETE_COMPANY_SUCCESS = 'delete_company_success';
+export const DELETE_COMPANY_FAIL = 'delete_company_fail';
+export const DELETE_COMPANY_END = 'delete_company_end';
+
+export const readCompanies = () => async dispatch => {
+  const userId = localStorage.getItem('userId');
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    dispatch(authLogout());
+  }
+
+  dispatch(readCompaniesStart());
+
+  let url = `/users/${userId}/companies`;
+
+  await api
+    .get(url)
+    .then(response => dispatch(readCompaniesSuccess(response.data)))
+    .then(() => dispatch(readCompaniesEnd()))
+    .catch(error => {
+      console.log(error);
+      dispatch(readCompaniesFail(error));
+    });
+};
+
+export const readCompaniesStart = () => ({
+  type: READ_COMPANIES_START
+});
+
+export const readCompaniesSuccess = companies => ({
+  type: READ_COMPANIES_SUCCESS,
+  companies
+});
+
+export const readCompaniesFail = error => ({
+  type: READ_COMPANIES_FAIL,
+  error
+});
+
+export const readCompaniesEnd = () => ({
+  type: READ_COMPANIES_END
+});
+
+export const createCompany = company => async dispatch => {
+  const userId = localStorage.getItem('userId');
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    dispatch(authLogout());
+  }
+
+  dispatch(createCompanyStart());
+
+  let url = `/users/${userId}/companies`;
+
+  await api
+    .post(url, company)
+    .then(response => dispatch(createCompanySuccess(response.data)))
+    .then(() => dispatch(createCompanyEnd()))
+    .catch(error => {
+      console.log(error);
+      dispatch(createCompanyFail(error));
+    });
+};
+
+export const createCompanyStart = () => ({
+  type: CREATE_COMPANY_START
+});
+
+export const createCompanySuccess = company => ({
+  type: CREATE_COMPANY_SUCCESS,
+  company
+});
+
+export const createCompanyFail = error => ({
+  type: CREATE_COMPANY_FAIL,
+  error
+});
+
+export const createCompanyEnd = () => ({
+  type: CREATE_COMPANY_END
+});
+
+export const readCompany = id => async dispatch => {
+  const userId = localStorage.getItem('userId');
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    dispatch(authLogout());
+  }
+
+  dispatch(readCompanyStart());
+
+  let url = `/users/${userId}/companies/${id}`;
+
+  await api
+    .get(url, id)
+    .then(response => dispatch(readCompanySuccess(response.data)))
+    .then(() => dispatch(readCompanyEnd()))
+    .catch(error => {
+      console.log(error);
+      dispatch(readCompanyFail(error));
+    });
+};
+
+export const readCompanyStart = () => ({
+  type: READ_COMPANY_START
+});
+
+export const readCompanySuccess = company => ({
+  type: READ_COMPANY_SUCCESS,
+  company
+});
+
+export const readCompanyFail = error => ({
+  type: READ_COMPANY_FAIL,
+  error
+});
+
+export const readCompanyEnd = () => ({
+  type: READ_COMPANY_END
+});
+
+export const updateCompany = (id, company) => async dispatch => {
+  const userId = localStorage.getItem('userId');
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    dispatch(authLogout());
+  }
+
+  dispatch(updateCompanyStart());
+
+  let url = `/users/${userId}/companies/${id}`;
+
+  await api
+    .put(url, company)
+    .then(response => dispatch(updateCompanySuccess(response.data)))
+    .then(() => dispatch(updateCompanyEnd()))
+    .catch(error => {
+      console.log(error);
+      dispatch(updateCompanyFail(error));
+    });
+};
+
+export const updateCompanyStart = () => ({
+  type: UPDATE_COMPANY_START
+});
+
+export const updateCompanySuccess = company => ({
+  type: UPDATE_COMPANY_SUCCESS,
+  company
+});
+
+export const updateCompanyFail = error => ({
+  type: UPDATE_COMPANY_FAIL,
+  error
+});
+
+export const updateCompanyEnd = () => ({
+  type: UPDATE_COMPANY_END
+});
+
+export const deleteCompany = id => async dispatch => {
+  const userId = localStorage.getItem('userId');
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    dispatch(authLogout());
+  }
+
+  dispatch(deleteCompanyStart());
+
+  let url = `/users/${userId}/companies/${id}`;
+
+  await api
+    .delete(url, id)
+    .then(response => dispatch(deleteCompanySuccess(response.data)))
+    .then(() => dispatch(deleteCompanyEnd()))
+    .catch(error => {
+      console.log(error);
+      dispatch(deleteCompanyFail(error));
+    });
+};
+
+export const deleteCompanyStart = () => ({
+  type: DELETE_COMPANY_START
+});
+
+export const deleteCompanySuccess = company => ({
+  type: DELETE_COMPANY_SUCCESS,
+  company
+});
+
+export const deleteCompanyFail = error => ({
+  type: DELETE_COMPANY_FAIL,
+  error
+});
+
+export const deleteCompanyEnd = () => ({
+  type: DELETE_COMPANY_END
+});
+
+/**************************************************************************************
  * WORKLIST                                                                            *
  **************************************************************************************/
 export const READ_WORKLIST_START = 'read_workList_start';

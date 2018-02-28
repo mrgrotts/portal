@@ -41,7 +41,7 @@ class LocationUpdate extends Component {
 
 const mapStateToProps = (state, props) => ({
   location: state.locations.locations.find(location => location._id === props.match.params.id),
-  id: state.auth.id,
+  userId: state.auth.userId,
   token: state.auth.token,
   loading: state.locations.loading,
   success: state.locations.success

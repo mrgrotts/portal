@@ -11,19 +11,31 @@ const MenuItems = props => (
     </MenuItem>
 
     {props.isAuthenticated ? (
-      <MenuItem exact link="/locations/create">
+      props.company ? (
+        <MenuItem exact link={`/companies/${props.company}`}>
+          Company
+        </MenuItem>
+      ) : (
+        <MenuItem exact link="/companies/create">
+          Add Company
+        </MenuItem>
+      )
+    ) : null}
+
+    {props.isAuthenticated ? (
+      <MenuItem exact link="/locations/create" disabled={!props.verified}>
         Add Location
       </MenuItem>
     ) : null}
 
     {props.isAuthenticated ? (
-      <MenuItem exact link="/work">
+      <MenuItem exact link="/work" disabled={!props.verified}>
         Work
       </MenuItem>
     ) : null}
 
     {props.isAuthenticated ? (
-      <MenuItem exact link="/locations">
+      <MenuItem exact link="/locations" disabled={!props.verified}>
         Locations
       </MenuItem>
     ) : null}
@@ -33,7 +45,7 @@ const MenuItems = props => (
         Logout
       </MenuItem>
     ) : (
-      <MenuItem exact link="/login">
+      <MenuItem exact link="/login" verified={props.verified}>
         Login
       </MenuItem>
     )}

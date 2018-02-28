@@ -23,7 +23,7 @@ const SideDrawer = props => {
           <Logo />
         </div>
         <nav>
-          <MenuItems isAuthenticated={props.isAuthenticated} />
+          <MenuItems isAuthenticated={props.isAuthenticated} verified={props.verified} company={props.company} />
         </nav>
       </div>
     </Auxiliary>

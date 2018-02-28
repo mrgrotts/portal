@@ -7,6 +7,8 @@ import asyncComponent from '../hoc/asyncComponent';
 import Builder from '../containers/Customer/Builder/Builder';
 import Logout from '../containers/Shared/Auth/Logout/Logout';
 const asyncAuth = asyncComponent(() => import('../containers/Shared/Auth/Auth'));
+const asyncCompanyCreate = asyncComponent(() => import('../containers/Admin/Company/CompanyForm/CompanyCreate'));
+const asyncCompanyUpdate = asyncComponent(() => import('../containers/Admin/Company/CompanyForm/CompanyUpdate'));
 const asyncLocations = asyncComponent(() => import('../containers/Customer/Locations/Locations'));
 const asyncLocationCreate = asyncComponent(() => import('../containers/Customer/Locations/LocationForm/LocationCreate'));
 const asyncLocationUpdate = asyncComponent(() => import('../containers/Customer/Locations/LocationForm/LocationUpdate'));
@@ -18,6 +20,9 @@ const CustomerRoutes = props => (
   <Switch>
     <Route path="/login" component={asyncAuth} />
     <Route path="/logout" component={Logout} />
+    <Route path="/companies/create" component={asyncCompanyCreate} />
+    <Route path="/companies/:id" component={asyncCompanyUpdate} />
+    {/* <Route exact path="/companies" component={asyncCompanies} /> */}
     <Route path="/locations/create" component={asyncLocationCreate} />
     <Route path="/locations/:id" component={asyncLocationUpdate} />
     <Route exact path="/locations" component={asyncLocations} />

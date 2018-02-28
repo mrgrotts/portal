@@ -56,6 +56,12 @@ class CompanyForm extends Component {
     updatedAt: this.props.company ? moment(this.props.company.updatedAt) : moment()
   };
 
+  // async componentDidMount() {
+  //   if (this.props.user.company) {
+  //     await this.props.readCompany(this.props.user.company);
+  //   }
+  // }
+
   handleChange = event => this.setState({ [event.target.name]: event.target.value });
 
   updateField = (event, field) => {
@@ -158,7 +164,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  readCompany: id => dispatch(actions.readCompany(id))
+  // readCompany: id => dispatch(actions.readCompany(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(handleErrors(CompanyForm, api));

@@ -2,12 +2,14 @@ import api from '../../../../api';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import Auxiliary from '../../../../hoc/Auxiliary';
 import handleErrors from '../../../../hoc/handleErrors';
 
 import Button from '../../../../components/UI/Button/Button';
 import Input from '../../../../components/UI/Input/Input';
+import Spinner from '../../../../components/UI/Spinner/Spinner';
 
 import * as actions from '../../../../actions';
 
@@ -34,6 +36,13 @@ class Auth extends Component {
     },
     formValid: false
   };
+
+  componentDidMount() {
+    const path = '/companies/create';
+    if (this.props.redirectPath !== '/companies/create') {
+      this.props.authRedirectPath(path);
+    }
+  }
 
   updateField = (event, field) => {
     // 2 spreads to deeply clone state and get copies of nested properties from state
@@ -75,41 +84,68 @@ class Auth extends Component {
       });
     }
 
+    let error = null;
+
+    if (this.props.error) {
+      error = <p>{this.props.error.message}</p>;
+    }
+
+    let authRedirect = null;
+    if (this.props.isAuthenticated) {
+      authRedirect = <Redirect to={this.props.redirectPath} />;
+    }
+
     let form = (
-      <form onSubmit={this.authSubmit}>
-        <div
-          style={{
-            display: 'flex',
-            flexFlow: 'row nowrap',
-            justifyContent: 'space-around'
-          }}>
-          <div style={{ display: 'flex', flexFlow: 'column nowrap' }}>
-            {formFields.map(field => (
-              <Input
-                key={field.id}
-                update={event => this.updateField(event, field.id)}
-                fieldType={field.config.fieldType}
-                fieldConfig={field.config.fieldConfig}
-                value={field.config.value}
-                validation={field.config.validation}
-                touched={field.config.touched}
-                invalid={!field.config.valid}
-              />
-            ))}
+      <Auxiliary>
+        {authRedirect}
+        {error}
+        <form onSubmit={this.authSubmit}>
+          <div
+            style={{
+              display: 'flex',
+              flexFlow: 'row nowrap',
+              justifyContent: 'space-around'
+            }}>
+            <div style={{ display: 'flex', flexFlow: 'column nowrap' }}>
+              {formFields.map(field => (
+                <Input
+                  key={field.id}
+                  update={event => this.updateField(event, field.id)}
+                  fieldType={field.config.fieldType}
+                  fieldConfig={field.config.fieldConfig}
+                  value={field.config.value}
+                  validation={field.config.validation}
+                  touched={field.config.touched}
+                  invalid={!field.config.valid}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-        <Button ButtonType="Success" disabled={!this.state.formValid}>
-          Register
-        </Button>
-      </form>
+          <Button ButtonType="Success" disabled={!this.state.formValid}>
+            Register
+          </Button>
+        </form>
+      </Auxiliary>
     );
+
+    if (this.props.loading) {
+      form = <Spinner />;
+    }
 
     return <Auxiliary>{form}</Auxiliary>;
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  authRegister: (email, password) => dispatch(actions.authRegister(email, password))
+const mapStateToProps = state => ({
+  error: state.auth.error,
+  loading: state.auth.loading,
+  isAuthenticated: state.auth.token !== null,
+  redirectPath: state.auth.redirectPath
 });
 
-export default connect(null, mapDispatchToProps)(handleErrors(Auth, api));
+const mapDispatchToProps = dispatch => ({
+  authRegister: (email, password) => dispatch(actions.authRegister(email, password)),
+  authRedirectPath: path => dispatch(actions.authRedirectPath(path))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(handleErrors(Auth, api));

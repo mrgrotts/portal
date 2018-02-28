@@ -1,25 +1,25 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const invoicesSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Users",
+      ref: 'Users',
       required: true
     },
     company: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Companies",
+      ref: 'Companies',
       required: true
     },
     location: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Locations",
+      ref: 'Locations',
       required: true
     },
     work: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "WorkList",
+      ref: 'Work',
       required: true
     },
     number: {
@@ -37,16 +37,16 @@ const invoicesSchema = new mongoose.Schema(
     line: [
       {
         type: String,
-        default: ""
+        default: ''
       }
     ],
     memo: {
       type: String,
-      default: ""
+      default: ''
     },
     notes: {
       type: String,
-      default: ""
+      default: ''
     },
     subtotal: {
       type: Number,
@@ -70,6 +70,6 @@ const invoicesSchema = new mongoose.Schema(
   }
 );
 
-const Invoices = mongoose.model("Invoices", invoicesSchema);
+const Invoices = mongoose.model('Invoices', invoicesSchema);
 
 module.exports = Invoices;

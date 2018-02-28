@@ -8,8 +8,18 @@ import classes from './Portal.css';
 
 class Portal extends Component {
   render() {
+    let pleaseVerifyMessage;
+    if (this.props.isAuthenticated && !this.props.user.verified) {
+      pleaseVerifyMessage = (
+        <div className={classes.VerifyMessageContainer}>
+          <h3 className={classes.VerifyMessage}>Please check {this.props.user.email} for a verification link.</h3>
+        </div>
+      );
+    }
+
     return (
       <div className={classes.Portal}>
+        {pleaseVerifyMessage}
         <Link to="/work/create">
           <FloatingButton>add</FloatingButton>
         </Link>

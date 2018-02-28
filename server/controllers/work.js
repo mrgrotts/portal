@@ -31,6 +31,7 @@ exports.readWorkList = (req, res, next) => {
 exports.createWork = (req, res, next) => {
   const newWork = {
     userId: req.params.userId,
+    company: req.body.company,
     category: req.body.category,
     location: req.body.location,
     description: req.body.description,
@@ -78,6 +79,7 @@ exports.readWork = (req, res, next) => {
 
 exports.updateWork = async (req, res, next) => {
   const updatedWork = {
+    company: req.body.company,
     status: req.body.status,
     category: req.body.category,
     location: req.body.location,
@@ -105,6 +107,7 @@ exports.updateWork = async (req, res, next) => {
     .save()
     .then(work =>
       database.Work.findById(work._id)
+        .populate('company')
         .populate('location')
         .populate('userId')
         .then(work => res.status(200).json(work))

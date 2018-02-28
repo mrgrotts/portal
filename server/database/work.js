@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const commentsSchema = new mongoose.Schema(
+const messagesSchema = new mongoose.Schema(
   {
     by: {
       type: mongoose.Schema.Types.ObjectId,
@@ -8,7 +8,7 @@ const commentsSchema = new mongoose.Schema(
     },
     text: {
       type: String,
-      required: 'Comments cannot be blank'
+      required: 'Message cannot be blank'
     }
   },
   {
@@ -39,16 +39,7 @@ const workSchema = new mongoose.Schema(
       // lowercase: true,
       // trim: true,
       default: 'Unassigned',
-      enum: [
-        'Unassigned',
-        'Prep',
-        'On Hold',
-        'In Progress',
-        'Pending',
-        'Purchasing Parts',
-        'Ordered Parts',
-        'Closed'
-      ]
+      enum: ['Unassigned', 'Prep', 'On Hold', 'In Progress', 'Pending', 'Purchasing Parts', 'Ordered Parts', 'Closed']
     },
     category: {
       type: String,
@@ -70,10 +61,6 @@ const workSchema = new mongoose.Schema(
         'Window Washing'
       ]
     },
-    previousLocation: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Locations'
-    },
     location: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Locations',
@@ -89,9 +76,9 @@ const workSchema = new mongoose.Schema(
       name: String,
       url: String
     },
-    comments: {
-      child: commentsSchema,
-      children: [commentsSchema]
+    messages: {
+      child: messagesSchema,
+      children: [messagesSchema]
     },
     assignedTo: {
       type: String
@@ -137,7 +124,7 @@ const workSchema = new mongoose.Schema(
 // }
 
 // workSchema.loadClass(WorkListClass);
-const Work = mongoose.model('WorkList', workSchema);
+const Work = mongoose.model('Work', workSchema);
 
 module.exports = Work;
 

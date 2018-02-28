@@ -44,7 +44,7 @@ class Auth extends Component {
 
     let authRedirect = null;
     if (this.props.isAuthenticated) {
-      authRedirect = <Redirect to={this.props.redirectPath} />;
+      this.state.registration ? (authRedirect = <Redirect to="/companies/create" />) : (authRedirect = <Redirect to={this.props.redirectPath} />);
     }
 
     let authForm = this.state.registration ? <Register /> : <Login />;

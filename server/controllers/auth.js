@@ -22,33 +22,26 @@ exports.login = (req, res) =>
     .populate('work')
     .then(user => {
       // console.log("[LOGIN]", user);
-      if (user.verified) {
-        user.comparePassword(req.body.password, (error, match) => {
-          if (match) {
-            const expiresIn = 60 * 60;
-            const token = jwt.sign({ userId: user._id }, process.env.JWT_KEY, {
-              expiresIn
-            });
+      user.comparePassword(req.body.password, (error, match) => {
+        if (match) {
+          const expiresIn = 60 * 60;
+          const token = jwt.sign({ userId: user._id }, process.env.JWT_KEY, {
+            expiresIn
+          });
 
-            return res.json({
-              user,
-              token,
-              expiresIn
-            });
-          } else {
-            // email/password did not match db
-            console.log('invalid password');
-            res.status(400).json({
-              message: INVALID_PASSWORD
-            });
-          }
-        });
-      } else {
-        console.log('account not verified');
-        res.status(400).json({
-          message: ACCOUNT_NOT_VERIFIED
-        });
-      }
+          return res.json({
+            user,
+            token,
+            expiresIn
+          });
+        } else {
+          // email/password did not match db
+          console.log('invalid password');
+          res.status(400).json({
+            message: INVALID_PASSWORD
+          });
+        }
+      });
     })
     .catch(error => {
       // could not find email in db

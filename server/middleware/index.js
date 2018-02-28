@@ -2,11 +2,7 @@ require('dotenv').load();
 const jwt = require('jsonwebtoken');
 
 const database = require('../database');
-const {
-  ACCOUNT_NOT_AUTHORIZED,
-  ACCOUNT_NOT_VERIFIED,
-  SESSION_TIMEOUT
-} = require('../constants');
+const { ACCOUNT_NOT_AUTHORIZED, ACCOUNT_NOT_VERIFIED, SESSION_TIMEOUT } = require('../constants');
 
 exports.authenticateUser = (req, res, next) => {
   try {
@@ -34,9 +30,6 @@ exports.authorizeUser = (req, res, next) => {
   }
 
   database.Users.findById(req.user)
-    .populate('company')
-    .populate('locations')
-    .populate('work')
     .then(user => {
       req.user = user;
       // console.log("[USER FOUND]", user);

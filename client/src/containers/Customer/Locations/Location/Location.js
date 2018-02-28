@@ -47,11 +47,11 @@ class Location extends Component {
   render() {
     const style = { height: '100%', width: '100%' };
 
-    let workList;
+    let work;
     this.props.work
-      ? (workList = (
+      ? (work = (
           <div>
-            <h4>{this.props.work.length} WorkList</h4>
+            <h4>{this.props.work.length} Work Orders</h4>
             {this.props.work.map(work => (
               <div key={work._id}>
                 <p>
@@ -64,10 +64,10 @@ class Location extends Component {
             ))}
           </div>
         ))
-      : (workList = (
+      : (work = (
           <div>
-            <h4>No WorkList</h4>
-            <p>No WorkList for this Location</p>
+            <h4>No Work</h4>
+            <p>No Work Orders for this Location</p>
           </div>
         ));
 
@@ -111,7 +111,7 @@ class Location extends Component {
             {this.props.latitude}, {this.props.longitude}
           </p>
           <hr style={{ margin: '5px 0' }} />
-          {workList}
+          {work}
           <p>Created By: {this.props.userId.email}</p>
           <p>Created At: {this.props.createdAt}</p>
           <p>Updated At: {this.props.updatedAt}</p>

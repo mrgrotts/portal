@@ -17,6 +17,7 @@ class App extends Component {
   async componentDidMount() {
     await this.props.authState();
     await this.props.authCurrentUser();
+    await this.props.readCompany(this.props.user.company);
   }
 
   render() {
@@ -66,7 +67,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   authState: () => dispatch(actions.authState()),
-  authCurrentUser: () => dispatch(actions.authCurrentUser())
+  authCurrentUser: () => dispatch(actions.authCurrentUser()),
+  readCompany: id => dispatch(actions.readCompany(id))
 });
 
 // withRouter higher order component enforces props passing down to components

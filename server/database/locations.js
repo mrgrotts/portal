@@ -73,7 +73,7 @@ const locationsSchema = new mongoose.Schema(
     work: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'WorkList'
+        ref: 'Work'
       }
     ]
   },

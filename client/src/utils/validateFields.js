@@ -50,7 +50,7 @@ export const validateFields = (value, rules) => {
   }
 
   if (rules.isPostalAddress) {
-    const pattern = /[a-zA-Z\d\s\-\,\#\.\+]+/;
+    const pattern = /[a-zA-Z\d\s]+/;
     valid = pattern.test(value) && valid;
   }
 

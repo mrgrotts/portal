@@ -2,12 +2,14 @@ import api from '../../../../api';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import Auxiliary from '../../../../hoc/Auxiliary';
 import handleErrors from '../../../../hoc/handleErrors';
 
 import Button from '../../../../components/UI/Button/Button';
 import Input from '../../../../components/UI/Input/Input';
+import Spinner from '../../../../components/UI/Spinner/Spinner';
 
 import * as actions from '../../../../actions';
 
@@ -35,6 +37,13 @@ class Auth extends Component {
     },
     formValid: false
   };
+
+  componentDidMount() {
+    const path = '/';
+    if (this.props.redirectPath !== '/') {
+      this.props.authRedirectPath(path);
+    }
+  }
 
   updateField = (event, field) => {
     // 2 spreads to deeply clone state and get copies of nested properties from state
@@ -75,32 +84,59 @@ class Auth extends Component {
       });
     }
 
+    let error = null;
+
+    if (this.props.error) {
+      error = <p>{this.props.error.message}</p>;
+    }
+
+    let authRedirect = null;
+    if (this.props.isAuthenticated) {
+      this.props.verified ? (authRedirect = <Redirect to={this.props.redirectPath} />) : (authRedirect = <Redirect to="/companies/create" />);
+    }
+
     let form = (
-      <form onSubmit={this.authSubmit}>
-        {formFields.map(field => (
-          <Input
-            key={field.id}
-            update={event => this.updateField(event, field.id)}
-            fieldType={field.config.fieldType}
-            fieldConfig={field.config.fieldConfig}
-            value={field.config.value}
-            validation={field.config.validation}
-            touched={field.config.touched}
-            invalid={!field.config.valid}
-          />
-        ))}
-        <Button ButtonType="Success" disabled={!this.state.formValid}>
-          Login
-        </Button>
-      </form>
+      <Auxiliary>
+        {authRedirect}
+        {error}
+        <form onSubmit={this.authSubmit}>
+          {formFields.map(field => (
+            <Input
+              key={field.id}
+              update={event => this.updateField(event, field.id)}
+              fieldType={field.config.fieldType}
+              fieldConfig={field.config.fieldConfig}
+              value={field.config.value}
+              validation={field.config.validation}
+              touched={field.config.touched}
+              invalid={!field.config.valid}
+            />
+          ))}
+          <Button ButtonType="Success" disabled={!this.state.formValid}>
+            Login
+          </Button>
+        </form>
+      </Auxiliary>
     );
+
+    if (this.props.loading) {
+      form = <Spinner />;
+    }
 
     return <Auxiliary>{form}</Auxiliary>;
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  authLogin: (email, password) => dispatch(actions.authLogin(email, password))
+const mapStateToProps = state => ({
+  error: state.auth.error,
+  loading: state.auth.loading,
+  isAuthenticated: state.auth.token !== null,
+  redirectPath: state.auth.redirectPath
 });
 
-export default connect(null, mapDispatchToProps)(handleErrors(Auth, api));
+const mapDispatchToProps = dispatch => ({
+  authLogin: (email, password) => dispatch(actions.authLogin(email, password)),
+  authRedirectPath: path => dispatch(actions.authRedirectPath(path))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(handleErrors(Auth, api));

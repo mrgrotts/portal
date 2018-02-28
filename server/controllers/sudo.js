@@ -1,37 +1,43 @@
 const database = require('../database');
 
-exports.getUsers = (req, res) => {
+exports.getCompanies = (req, res, next) => {
+  database.Companies.find()
+    .then(companies => res.json(companies))
+    .catch(error => res.status(500).json(error));
+};
+
+exports.getUsers = (req, res, next) => {
   database.Users.find()
     .then(users => res.json(users))
     .catch(error => res.status(500).json(error));
 };
 
-exports.createUser = (req, res) => {
+exports.createUser = (req, res, next) => {
   database.Users.create(req.body)
     .then(user => res.status(201).json(user))
     .catch(error => res.send(error));
 };
 
-exports.readUser = (req, res) => {
+exports.readUser = (req, res, next) => {
   database.Users.findById(req.params.userId)
     .then(user => res.status(200).json(user))
     .catch(error => res.send(error));
 };
 
-exports.updateUser = (req, res) => {
+exports.updateUser = (req, res, next) => {
   database.Users.findByIdAndUpdate(req.params.userId, req.body, { new: true })
     .populate('user')
     .then(user => res.status(201).json(user))
     .catch(error => res.send(error));
 };
 
-exports.deleteUser = (req, res) => {
+exports.deleteUser = (req, res, next) => {
   database.Users.findByIdAndRemove(req.params.userId)
     .then(user => res.json(user))
     .catch(error => res.send(error));
 };
 
-exports.getLocations = (req, res) => {
+exports.getLocations = (req, res, next) => {
   database.Locations.find()
     .then(locations => {
       res.json(locations);

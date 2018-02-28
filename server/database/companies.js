@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const companiesSchema = new mongoose.Schema(
   {
-    userId: {
+    owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Users',
       required: true
@@ -33,7 +33,7 @@ const companiesSchema = new mongoose.Schema(
     work: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'WorkList'
+        ref: 'Work'
       }
     ]
   },
