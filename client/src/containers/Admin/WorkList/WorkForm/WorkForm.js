@@ -20,6 +20,56 @@ import validateFields from '../../../../utils/validateFields';
 import * as actions from '../../../../actions';
 
 import classes from './WorkForm.css';
+
+// const defaultProps = {
+//   // input related props
+//   id: 'date',
+//   placeholder: 'Date',
+//   disabled: false,
+//   required: false,
+//   screenReaderInputMessage: '',
+//   showClearDate: false,
+//   showDefaultInputIcon: false,
+//   customInputIcon: null,
+//   block: false,
+//   small: false,
+//   regular: false,
+//   verticalSpacing: undefined,
+//   keepFocusOnInput: false,
+
+//   // calendar presentation and interaction related props
+//   renderMonth: null,
+//   orientation: HORIZONTAL_ORIENTATION,
+//   anchorDirection: ANCHOR_LEFT,
+//   horizontalMargin: 0,
+//   withPortal: false,
+//   withFullScreenPortal: false,
+//   initialVisibleMonth: null,
+//   numberOfMonths: 2,
+//   keepOpenOnDateSelect: false,
+//   reopenPickerOnClearDate: false,
+//   isRTL: false,
+
+//   // navigation related props
+//   navPrev: null,
+//   navNext: null,
+//   onPrevMonthClick() {},
+//   onNextMonthClick() {},
+//   onClose() {},
+
+//   // day presentation and interaction related props
+//   renderCalendarDay: undefined,
+//   renderDayContents: null,
+//   enableOutsideDays: false,
+//   isDayBlocked: () => false,
+//   isOutsideRange: day => !isInclusivelyAfterDay(day, moment()),
+//   isDayHighlighted: () => {},
+
+//   // internationalization props
+//   displayFormat: () => moment.localeData().longDateFormat('L'),
+//   monthFormat: 'MMMM YYYY',
+//   phrases: SingleDatePickerPhrases,
+// };
 class WorkForm extends Component {
   static defaultProps = {
     onSubmit() {},
@@ -85,21 +135,77 @@ class WorkForm extends Component {
         touched: false,
         valid: this.props.work ? true : false
       },
-      media: {
+      message: {
+        fieldType: 'textarea',
+        fieldConfig: { type: 'text', placeholder: 'Your Message' },
+        value: '',
+        validation: { required: false },
+        touched: false,
+        valid: this.props.work ? true : false
+      },
+      assignedTo: {
+        fieldType: 'input',
+        fieldConfig: { type: 'text', placeholder: 'Assigned To' },
+        value: this.props.work ? this.props.work.assignedTo : '',
+        validation: { required: false },
+        touched: false,
+        valid: this.props.work ? true : false
+      },
+      workCompleted: {
+        fieldType: 'textarea',
+        fieldConfig: { type: 'text', placeholder: 'Work items completed, one per line' },
+        value: this.props.work ? this.props.work.workCompleted : '',
+        validation: { required: false },
+        touched: false,
+        valid: this.props.work ? true : false
+      },
+      hoursSpent: {
+        fieldType: 'input',
+        fieldConfig: { type: 'text', placeholder: '0' },
+        value: this.props.work ? this.props.work.hoursSpent : '',
+        validation: { required: false },
+        touched: false,
+        valid: this.props.work ? true : false
+      },
+      hourlyRate: {
+        fieldType: 'input',
+        fieldConfig: { type: 'text', placeholder: '35' },
+        value: this.props.work ? this.props.work.description : '',
+        validation: { required: false },
+        touched: false,
+        valid: this.props.work ? true : false
+      },
+      requestedDeletion: {
+        fieldType: 'checkbox',
+        fieldConfig: { type: 'checkbox', checked: false },
+        value: false,
+        validation: { required: false },
+        touched: false,
+        valid: this.props.work ? true : false
+      },
+      uploads: {
         fieldType: 'file',
         fieldConfig: { type: 'file', placeholder: 'No files uploaded' },
-        value: this.props.work ? this.props.work.media : [],
+        value: [],
         validation: {},
         touched: false,
         valid: this.props.work ? true : false
       }
     },
-    previousLocation: this.props.work ? this.props.work.location : '',
-    // media: this.props.work ? this.props.work.media : [],
+    messages: this.props.work ? this.props.work.messages : [],
+    media: this.props.work ? this.props.work.media : [],
     requestedDate: this.props.work ? moment(this.props.work.requestedDate) : moment(),
+    requestedDateFocused: false,
+    scheduledFor: this.props.work ? moment(this.props.work.scheduledFor) : moment(),
+    scheduledForFocused: false,
+    partPurchasedDate: this.props.work ? moment(this.props.work.partPurchasedDate) : moment(),
+    partPurchasedDateFocused: false,
+    partArrivedDate: this.props.work ? moment(this.props.work.partArrivedDate) : moment(),
+    partArrivedDateFocused: false,
+    completedDate: this.props.work ? moment(this.props.work.completedDate) : moment(),
+    completedDateFocused: false,
     createdAt: this.props.work ? moment(this.props.work.createdAt) : moment(),
     updatedAt: this.props.work ? moment(this.props.work.updatedAt) : moment(),
-    focused: false,
     formValid: false
   };
 
@@ -139,7 +245,7 @@ class WorkForm extends Component {
       ...this.state.workForm,
       [field]: {
         ...this.state.workForm[field],
-        value: event.target.value,
+        value: event.target.type === 'checkbox' ? event.target.checked : event.target.value,
         valid: validateFields(event.target.value, this.state.workForm[field].validation),
         touched: true
       }
@@ -156,11 +262,20 @@ class WorkForm extends Component {
     return this.setState({ workForm, formValid });
   };
 
-  handleChange = event => this.setState({ [event.target.name]: event.target.value });
+  onRequestedDateChange = requestedDate => this.setState({ requestedDate });
+  onRequestedDateFocusChange = ({ focused: requestedDateFocused }) => this.setState({ requestedDateFocused });
 
-  onCalendarDateChange = requestedDate => this.setState({ requestedDate });
+  onScheduledForChange = scheduledFor => this.setState({ scheduledFor });
+  onScheduledForFocusChange = ({ focused: scheduledForFocused }) => this.setState({ scheduledForFocused });
 
-  onCalendarFocusChange = ({ focused }) => this.setState({ focused });
+  onPartPurchasedDateChange = partPurchasedDate => this.setState({ partPurchasedDate });
+  onPartPurchasedDateFocusChange = ({ focused: partPurchasedDateFocused }) => this.setState({ partPurchasedDateFocused });
+
+  onPartArrivedDateChange = partArrivedDate => this.setState({ partArrivedDate });
+  onPartArrivedDateFocusChange = ({ focused: partArrivedDateFocused }) => this.setState({ partArrivedDateFocused });
+
+  onCompletedDateChange = completedDate => this.setState({ completedDate });
+  onCompletedDateFocusChange = ({ focused: completedDateFocused }) => this.setState({ completedDateFocused });
 
   onSubmit = event => {
     event.preventDefault();
@@ -169,10 +284,21 @@ class WorkForm extends Component {
       status: this.state.workForm.status.value,
       category: this.state.workForm.category.value,
       location: this.state.workForm.location.value,
-      previousLocation: this.state.previousLocation,
       description: this.state.workForm.description.value,
-      media: this.state.workForm.media.value,
-      requestedDate: this.state.requestedDate
+      message: this.state.workForm.message.value,
+      assignedTo: this.state.workForm.assignedTo.value,
+      workCompleted: this.state.workForm.workCompleted.value,
+      hoursSpent: this.state.workForm.hoursSpent.value,
+      hourlyRate: this.state.workForm.hourlyRate.value,
+      requestedDeletion: this.state.workForm.requestedDeletion.value,
+      uploads: this.state.workForm.uploads.value,
+      requestedDate: this.state.requestedDate,
+      scheduledFor: this.state.scheduledFor,
+      partPurchasedDate: this.state.partPurchasedDate,
+      partArrivedDate: this.state.partArrivedDate,
+      completedDate: this.state.completedDate,
+      messages: this.state.messages,
+      media: this.state.media
     });
 
     // console.log(this.state);
@@ -187,11 +313,21 @@ class WorkForm extends Component {
         category: { value: this.props.work ? this.props.work.category : 'Commercial Cleaning' },
         location: { value: this.props.work ? this.props.work.location._id : '' },
         description: { value: this.props.work ? this.props.work.description : '' },
-        media: this.props.work ? this.props.work.media : ''
+        message: this.state.workForm.message.value,
+        assignedTo: this.state.workForm.assignedTo.value,
+        workCompleted: this.state.workForm.workCompleted.value,
+        hoursSpent: this.state.workForm.hoursSpent.value,
+        hourlyRate: this.state.workForm.hourlyRate.value,
+        requestedDeletion: this.state.workForm.requestedDeletion.value,
+        uploads: []
       },
-      previousLocation: this.props.work ? this.props.work.previousLocation : '',
-      // media: this.props.work ? this.props.work.media : [],
       requestedDate: this.props.work ? moment(this.props.work.requestedDate) : moment(),
+      scheduledFor: this.props.work ? moment(this.props.work.scheduledFor) : moment(),
+      partPurchasedDate: this.props.work ? moment(this.props.work.partPurchasedDate) : moment(),
+      partArrivedDate: this.props.work ? moment(this.props.work.partArrivedDate) : moment(),
+      completedDate: this.props.work ? moment(this.props.work.completedDate) : moment(),
+      messages: this.props.work ? this.props.work.messages : [],
+      media: this.props.work ? this.props.work.media : [],
       createdAt: this.props.work ? moment(this.props.work.createdAt) : moment(),
       updatedAt: this.props.work ? moment(this.props.work.updatedAt) : moment()
     });
@@ -253,19 +389,75 @@ class WorkForm extends Component {
           })}
 
           <div className={classes.WorkFormInputContainer}>
-            <label htmlFor="requested-date">
+            <label htmlFor="requested_date">
               Requested Date
               <SingleDatePicker
-                id="date_input"
+                id="requested_date_input"
                 date={this.state.requestedDate}
-                onDateChange={this.onCalendarDateChange}
-                focused={this.state.focused}
-                onFocusChange={this.onCalendarFocusChange}
+                onDateChange={this.onRequestedDateChange}
+                focused={this.state.requestedDateFocused}
+                onFocusChange={this.onRequestedDateFocusChange}
                 numberOfMonths={1}
-                keepOpenOnDateSelect
               />
             </label>
           </div>
+
+          <div className={classes.WorkFormInputContainer}>
+            <label htmlFor="scheduled_for">
+              Requested Date
+              <SingleDatePicker
+                id="scheduled_for_input"
+                date={this.state.scheduledFor}
+                onDateChange={this.onScheduledForChange}
+                focused={this.state.scheduledForFocused}
+                onFocusChange={this.onScheduledForFocusChange}
+                numberOfMonths={1}
+              />
+            </label>
+          </div>
+
+          <div className={classes.WorkFormInputContainer}>
+            <label htmlFor="part_purchased_date">
+              Requested Date
+              <SingleDatePicker
+                id="part_purchased_date_input"
+                date={this.state.partPurchasedDate}
+                onDateChange={this.onPartPurchasedDateChange}
+                focused={this.state.partPurchasedDateFocused}
+                onFocusChange={this.onPartPurchasedDateFocusChange}
+                numberOfMonths={1}
+              />
+            </label>
+          </div>
+
+          <div className={classes.WorkFormInputContainer}>
+            <label htmlFor="part_arrived_date">
+              Requested Date
+              <SingleDatePicker
+                id="part_arrived_date_input"
+                date={this.state.partArrivedDate}
+                onDateChange={this.onPartArrivedDateChange}
+                focused={this.state.partArrivedDateFocused}
+                onFocusChange={this.onPartArrivedDateFocusChange}
+                numberOfMonths={1}
+              />
+            </label>
+          </div>
+
+          <div className={classes.WorkFormInputContainer}>
+            <label htmlFor="completed_date">
+              Requested Date
+              <SingleDatePicker
+                id="completed_date_input"
+                date={this.state.completedDate}
+                onDateChange={this.onCompletedDateChange}
+                focused={this.state.completedDateFocused}
+                onFocusChange={this.onCompletedDateFocusChange}
+                numberOfMonths={1}
+              />
+            </label>
+          </div>
+
           <Button ButtonType="Success" type="submit">
             Submit
           </Button>

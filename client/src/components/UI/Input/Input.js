@@ -48,6 +48,18 @@ const Input = props => {
         </select>
       );
       break;
+    case 'checkbox':
+      field = (
+        <input
+          id={props.name}
+          className={inputClasses.join(' ')}
+          {...props.fieldConfig}
+          name={props.name}
+          value={props.value}
+          onChange={props.update}
+        />
+      );
+      break;
     case 'file':
       inputClasses.push(classes.FileInput);
       labelClasses.push(classes.FileUpload);
