@@ -1,5 +1,0 @@
-[
-  { "name": "bucket", "type": "string", "mode": "REQUIRED" },
-  { "name": "storage_byte_hours", "type": "integer", "mode": "REQUIRED" },
-  { "name": "filename", "type": "string", "mode": "REQUIRED" }
-]
