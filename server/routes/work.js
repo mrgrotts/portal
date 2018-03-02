@@ -30,6 +30,7 @@ router
   .route('/:workId/media')
   .get(readWorkMedia)
   .post(updateWorkMedia);
+
 router
   .route('/:workId/media/:mediaId')
   .get(readWorkMediaFile)
