@@ -32,8 +32,12 @@ const invoiceRoutes = require('./routes/invoices');
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 8080;
 const IP = process.env.IP || '127.0.0.1';
-const homedir = os.platform() === 'win32' ? process.env.HOMEPATH : process.env.HOME;
-const serverStreamPath = os.platform() === 'win32' ? `\\\\.\\pipe\\rozalado${Date.now()}.sock` : 'tmp.sock';
+const homedir =
+  os.platform() === 'win32' ? process.env.HOMEPATH : process.env.HOME;
+const serverStreamPath =
+  os.platform() === 'win32'
+    ? `\\\\.\\pipe\\rozalado${Date.now()}.sock`
+    : 'tmp.sock';
 const app = express();
 
 app.title = process.env.APP_NAME;
@@ -66,9 +70,10 @@ app.use(cors());
 // HTTP Body Parser with CSP Reporting
 app.use(bodyParser.json({ type: ['json', 'application/csp-report'] }));
 // Automatically parse request body as form data
-app.use(bodyParser.urlencoded({ extended: false }));
+// Extended required to post nested objects
+app.use(bodyParser.urlencoded({ extended: true }));
 // Accept Image Files Only
-let fileFilter = (req, file, callback) => {
+const fileFilter = (req, file, callback) => {
   if (!files[f].originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
     return callback(new Error('Only Image files are allowed.'), false);
   }
@@ -88,7 +93,9 @@ const compressor = compression({
   flush: zlib.Z_PARTIAL_FLUSH
 });
 
-process.env.NODE_ENV === 'production' ? app.use(compressor) : app.use(morgan('dev'));
+process.env.NODE_ENV === 'production'
+  ? app.use(compressor)
+  : app.use(morgan('dev'));
 
 // SUDO MODE -- Enable to use API without Authenticating
 app.use('/api/sudo', sudoRoutes);
@@ -97,10 +104,25 @@ app.use('/api/sudo', sudoRoutes);
 app.use('/', apiRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', authenticateUser, authorizeUser, userRoutes);
-app.use('/api/users/:userId/companies', authenticateUser, authorizeUser, companyRoutes);
-app.use('/api/users/:userId/locations', authenticateUser, authorizeUser, locationRoutes);
+app.use(
+  '/api/users/:userId/companies',
+  authenticateUser,
+  authorizeUser,
+  companyRoutes
+);
+app.use(
+  '/api/users/:userId/locations',
+  authenticateUser,
+  authorizeUser,
+  locationRoutes
+);
 app.use('/api/users/:userId/work', authenticateUser, authorizeUser, workRoutes);
-app.use('/api/users/:userId/invoices', authenticateUser, authorizeUser, invoiceRoutes);
+app.use(
+  '/api/users/:userId/invoices',
+  authenticateUser,
+  authorizeUser,
+  invoiceRoutes
+);
 
 app.get('/ping', (req, res) => {
   res.status(200).json({ ok: true });
@@ -111,7 +133,9 @@ server.listen(PORT, IP, () => {
   console.log(`[${process.env.APP_NAME}]: Launched API on ${HOST}:${PORT}`);
   console.log(`[${process.env.APP_NAME}]: Assigned IP Address ${IP}`);
   console.log(`[${process.env.APP_NAME}]: Found Home Directory ${homedir}`);
-  console.log(`[${process.env.APP_NAME}]: Stream Sync with Directory ${serverStreamPath}`);
+  console.log(
+    `[${process.env.APP_NAME}]: Stream Sync with Directory ${serverStreamPath}`
+  );
 });
 
 if (process.env.NODE_ENV !== 'production') {

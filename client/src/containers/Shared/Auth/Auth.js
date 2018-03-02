@@ -44,8 +44,16 @@ class Auth extends Component {
 
     let authRedirect = null;
     if (this.props.isAuthenticated) {
-      this.state.registration ? (authRedirect = <Redirect to="/companies/create" />) : (authRedirect = <Redirect to={this.props.redirectPath} />);
+      if (this.state.registration || !this.props.user.verified) {
+        authRedirect = <Redirect to="/companies/create" />;
+      } else {
+        authRedirect = <Redirect to={this.props.redirectPath} />;
+      }
     }
+
+    // if (this.props.isAuthenticated) {
+    //   this.state.registration ? (authRedirect = <Redirect to="/companies/create" />) : (authRedirect = <Redirect to={this.props.redirectPath} />);
+    // }
 
     let authForm = this.state.registration ? <Register /> : <Login />;
 
@@ -55,7 +63,9 @@ class Auth extends Component {
         {error}
         {authForm}
         <Button ButtonType="Failure" clicked={this.authSwitch}>
-          {this.state.registration ? 'Switch To Login' : 'Switch to Registration'}
+          {this.state.registration
+            ? 'Switch To Login'
+            : 'Switch to Registration'}
         </Button>
       </Auxiliary>
     );
@@ -77,6 +87,7 @@ const mapStateToProps = state => ({
   error: state.auth.error,
   loading: state.auth.loading,
   isAuthenticated: state.auth.token !== null,
+  verified: state.auth.user.verified,
   redirectPath: state.auth.redirectPath
 });
 
@@ -84,4 +95,6 @@ const mapDispatchToProps = dispatch => ({
   authRedirectPath: path => dispatch(actions.authRedirectPath(path))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(handleErrors(Auth, api));
+export default connect(mapStateToProps, mapDispatchToProps)(
+  handleErrors(Auth, api)
+);

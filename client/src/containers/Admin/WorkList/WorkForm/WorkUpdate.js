@@ -25,15 +25,25 @@ class WorkUpdate extends Component {
     let form = <Spinner />;
 
     if (!this.props.loading) {
-      form = <WorkForm onSubmit={this.updateWork} onCancel={this.onCancel} work={this.props.work} />;
+      form = (
+        <WorkForm
+          onSubmit={this.updateWork}
+          onCancel={this.onCancel}
+          work={this.props.work}
+        />
+      );
     }
 
-    const redirectAfterSubmit = this.props.success ? <Redirect to="/work" /> : null;
+    const redirectAfterSubmit = this.props.success ? (
+      <Redirect to="/work" />
+    ) : null;
 
     return (
       <div style={{ height: '100%', width: '100%' }}>
         {redirectAfterSubmit}
-        <h1 style={{ marginBottom: '2rem', textAlign: 'center' }}>Update Work Form</h1>
+        <h1 style={{ marginBottom: '2rem', textAlign: 'center' }}>
+          Update Work Form
+        </h1>
         {form}
       </div>
     );
@@ -41,7 +51,9 @@ class WorkUpdate extends Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  work: state.work.workList.find(work => work._id === props.match.params.id),
+  work: state.work.workList.find(
+    work => work._id === props.match.params.workId
+  ),
   userId: state.auth.userId,
   token: state.auth.token,
   loading: state.work.loading,
@@ -52,4 +64,6 @@ const mapDispatchToProps = dispatch => ({
   updateWork: (id, work) => dispatch(actions.updateWork(id, work))
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(handleErrors(WorkUpdate, api)));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(handleErrors(WorkUpdate, api))
+);

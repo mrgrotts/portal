@@ -24,15 +24,25 @@ class CompanyUpdate extends Component {
     let form = <Spinner />;
 
     if (!this.props.loading) {
-      form = <CompanyForm onSubmit={this.updateCompany} onCancel={this.onCancel} company={this.props.company} />;
+      form = (
+        <CompanyForm
+          onSubmit={this.updateCompany}
+          onCancel={this.onCancel}
+          company={this.props.company}
+        />
+      );
     }
 
-    const redirectAfterSubmit = this.props.success ? <Redirect to={`/companies/${this.props.company._id}`} /> : null;
+    const redirectAfterSubmit = this.props.success ? (
+      <Redirect to={`/companies/${this.props.company._id}`} />
+    ) : null;
 
     return (
       <div style={{ height: '100%', width: '100%' }}>
         {redirectAfterSubmit}
-        <h1 style={{ marginBottom: '2rem', textAlign: 'center' }}>Update Company Form</h1>
+        <h1 style={{ marginBottom: '2rem', textAlign: 'center' }}>
+          Update Company Form
+        </h1>
         {form}
       </div>
     );
@@ -40,6 +50,9 @@ class CompanyUpdate extends Component {
 }
 
 const mapStateToProps = (state, props) => ({
+  // company: state.company.company.find(
+  //   company => company._id === props.match.params.companyId
+  // ),
   company: state.company.company,
   userId: state.auth.userId,
   token: state.auth.token,
@@ -51,4 +64,6 @@ const mapDispatchToProps = dispatch => ({
   updateCompany: (id, company) => dispatch(actions.updateCompany(id, company))
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(handleErrors(CompanyUpdate, api)));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(handleErrors(CompanyUpdate, api))
+);

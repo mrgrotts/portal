@@ -20,7 +20,7 @@ import ResidentialCleaning from '../../../../assets/images/ResidentialCleaning.j
 import classes from './Work.css';
 
 const Work = props => {
-  let images = [
+  const images = [
     CommercialCleaning,
     DrywallInstallation,
     Electrician,
@@ -33,11 +33,14 @@ const Work = props => {
     ResidentialCleaning
   ];
 
-  let matchCategory = category => images.find(image => image.includes(category));
+  const matchCategory = category =>
+    images.find(image => image.includes(category));
 
   return (
     <TableRow>
-      <TableItem TableItemStyle={['Status', props.status.replace(/[^\w]/g, '')]}>
+      <TableItem
+        TableItemStyle={['Status', props.status.replace(/[^\w]/g, '')]}
+      >
         <p style={{ color: 'white' }}>
           <strong>{props.status}</strong>
         </p>
@@ -58,7 +61,9 @@ const Work = props => {
         <Link to={`/work/${props._id}`}>{props._id}</Link>
       </TableItem>
       <TableItem>
-        <Link to={`/locations/${props.location._id}`}>{props.location.name}</Link>
+        <Link to={`/locations/${props.location._id}`}>
+          {props.location.name}
+        </Link>
         <p>{props.location.addressOne}</p>
         <p>{props.location.addressTwo}</p>
         <p>
