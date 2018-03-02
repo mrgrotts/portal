@@ -14,6 +14,7 @@ const compression = require('compression');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const multer = require('multer');
 const uuidv5 = require('uuid/v5');
 
 const database = require('./database');
@@ -31,12 +32,8 @@ const invoiceRoutes = require('./routes/invoices');
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 8080;
 const IP = process.env.IP || '127.0.0.1';
-const homedir =
-  os.platform() === 'win32' ? process.env.HOMEPATH : process.env.HOME;
-const serverStreamPath =
-  os.platform() === 'win32'
-    ? `\\\\.\\pipe\\rozalado${Date.now()}.sock`
-    : 'tmp.sock';
+const homedir = os.platform() === 'win32' ? process.env.HOMEPATH : process.env.HOME;
+const serverStreamPath = os.platform() === 'win32' ? `\\\\.\\pipe\\rozalado${Date.now()}.sock` : 'tmp.sock';
 const app = express();
 
 app.title = process.env.APP_NAME;
@@ -68,16 +65,30 @@ app.all('*', (req, res, next) => {
 app.use(cors());
 // HTTP Body Parser with CSP Reporting
 app.use(bodyParser.json({ type: ['json', 'application/csp-report'] }));
-app.use(bodyParser.urlencoded({ extended: true }));
+// Automatically parse request body as form data
+app.use(bodyParser.urlencoded({ extended: false }));
+// Accept Image Files Only
+let fileFilter = (req, file, callback) => {
+  if (!files[f].originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+    return callback(new Error('Only Image files are allowed.'), false);
+  }
+  callback(null, true);
+};
+// Multer parses Multipart Form Data off of req.files
+const m = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 10 * 1024 * 1024 // no larger than 10mb
+  },
+  fileFilter
+});
 // Production: Resource Compression
 // Development: HTTP Logger -> 'dev' -> Concise output colored by response status for development use
 const compressor = compression({
   flush: zlib.Z_PARTIAL_FLUSH
 });
 
-process.env.NODE_ENV === 'production'
-  ? app.use(compressor)
-  : app.use(morgan('dev'));
+process.env.NODE_ENV === 'production' ? app.use(compressor) : app.use(morgan('dev'));
 
 // SUDO MODE -- Enable to use API without Authenticating
 app.use('/api/sudo', sudoRoutes);
@@ -86,25 +97,10 @@ app.use('/api/sudo', sudoRoutes);
 app.use('/', apiRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', authenticateUser, authorizeUser, userRoutes);
-app.use(
-  '/api/users/:userId/companies',
-  authenticateUser,
-  authorizeUser,
-  companyRoutes
-);
-app.use(
-  '/api/users/:userId/locations',
-  authenticateUser,
-  authorizeUser,
-  locationRoutes
-);
+app.use('/api/users/:userId/companies', authenticateUser, authorizeUser, companyRoutes);
+app.use('/api/users/:userId/locations', authenticateUser, authorizeUser, locationRoutes);
 app.use('/api/users/:userId/work', authenticateUser, authorizeUser, workRoutes);
-app.use(
-  '/api/users/:userId/invoices',
-  authenticateUser,
-  authorizeUser,
-  invoiceRoutes
-);
+app.use('/api/users/:userId/invoices', authenticateUser, authorizeUser, invoiceRoutes);
 
 app.get('/ping', (req, res) => {
   res.status(200).json({ ok: true });
@@ -115,9 +111,7 @@ server.listen(PORT, IP, () => {
   console.log(`[${process.env.APP_NAME}]: Launched API on ${HOST}:${PORT}`);
   console.log(`[${process.env.APP_NAME}]: Assigned IP Address ${IP}`);
   console.log(`[${process.env.APP_NAME}]: Found Home Directory ${homedir}`);
-  console.log(
-    `[${process.env.APP_NAME}]: Stream Sync with Directory ${serverStreamPath}`
-  );
+  console.log(`[${process.env.APP_NAME}]: Stream Sync with Directory ${serverStreamPath}`);
 });
 
 if (process.env.NODE_ENV !== 'production') {

@@ -6,7 +6,11 @@ const {
   createWork,
   readWork,
   updateWork,
-  deleteWork
+  deleteWork,
+  readWorkMedia,
+  updateWorkMedia,
+  readWorkMediaFile,
+  deleteWorkMediaFile
 } = require('../controllers/work');
 
 const router = express.Router({ mergeParams: true });
@@ -21,5 +25,14 @@ router
   .get(readWork)
   .put(updateWork)
   .delete(deleteWork);
+
+router
+  .route('/:workId/media')
+  .get(readWorkMedia)
+  .post(updateWorkMedia);
+router
+  .route('/:workId/media/:mediaId')
+  .get(readWorkMediaFile)
+  .delete(deleteWorkMediaFile);
 
 module.exports = router;
