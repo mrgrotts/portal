@@ -16,7 +16,7 @@ const {
 const database = require('../database');
 const media = require('../services/media');
 
-const router = express.Router({ mergeParams: true });
+const router = express.Router();
 
 // Automatically parse request body as form data for these routes
 router.use(bodyParser.urlencoded({ extended: false }));
@@ -30,17 +30,6 @@ router.use((req, res, next) => {
 
 router
   .route('/')
-  .get(readWorkList)
-  .post(createWork);
-
-router
-  .route('/:workId')
-  .get(readWork)
-  .put(updateWork)
-  .delete(deleteWork);
-
-router
-  .route('/:workId/media')
   .get(readWorkMedia)
   .post(
     media.multer.single('media'),
@@ -49,7 +38,7 @@ router
   );
 
 router
-  .route('/:workId/media/:mediaId')
+  .route('/:mediaId')
   .get(readWorkMediaFile)
   .post(
     media.multer.single('media'),

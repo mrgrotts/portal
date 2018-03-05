@@ -22,40 +22,36 @@ const fileFilter = (req, file, callback) => {
 };
 
 const m = multer({
-  storage: multer.memoryStorage(),
-  limits: {
-    fileSize: 10 * 1024 * 1024 // no larger than 10mb
-  },
-  fileFilter
-}).any();
+  storage: multer.memoryStorage()
+});
 
 // A bucket is a container for objects (files).
 const bucket = storage.bucket(process.env.GCLOUD_STORAGE_BUCKET);
 
 exports.readWorkList = (req, res, next) => {
   database.Users.findById(req.params.userId).then(user => {
-    if (user.role === 'Owner') {
-      database.Work.find()
-        .sort({ createdAt: 'asc' })
-        .populate('location')
-        .populate('userId')
-        .then(work => res.status(200).json(work))
-        .catch(error => res.send(error));
-    } else if (user.role === 'Admin') {
-      database.Work.find()
-        .sort({ createdAt: 'asc' })
-        .populate('location')
-        .populate('userId')
-        .then(work => res.status(200).json(work))
-        .catch(error => res.send(error));
-    } else {
-      database.Work.find({ userId: req.params.userId })
-        .sort({ createdAt: 'asc' })
-        .populate('location')
-        .populate('userId')
-        .then(work => res.status(200).json(work))
-        .catch(error => res.send(error));
-    }
+    // if (user.role === 'Owner') {
+    //   database.Work.find()
+    //     .sort({ createdAt: 'asc' })
+    //     .populate('location')
+    //     .populate('userId')
+    //     .then(work => res.status(200).json(work))
+    //     .catch(error => res.send(error));
+    // } else if (user.role === 'Admin') {
+    //   database.Work.find()
+    //     .sort({ createdAt: 'asc' })
+    //     .populate('location')
+    //     .populate('userId')
+    //     .then(work => res.status(200).json(work))
+    //     .catch(error => res.send(error));
+    // } else {
+    database.Work.find({ userId: req.params.userId })
+      .sort({ createdAt: 'asc' })
+      .populate('location')
+      .populate('userId')
+      .then(work => res.status(200).json(work))
+      .catch(error => res.send(error));
+    // }
   });
 };
 
@@ -130,9 +126,13 @@ exports.updateWork = async (req, res, next) => {
     requestedDeletion: req.body.requestedDeletion
   };
 
-  const work = await database.Work.findByIdAndUpdate(req.params.workId, updatedWork, {
-    new: true
-  }).catch(error => console.log(error));
+  const work = await database.Work.findByIdAndUpdate(
+    req.params.workId,
+    updatedWork,
+    {
+      new: true
+    }
+  ).catch(error => console.log(error));
 
   work
     .save()
@@ -154,41 +154,10 @@ exports.deleteWork = (req, res, next) => {
 };
 
 // UPLOAD TO GOOGLE CLOUD STORAGE
-exports.updateWorkMedia = (req, res, next) => m => {
-  console.log(`[FILES]: ${req.files}`);
-  let media = [];
-
+exports.updateWorkMedia = (req, res, next) => {
+  console.log(`[REQ]: ${req.file}`);
   try {
-    const uploadHandler = async (files = req.files, f = 0) => {
-      if (f >= files.length - 1) {
-        res.json(media);
-      } else {
-        const fileName = `${req.params.workId}_${files[f].name}`;
-        const contentType = files[f].originalname.slice(files[f].originalname.lastIndexOf('.') + 1);
-        const metadata = { metadata: contentType };
-
-        const uploaded = await bucket.upload(fileName, { metadata });
-        console.log(uploaded);
-        await uploaded.makePublic();
-
-        const file = await uploaded.get();
-        media.push({
-          name: file.name,
-          url: file.metadata.mediaLink,
-          type: file.metadata.metadata.contentType
-        });
-
-        fs.unlink(fileName, async () => {
-          const work = await database.Work.findById(req.params.workId);
-          work.media = media;
-          await work.update({ _id: work._id }, { $set: { media } }, { new: true });
-        });
-
-        uploadHandler(files, f++);
-      }
-    };
-
-    uploadHandler(req.files);
+    console.log(`[FILE]: ${req.file}`);
   } catch (error) {
     console.log(error);
     res.send(error);

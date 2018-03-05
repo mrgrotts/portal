@@ -28,7 +28,9 @@ export const authLogin = (email, password) => async dispatch => {
     .then(response => {
       // console.log(response);
       // create new date using the current date + expiration time in seconds
-      const expiration = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+      const expiration = new Date(
+        new Date().getTime() + response.data.expiresIn * 1000
+      );
 
       localStorage.setItem('userId', response.data.user._id);
       localStorage.setItem('token', response.data.token);
@@ -61,7 +63,9 @@ export const authRegister = (email, password) => async dispatch => {
     .then(response => {
       console.log(response);
       // create new date using the current date + expiration time in seconds
-      const expiration = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+      const expiration = new Date(
+        new Date().getTime() + response.data.expiresIn * 1000
+      );
 
       localStorage.setItem('userId', response.data.user._id);
       localStorage.setItem('token', response.data.token);
@@ -115,7 +119,9 @@ export const authRedirectPath = path => ({
   path
 });
 
-export const authCurrentUser = (userId = localStorage.getItem('userId')) => async dispatch => {
+export const authCurrentUser = (
+  userId = localStorage.getItem('userId')
+) => async dispatch => {
   // console.log("[UserId]", userId);
 
   if (userId) {
@@ -440,7 +446,7 @@ export const uploadMedia = (id, files) => async dispatch => {
   for (let file in files) {
     console.log(files[file]);
 
-    media.append('mediaId', files[file]);
+    media.append('media', files[file]);
     media.append('workId', id);
     media.append('userId', userId);
   }

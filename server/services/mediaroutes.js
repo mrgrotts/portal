@@ -1,20 +1,7 @@
+'use strict';
 const express = require('express');
 const bodyParser = require('body-parser');
-
-const {
-  readWorkList,
-  createWork,
-  readWork,
-  updateWork,
-  deleteWork,
-  readWorkMedia,
-  updateWorkMedia,
-  readWorkMediaFile,
-  deleteWorkMediaFile
-} = require('../controllers/work');
-
-const database = require('../database');
-const media = require('../services/media');
+const media = require('./media');
 
 const router = express.Router({ mergeParams: true });
 
@@ -23,21 +10,9 @@ router.use(bodyParser.urlencoded({ extended: false }));
 
 // Set Content-Type for all responses for these routes
 router.use((req, res, next) => {
-  // res.set('Content-Type', 'application/json; charset=utf-8');
-  res.set('Content-Type', 'text/html');
+  res.set('Content-Type', 'application/json; charset=utf-8');
   next();
 });
-
-router
-  .route('/')
-  .get(readWorkList)
-  .post(createWork);
-
-router
-  .route('/:workId')
-  .get(readWork)
-  .put(updateWork)
-  .delete(deleteWork);
 
 router
   .route('/:workId/media')
