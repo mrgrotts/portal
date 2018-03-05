@@ -32,12 +32,8 @@ const invoiceRoutes = require('./routes/invoices');
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 8080;
 const IP = process.env.IP || '127.0.0.1';
-const homedir =
-  os.platform() === 'win32' ? process.env.HOMEPATH : process.env.HOME;
-const serverStreamPath =
-  os.platform() === 'win32'
-    ? `\\\\.\\pipe\\rozalado${Date.now()}.sock`
-    : 'tmp.sock';
+const homedir = os.platform() === 'win32' ? process.env.HOMEPATH : process.env.HOME;
+const serverStreamPath = os.platform() === 'win32' ? `\\\\.\\pipe\\rozalado${Date.now()}.sock` : 'tmp.sock';
 const app = express();
 
 app.title = process.env.APP_NAME;
@@ -93,36 +89,19 @@ const compressor = compression({
   flush: zlib.Z_PARTIAL_FLUSH
 });
 
-process.env.NODE_ENV === 'production'
-  ? app.use(compressor)
-  : app.use(morgan('dev'));
+process.env.NODE_ENV === 'production' ? app.use(compressor) : app.use(morgan('dev'));
 
 // SUDO MODE -- Enable to use API without Authenticating
 app.use('/api/sudo', sudoRoutes);
 
 // Production Routes
 app.use('/', apiRoutes);
-app.use('/api/auth', authRoutes);
-app.use('/api/users', authenticateUser, authorizeUser, userRoutes);
-app.use(
-  '/api/users/:userId/companies',
-  authenticateUser,
-  authorizeUser,
-  companyRoutes
-);
-app.use(
-  '/api/users/:userId/locations',
-  authenticateUser,
-  authorizeUser,
-  locationRoutes
-);
-app.use('/api/users/:userId/work', authenticateUser, authorizeUser, workRoutes);
-app.use(
-  '/api/users/:userId/invoices',
-  authenticateUser,
-  authorizeUser,
-  invoiceRoutes
-);
+app.use('/api/auth', m.any(), authRoutes);
+app.use('/api/users', authenticateUser, authorizeUser, m.any(), userRoutes);
+app.use('/api/users/:userId/companies', authenticateUser, authorizeUser, m.any(), companyRoutes);
+app.use('/api/users/:userId/locations', authenticateUser, authorizeUser, m.any(), locationRoutes);
+app.use('/api/users/:userId/work', authenticateUser, authorizeUser, m.any(), workRoutes);
+app.use('/api/users/:userId/invoices', authenticateUser, authorizeUser, m.any(), invoiceRoutes);
 
 app.get('/ping', (req, res) => {
   res.status(200).json({ ok: true });
@@ -133,9 +112,7 @@ server.listen(PORT, IP, () => {
   console.log(`[${process.env.APP_NAME}]: Launched API on ${HOST}:${PORT}`);
   console.log(`[${process.env.APP_NAME}]: Assigned IP Address ${IP}`);
   console.log(`[${process.env.APP_NAME}]: Found Home Directory ${homedir}`);
-  console.log(
-    `[${process.env.APP_NAME}]: Stream Sync with Directory ${serverStreamPath}`
-  );
+  console.log(`[${process.env.APP_NAME}]: Stream Sync with Directory ${serverStreamPath}`);
 });
 
 if (process.env.NODE_ENV !== 'production') {

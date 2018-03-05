@@ -184,8 +184,7 @@ class WorkForm extends Component {
         status: { value: this.props.work ? this.props.work.status : 'Unassigned' },
         category: { value: this.props.work ? this.props.work.category : 'Commercial Cleaning' },
         location: { value: this.props.work ? this.props.work.location._id : '' },
-        description: { value: this.props.work ? this.props.work.description : '' },
-        media: this.props.work ? this.props.work.media : []
+        description: { value: this.props.work ? this.props.work.description : '' }
       },
       media: this.props.work ? this.props.work.media : [],
       requestedDate: this.props.work ? moment(this.props.work.requestedDate) : moment(),
@@ -288,6 +287,7 @@ class WorkForm extends Component {
 
 const mapStateToProps = state => ({
   locations: state.locations.locations,
+  media: state.work.media,
   loading: state.locations.loading
 });
 

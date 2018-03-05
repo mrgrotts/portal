@@ -6,33 +6,15 @@ import asyncComponent from '../hoc/asyncComponent';
 // ADMIN COMPONENTS
 import Builder from '../containers/Admin/Builder/Builder';
 import Logout from '../containers/Shared/Auth/Logout/Logout';
-const asyncAuth = asyncComponent(() =>
-  import('../containers/Shared/Auth/Auth')
-);
-const asyncCompanyCreate = asyncComponent(() =>
-  import('../containers/Admin/Company/CompanyForm/CompanyCreate')
-);
-const asyncCompanyUpdate = asyncComponent(() =>
-  import('../containers/Admin/Company/CompanyForm/CompanyUpdate')
-);
-const asyncLocations = asyncComponent(() =>
-  import('../containers/Admin/Locations/Locations')
-);
-const asyncLocationCreate = asyncComponent(() =>
-  import('../containers/Admin/Locations/LocationForm/LocationCreate')
-);
-const asyncLocationUpdate = asyncComponent(() =>
-  import('../containers/Admin/Locations/LocationForm/LocationUpdate')
-);
-const asyncWorkList = asyncComponent(() =>
-  import('../containers/Admin/WorkList/WorkList')
-);
-const asyncWorkCreate = asyncComponent(() =>
-  import('../containers/Admin/WorkList/WorkForm/WorkCreate')
-);
-const asyncWorkUpdate = asyncComponent(() =>
-  import('../containers/Admin/WorkList/WorkForm/WorkUpdate')
-);
+const asyncAuth = asyncComponent(() => import('../containers/Shared/Auth/Auth'));
+const asyncCompanyCreate = asyncComponent(() => import('../containers/Admin/Company/CompanyForm/CompanyCreate'));
+const asyncCompanyUpdate = asyncComponent(() => import('../containers/Admin/Company/CompanyForm/CompanyUpdate'));
+const asyncLocations = asyncComponent(() => import('../containers/Admin/Locations/Locations'));
+const asyncLocationCreate = asyncComponent(() => import('../containers/Admin/Locations/LocationForm/LocationCreate'));
+const asyncLocationUpdate = asyncComponent(() => import('../containers/Admin/Locations/LocationForm/LocationUpdate'));
+const asyncWorkList = asyncComponent(() => import('../containers/Admin/WorkList/WorkList'));
+const asyncWorkCreate = asyncComponent(() => import('../containers/Admin/WorkList/WorkForm/WorkCreate'));
+const asyncWorkUpdate = asyncComponent(() => import('../containers/Admin/WorkList/WorkForm/WorkUpdate'));
 
 const AdminRoutes = props => (
   <Switch>
@@ -45,7 +27,7 @@ const AdminRoutes = props => (
     <Route path="/locations/:locationId" component={asyncLocationUpdate} />
     <Route exact path="/locations" component={asyncLocations} />
     <Route path="/work/create" component={asyncWorkCreate} />
-    <Route path="/work/workId" component={asyncWorkUpdate} />
+    <Route path="/work/:workId" component={asyncWorkUpdate} />
     <Route exact path="/work" component={asyncWorkList} />
     <Route exact path="/" component={Builder} />
     <Redirect to="/" />

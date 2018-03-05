@@ -79,3 +79,5 @@ exports.workAPI = (req, res, next) => {
     }
   ]);
 };
+
+module.exports = exports;

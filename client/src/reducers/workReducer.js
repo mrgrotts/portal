@@ -18,8 +18,6 @@ const workReducer = (state = initialState, action) => {
       };
     case actions.CREATE_WORK_SUCCESS:
       const newWork = { ...action.work };
-      console.log(newWork);
-      console.log(state);
 
       return {
         ...state,
@@ -73,6 +71,7 @@ const workReducer = (state = initialState, action) => {
       };
     case actions.READ_WORK_SUCCESS:
       const work = { ...action.work };
+
       return {
         ...state,
         workList: state.workList.filter(w => w._id === work._id),
@@ -145,6 +144,65 @@ const workReducer = (state = initialState, action) => {
         success: false
       };
     case actions.DELETE_WORK_END:
+      return {
+        ...state,
+        success: false
+      };
+
+    case actions.UPLOAD_MEDIA_START:
+      return {
+        ...state,
+        error: null,
+        loading: true,
+        success: false
+      };
+    case actions.UPLOAD_MEDIA_SUCCESS:
+      const uploadedMedia = { ...action.media };
+
+      return {
+        ...state,
+        workList: state.workList.media.concat(uploadedMedia),
+        error: null,
+        loading: false,
+        success: true
+      };
+    case actions.UPLOAD_MEDIA_FAIL:
+      return {
+        ...state,
+        error: action.error,
+        loading: false,
+        success: false
+      };
+    case actions.UPLOAD_MEDIA_END:
+      return {
+        ...state,
+        success: false
+      };
+    case actions.DOWNLOAD_MEDIA_START:
+      return {
+        ...state,
+        error: null,
+        loading: true,
+        success: false
+      };
+    case actions.DOWNLOAD_MEDIA_SUCCESS:
+      const downloadedMedia = { ...action.media };
+
+      return {
+        ...state,
+        workList: state.workList.media.concat(downloadedMedia),
+        error: null,
+        loading: false,
+        success: true
+      };
+    case actions.DOWNLOAD_MEDIA_FAIL:
+      return {
+        ...state,
+        error: action.error,
+        loading: false,
+        success: false
+      };
+    case actions.DOWNLOAD_MEDIA_END:
       return {
         ...state,
         success: false

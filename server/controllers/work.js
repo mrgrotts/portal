@@ -13,10 +13,11 @@ const storage = Storage({
 });
 
 // Accept Image Files Only
-let fileFilter = (req, file, callback) => {
+const fileFilter = (req, file, callback) => {
   if (!files[f].originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
     return callback(new Error('Only Image files are allowed.'), false);
   }
+
   callback(null, true);
 };
 
@@ -26,7 +27,7 @@ const m = multer({
     fileSize: 10 * 1024 * 1024 // no larger than 10mb
   },
   fileFilter
-});
+}).any();
 
 // A bucket is a container for objects (files).
 const bucket = storage.bucket(process.env.GCLOUD_STORAGE_BUCKET);
@@ -153,8 +154,8 @@ exports.deleteWork = (req, res, next) => {
 };
 
 // UPLOAD TO GOOGLE CLOUD STORAGE
-exports.updateWorkMedia('/:workId/media', m.any(), (req, res, next) => {
-  console.log(req.files);
+exports.updateWorkMedia = (req, res, next) => m => {
+  console.log(`[FILES]: ${req.files}`);
   let media = [];
 
   try {
@@ -192,17 +193,17 @@ exports.updateWorkMedia('/:workId/media', m.any(), (req, res, next) => {
     console.log(error);
     res.send(error);
   }
-});
+};
 
 // DOWNLOAD FROM GOOGLE CLOUD STORAGE
-exports.readWorkMedia('/:workId/media', async (req, res, next) => {
+exports.readWorkMedia = async (req, res, next) => {
   console.log(req.files);
   let media = [];
 
   try {
     const work = await database.Work.findById(req.params.workId);
 
-    let downloadHandler = async (files = work.media, f = 0) => {
+    const downloadHandler = async (files = work.media, f = 0) => {
       if (f >= files.length - 1) {
         res.json(media);
       } else {
@@ -210,7 +211,7 @@ exports.readWorkMedia('/:workId/media', async (req, res, next) => {
         const destination = `./tmp/${work._id}_${file.name}`;
 
         if (file !== null) {
-          console.log(file);
+          console.log(`[FILE]: ${file}`);
           const options = { destination };
 
           await file.download(options);
@@ -232,10 +233,10 @@ exports.readWorkMedia('/:workId/media', async (req, res, next) => {
     console.log(error);
     res.json(error);
   }
-});
+};
 
 // DOWNLOAD SINGLE FILE FROM GOOGLE CLOUD STORAGE
-exports.readWorkMediaFile('/:workId/media/:mediaId', async (req, res, next) => {
+exports.readWorkMediaFile = async (req, res, next) => {
   console.log(req.files);
   try {
     const file = await bucket.file(req.body.media[req.params.mediaId]);
@@ -253,10 +254,10 @@ exports.readWorkMediaFile('/:workId/media/:mediaId', async (req, res, next) => {
     console.log(error);
     res.json(error);
   }
-});
+};
 
 // DELETE FROM GOOGLE CLOUD STORAGE
-exports.deleteWorkMediaFile('/:workId/media/:mediaId', async (req, res, next) => {
+exports.deleteWorkMediaFile = async (req, res, next) => {
   console.log(req.files);
   try {
     const file = await bucket.file(req.body.media[req.params.mediaId]);
@@ -272,6 +273,21 @@ exports.deleteWorkMediaFile('/:workId/media/:mediaId', async (req, res, next) =>
     console.log(error);
     res.json(error);
   }
-});
+};
 
 module.exports = exports;
+
+exports.createWorkz = async (req, res, next) => {
+  console.log(req.body.files);
+  let media = [];
+
+  const newWork = {
+    userId: req.params.userId,
+    company: req.body.company,
+    category: req.body.category,
+    location: req.body.location,
+    description: req.body.description,
+    media: req.body.media,
+    requestedDate: req.body.requestedDate
+  };
+};

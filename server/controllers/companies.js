@@ -1525,6 +1525,8 @@ exports.deleteCompanyLocationWorkUser = async (req, res, next) => {
     .populate('work');
 };
 
+module.exports = exports;
+
 // exports.readCompanyWorkList = async (req, res, next) => {
 //   let user = await database.Users.findById(req.params.userId);
 //   console.log(user);

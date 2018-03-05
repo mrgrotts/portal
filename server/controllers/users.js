@@ -69,3 +69,5 @@ exports.deleteUser = async (req, res, next) => {
     .populate('locations')
     .populate('work');
 };
+
+module.exports = exports;
