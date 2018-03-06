@@ -12,6 +12,21 @@
   margin-top: 1.5rem;
 }
 
+.WorkFormUpload {
+  display: inline-block;
+  margin-top: 1.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.WorkFormUpload input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
 .WorkFormAddLocation {
   box-sizing: inherit;
   padding: 10px;
@@ -31,4 +46,8 @@
   font-weight: 500;
   padding: 6px 10px;
   text-decoration: none;
+}
+
+.WorkFormSubmitRow {
+  
 }

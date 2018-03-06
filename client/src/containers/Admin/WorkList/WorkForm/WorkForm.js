@@ -39,7 +39,8 @@ class WorkForm extends Component {
             { label: 'On Hold', value: 'On Hold' },
             { label: 'Purchasing Parts', value: 'Purchasing Parts' },
             { label: 'Ordered Parts', value: 'Ordered Parts' },
-            { label: 'Closed', value: 'Closed' }
+            { label: 'Closed', value: 'Closed' },
+            { label: 'Requested Deletion', value: 'Requested Deletion' }
           ]
         },
         value: this.props.work ? this.props.work.status : 'Unassigned',
@@ -129,15 +130,15 @@ class WorkForm extends Component {
         validation: { required: false },
         touched: false,
         valid: this.props.work ? true : false
-      },
-      requestedDeletion: {
-        fieldType: 'input',
-        fieldConfig: { type: 'checkbox', checked: false },
-        value: false,
-        validation: { required: false },
-        touched: false,
-        valid: this.props.work ? true : false
       }
+      // requestedDeletion: {
+      //   fieldType: 'input',
+      //   fieldConfig: { type: 'checkbox', checked: false },
+      //   value: false,
+      //   validation: { required: false },
+      //   touched: false,
+      //   valid: this.props.work ? true : false
+      // }
       // media: {
       //   fieldType: 'input',
       //   fieldConfig: { type: 'file', multiple: true },
@@ -167,10 +168,10 @@ class WorkForm extends Component {
   async componentDidMount() {
     await this.props.readLocations();
 
-    // let media = [];
     // if (this.props.work && this.props.work.media !== undefined) {
-    //   console.log(this.props.work.media);
-    //   media = await this.props.downloadMedia(this.props.work._id);
+    //   // console.log(this.props.work.media);
+    //   const media = await this.props.downloadMedia(this.props.work._id);
+    //   console.log(media);
     // }
 
     // console.log(this.props.locations[0]._id);
@@ -205,7 +206,7 @@ class WorkForm extends Component {
   }
 
   updateField = (event, field) => {
-    console.log(event.target);
+    // console.log(event.target);
     // 2 spreads to deeply clone state and get copies of nested properties from state
     const workForm = {
       ...this.state.workForm,
@@ -245,7 +246,7 @@ class WorkForm extends Component {
 
   onFileUpload = event => {
     event.preventDefault();
-    console.log(event.target.files);
+    // console.log(event.target.files);
 
     this.setState({ media: event.target.files });
   };
@@ -265,7 +266,7 @@ class WorkForm extends Component {
       workCompleted: this.state.workForm.workCompleted.value,
       hoursSpent: this.state.workForm.hoursSpent.value,
       hourlyRate: this.state.workForm.hourlyRate.value,
-      requestedDeletion: this.state.workForm.requestedDeletion.value,
+      // requestedDeletion: this.state.workForm.requestedDeletion.value,
       requestedDate: this.state.requestedDate,
       scheduledFor: this.state.scheduledFor,
       partPurchasedDate: this.state.partPurchasedDate,
@@ -299,8 +300,8 @@ class WorkForm extends Component {
         assignedTo: this.state.workForm.assignedTo.value,
         workCompleted: this.state.workForm.workCompleted.value,
         hoursSpent: this.state.workForm.hoursSpent.value,
-        hourlyRate: this.state.workForm.hourlyRate.value,
-        requestedDeletion: this.state.workForm.requestedDeletion.value
+        hourlyRate: this.state.workForm.hourlyRate.value
+        // requestedDeletion: this.state.workForm.requestedDeletion.value
       },
       requestedDate: this.props.work ? moment(this.props.work.requestedDate) : moment(),
       scheduledFor: this.props.work ? moment(this.props.work.scheduledFor) : moment(),
@@ -439,22 +440,23 @@ class WorkForm extends Component {
             </label>
           </div>
 
-          <div className={classes.WorkFormInputContainer}>
+          <div className={classes.WorkFormUpload}>
             <label htmlFor="media">
-              Add Media
               <input id="media" name="media" type="file" onChange={this.onFileUpload} multiple />
             </label>
-            <Button ButtonType="Success" clicked={this.onUpload} type="button">
-              Upload
+            <Button ButtonType="Upload" clicked={this.onUpload} type="button">
+              Upload Media
             </Button>
           </div>
 
-          <Button ButtonType="Success" type="submit">
-            Submit
-          </Button>
-          <Button ButtonType="Failure" clicked={this.onCancel} type="button">
-            Cancel
-          </Button>
+          <div className={classes.WorkFormSubmitRow}>
+            <Button ButtonType="Success" type="submit">
+              Submit
+            </Button>
+            <Button ButtonType="Failure" clicked={this.onCancel} type="button">
+              Cancel
+            </Button>
+          </div>
         </form>
       );
     }
@@ -481,23 +483,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(handleErrors(WorkForm, api));
-
-// <input
-//   id="requested-date"
-//   type="text"
-//   name="requestedDate"
-//   className={classes.WorkFormControl}
-//   value={this.state.requestedDate}
-//   onChange={this.handleChange}
-// />
-
-// ALWAYS OPEN DATE PICKER (also set focused state to true)
-// <SingleDatePicker
-//   id="date_input"
-//   date={this.state.requestedDate}
-//   onDateChange={this.onCalendarDateChange}
-//   focused={this.state.focused}
-//   onFocusChange={() => {}}
-//   numberOfMonths={1}
-//   keepOpenOnDateSelect
-// />

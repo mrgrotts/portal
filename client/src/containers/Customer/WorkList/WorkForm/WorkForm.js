@@ -39,7 +39,8 @@ class WorkForm extends Component {
             { label: 'On Hold', value: 'On Hold' },
             { label: 'Purchasing Parts', value: 'Purchasing Parts' },
             { label: 'Ordered Parts', value: 'Ordered Parts' },
-            { label: 'Closed', value: 'Closed' }
+            { label: 'Closed', value: 'Closed' },
+            { label: 'Requested Deletion', value: 'Requested Deletion' }
           ]
         },
         value: this.props.work ? this.props.work.status : 'Unassigned',
@@ -296,23 +297,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(handleErrors(WorkForm, api));
-
-// <input
-//   id="requested-date"
-//   type="text"
-//   name="requestedDate"
-//   className={classes.WorkFormControl}
-//   value={this.state.requestedDate}
-//   onChange={this.handleChange}
-// />
-
-// ALWAYS OPEN DATE PICKER (also set focused state to true)
-// <SingleDatePicker
-//   id="date_input"
-//   date={this.state.requestedDate}
-//   onDateChange={this.onCalendarDateChange}
-//   focused={this.state.focused}
-//   onFocusChange={() => {}}
-//   numberOfMonths={1}
-//   keepOpenOnDateSelect
-// />

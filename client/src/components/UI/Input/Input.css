@@ -68,73 +68,107 @@ textarea {
   line-height: 3rem !important;
 }
 
-:root input[type=checkbox] {
-  /* original check box are push outside the viewport */
+input[type='checkbox'] {
   position: absolute;
-  left: -1000em;
-}
-
-:root input[type=checkbox] + label:before {
-  background-color: #006eb6;
-  /* background: url("https://developer.mozilla.org/files/4173/checkbox-sprite.png") no-repeat 0 0; */
-  content: "";
-  display: inline-block;
-  width  : 16px;
-  height : 16px;
-  margin : 0 .5em 0 0;
-
-/* The following is used to adjust the position of 
-   the check boxes on the text baseline */
-  vertical-align: bottom;
-  position: relative;
-  bottom: 2px;
-}
-
-:root input[type=checkbox]:checked + label:before {
-  background-position: 0 -16px;
-}
-
-:root input[type=checkbox]:disabled + label:before {
-  background-position: 0 -32px;
-}
-
-:root input[type=checkbox]:checked:disabled + label:before {
-  background-position: 0 -48px;
-}
-
-:root input[type=checkbox]:focus + label:before {
-  outline: 1px dotted white;
-}
-
-/* .Input [type="file"] {
-  background-color: inherit;
-  border: none;
-  box-sizing: inherit;
-  font: inherit;
-  outline: none;
-  padding: 0;
-  width: 100%;
-}
-
-.Input [type="file"]::-webkit-file-upload-button {
-  background-color: #006eb6;
-  border: none;
-  border-radius: 5px;
-  color: rgba(255, 255, 255, 1);
-  cursor: pointer;
-  font: inherit;
-  outline: none;
-  padding: 6px 10px;
-  text-decoration: none;
-} */
-
-/* .Input [type="file"] {
-  border: none;
-  height: 0.1px;
   opacity: 0;
-  overflow: hidden;
-  padding: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.CheckboxContainer {
+  font-size: calc(1rem + 1vw);
   position: absolute;
-  width: 0.1px;
-  z-index: -1;
-} */
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.Input:checked + .CheckboxText .Check {
+  animation: check .5s cubic-bezier(0.895, 0.030, 0.685, 0.220) forwards;
+}
+
+.Input:checked + .CheckboxText .Check .icon {
+  opacity: 1;
+  transform: scale(0);
+  color: white;
+  -webkit-text-stroke: 0;
+  animation: icon .3s cubic-bezier(1.000, 0.008, 0.565, 1.650) .1s 1 
+  forwards;
+}
+
+.Check {
+  font: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+  display: inline-block;
+  border-radius: 50%;
+  border: 5px solid rgba(0,0,0,0.1);
+  background: white;
+  vertical-align: middle;
+  margin-right: 20px;
+  width: 2em;
+  height: 2em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border .3s ease;
+}
+
+.Check:hover {
+  border: 5px solid rgba(0,0,0,0.2);
+}
+
+i.icon {
+  opacity: 0.2;
+  font-size: calc(1rem + 1vw);
+  color: transparent;
+  transition: opacity .3s .1s ease;
+  -webkit-text-stroke: 3px rgba(0,0,0,.5);
+}
+
+@keyframes icon {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1)
+  }
+}
+
+@keyframes check {
+  0% {
+    width: 1.5em;
+    height: 1.5em;
+    border-width: 5px;
+  }
+  10% {
+    width: 1.5em;
+    height: 1.5em;
+    opacity: 0.1;
+    background: rgba(0,0,0,0.2);
+    border-width: 15px;
+  }
+  12% {
+    width: 1.5em;
+    height: 1.5em;
+    opacity: 0.4;
+    background: rgba(0,0,0,0.1);
+    border-width: 0;
+  }
+  50% {
+    width: 2em;
+    height: 2em;
+    background: #00d478;
+    border: 0;
+    opacity: 0.6;
+  }
+  100% {
+    width: 2em;
+    height: 2em;
+    background: #00d478;
+    border: 0;
+    opacity: 1;
+  }
+}

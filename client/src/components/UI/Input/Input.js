@@ -50,25 +50,28 @@ const Input = props => {
       break;
     case 'checkbox':
       field = (
-        <input
-          id={props.name}
-          className={inputClasses.join(' ')}
-          {...props.fieldConfig}
-          name={props.name}
-          value={props.value}
-          onChange={props.update}
-        />
+        <div class="CheckboxContainer">
+          <label class="CheckboxLabel">
+            <input
+              id={props.name}
+              className={classes.Checkbox}
+              {...props.fieldConfig}
+              name={props.name}
+              value={props.value}
+              onChange={props.update}
+            />
+            <span class="CheckboxText">
+              <span class="Check">
+                <i class="fa fa-check icon" />
+              </span>
+            </span>
+          </label>
+        </div>
       );
       break;
     case 'file':
       inputClasses.push(classes.FileInput);
-      labelClasses.push(classes.FileUpload);
-      // const fileInputs = document.querySelectorAll(`.${classes.FileInput}`);
-      // const fileUpload = document.querySelectorAll(`.${classes.FileUpload}`);
-      // const fileUploadLabel = document.querySelectorAll(
-      //   `label[for=${props.name}]`
-      // );
-      // console.log(fileInputs, fileUpload, fileUploadLabel);
+      // labelClasses.push(classes.FileUpload);
 
       field = (
         <input
@@ -127,52 +130,3 @@ const Input = props => {
 };
 
 export default Input;
-
-// inputClasses.push(classes.FileInput);
-
-// const fileInputs = document.querySelectorAll(`.${classes.FileInput}`);
-// const fileUpload = document.querySelectorAll(`.${classes.FileUpload}`);
-// const fileUploadLabel = document.querySelectorAll(`label[for=${props.name}]`);
-// console.log(fileInputs, fileUpload, fileUploadLabel);
-
-// Array.prototype.forEach.call(fileInputs, input => {
-//   let label = input.nextElementSibling;
-//   let labelValue = label.innerHTML;
-
-//   input.addEventListener("change", function(event) {
-//     event.preventDefault();
-//     let fileName = "";
-
-//     if (this.files && this.files.length > 1) {
-//       fileName = (
-//         this.getAttribute("data-multiple-caption") || ""
-//       ).replace("{count}", this.files.length);
-//     } else {
-//       fileName = event.target.value.split("\\").pop();
-//     }
-
-//     if (fileName) {
-//       label.querySelector("span").innerHTML = fileName;
-//     } else {
-//       label.innerHTML = labelValue;
-//     }
-//   });
-// });
-
-// field = (
-//   <div style={{ marginTop: "14px" }}>
-//     <label className={classes.FileUpload}>
-//       Upload Files
-//       <input
-//         id={props.name}
-//         className={inputClasses.join(" ")}
-//         {...props.fieldConfig}
-//         name={props.name}
-//         value={props.value}
-//         onChange={props.update}
-//         multiple
-//         data-multiple-caption={"{count} files selected"}
-//       />
-//     </label>
-//   </div>
-// );

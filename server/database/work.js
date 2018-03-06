@@ -39,7 +39,7 @@ const workSchema = new mongoose.Schema(
       // lowercase: true,
       // trim: true,
       default: 'Unassigned',
-      enum: ['Unassigned', 'Prep', 'On Hold', 'In Progress', 'Pending', 'Purchasing Parts', 'Ordered Parts', 'Closed']
+      enum: ['Unassigned', 'Prep', 'On Hold', 'In Progress', 'Pending', 'Purchasing Parts', 'Ordered Parts', 'Closed', 'Requested Deletion']
     },
     category: {
       type: String,
@@ -85,7 +85,7 @@ const workSchema = new mongoose.Schema(
     },
     requestedDate: {
       type: String,
-      required: 'Please request a service date'
+      required: 'Please select a service date'
     },
     scheduledFor: {
       type: Date
@@ -107,10 +107,6 @@ const workSchema = new mongoose.Schema(
     },
     completedDate: {
       type: Date
-    },
-    requestedDeletion: {
-      type: Boolean,
-      default: false
     }
   },
   {
