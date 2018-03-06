@@ -8,6 +8,7 @@ const {
   updateWork,
   deleteWork,
   readWorkMedia,
+  createWorkMedia,
   updateWorkMedia,
   readWorkMediaFile,
   deleteWorkMediaFile
@@ -23,8 +24,8 @@ router.use(bodyParser.urlencoded({ extended: false }));
 
 // Set Content-Type for all responses for these routes
 router.use((req, res, next) => {
-  // res.set('Content-Type', 'application/json; charset=utf-8');
-  res.set('Content-Type', 'text/html');
+  res.set('Content-Type', 'application/json; charset=utf-8');
+  // res.set('Content-Type', 'text/html');
   next();
 });
 
@@ -41,21 +42,14 @@ router
 
 router
   .route('/:workId/media')
-  .get(readWorkMedia)
-  .post(
-    media.multer.single('media'),
-    media.streamUploadToGoogleCloudStorage,
-    updateWorkMedia
-  );
+  // .get(media.multer.any('media'), media.streamDownloadFromGoogleCloudStorage, readWorkMedia)
+  .post(media.multer.any('media'), media.streamUploadToGoogleCloudStorage, createWorkMedia);
 
 router
   .route('/:workId/media/:mediaId')
   .get(readWorkMediaFile)
-  .post(
-    media.multer.single('media'),
-    media.streamUploadToGoogleCloudStorage,
-    deleteWorkMediaFile
-  );
+  .put(media.multer.single('media'), media.streamUploadToGoogleCloudStorage, updateWorkMedia)
+  .delete(media.multer.single('media'), media.streamUploadToGoogleCloudStorage, deleteWorkMediaFile);
 
 router.use((error, req, res, next) => {
   // Format error and forward to generic error handler for logging and

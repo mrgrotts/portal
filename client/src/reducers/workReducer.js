@@ -157,7 +157,8 @@ const workReducer = (state = initialState, action) => {
         success: false
       };
     case actions.UPLOAD_MEDIA_SUCCESS:
-      const uploadedMedia = { ...action.media };
+      console.log(action);
+      const uploadedMedia = { ...action.work.media };
 
       return {
         ...state,
@@ -186,7 +187,8 @@ const workReducer = (state = initialState, action) => {
         success: false
       };
     case actions.DOWNLOAD_MEDIA_SUCCESS:
-      const downloadedMedia = { ...action.media };
+      console.log(action);
+      const downloadedMedia = { ...action.work.media };
 
       return {
         ...state,

@@ -70,12 +70,12 @@ const workSchema = new mongoose.Schema(
       type: String,
       required: 'Description cannot be blank'
     },
-    media: {
-      // with google cloud storage
-      file: String,
-      name: String,
-      url: String
-    },
+    media: [
+      {
+        // with google cloud storage
+        type: String
+      }
+    ],
     messages: {
       child: messagesSchema,
       children: [messagesSchema]

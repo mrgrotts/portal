@@ -1,10 +1,16 @@
 'use strict';
 require('dotenv').load();
+const fs = require('fs');
+const path = require('path');
+const util = require('util');
 const Storage = require('@google-cloud/storage');
 const Multer = require('multer');
+
+const database = require('../database');
+
 // Accept Image Files Only
 const fileFilter = (req, file, callback) => {
-  if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+  if (!file.originalname.match(/\.(jpg|jpeg|png|gif|svg|pdf|tiff)$/)) {
     return callback(new Error('Only Image files are allowed.'), false);
   }
   callback(null, true);
@@ -28,58 +34,99 @@ const storage = Storage({
 // A bucket is a container for objects (files).
 const bucket = storage.bucket(process.env.GCLOUD_STORAGE_BUCKET);
 
-// Returns the public, anonymously accessable URL to a given Cloud Storage
-// object.
+// Returns the public, anonymously accessable URL to a given Cloud Storage object.
 // The object's ACL has to be set to public read.
-// [START public_url]
 const getGoogleCloudStoragePublicUrl = filename =>
-  `https://storage.googleapis.com/${
-    process.env.GCLOUD_STORAGE_BUCKET
-  }/${filename}`;
-// [END public_url]
+  `https://storage.googleapis.com/${process.env.GCLOUD_STORAGE_BUCKET}/${filename}?uploadType=multipart`;
 
 // Express middleware that will automatically pass uploads to Cloud Storage.
-// req.file is processed and will have two new properties:
+// req.file OR req.files get processed and will have two new properties:
 // * ``cloudStorageObject`` the object name in cloud storage.
 // * ``cloudStoragePublicUrl`` the public url to the object.
-// [START process]
 exports.streamUploadToGoogleCloudStorage = (req, res, next) => {
-  if (!req.file) {
-    console.log('No file.');
+  if (!req.file && !req.files) {
+    console.log('No files uploaded.');
     return next();
   }
 
-  console.log(`[UPLOADED TO NODE]:\n${req.file.originalname}`);
+  console.log(req.files);
 
-  const fileName = `${req.params.workId}_${req.file.originalname}`;
+  try {
+    return req.files.forEach(async file => {
+      console.log(`[UPLOADED TO NODE]:\n${file.originalname}`);
 
-  const file = bucket.file(fileName);
-  console.log(`[FILE NAME]:\n${fileName}`);
+      const fileName = `${req.params.workId}_${file.originalname.replace(/(^\s+|[^a-zA-Z0-9. ]+|\s+$)/g, '').replace(/\s+/g, '-')}`;
 
-  const stream = file.createWriteStream({
-    metadata: {
-      contentType: req.file.mimetype
-    }
-  });
+      const media = await bucket.file(fileName);
+      console.log(`[FILE NAME]:\n${fileName}`);
 
-  stream.on('error', error => {
-    req.file.cloudStorageError = error;
-    next(error);
-  });
+      const stream = await media.createWriteStream({
+        metadata: {
+          contentType: `multipart/related; boundary=${fileName}`
+        }
+      });
 
-  stream.on('finish', async () => {
-    req.file.cloudStorageObject = fileName;
-    await file.makePublic();
-    req.file.cloudStoragePublicUrl = await getGoogleCloudStoragePublicUrl(
-      fileName
-    );
+      await stream.on('error', error => {
+        file.cloudStorageError = error;
+        next(error);
+      });
 
-    console.log(`[GCP FILE]:\n${req.file.cloudStorageObject}`);
-    next();
-  });
+      await stream.on('finish', async () => {
+        file.cloudStorageObject = fileName;
+        await media.makePublic();
+        file.cloudStoragePublicUrl = await getGoogleCloudStoragePublicUrl(fileName);
+        console.log(`[GCP FILE]:\n${file.cloudStorageObject}`);
 
-  stream.end(req.file.buffer);
+        const work = await database.Work.findOne({ _id: req.params.workId });
+        work.media.push(file.cloudStoragePublicUrl);
+        await database.Work.findByIdAndUpdate(work._id, work, { new: true });
+        res.json(work);
+        next();
+      });
+
+      await stream.end(file.buffer);
+    });
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
 };
-// [END process]
+
+exports.streamDownloadFromGoogleCloudStorage = async (req, res, next) => {
+  const prefix = 'media/';
+  const delimiter = `_`;
+  const options = { prefix };
+
+  if (delimiter) {
+    options.delimiter = delimiter;
+  }
+
+  console.log(delimiter);
+  console.log(options);
+  // Lists files in the bucket, filtered by a prefix
+  const files = await bucket.getFiles(options);
+  console.log(files);
+
+  files.forEach(async file => {
+    const fileName = file.originalname;
+    file.cloudStoragePublicUrl = await getGoogleCloudStoragePublicUrl(file);
+    console.log(fileName);
+    const destination = path.join(process.cwd(), '..', 'client', 'public', 'assets');
+    // const options = { destination };
+    // .download(options);
+
+    const media = await bucket.file(fileName);
+    const stream = await file.createReadStream(destination);
+    stream.on('error', error => {
+      next(error);
+    });
+
+    stream.on('finish', () => {
+      // The public URL can be used to directly access the file via HTTP.
+      const publicUrl = util.format(`https://storage.googleapis.com/${bucket.name}/${req.params.workId}_${media.name}`);
+      res.status(200).json(publicUrl);
+    });
+  });
+};
 
 module.exports = exports;

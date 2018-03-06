@@ -26,15 +26,13 @@ const userRoutes = require('./routes/users');
 const companyRoutes = require('./routes/companies');
 const locationRoutes = require('./routes/locations');
 const workRoutes = require('./routes/work');
-// const mediaRoutes = require('./routes/media');
 const invoiceRoutes = require('./routes/invoices');
 
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 8080;
 const IP = process.env.IP || '127.0.0.1';
-const homedir =
-  os.platform() === 'win32' ? process.env.HOMEPATH : process.env.HOME;
-const serverStreamPath = path.join('\\\\?\\pipe', process.cwd(), 'ctl');
+const HomeDirectory = os.platform() === 'win32' ? process.env.HOMEPATH : process.env.HOME;
+const ServerStreamPath = path.join('\\\\?\\pipe', process.cwd(), 'ctl');
 const app = express();
 
 app.title = process.env.APP_NAME;
@@ -68,77 +66,80 @@ app.use(cors());
 app.use(bodyParser.json({ type: ['json', 'application/csp-report'] }));
 // Automatically parse request body as form data
 // Extended required to post nested objects
+// BUT it annoyingly breaks Multer so we don't extend during Media routes
 app.use(bodyParser.urlencoded({ extended: true }));
-// Production: Resource Compression
-// Development: HTTP Logger -> 'dev' -> Concise output colored by response status for development use
-const compressor = compression({
-  flush: zlib.Z_PARTIAL_FLUSH
-});
 
-process.env.NODE_ENV === 'production'
-  ? app.use(compressor)
-  : app.use(morgan('dev'));
+const developmentMode = app => {
+  console.log('Development Mode Enabled.');
+  // Development: HTTP Logger -> 'dev' -> Concise output colored by response status for development use
+  app.use(morgan('dev'));
 
-// SUDO MODE -- Enable to use API without Authenticating
-app.use('/api/sudo', sudoRoutes);
+  app.all('/users/:userId/companies/:companyId/work/:workId/media/**/*', async (req, res, next) => {
+    const gcsLogPath = path.join(process.cwd(), '..', 'logs', 'gcs_log.txt');
+    await bucket
+      .file('access_log')
+      .createReadStream({
+        start: 10000,
+        end: 20000
+      })
+      .on('error', error => console.log(error))
+      .pipe(fs.createWriteStream(gcsLogPath));
+    next();
+  });
 
-// Production Routes
-app.use('/', apiRoutes);
-app.use('/api/auth', authRoutes);
-app.use('/api/users', authenticateUser, authorizeUser, userRoutes);
-app.use(
-  '/api/users/:userId/companies',
-  authenticateUser,
-  authorizeUser,
-  companyRoutes
-);
-app.use(
-  '/api/users/:userId/locations',
-  authenticateUser,
-  authorizeUser,
-  locationRoutes
-);
-app.use('/api/users/:userId/work', authenticateUser, authorizeUser, workRoutes);
-// app.use('/api/users/:userId/work/:workId/media', authenticateUser, authorizeUser, mediaRoutes);
-app.use(
-  '/api/users/:userId/invoices',
-  authenticateUser,
-  authorizeUser,
-  invoiceRoutes
-);
+  // SUDO MODE -- Enable to use API without Authenticating
+  app.use('/api/sudo', sudoRoutes);
+};
 
-// Basic error handler
-app.use((error, req, res, next) => {
-  console.error(error);
-  // If our routes specified a specific response, then send that. Otherwise,
-  // send a generic message so as not to leak anything.
-  res.status(500).json(error.response || 'Something broke...');
-});
+const productionMode = app => {
+  console.log('Production Mode Enabled.');
 
-app.get('/ping', (req, res) => {
-  res.status(200).json({ ok: true });
-});
-
-const server = http.createServer(app);
-server.listen(PORT, IP, () => {
-  console.log(`[${process.env.APP_NAME}]: Launched API on ${HOST}:${PORT}`);
-  console.log(`[${process.env.APP_NAME}]: Assigned IP Address ${IP}`);
-  console.log(`[${process.env.APP_NAME}]: Found Home Directory ${homedir}`);
-  console.log(
-    `[${process.env.APP_NAME}]: Stream Sync with Directory ${serverStreamPath}`
-  );
-});
-
-// Activate Google Cloud Trace and Debug when in production
-if (process.env.NODE_ENV === 'production') {
+  // Activate Google Cloud Trace and Debug when in production
   require('@google-cloud/trace-agent').start();
   require('@google-cloud/debug-agent').start();
-}
 
-if (process.env.NODE_ENV !== 'production') {
+  // Production: Resource Compression
+  const compressor = compression({ flush: zlib.Z_PARTIAL_FLUSH });
+  app.use(compressor);
+
+  // Generic Production error handler
+  app.use((error, req, res, next) => {
+    console.error(error);
+    // If our routes specified a specific response, then send that. Otherwise,
+    // send a generic message so as not to leak anything.
+    res.status(500).json(error.response || 'Looks like something broke...');
+  });
+
+  // Ping Route - no need to get DDoS'd
+  app.get('/ping', (req, res) => {
+    res.status(200).json({ ok: true });
+  });
+
+  // Fatal Stack Trace
   process.once('uncaughtException', error => {
     console.error('FATAL: Uncaught exception.');
     console.error(error.stack || error);
     setTimeout(() => process.exit(1), 100);
   });
-}
+};
+
+process.env.NODE_ENV === 'production' ? productionMode(app) : developmentMode(app);
+
+// Backend API Routes
+app.use('/', apiRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/users', authenticateUser, authorizeUser, userRoutes);
+app.use('/api/users/:userId/companies', authenticateUser, authorizeUser, companyRoutes);
+app.use('/api/users/:userId/locations', authenticateUser, authorizeUser, locationRoutes);
+app.use('/api/users/:userId/work', authenticateUser, authorizeUser, workRoutes);
+app.use('/api/users/:userId/invoices', authenticateUser, authorizeUser, invoiceRoutes);
+
+const server = http.createServer(app);
+server.listen(PORT, IP, () => {
+  console.log(`[${process.env.APP_NAME}]: Launched API on ${HOST}:${PORT}`);
+  console.log(`[${process.env.APP_NAME}]: Assigned IP Address ${IP}`);
+  console.log(`[${process.env.APP_NAME}]: Found Home Directory ${HomeDirectory}`);
+  console.log(`[${process.env.APP_NAME}]: Stream Sync with Directory ${ServerStreamPath}`);
+  console.log(`[${process.env.APP_NAME}]: Found Root Project Directory ${path.join(process.cwd(), '..')}`);
+  console.log(`[${process.env.APP_NAME}]: Public URL is ${process.env.PUBLIC_URL}`);
+});

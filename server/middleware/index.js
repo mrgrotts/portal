@@ -63,26 +63,3 @@ exports.isVerified = async (req, res, next) => {
     res.status(403).json({ error, message: ACCOUNT_NOT_VERIFIED });
   }
 };
-
-// const multer = require('multer');
-
-// exports.multer = async (req, res, next) => {
-//   // Accept Image Files Only
-//   const fileFilter = (req, file, callback) => {
-//     if (!files[f].originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
-//       return callback(new Error('Only Image files are allowed.'), false);
-//     }
-//     callback(null, true);
-//   };
-//   // Multer parses Multipart Form Data off of req.files
-//   const m = multer({
-//     storage: multer.memoryStorage(),
-//     limits: {
-//       fileSize: 10 * 1024 * 1024 // no larger than 10mb
-//     },
-//     fileFilter
-//   });
-
-//   m.any();
-//   next();
-// };

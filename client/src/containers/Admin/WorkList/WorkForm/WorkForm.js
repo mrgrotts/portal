@@ -64,9 +64,7 @@ class WorkForm extends Component {
             { label: 'Window Washing', value: 'Window Washing' }
           ]
         },
-        value: this.props.work
-          ? this.props.work.category
-          : 'Commercial Cleaning',
+        value: this.props.work ? this.props.work.category : 'Commercial Cleaning',
         validation: { required: true },
         touched: false,
         valid: this.props.work ? true : false
@@ -151,25 +149,15 @@ class WorkForm extends Component {
     },
     messages: this.props.work ? this.props.work.messages : [],
     media: this.props.work ? this.props.work.media : [],
-    requestedDate: this.props.work
-      ? moment(this.props.work.requestedDate)
-      : moment(),
+    requestedDate: this.props.work ? moment(this.props.work.requestedDate) : moment(),
     requestedDateFocused: false,
-    scheduledFor: this.props.work
-      ? moment(this.props.work.scheduledFor)
-      : moment(),
+    scheduledFor: this.props.work ? moment(this.props.work.scheduledFor) : moment(),
     scheduledForFocused: false,
-    partPurchasedDate: this.props.work
-      ? moment(this.props.work.partPurchasedDate)
-      : moment(),
+    partPurchasedDate: this.props.work ? moment(this.props.work.partPurchasedDate) : moment(),
     partPurchasedDateFocused: false,
-    partArrivedDate: this.props.work
-      ? moment(this.props.work.partArrivedDate)
-      : moment(),
+    partArrivedDate: this.props.work ? moment(this.props.work.partArrivedDate) : moment(),
     partArrivedDateFocused: false,
-    completedDate: this.props.work
-      ? moment(this.props.work.completedDate)
-      : moment(),
+    completedDate: this.props.work ? moment(this.props.work.completedDate) : moment(),
     completedDateFocused: false,
     createdAt: this.props.work ? moment(this.props.work.createdAt) : moment(),
     updatedAt: this.props.work ? moment(this.props.work.updatedAt) : moment(),
@@ -179,11 +167,11 @@ class WorkForm extends Component {
   async componentDidMount() {
     await this.props.readLocations();
 
-    let media = [];
-    if (this.props.work && this.props.work.media !== undefined) {
-      console.log(this.props.work.media);
-      media = await this.props.downloadMedia(this.props.work._id);
-    }
+    // let media = [];
+    // if (this.props.work && this.props.work.media !== undefined) {
+    //   console.log(this.props.work.media);
+    //   media = await this.props.downloadMedia(this.props.work._id);
+    // }
 
     // console.log(this.props.locations[0]._id);
     // console.log(this.state.workForm.location.value);
@@ -211,7 +199,8 @@ class WorkForm extends Component {
       };
 
       // console.log(workForm);
-      return this.setState({ workForm, media });
+      return this.setState({ workForm });
+      // return this.setState({ workForm, media });
     }
   }
 
@@ -222,14 +211,8 @@ class WorkForm extends Component {
       ...this.state.workForm,
       [field]: {
         ...this.state.workForm[field],
-        value:
-          event.target.type === 'checkbox'
-            ? event.target.checked
-            : event.target.value,
-        valid: validateFields(
-          event.target.value,
-          this.state.workForm[field].validation
-        ),
+        value: event.target.type === 'checkbox' ? event.target.checked : event.target.value,
+        valid: validateFields(event.target.value, this.state.workForm[field].validation),
         touched: true
       }
     };
@@ -246,26 +229,19 @@ class WorkForm extends Component {
   };
 
   onRequestedDateChange = requestedDate => this.setState({ requestedDate });
-  onRequestedDateFocusChange = ({ focused: requestedDateFocused }) =>
-    this.setState({ requestedDateFocused });
+  onRequestedDateFocusChange = ({ focused: requestedDateFocused }) => this.setState({ requestedDateFocused });
 
   onScheduledForChange = scheduledFor => this.setState({ scheduledFor });
-  onScheduledForFocusChange = ({ focused: scheduledForFocused }) =>
-    this.setState({ scheduledForFocused });
+  onScheduledForFocusChange = ({ focused: scheduledForFocused }) => this.setState({ scheduledForFocused });
 
-  onPartPurchasedDateChange = partPurchasedDate =>
-    this.setState({ partPurchasedDate });
-  onPartPurchasedDateFocusChange = ({ focused: partPurchasedDateFocused }) =>
-    this.setState({ partPurchasedDateFocused });
+  onPartPurchasedDateChange = partPurchasedDate => this.setState({ partPurchasedDate });
+  onPartPurchasedDateFocusChange = ({ focused: partPurchasedDateFocused }) => this.setState({ partPurchasedDateFocused });
 
-  onPartArrivedDateChange = partArrivedDate =>
-    this.setState({ partArrivedDate });
-  onPartArrivedDateFocusChange = ({ focused: partArrivedDateFocused }) =>
-    this.setState({ partArrivedDateFocused });
+  onPartArrivedDateChange = partArrivedDate => this.setState({ partArrivedDate });
+  onPartArrivedDateFocusChange = ({ focused: partArrivedDateFocused }) => this.setState({ partArrivedDateFocused });
 
   onCompletedDateChange = completedDate => this.setState({ completedDate });
-  onCompletedDateFocusChange = ({ focused: completedDateFocused }) =>
-    this.setState({ completedDateFocused });
+  onCompletedDateFocusChange = ({ focused: completedDateFocused }) => this.setState({ completedDateFocused });
 
   onFileUpload = event => {
     event.preventDefault();
@@ -274,8 +250,7 @@ class WorkForm extends Component {
     this.setState({ media: event.target.files });
   };
 
-  onUpload = () =>
-    this.props.uploadMedia(this.props.work._id, this.state.media);
+  onUpload = () => this.props.uploadMedia(this.props.work._id, this.state.media);
 
   onSubmit = event => {
     event.preventDefault();
@@ -312,9 +287,7 @@ class WorkForm extends Component {
           value: this.props.work ? this.props.work.status : 'Unassigned'
         },
         category: {
-          value: this.props.work
-            ? this.props.work.category
-            : 'Commercial Cleaning'
+          value: this.props.work ? this.props.work.category : 'Commercial Cleaning'
         },
         location: {
           value: this.props.work ? this.props.work.location._id : ''
@@ -329,21 +302,11 @@ class WorkForm extends Component {
         hourlyRate: this.state.workForm.hourlyRate.value,
         requestedDeletion: this.state.workForm.requestedDeletion.value
       },
-      requestedDate: this.props.work
-        ? moment(this.props.work.requestedDate)
-        : moment(),
-      scheduledFor: this.props.work
-        ? moment(this.props.work.scheduledFor)
-        : moment(),
-      partPurchasedDate: this.props.work
-        ? moment(this.props.work.partPurchasedDate)
-        : moment(),
-      partArrivedDate: this.props.work
-        ? moment(this.props.work.partArrivedDate)
-        : moment(),
-      completedDate: this.props.work
-        ? moment(this.props.work.completedDate)
-        : moment(),
+      requestedDate: this.props.work ? moment(this.props.work.requestedDate) : moment(),
+      scheduledFor: this.props.work ? moment(this.props.work.scheduledFor) : moment(),
+      partPurchasedDate: this.props.work ? moment(this.props.work.partPurchasedDate) : moment(),
+      partArrivedDate: this.props.work ? moment(this.props.work.partArrivedDate) : moment(),
+      completedDate: this.props.work ? moment(this.props.work.completedDate) : moment(),
       messages: this.props.work ? this.props.work.messages : [],
       media: this.props.work ? this.props.work.media : [],
       createdAt: this.props.work ? moment(this.props.work.createdAt) : moment(),
@@ -361,20 +324,13 @@ class WorkForm extends Component {
       });
     }
 
-    let progress =
-      this.props.work === undefined ? null : (
-        <ProgressBar progress={this.props.status} />
-      );
+    let progress = this.props.work === undefined ? null : <ProgressBar progress={this.props.status} />;
 
     let form = <Spinner />;
 
     if (!this.props.loading) {
       form = (
-        <form
-          className={classes.WorkForm}
-          onSubmit={this.onSubmit}
-          encType="multipart/form-data"
-        >
+        <form className={classes.WorkForm} onSubmit={this.onSubmit} encType="multipart/form-data">
           {workFields.map(field => {
             if (!this.props.work && field.id === 'status') {
               return null;
@@ -384,16 +340,10 @@ class WorkForm extends Component {
               return (
                 <div key={field.id} className={classes.WorkFormInputContainer}>
                   <div className={classes.WorkFormAddLocation}>
-                    <label
-                      className={classes.WorkFormAddLocationLabel}
-                      htmlFor={field.id}
-                    >
+                    <label className={classes.WorkFormAddLocationLabel} htmlFor={field.id}>
                       {toTitleCase(field.id)}
                     </label>
-                    <Link
-                      className={classes.WorkFormAddLocationButton}
-                      to="/locations/create"
-                    >
+                    <Link className={classes.WorkFormAddLocationButton} to="/locations/create">
                       Add Location
                     </Link>
                   </div>
@@ -492,13 +442,7 @@ class WorkForm extends Component {
           <div className={classes.WorkFormInputContainer}>
             <label htmlFor="media">
               Add Media
-              <input
-                id="media"
-                name="media"
-                type="file"
-                onChange={this.onFileUpload}
-                multiple
-              />
+              <input id="media" name="media" type="file" onChange={this.onFileUpload} multiple />
             </label>
             <Button ButtonType="Success" clicked={this.onUpload} type="button">
               Upload
@@ -536,9 +480,7 @@ const mapDispatchToProps = dispatch => ({
   downloadMedia: id => dispatch(actions.downloadMedia(id))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  handleErrors(WorkForm, api)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(handleErrors(WorkForm, api));
 
 // <input
 //   id="requested-date"
