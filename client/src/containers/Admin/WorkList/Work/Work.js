@@ -20,6 +20,7 @@ import ResidentialCleaning from '../../../../assets/images/ResidentialCleaning.j
 import classes from './Work.css';
 
 const Work = props => {
+  // console.log(props);
   const images = [
     CommercialCleaning,
     DrywallInstallation,
@@ -33,59 +34,57 @@ const Work = props => {
     ResidentialCleaning
   ];
 
-  const matchCategory = category =>
-    images.find(image => image.includes(category));
+  const matchCategory = category => images.find(image => image.includes(category));
 
-  return (
-    <TableRow>
-      <TableItem
-        TableItemStyle={['Status', props.status.replace(/[^\w]/g, '')]}
-      >
-        <p style={{ color: 'white' }}>
-          <strong>{props.status}</strong>
-        </p>
-        {props.status === 'Unassigned' ? null : <p>{props.assignedTo}</p>}
-      </TableItem>
-      <TableItem>
-        <strong>{props.category}</strong>
-        <div className={classes.WorkCategory}>
-          <img
-            style={{ height: '80px' }}
-            alt={props.category}
-            className={classes.WorkImage}
-            src={matchCategory(props.category.replace(/[^\w]/g, ''))}
-          />
-        </div>
-      </TableItem>
-      <TableItem>
-        <Link to={`/work/${props._id}`}>{props._id}</Link>
-      </TableItem>
-      <TableItem>
-        <Link to={`/locations/${props.location._id}`}>
-          {props.location.name}
-        </Link>
-        <p>{props.location.addressOne}</p>
-        <p>{props.location.addressTwo}</p>
-        <p>
-          {props.location.city}, {props.location.state} {props.location.zipcode}
-        </p>
-      </TableItem>
-      <TableItem>{props.description}</TableItem>
-      <TableItem>{moment(props.requestedDate).format('LLL')}</TableItem>
-      <TableItem>
-        <div className={classes.WorkActions}>
-          <Link to={`/work/${props._id}`}>
-            <Button ButtonType="Success" clicked={props.update}>
-              Modify
+  if (props) {
+    // console.log(props.status.replace(/[^\w]/g, ''));
+    return (
+      <TableRow>
+        <TableItem TableItemStyle={['Status', props.status.replace(/[^\w]/g, '')]}>
+          <p style={{ color: 'white' }}>
+            <strong>{props.status}</strong>
+          </p>
+          {props.status === 'Unassigned' ? null : <p>{props.assignedTo}</p>}
+        </TableItem>
+        <TableItem>
+          <strong>{props.category}</strong>
+          <div className={classes.WorkCategory}>
+            <img
+              style={{ height: '80px' }}
+              alt={props.category}
+              className={classes.WorkImage}
+              src={matchCategory(props.category.replace(/[^\w]/g, ''))}
+            />
+          </div>
+        </TableItem>
+        <TableItem>
+          <Link to={`/work/${props._id}`}>{props._id}</Link>
+        </TableItem>
+        <TableItem>
+          <Link to={`/locations/${props.location._id}`}>{props.location.name}</Link>
+          <p>{props.location.addressOne}</p>
+          <p>{props.location.addressTwo}</p>
+          <p>
+            {props.location.city}, {props.location.state} {props.location.zipcode}
+          </p>
+        </TableItem>
+        <TableItem>{props.description}</TableItem>
+        <TableItem>{moment(props.requestedDate).format('LLL')}</TableItem>
+        <TableItem>
+          <div className={classes.WorkActions}>
+            <Link to={`/work/${props._id}`}>
+              <Button ButtonType="Success" clicked={props.update}>
+                Modify
+              </Button>
+            </Link>
+            <Button ButtonType="Failure" clicked={props.delete}>
+              Delete
             </Button>
-          </Link>
-          <Button ButtonType="Failure" clicked={props.delete}>
-            Delete
-          </Button>
-        </div>
-      </TableItem>
-    </TableRow>
-  );
+          </div>
+        </TableItem>
+      </TableRow>
+    );
+  } else return;
 };
 
 export default Work;

@@ -5,18 +5,25 @@ import Auxiliary from '../../../hoc/Auxiliary';
 import classes from './TableItem.css';
 
 const TableItem = props => {
-  // console.log(props.TableItemStyle);
-  let TableItemStyles = '';
+  let cell = null;
   if (props.TableItemStyle) {
-    TableItemStyles = props.TableItemStyle.map(item => classes[item]).join(' ');
+    // console.log(props.TableItemStyle);
+    let TableItemStyles = props.TableItemStyle.map(item => classes[item]).join(' ');
+    // console.log(TableItemStyles);
+    cell = (
+      <Auxiliary>
+        <td className={`${classes.TableItem} ${TableItemStyles}`}>{props.children}</td>
+      </Auxiliary>
+    );
+  } else {
+    cell = (
+      <Auxiliary>
+        <td className={classes.TableItem}>{props.children}</td>
+      </Auxiliary>
+    );
   }
-  // console.log(TableItemStyles);
 
-  return (
-    <Auxiliary>
-      <td className={`${classes.TableItem} ${TableItemStyles}`}>{props.children}</td>
-    </Auxiliary>
-  );
+  return cell;
 };
 
 export default TableItem;

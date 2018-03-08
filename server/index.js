@@ -74,6 +74,7 @@ const developmentMode = app => {
   // Development: HTTP Logger -> 'dev' -> Concise output colored by response status for development use
   app.use(morgan('dev'));
 
+  // Untested GCS Logging
   app.all('/users/:userId/companies/:companyId/work/:workId/media/**/*', async (req, res, next) => {
     const gcsLogPath = path.join(process.cwd(), '..', 'logs', 'gcs_log.txt');
     await bucket

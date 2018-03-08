@@ -8,6 +8,11 @@ const initialState = {
 };
 
 const workReducer = (state = initialState, action) => {
+  const createWork = created => state.workList.concat(created);
+  const readWork = read => state.workList.find(w => w._id === read._id);
+  const updateWork = updated => state.workList.filter(w => w._id !== updated._id).map(work => (work = updated));
+  const deleteWork = deleted => state.workList.filter(w => w._id !== deleted._id);
+
   switch (action.type) {
     case actions.CREATE_WORK_START:
       return {
@@ -17,11 +22,9 @@ const workReducer = (state = initialState, action) => {
         success: false
       };
     case actions.CREATE_WORK_SUCCESS:
-      const newWork = { ...action.work };
-
       return {
         ...state,
-        workList: state.workList.concat(newWork),
+        workList: createWork({ ...action.work }),
         error: null,
         loading: false,
         success: true
@@ -47,7 +50,7 @@ const workReducer = (state = initialState, action) => {
     case actions.READ_WORKLIST_SUCCESS:
       return {
         ...state,
-        workList: action.workList,
+        workList: action.work,
         loading: false,
         success: true
       };
@@ -70,11 +73,9 @@ const workReducer = (state = initialState, action) => {
         success: false
       };
     case actions.READ_WORK_SUCCESS:
-      const work = { ...action.work };
-
       return {
         ...state,
-        workList: state.workList.filter(w => w._id === work._id),
+        workList: readWork({ ...action.work }),
         loading: false,
         success: true
       };
@@ -98,11 +99,9 @@ const workReducer = (state = initialState, action) => {
         success: false
       };
     case actions.UPDATE_WORK_SUCCESS:
-      const updatedWork = { ...action.work };
-
       return {
         ...state,
-        workList: state.workList.concat(updatedWork),
+        workList: updateWork({ ...action.work }),
         error: null,
         loading: false,
         success: true
@@ -127,11 +126,9 @@ const workReducer = (state = initialState, action) => {
         success: false
       };
     case actions.DELETE_WORK_SUCCESS:
-      const deletedWork = { ...action.work };
-
       return {
         ...state,
-        workList: state.workList.filter(work => work._id !== deletedWork._id),
+        workList: deleteWork({ ...action.work }),
         error: null,
         loading: false,
         success: true
@@ -188,11 +185,20 @@ const workReducer = (state = initialState, action) => {
       };
     case actions.DOWNLOAD_MEDIA_SUCCESS:
       console.log(action);
-      const downloadedMedia = { ...action.work.media };
+      const media = { ...action.work.media };
+      const work = readWork({ ...action.work });
+      const workList = {
+        ...state.workList,
+        [work._id]: {
+          ...state.workList[work._id],
+          media
+        }
+      };
+      console.log(workList);
 
       return {
         ...state,
-        workList: state.workList.media.concat(downloadedMedia),
+        workList,
         error: null,
         loading: false,
         success: true

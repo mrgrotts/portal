@@ -6,7 +6,9 @@ import classes from './TableRow.css';
 
 const TableRow = props => (
   <Auxiliary>
-    <tr className={classes.TableRow}>{props.children}</tr>
+    <tr className={classes.TableRow} key={props._id}>
+      {props.children}
+    </tr>
   </Auxiliary>
 );
 

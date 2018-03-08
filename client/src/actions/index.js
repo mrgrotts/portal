@@ -547,9 +547,9 @@ export const readWorkListStart = () => ({
   type: READ_WORKLIST_START
 });
 
-export const readWorkListSuccess = workList => ({
+export const readWorkListSuccess = work => ({
   type: READ_WORKLIST_SUCCESS,
-  workList
+  work
 });
 
 export const readWorkListFail = error => ({

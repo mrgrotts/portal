@@ -25,7 +25,7 @@ const workSchema = new mongoose.Schema(
     },
     company: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Customers'
+      ref: 'Companies'
     },
     team: [
       {

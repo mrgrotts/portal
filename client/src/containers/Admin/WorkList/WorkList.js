@@ -39,7 +39,7 @@ class WorkList extends Component {
     }
 
     return (
-      <div className={classes.WorkList}>
+      <div className={classes.WorkList} ref="WorkListRef">
         <h1 style={{ marginBottom: '2rem', textAlign: 'center' }}>{title}</h1>
         <Table headers={headers}>{workList}</Table>
       </div>

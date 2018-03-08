@@ -102,9 +102,13 @@ exports.updateWork = async (req, res, next) => {
     requestedDeletion: req.body.requestedDeletion
   };
 
+  console.log(updatedWork);
+
   const work = await database.Work.findByIdAndUpdate(req.params.workId, updatedWork, {
     new: true
   }).catch(error => console.log(error));
+
+  console.log(work._id);
 
   work
     .save()
@@ -126,7 +130,7 @@ exports.deleteWork = (req, res, next) => {
 };
 
 exports.readWorkMedia = async (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
   const work = await database.Work.findById(req.params.workId);
 
   res.json(work);

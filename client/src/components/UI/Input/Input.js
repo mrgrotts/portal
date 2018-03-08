@@ -16,7 +16,7 @@ const Input = props => {
     case 'input':
       field = (
         <input
-          id={props.name}
+          key={props.name}
           className={inputClasses.join(' ')}
           {...props.fieldConfig}
           name={props.name}
@@ -28,7 +28,7 @@ const Input = props => {
     case 'textarea':
       field = (
         <textarea
-          id={props.name}
+          key={props.name}
           className={inputClasses.join(' ')}
           {...props.fieldConfig}
           name={props.name}
@@ -39,7 +39,7 @@ const Input = props => {
       break;
     case 'select':
       field = (
-        <select id={props.name} className={inputClasses.join(' ')} name={props.name} value={props.value} onChange={props.update}>
+        <select key={props.name} className={inputClasses.join(' ')} name={props.name} value={props.value} onChange={props.update}>
           {props.fieldConfig.options.map(option => (
             <option key={option.value} value={option.value}>
               {option.label}
@@ -53,7 +53,7 @@ const Input = props => {
         <div class="CheckboxContainer">
           <label class="CheckboxLabel">
             <input
-              id={props.name}
+              key={props.name}
               className={classes.Checkbox}
               {...props.fieldConfig}
               name={props.name}
@@ -75,7 +75,7 @@ const Input = props => {
 
       field = (
         <input
-          id={props.name}
+          key={props.name}
           className={inputClasses.join(' ')}
           {...props.fieldConfig}
           name={props.name}
@@ -88,7 +88,7 @@ const Input = props => {
     case 'button':
       field = (
         <input
-          id={props.name}
+          key={props.name}
           className={inputClasses.join(' ')}
           {...props.fieldConfig}
           name={props.name}
@@ -100,7 +100,7 @@ const Input = props => {
     default:
       field = (
         <input
-          id={props.name}
+          key={props.name}
           className={inputClasses.join(' ')}
           {...props.fieldConfig}
           name={props.name}
@@ -117,14 +117,16 @@ const Input = props => {
 
   let input =
     props.fieldConfig.type !== 'hidden' ? (
-      <div className={classes.Input}>
+      <div key={props.name} className={classes.Input}>
         <label className={labelClasses.join(' ')} htmlFor={props.name}>
           {props.label}
         </label>
         {field}
         {validationError}
       </div>
-    ) : null;
+    ) : (
+      props.value
+    );
 
   return input;
 };

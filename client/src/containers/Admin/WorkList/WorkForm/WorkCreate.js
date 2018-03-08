@@ -25,7 +25,7 @@ class WorkCreate extends Component {
     let form = <Spinner />;
 
     if (!this.props.loading) {
-      form = <WorkForm onSubmit={this.onSubmit} onCancel={this.onCancel} />;
+      form = <WorkForm onSubmit={this.onSubmit} onCancel={this.onCancel} ref="WorkFormRef" />;
     }
 
     const redirectAfterSubmit = this.props.success ? <Redirect to="/work" {...this.props.work} /> : null;

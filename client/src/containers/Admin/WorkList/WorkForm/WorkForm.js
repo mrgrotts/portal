@@ -118,7 +118,7 @@ class WorkForm extends Component {
       hoursSpent: {
         fieldType: 'input',
         fieldConfig: { type: 'text', placeholder: '0' },
-        value: this.props.work ? this.props.work.hoursSpent : '',
+        value: this.props.work ? this.props.work.hoursSpent : 0,
         validation: { required: false },
         touched: false,
         valid: this.props.work ? true : false
@@ -126,7 +126,7 @@ class WorkForm extends Component {
       hourlyRate: {
         fieldType: 'input',
         fieldConfig: { type: 'text', placeholder: '35' },
-        value: this.props.work ? this.props.work.description : '',
+        value: this.props.work ? this.props.work.hourlyRate : 0,
         validation: { required: false },
         touched: false,
         valid: this.props.work ? true : false
@@ -165,17 +165,17 @@ class WorkForm extends Component {
     formValid: false
   };
 
-  async componentDidMount() {
-    await this.props.readLocations();
-
-    // if (this.props.work && this.props.work.media !== undefined) {
-    //   // console.log(this.props.work.media);
-    //   const media = await this.props.downloadMedia(this.props.work._id);
-    //   console.log(media);
-    // }
+  componentDidMount() {
+    // console.log(this.refs.WorkFormRef);
+    this.getLocations();
+    // await this.getMedia();
 
     // console.log(this.props.locations[0]._id);
     // console.log(this.state.workForm.location.value);
+  }
+
+  getLocations = async () => {
+    await this.props.readLocations();
 
     if (this.props.locations.length !== 0) {
       let options = [];
@@ -200,10 +200,21 @@ class WorkForm extends Component {
       };
 
       // console.log(workForm);
-      return this.setState({ workForm });
+      if (this.refs.WorkFormRef) {
+        return this.setState({ workForm });
+      }
       // return this.setState({ workForm, media });
-    }
-  }
+    } else return;
+  };
+
+  getMedia = async () => {
+    if (this.props.work && this.props.work.media !== undefined) {
+      // console.log(this.props.work.media);
+      const media = await this.props.downloadMedia(this.props.work._id);
+      console.log(media);
+      return media;
+    } else return;
+  };
 
   updateField = (event, field) => {
     // console.log(event.target);
@@ -226,6 +237,7 @@ class WorkForm extends Component {
     }
 
     // console.log(workForm);
+    // console.log(this.state.workForm);
     return this.setState({ workForm, formValid });
   };
 
@@ -246,12 +258,23 @@ class WorkForm extends Component {
 
   onFileUpload = event => {
     event.preventDefault();
-    // console.log(event.target.files);
+    console.log(event.target);
 
-    this.setState({ media: event.target.files });
+    return this.setState({ media: event.target.files });
+    // return this.showUploading(event.target.files);
   };
 
   onUpload = () => this.props.uploadMedia(this.props.work._id, this.state.media);
+
+  // showUploading = files => {
+  //   console.log(files);
+  //   console.log(this.uploading);
+  //   console.log(this.refs);
+
+  //   if (files > 0) {
+  //     return files.map(file => <li>{file}</li>);
+  //   }
+  // };
 
   onSubmit = event => {
     event.preventDefault();
@@ -284,18 +307,10 @@ class WorkForm extends Component {
 
     this.setState({
       workForm: {
-        status: {
-          value: this.props.work ? this.props.work.status : 'Unassigned'
-        },
-        category: {
-          value: this.props.work ? this.props.work.category : 'Commercial Cleaning'
-        },
-        location: {
-          value: this.props.work ? this.props.work.location._id : ''
-        },
-        description: {
-          value: this.props.work ? this.props.work.description : ''
-        },
+        status: { value: this.props.work ? this.props.work.status : 'Unassigned' },
+        category: { value: this.props.work ? this.props.work.category : 'Commercial Cleaning' },
+        location: { value: this.props.work ? this.props.work.location._id : '' },
+        description: { value: this.props.work ? this.props.work.description : '' },
         message: this.state.workForm.message.value,
         assignedTo: this.state.workForm.assignedTo.value,
         workCompleted: this.state.workForm.workCompleted.value,
@@ -330,6 +345,7 @@ class WorkForm extends Component {
     let form = <Spinner />;
 
     if (!this.props.loading) {
+      // console.log(field.id, field.config.value);
       form = (
         <form className={classes.WorkForm} onSubmit={this.onSubmit} encType="multipart/form-data">
           {workFields.map(field => {
@@ -353,20 +369,20 @@ class WorkForm extends Component {
             }
 
             return (
-              <div key={field.id} className={classes.WorkFormInputContainer}>
-                <Input
-                  key={field.id}
-                  label={toTitleCase(field.id)}
-                  name={field.id}
-                  update={event => this.updateField(event, field.id)}
-                  fieldType={field.config.fieldType}
-                  fieldConfig={field.config.fieldConfig}
-                  value={field.config.value}
-                  validation={field.config.validation}
-                  touched={field.config.touched}
-                  invalid={!field.config.valid}
-                />
-              </div>
+              <Input
+                className={classes.WorkFormInputContainer}
+                key={field.id}
+                label={toTitleCase(field.id)}
+                name={field.id}
+                update={event => this.updateField(event, field.id)}
+                fieldType={field.config.fieldType}
+                fieldConfig={field.config.fieldConfig}
+                // ref={field.id}
+                value={field.config.value}
+                validation={field.config.validation}
+                touched={field.config.touched}
+                invalid={!field.config.valid}
+              />
             );
           })}
 
@@ -444,9 +460,13 @@ class WorkForm extends Component {
             <label htmlFor="media">
               <input id="media" name="media" type="file" onChange={this.onFileUpload} multiple />
             </label>
+            <Button ButtonType="Upload" type="button">
+              Choose Files
+            </Button>
             <Button ButtonType="Upload" clicked={this.onUpload} type="button">
               Upload Media
             </Button>
+            {/* <div ref={uploading => (this.uploading = uploading)}>{this.showUploading()}</div> */}
           </div>
 
           <div className={classes.WorkFormSubmitRow}>
