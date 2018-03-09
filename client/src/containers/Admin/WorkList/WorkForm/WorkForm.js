@@ -168,58 +168,54 @@ class WorkForm extends Component {
   componentDidMount() {
     // console.log(this.refs.WorkFormRef);
     this.getLocations();
-    // await this.getMedia();
+    // this.getMedia();
 
     // console.log(this.props.locations[0]._id);
     // console.log(this.state.workForm.location.value);
   }
 
   getLocations = async () => {
-    if (this.refs.WorkFormRef) {
-      await this.props.readLocations();
+    await this.props.readLocations();
 
-      if (this.props.locations.length !== 0) {
-        let options = [];
-        this.props.locations.map(location => {
-          let option = {
-            label: location.name,
-            value: location._id
-          };
-
-          return options.push(option);
-        });
-
-        const workForm = {
-          ...this.state.workForm,
-          location: {
-            ...this.state.workForm.location,
-            fieldConfig: {
-              options
-            },
-            value: this.props.locations[0]._id
-          }
+    if (this.props.locations.length !== 0) {
+      let options = [];
+      this.props.locations.map(location => {
+        let option = {
+          label: location.name,
+          value: location._id
         };
 
-        // console.log(workForm);
-        if (this.refs.WorkFormRef) {
-          return this.setState({ workForm });
+        return options.push(option);
+      });
+
+      const workForm = {
+        ...this.state.workForm,
+        location: {
+          ...this.state.workForm.location,
+          fieldConfig: {
+            options
+          },
+          value: this.props.locations[0]._id
         }
-        // return this.setState({ workForm, media });
-      } else return;
+      };
+
+      // console.log(workForm);
+      return this.setState({ workForm });
+      // return this.setState({ workForm, media });
     }
   };
 
   getMedia = async () => {
     if (this.props.work && this.props.work.media !== undefined) {
       // console.log(this.props.work.media);
-      const media = await this.props.downloadMedia(this.props.work._id);
-      console.log(media);
-      return media;
+      const files = await this.props.downloadMedia(this.props.work._id);
+      console.log(files);
+      return files;
     } else return;
   };
 
   updateField = (event, field) => {
-    // console.log(event.target);
+    console.log(event.target);
     // 2 spreads to deeply clone state and get copies of nested properties from state
     const workForm = {
       ...this.state.workForm,
@@ -259,6 +255,7 @@ class WorkForm extends Component {
   onCompletedDateFocusChange = ({ focused: completedDateFocused }) => this.setState({ completedDateFocused });
 
   onFileUpload = event => {
+    event.stopPropagation();
     event.preventDefault();
     console.log(event.target);
 
@@ -266,7 +263,27 @@ class WorkForm extends Component {
     // return this.showUploading(event.target.files);
   };
 
-  onUpload = () => this.props.uploadMedia(this.props.work._id, this.state.media);
+  selectFiles = event => document.getElementById('media').click();
+
+  onDownload = event => {
+    const gallery = document.querySelector(classes.WorkFormGallery);
+    const media = new FileReader();
+
+    // console.log(event.target);
+    gallery.src = media.result;
+    gallery.alt = media.result;
+    console.log(gallery.src);
+
+    if (this.state.media > 0) {
+      this.state.media.forEach(m => media.readAsDataURL(m));
+    }
+  };
+
+  onUpload = event => {
+    event.stopPropagation();
+    event.preventDefault();
+    this.props.uploadMedia(this.props.work._id, this.state.media);
+  };
 
   // showUploading = files => {
   //   console.log(files);
@@ -280,6 +297,7 @@ class WorkForm extends Component {
 
   onSubmit = event => {
     event.preventDefault();
+    this.props.uploadMedia(this.props.work._id, this.state.media);
 
     this.props.onSubmit({
       status: this.state.workForm.status.value,
@@ -388,9 +406,9 @@ class WorkForm extends Component {
             );
           })}
 
-          <div className={classes.WorkFormInputContainer}>
-            <label htmlFor="requested_date">
-              Requested Date
+          <div className={classes.WorkFormRow}>
+            <div className={classes.WorkFormInputContainer}>
+              <label htmlFor="requested_date">Requested Date</label>
               <SingleDatePicker
                 id="requested_date_input"
                 date={this.state.requestedDate}
@@ -399,12 +417,10 @@ class WorkForm extends Component {
                 onFocusChange={this.onRequestedDateFocusChange}
                 numberOfMonths={1}
               />
-            </label>
-          </div>
+            </div>
 
-          <div className={classes.WorkFormInputContainer}>
-            <label htmlFor="scheduled_for">
-              Scheduled For
+            <div className={classes.WorkFormInputContainer}>
+              <label htmlFor="scheduled_for">Scheduled For</label>
               <SingleDatePicker
                 id="scheduled_for_input"
                 date={this.state.scheduledFor}
@@ -413,12 +429,10 @@ class WorkForm extends Component {
                 onFocusChange={this.onScheduledForFocusChange}
                 numberOfMonths={1}
               />
-            </label>
-          </div>
+            </div>
 
-          <div className={classes.WorkFormInputContainer}>
-            <label htmlFor="part_purchased_date">
-              Part Purchase Date
+            <div className={classes.WorkFormInputContainer}>
+              <label htmlFor="part_purchased_date">Part Purchase Date</label>
               <SingleDatePicker
                 id="part_purchased_date_input"
                 date={this.state.partPurchasedDate}
@@ -427,12 +441,10 @@ class WorkForm extends Component {
                 onFocusChange={this.onPartPurchasedDateFocusChange}
                 numberOfMonths={1}
               />
-            </label>
-          </div>
+            </div>
 
-          <div className={classes.WorkFormInputContainer}>
-            <label htmlFor="part_arrived_date">
-              Part Arrived Date
+            <div className={classes.WorkFormInputContainer}>
+              <label htmlFor="part_arrived_date">Part Arrived Date</label>
               <SingleDatePicker
                 id="part_arrived_date_input"
                 date={this.state.partArrivedDate}
@@ -441,12 +453,10 @@ class WorkForm extends Component {
                 onFocusChange={this.onPartArrivedDateFocusChange}
                 numberOfMonths={1}
               />
-            </label>
-          </div>
+            </div>
 
-          <div className={classes.WorkFormInputContainer}>
-            <label htmlFor="completed_date">
-              Completed Date
+            <div className={classes.WorkFormInputContainer}>
+              <label htmlFor="completed_date">Completed Date</label>
               <SingleDatePicker
                 id="completed_date_input"
                 date={this.state.completedDate}
@@ -455,21 +465,26 @@ class WorkForm extends Component {
                 onFocusChange={this.onCompletedDateFocusChange}
                 numberOfMonths={1}
               />
-            </label>
+            </div>
           </div>
 
-          <div className={classes.WorkFormUpload}>
-            <label htmlFor="media">
-              <input id="media" name="media" type="file" onChange={this.onFileUpload} multiple />
-            </label>
-            <Button ButtonType="Upload" type="button">
-              Choose Files
-            </Button>
-            <Button ButtonType="Upload" clicked={this.onUpload} type="button">
-              Upload Media
-            </Button>
-            {/* <div ref={uploading => (this.uploading = uploading)}>{this.showUploading()}</div> */}
+          <div className={classes.WorkFormRow}>
+            <div className={classes.WorkFormUpload}>
+              <label htmlFor="media">
+                <input id="media" name="media" type="file" onChange={this.onFileUpload} multiple />
+              </label>
+              <Button ButtonType="Upload" clicked={this.selectFiles} type="button">
+                Choose Files
+              </Button>
+              <img className={classes.WorkFormGallery} onLoad={this.onDownload} alt={''} />
+              {/* <Button ButtonType="Upload" clicked={this.onUpload} type="button">
+                Upload Media
+              </Button> */}
+              {/* <div ref={uploading => (this.uploading = uploading)}>{this.showUploading()}</div> */}
+            </div>
           </div>
+
+          <div className={classes.WorkFormRow}>{this.state.media.map(m => <img src={m} height={200} width={200} alt={m} />)}</div>
 
           <div className={classes.WorkFormSubmitRow}>
             <Button ButtonType="Success" type="submit">

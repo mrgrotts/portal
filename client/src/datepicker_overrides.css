@@ -1,15 +1,15 @@
-.PresetDateRangePicker_panel {
+/* .PresetDateRangePicker_panel {
     padding: 0 22px 11px;
-  }
+  } */
   
   .PresetDateRangePicker_button {
-    position: relative;
+    /* position: relative;
     height: 100%;
     text-align: center;
-    background: 0 0;
+    background: 0 0; */
     border: 2px solid #006eb6;
     color: #006eb6;
-    padding: 4px 12px;
+    /* padding: 4px 12px;
     margin-right: 8px;
     font: inherit;
     font-weight: 700;
@@ -17,19 +17,19 @@
     overflow: visible;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    cursor: pointer;
+    cursor: pointer; */
   }
   
-  .PresetDateRangePicker_button:active {
+  /* .PresetDateRangePicker_button:active {
     outline: 0;
-  }
+  } */
   
   .PresetDateRangePicker_button__selected {
-    color: #fff;
+    /* color: #fff; */
     background: #006eb6;
   }
   
-  .SingleDatePicker {
+  /* .SingleDatePicker {
     position: relative;
     display: inline-block;
   }
@@ -383,42 +383,42 @@
     width: 22px;
     position: absolute;
     z-index: 2;
-  }
+  } */
   
   .DayPickerKeyboardShortcuts_show__bottomRight {
-    border-top: 26px solid transparent;
+    /* border-top: 26px solid transparent; */
     border-right: 33px solid #006eb6;
-    bottom: 0;
-    right: 0;
+    /* bottom: 0;
+    right: 0; */
   }
   
   .DayPickerKeyboardShortcuts_show__bottomRight:hover {
-    border-right: 33px solid #008489;
+    border-right: 33px solid #006eb6;
   }
   
   .DayPickerKeyboardShortcuts_show__topRight {
-    border-bottom: 26px solid transparent;
+    /* border-bottom: 26px solid transparent; */
     border-right: 33px solid #006eb6;
-    top: 0;
-    right: 0;
+    /* top: 0;
+    right: 0; */
   }
   
   .DayPickerKeyboardShortcuts_show__topRight:hover {
-    border-right: 33px solid #008489;
+    border-right: 33px solid #006eb6;
   }
   
   .DayPickerKeyboardShortcuts_show__topLeft {
-    border-bottom: 26px solid transparent;
+    /* border-bottom: 26px solid transparent; */
     border-left: 33px solid #006eb6;
-    top: 0;
-    left: 0;
+    /* top: 0;
+    left: 0; */
   }
   
   .DayPickerKeyboardShortcuts_show__topLeft:hover {
-    border-left: 33px solid #008489;
+    border-left: 33px solid #006eb6;
   }
   
-  .DayPickerKeyboardShortcuts_showSpan {
+  /* .DayPickerKeyboardShortcuts_showSpan {
     color: #fff;
     position: absolute;
   }
@@ -756,7 +756,7 @@
     background: #33dacd;
     border: 1px solid #33dacd;
     color: #fff;
-  }
+  } */
   
   .CalendarDay__last_in_range {
     border-right: #006eb6;
@@ -772,18 +772,18 @@
   
   .CalendarDay__hovered_span,
   .CalendarDay__hovered_span:hover {
-    background: #b2f1ec;
-    border: 1px solid #80e8e0;
-    color: #007a87;
+    background: #006eb6;
+    border: 1px solid #006eb6;
+    color: #006eb6;
   }
   
   .CalendarDay__hovered_span:active {
-    background: #80e8e0;
-    border: 1px solid #80e8e0;
-    color: #007a87;
+    background: #006eb6;
+    border: 1px solid #006eb6;
+    color: #006eb6;
   }
   
-  .CalendarDay__blocked_calendar,
+  /* .CalendarDay__blocked_calendar,
   .CalendarDay__blocked_calendar:active,
   .CalendarDay__blocked_calendar:hover {
     background: #cacccd;
@@ -1002,4 +1002,4 @@
     stroke: #dbdbdb;
     fill: transparent;
   }
-  
+   */

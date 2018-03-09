@@ -8,8 +8,25 @@
   padding: 20px;
 }
 
+.WorkFormRow {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding: 10px;
+  width: 100%;
+}
+
 .WorkFormInputContainer {
+  box-sizing: inherit;
+  display: flex;
+  flex-flow: column nowrap;
+  font-weight: bold;
   margin-top: 1.5rem;
+}
+
+.WorkFormGallery {
+  
 }
 
 .WorkFormUpload {
@@ -49,5 +66,5 @@
 }
 
 .WorkFormSubmitRow {
-  
+  padding: 10px;
 }

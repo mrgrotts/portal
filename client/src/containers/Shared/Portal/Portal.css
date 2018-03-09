@@ -9,20 +9,3 @@
 .PortalTitle {
   margin-bottom: 2rem;
 }
-
-.VerifyMessage {
-  color: white;
-}
-
-.VerifyMessageContainer {
-  align-items: center;
-  background-color: rgba(146, 0, 0, .6);
-  border-radius: 5px;
-  color: white;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  margin-bottom: 2rem;
-  padding: 1rem 20px;
-  width: calc(100% - 120px);
-}

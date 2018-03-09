@@ -92,43 +92,44 @@ exports.streamUploadToGoogleCloudStorage = (req, res, next) => {
   }
 };
 
-exports.streamDownloadFromGoogleCloudStorage = async (req, res, next) => {
-  const prefix = `${req.params.workId}`;
-  const delimiter = `/`;
-  const options = { prefix };
+// exports.streamDownloadFromGoogleCloudStorage = async (req, res, next) => {
+//   const prefix = `${req.params.workId}`;
+//   const delimiter = `/`;
+//   const options = { prefix };
 
-  if (delimiter) {
-    options.delimiter = delimiter;
-  } else options;
+//   if (delimiter) {
+//     options.delimiter = delimiter;
+//   } else options;
 
-  // console.log('[DELIMITER]', delimiter);
-  // console.log('[OPTIONS]', options);
-  // Lists files in the bucket, filtered by a prefix
-  const files = await bucket.getFiles(options);
-  // console.log('[FILES]', files);
+//   // console.log('[DELIMITER]', delimiter);
+//   console.log('[OPTIONS]', options);
+//   // Lists files in the bucket, filtered by a prefix
+//   const files = await bucket.getFiles(options);
+//   files.reduce((m, f) => m.concat(f), []);
+//   console.log('[FILES]', files);
 
-  files.forEach(file => {
-    // console.log('[FILE]', file);
-    let fileName = file.name;
-    // console.log('[FILENAME]', fileName);
-    const destination = path.join(process.cwd(), '..', 'client', 'public', 'assets');
-    // const options = { destination };
-    // .download(options);
+//   files.forEach(file => {
+//     // console.log('[FILE]', file);
+//     let fileName = file.name;
+//     console.log('[FILENAME]', fileName);
+//     const destination = path.join(process.cwd(), '..', 'client', 'public', 'assets');
+//     // const options = { destination };
+//     // .download(options);
 
-    const media = bucket.file(fileName);
-    const stream = file.createReadStream(destination);
+//     const media = bucket.file(fileName);
+//     const stream = file.createReadStream(destination);
 
-    stream.on('error', error => {
-      next(error);
-    });
+//     stream.on('error', error => {
+//       next(error);
+//     });
 
-    stream.on('finish', () => {
-      // The public URL can be used to directly access the file via HTTP.
-      const publicUrl = util.format(`https://storage.googleapis.com/${bucket.name}/${req.params.workId}_${media.name}`);
-      res.status(200).json(publicUrl);
-      // stream.pipe(publicUrl);
-    });
-  });
-};
+//     stream.on('finish', () => {
+//       // The public URL can be used to directly access the file via HTTP.
+//       const publicUrl = util.format(`https://storage.googleapis.com/${bucket.name}/${req.params.workId}_${media.name}`);
+//       res.status(200).json(publicUrl);
+//       // stream.pipe(publicUrl);
+//     });
+//   });
+// };
 
 module.exports = exports;

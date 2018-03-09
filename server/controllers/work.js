@@ -130,8 +130,8 @@ exports.deleteWork = (req, res, next) => {
 };
 
 exports.readWorkMedia = async (req, res, next) => {
-  // console.log(req.body);
-  const work = await database.Work.findById(req.params.workId);
+  console.log(req.body);
+  const work = await database.Work.findById(req.params.workId).populate('company');
 
   res.json(work);
 };

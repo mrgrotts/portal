@@ -1,0 +1,27 @@
+.Flash {
+    align-items: center;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin-bottom: 2rem;
+    padding: 1rem 20px;
+    width: calc(100% - 120px);
+}
+
+.FlashMessage {
+    color: white;
+}
+
+.Blue {
+    background-color: #006eb6;
+}
+
+.Green {
+    background-color: rgba(0, 116, 6, 0.9);
+}
+
+.Red {
+    background-color: rgba(146, 0, 0, .6);
+}
