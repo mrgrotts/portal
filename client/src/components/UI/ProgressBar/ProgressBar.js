@@ -5,9 +5,10 @@ import Auxiliary from '../../../hoc/Auxiliary';
 import classes from './ProgressBar.css';
 
 const ProgressBar = props => {
+  // console.log(props.progress);
   let progress;
 
-  switch (props.status) {
+  switch (props.progress) {
     case 'Unassigned':
       progress = (
         <Auxiliary>

@@ -175,36 +175,38 @@ class WorkForm extends Component {
   }
 
   getLocations = async () => {
-    await this.props.readLocations();
+    if (this.refs.WorkFormRef) {
+      await this.props.readLocations();
 
-    if (this.props.locations.length !== 0) {
-      let options = [];
-      this.props.locations.map(location => {
-        let option = {
-          label: location.name,
-          value: location._id
+      if (this.props.locations.length !== 0) {
+        let options = [];
+        this.props.locations.map(location => {
+          let option = {
+            label: location.name,
+            value: location._id
+          };
+
+          return options.push(option);
+        });
+
+        const workForm = {
+          ...this.state.workForm,
+          location: {
+            ...this.state.workForm.location,
+            fieldConfig: {
+              options
+            },
+            value: this.props.locations[0]._id
+          }
         };
 
-        return options.push(option);
-      });
-
-      const workForm = {
-        ...this.state.workForm,
-        location: {
-          ...this.state.workForm.location,
-          fieldConfig: {
-            options
-          },
-          value: this.props.locations[0]._id
+        // console.log(workForm);
+        if (this.refs.WorkFormRef) {
+          return this.setState({ workForm });
         }
-      };
-
-      // console.log(workForm);
-      if (this.refs.WorkFormRef) {
-        return this.setState({ workForm });
-      }
-      // return this.setState({ workForm, media });
-    } else return;
+        // return this.setState({ workForm, media });
+      } else return;
+    }
   };
 
   getMedia = async () => {
@@ -339,8 +341,8 @@ class WorkForm extends Component {
         config: this.state.workForm[key]
       });
     }
-
-    let progress = this.props.work === undefined ? null : <ProgressBar progress={this.props.status} />;
+    console.log(this.state.workForm.status.value);
+    let progress = this.props.work === undefined ? null : <ProgressBar progress={this.state.workForm.status.value} />;
 
     let form = <Spinner />;
 

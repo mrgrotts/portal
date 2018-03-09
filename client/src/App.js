@@ -1,4 +1,5 @@
 import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
