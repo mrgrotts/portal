@@ -65,14 +65,18 @@ class WorkForm extends Component {
             { label: 'Window Washing', value: 'Window Washing' }
           ]
         },
-        value: this.props.work ? this.props.work.category : 'Commercial Cleaning',
+        value: this.props.work
+          ? this.props.work.category
+          : 'Commercial Cleaning',
         validation: { required: true },
         touched: false,
         valid: this.props.work ? true : false
       },
       location: {
         fieldType: 'select',
-        fieldConfig: { options: [{ label: 'No Locations', value: 'No Locations' }] },
+        fieldConfig: {
+          options: [{ label: 'No Locations', value: 'No Locations' }]
+        },
         value: this.props.work ? this.props.work.location : '',
         validation: { required: true },
         touched: false,
@@ -85,62 +89,79 @@ class WorkForm extends Component {
         validation: { required: true, minLength: 1 },
         touched: false,
         valid: this.props.work ? true : false
-      },
-      media: {
-        fieldType: 'file',
-        fieldConfig: { type: 'file', placeholder: 'No files uploaded' },
-        value: this.props.work ? this.props.work.media : [],
-        validation: {},
-        touched: false,
-        valid: this.props.work ? true : false
       }
+      // media: {
+      //   fieldType: 'file',
+      //   fieldConfig: { type: 'file', placeholder: 'No files uploaded' },
+      //   value: this.props.work ? this.props.work.media : [],
+      //   validation: {},
+      //   touched: false,
+      //   valid: this.props.work ? true : false
+      // }
     },
     media: this.props.work ? this.props.work.media : [],
-    requestedDate: this.props.work ? moment(this.props.work.requestedDate) : moment(),
+    requestedDate: this.props.work
+      ? moment(this.props.work.requestedDate)
+      : moment(),
+    requestedDateFocused: false,
     createdAt: this.props.work ? moment(this.props.work.createdAt) : moment(),
     updatedAt: this.props.work ? moment(this.props.work.updatedAt) : moment(),
-    focused: false,
     formValid: false
   };
 
-  async componentDidMount() {
-    await this.props.readLocations();
+  componentDidMount() {
+    console.log(this.refs.WorkFormRef);
+    this.getLocations();
+
     // console.log(this.props.locations[0]._id);
     // console.log(this.state.workForm.location.value);
-
-    let options = [];
-    this.props.locations.map(location => {
-      let option = {
-        label: location.name,
-        value: location._id
-      };
-
-      return options.push(option);
-    });
-
-    const workForm = {
-      ...this.state.workForm,
-      location: {
-        ...this.state.workForm.location,
-        fieldConfig: {
-          options
-        },
-        value: this.props.locations[0]._id
-      }
-    };
-
-    // console.log(workForm);
-    return this.setState({ workForm });
   }
 
+  getLocations = async () => {
+    await this.props.readLocations();
+
+    if (this.props.locations.length !== 0) {
+      let options = [];
+      this.props.locations.map(location => {
+        let option = {
+          label: location.name,
+          value: location._id
+        };
+
+        return options.push(option);
+      });
+
+      const workForm = {
+        ...this.state.workForm,
+        location: {
+          ...this.state.workForm.location,
+          fieldConfig: {
+            options
+          },
+          value: this.props.locations[0]._id
+        }
+      };
+
+      // console.log(workForm);
+      return this.setState({ workForm });
+    }
+  };
+
   updateField = (event, field) => {
+    console.log(event.target);
     // 2 spreads to deeply clone state and get copies of nested properties from state
     const workForm = {
       ...this.state.workForm,
       [field]: {
         ...this.state.workForm[field],
-        value: event.target.value,
-        valid: validateFields(event.target.value, this.state.workForm[field].validation),
+        value:
+          event.target.type === 'checkbox'
+            ? event.target.checked
+            : event.target.value,
+        valid: validateFields(
+          event.target.value,
+          this.state.workForm[field].validation
+        ),
         touched: true
       }
     };
@@ -153,17 +174,34 @@ class WorkForm extends Component {
     }
 
     // console.log(workForm);
+    // console.log(this.state.workForm);
     return this.setState({ workForm, formValid });
   };
 
-  handleChange = event => this.setState({ [event.target.name]: event.target.value });
+  handleChange = event =>
+    this.setState({ [event.target.name]: event.target.value });
 
-  onCalendarDateChange = requestedDate => this.setState({ requestedDate });
+  onRequestedDateChange = requestedDate => this.setState({ requestedDate });
+  onRequestedDateFocusChange = ({ focused: requestedDateFocused }) =>
+    this.setState({ requestedDateFocused });
 
-  onCalendarFocusChange = ({ focused }) => this.setState({ focused });
+  onFileUpload = event => {
+    event.stopPropagation();
+    event.preventDefault();
+    console.log(event.target);
+
+    return this.setState({ media: event.target.files });
+  };
+
+  onUpload = event => {
+    event.stopPropagation();
+    event.preventDefault();
+    this.props.uploadMedia(this.props.work._id, this.state.media);
+  };
 
   onSubmit = event => {
     event.preventDefault();
+    this.props.uploadMedia(this.props.work._id, this.state.media);
 
     this.props.onSubmit({
       status: this.state.workForm.status.value,
@@ -182,20 +220,28 @@ class WorkForm extends Component {
 
     this.setState({
       workForm: {
-        status: { value: this.props.work ? this.props.work.status : 'Unassigned' },
-        category: { value: this.props.work ? this.props.work.category : 'Commercial Cleaning' },
-        location: { value: this.props.work ? this.props.work.location._id : '' },
-        description: { value: this.props.work ? this.props.work.description : '' }
+        status: {
+          value: this.props.work ? this.props.work.status : 'Unassigned'
+        },
+        category: {
+          value: this.props.work
+            ? this.props.work.category
+            : 'Commercial Cleaning'
+        },
+        location: {
+          value: this.props.work ? this.props.work.location._id : ''
+        },
+        description: {
+          value: this.props.work ? this.props.work.description : ''
+        }
       },
       media: this.props.work ? this.props.work.media : [],
-      requestedDate: this.props.work ? moment(this.props.work.requestedDate) : moment(),
+      requestedDate: this.props.work
+        ? moment(this.props.work.requestedDate)
+        : moment(),
       createdAt: this.props.work ? moment(this.props.work.createdAt) : moment(),
       updatedAt: this.props.work ? moment(this.props.work.updatedAt) : moment()
     });
-  };
-
-  updateProgress = progress => {
-    return this.props.updateProgress(progress);
   };
 
   render() {
@@ -208,13 +254,20 @@ class WorkForm extends Component {
       });
     }
 
-    let progress = this.props.work === undefined ? null : <ProgressBar status={this.state.workForm.status.value} />;
+    let progress =
+      this.props.work === undefined ? null : (
+        <ProgressBar progress={this.state.workForm.status.value} />
+      );
 
     let form = <Spinner />;
 
     if (!this.props.loading) {
       form = (
-        <form className={classes.WorkForm} onSubmit={this.onSubmit}>
+        <form
+          className={classes.WorkForm}
+          onSubmit={this.onSubmit}
+          encType="multipart/form-data"
+        >
           {workFields.map(field => {
             if (!this.props.work && field.id === 'status') {
               return null;
@@ -224,10 +277,16 @@ class WorkForm extends Component {
               return (
                 <div key={field.id} className={classes.WorkFormInputContainer}>
                   <div className={classes.WorkFormAddLocation}>
-                    <label className={classes.WorkFormAddLocationLabel} htmlFor={field.id}>
+                    <label
+                      className={classes.WorkFormAddLocationLabel}
+                      htmlFor={field.id}
+                    >
                       {toTitleCase(field.id)}
                     </label>
-                    <Link className={classes.WorkFormAddLocationButton} to="/locations/create">
+                    <Link
+                      className={classes.WorkFormAddLocationButton}
+                      to="/locations/create"
+                    >
                       Add Location
                     </Link>
                   </div>
@@ -296,4 +355,6 @@ const mapDispatchToProps = dispatch => ({
   readLocations: () => dispatch(actions.readLocations())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(handleErrors(WorkForm, api));
+export default connect(mapStateToProps, mapDispatchToProps)(
+  handleErrors(WorkForm, api)
+);
