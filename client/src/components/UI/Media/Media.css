@@ -1,0 +1,24 @@
+.Media {
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px black;
+    height: 100%;
+    left: 0;
+    margin: 0 auto;
+    padding: 16px;
+    position: fixed;
+    top: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+    width: 100%;
+    z-index: 500;
+  } 
+
+  
+  @media (min-width: 600px) {
+    .Media {
+      width: 500px;
+      left: calc(50% - 250px);
+    }
+  }
+  

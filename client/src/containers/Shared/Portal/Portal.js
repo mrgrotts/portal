@@ -11,9 +11,12 @@ class Portal extends Component {
   render() {
     let flash = null;
     let message = `Please check ${this.props.user.email} for a verification link.`;
-    if (this.props.isAuthenticated && !this.props.user.verified) {
-      flash = <Flash message={message} color="Red" />;
-    }
+
+    setTimeout(() => {
+      if (this.props.isAuthenticated && !this.props.user.verified) {
+        flash = <Flash message={message} color="Red" />;
+      }
+    }, 3000);
 
     return (
       <div className={classes.Portal}>

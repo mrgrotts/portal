@@ -1,6 +1,9 @@
-import 'react-dates/initialize';
+// import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-import './datepicker_overrides.css';
+import CSSInterface from 'react-with-styles-interface-css';
+import registerCSSInterfaceNamespace from 'react-with-styles-interface-css/dist/utils/registerCSSInterfaceNamespace';
+import registerInterfaceWithDefaultTheme from 'react-dates/lib/utils/registerInterfaceWithDefaultTheme';
+
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -15,6 +18,11 @@ import Layout from './containers/Shared/Layout/Layout';
 import Portal from './containers/Shared/Portal/Portal';
 
 import * as actions from './actions';
+
+import './datepicker_overrides.css';
+
+registerCSSInterfaceNamespace('_datepicker');
+registerInterfaceWithDefaultTheme(CSSInterface);
 class App extends Component {
   async componentDidMount() {
     await this.props.authState();
