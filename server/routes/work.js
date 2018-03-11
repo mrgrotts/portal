@@ -42,7 +42,7 @@ router
 
 router
   .route('/:workId/media')
-  .get(media.streamDownloadFromGoogleCloudStorage, readWorkMedia)
+  // .get(media.streamDownloadFromGoogleCloudStorage, readWorkMedia)
   .post(media.multer.any('media'), media.streamUploadToGoogleCloudStorage, createWorkMedia);
 
 router
