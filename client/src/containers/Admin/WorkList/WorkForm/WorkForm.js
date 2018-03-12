@@ -10,7 +10,7 @@ import Auxiliary from '../../../../hoc/Auxiliary';
 import handleErrors from '../../../../hoc/handleErrors';
 
 import Button from '../../../../components/UI/Button/Button';
-import Fullscreen from '../../../../components/UI/Fullscreen/Fullscreen';
+import Fullscreen from '../../../../components/UI/Media/Fullscreen/Fullscreen';
 import Input from '../../../../components/UI/Input/Input';
 import ProgressBar from '../../../../components/UI/ProgressBar/ProgressBar';
 import Spinner from '../../../../components/UI/Spinner/Spinner';
@@ -325,8 +325,26 @@ class WorkForm extends Component {
     event.preventDefault();
     // event.target.width = window.screen.availWidth * 0.8;
     // event.target.height = window.screen.availHeight * 0.8;
-    console.log(event.target.tagName);
+    console.log(event.target);
+    console.log(document.images);
+
+    let gallery = document.querySelector(`.${classes.WorkFormGalleryZoom}`);
+    gallery.style.display = 'flex';
+    gallery.style.height = '100%';
+    gallery.style.width = '100%';
+    gallery.style.marginLeft = '-120px';
+
     let content = event.target;
+    for (let image of document.images) {
+      console.log(`${image.currentSrc}: ${image.width} x ${image.height}`);
+      if (event.target.src === image.currentSrc) {
+        console.log(`${event.target.src} === ${image.currentSrc}`);
+        content.height = image.naturalHeight;
+        content.width = image.naturalWidth;
+      }
+    }
+
+    console.log(content);
 
     return this.setState({
       fullscreen: {
@@ -336,15 +354,26 @@ class WorkForm extends Component {
     });
   };
 
-  closeFullscreen = () =>
-    this.setState({
+  closeFullscreen = () => {
+    let gallery = document.querySelector(`.${classes.WorkFormGalleryZoom}`);
+    gallery.style.display = 'none';
+    gallery.style.height = null;
+    gallery.style.width = null;
+    gallery.style.marginLeft = null;
+
+    return this.setState({
       fullscreen: {
         active: false,
         content: null
       }
     });
+  };
 
   render() {
+    setTimeout((gallery = document.querySelector(`.${classes.WorkFormGalleryZoom}`)) => {
+      console.log(gallery.style);
+    }, 5000);
+
     // console.log(this.props.work);
     let workFields = [];
     for (let key in this.state.workForm) {
@@ -475,7 +504,7 @@ class WorkForm extends Component {
 
           <div className={classes.WorkFormRow}>
             <div className={classes.WorkFormGallery}>
-              {this.state.media.map(m => <img src={m} height={200} width={200} alt={m} onClick={this.openFullscreen} />)}
+              {this.state.media.map(m => <img className={classes.WorkFormGalleryThumbnail} src={m} alt={m} onClick={this.openFullscreen} />)}
             </div>
           </div>
 
@@ -493,12 +522,9 @@ class WorkForm extends Component {
 
     return (
       <Auxiliary>
-        <Fullscreen
-          className={classes.WorkFormGalleryZoom}
-          content={this.state.fullscreen.content}
-          show={this.state.fullscreen.active}
-          close={this.closeFullscreen}
-        />
+        <div className={classes.WorkFormGalleryZoom}>
+          <Fullscreen content={this.state.fullscreen.content} show={this.state.fullscreen.active} close={this.closeFullscreen} />
+        </div>
         {progress}
         {form}
       </Auxiliary>

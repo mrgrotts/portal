@@ -29,10 +29,15 @@
   overflow-x: overlay;
 }
 
+.WorkFormGalleryThumbnail {
+  height: 200px!important;
+  width: 200px!important;
+}
+
 .WorkFormGalleryZoom {
-  width: 100%;
-  height: 100%;
   z-index: 100;
+  display: none;
+  justify-content: center;
 }
 
 .WorkFormUpload {
