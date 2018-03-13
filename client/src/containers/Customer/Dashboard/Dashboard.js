@@ -14,10 +14,9 @@ import Marker from '../../../components/UI/Maps/Marker/Marker';
 
 import * as actions from '../../../actions';
 
-import classes from './Builder.css';
-import Auxiliary from '../../../hoc/Auxiliary';
+import classes from './Dashboard.css';
 
-class Builder extends Component {
+class Dashboard extends Component {
   state = {
     showingInfoWindow: false,
     activeMarker: {},
@@ -58,57 +57,55 @@ class Builder extends Component {
     let position = { lat: 41.88, lng: -87.65 };
 
     return (
-      <Auxiliary>
+      <div className={classes.Dashboard}>
         <div className={classes.title}>
-          <h1>Builder Component</h1>
+          <h1>Dashboard Component</h1>
         </div>
-        <div className={classes.Builder}>
-          <div className={classes.container}>
-            <div className={classes.columnTwo}>
-              <div className={classes.widget}>
-                <div>
-                  <h4>Work Number</h4>
-                </div>
-                <div>
-                  <h4>Category</h4>
-                </div>
+        <div className={classes.container}>
+          <div className={classes.columnTwo}>
+            <div className={classes.widget}>
+              <div>
+                <h4>Work Number</h4>
               </div>
-
-              <div className={classes.widget}>
-                <AutocompleteWrapper onSearch={this.onSearch} />
+              <div>
+                <h4>Category</h4>
               </div>
             </div>
 
-            <div className={classes.columnTwo}>
-              <div className={classes.widget}>
-                <div>
-                  <h4>Status</h4>
-                </div>
-                <div>
-                  <h4>Requested Date</h4>
-                </div>
-              </div>
+            <div className={classes.widget}>
+              <AutocompleteWrapper onSearch={this.onSearch} />
+            </div>
+          </div>
 
-              <div className={classes.widget}>
-                <div
-                  style={{
-                    height: '300px',
-                    width: '300px'
-                  }}>
-                  <Map center={position} id={JSON.stringify(counter++)} google={this.props.google} onClick={this.onMapClick} zoom={10}>
-                    <Marker name={'Test Marker'} onClick={this.onMarkerClick} position={position} />
-                    <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow} onClose={this.onInfoWindowClose}>
-                      <div>
-                        <p style={{ color: 'black' }}>{this.state.selectedPlace.name}</p>
-                      </div>
-                    </InfoWindow>
-                  </Map>
-                </div>
+          <div className={classes.columnTwo}>
+            <div className={classes.widget}>
+              <div>
+                <h4>Status</h4>
+              </div>
+              <div>
+                <h4>Requested Date</h4>
+              </div>
+            </div>
+
+            <div className={classes.widget}>
+              <div
+                style={{
+                  height: '300px',
+                  width: '300px'
+                }}>
+                <Map center={position} id={JSON.stringify(counter++)} google={this.props.google} onClick={this.onMapClick} zoom={10}>
+                  <Marker name={'Test Marker'} onClick={this.onMarkerClick} position={position} />
+                  <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow} onClose={this.onInfoWindowClose}>
+                    <div>
+                      <p style={{ color: 'black' }}>{this.state.selectedPlace.name}</p>
+                    </div>
+                  </InfoWindow>
+                </Map>
               </div>
             </div>
           </div>
         </div>
-      </Auxiliary>
+      </div>
     );
   }
 }
@@ -126,7 +123,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
   googleAPIComponent({
     apiKey: process.env.GOOGLE_MAPS_API_KEY,
     libraries: ['places']
-  })(handleErrors(Builder, api))
+  })(handleErrors(Dashboard, api))
 );
 
 // <Marker

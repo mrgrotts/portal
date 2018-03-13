@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 
@@ -7,38 +7,14 @@ import FloatingButton from '../../../components/UI/FloatingButton/FloatingButton
 
 import classes from './Portal.css';
 
-class Portal extends Component {
-  state = {
-    actions: {
-      toggled: false,
-      CompanyAction: {
-        action: `/companies/${this.props.user.company}`,
-        focused: false,
-        icon: 'business',
-        tooltip: 'Company'
-      },
-      LocationAction: {
-        action: '/locations/create',
-        focused: false,
-        icon: 'place',
-        tooltip: 'Add Location'
-      },
-      // UserAction: {
-      //   action: '/users/create',
-      //   focused: false,
-      //   icon: 'person',
-      //   tooltip: 'Add User'
-      // },
-      WorkAction: {
-        action: '/work/create',
-        focused: false,
-        icon: 'local_shipping',
-        tooltip: 'Add Work'
-      }
-    }
+class Portal extends PureComponent {
+  renderChildren = children => {
+    React.Children.map(children, child => React.cloneElement(child, { ...this.props }));
   };
 
   render() {
+    console.log(this.props.isAuthenticated);
+    console.log(this.props.children);
     let actions = null;
     let flash = null;
     let message = `Please check ${this.props.user.email} for a verification link.`;
@@ -61,8 +37,7 @@ class Portal extends Component {
       <div className={classes.Portal}>
         {flash}
         {actions}
-
-        {this.props.children}
+        {this.renderChildren(this.props.children)}
       </div>
     );
   }

@@ -11,7 +11,7 @@ const Toolbar = props => (
   <header className={classes.Toolbar}>
     <div className={classes.Toolbar__Logo}>
       <Logo />
-      <h3 style={{ color: 'white', fontWeight: '300', marginBottom: '1.25rem' }}>Rozalado Services</h3>
+      <h3 className={classes.Toolbar__Title}>Rozalado Services</h3>
     </div>
     <ToggleDrawer toggle={props.toggle} />
     <nav className={classes.DesktopOnly}>

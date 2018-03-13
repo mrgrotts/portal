@@ -247,7 +247,7 @@ class WorkForm extends Component {
   onFileUpload = event => {
     event.stopPropagation();
     event.preventDefault();
-    console.log(event.target);
+    // console.log(event.target);
 
     return this.setState({ media: event.target.files });
   };
@@ -325,26 +325,28 @@ class WorkForm extends Component {
     event.preventDefault();
     // event.target.width = window.screen.availWidth * 0.8;
     // event.target.height = window.screen.availHeight * 0.8;
-    console.log(event.target);
-    console.log(document.images);
+    // console.log(event.target);
+    // console.log(document.images);
 
     let gallery = document.querySelector(`.${classes.WorkFormGalleryZoom}`);
     gallery.style.display = 'flex';
     gallery.style.height = '100%';
     gallery.style.width = '100%';
     gallery.style.marginLeft = '-120px';
+    // gallery.style.transform = 'translateY(0)';
+    // gallery.style.opacity = '1';
 
     let content = event.target;
     for (let image of document.images) {
-      console.log(`${image.currentSrc}: ${image.width} x ${image.height}`);
+      // console.log(`${image.currentSrc}: ${image.width} x ${image.height}`);
       if (event.target.src === image.currentSrc) {
-        console.log(`${event.target.src} === ${image.currentSrc}`);
+        // console.log(`${event.target.src} === ${image.currentSrc}`);
         content.height = image.naturalHeight;
         content.width = image.naturalWidth;
       }
     }
 
-    console.log(content);
+    // console.log(content);
 
     return this.setState({
       fullscreen: {
@@ -360,6 +362,8 @@ class WorkForm extends Component {
     gallery.style.height = null;
     gallery.style.width = null;
     gallery.style.marginLeft = null;
+    // gallery.style.transform = 'translateY(-100vh)';
+    // gallery.style.opacity = '0';
 
     return this.setState({
       fullscreen: {
@@ -369,26 +373,39 @@ class WorkForm extends Component {
     });
   };
 
-  render() {
-    setTimeout((gallery = document.querySelector(`.${classes.WorkFormGalleryZoom}`)) => {
-      console.log(gallery.style);
-    }, 5000);
+  renderGallery = media => {
+    if (this.props.work)
+      if (media === this.state.media && media.length > 0) {
+        return media.map((m, i) => <img key={i} className={classes.WorkFormGalleryThumbnail} src={m} alt={m} onClick={this.openFullscreen} />);
+      }
+  };
 
-    // console.log(this.props.work);
+  render() {
+    let gallery = null;
+    let fullscreen = null;
+    let progress = null;
     let workFields = [];
+    let form = <Spinner />;
+
     for (let key in this.state.workForm) {
       workFields.push({
         id: key,
         config: this.state.workForm[key]
       });
     }
-    console.log(this.state.workForm.status.value);
-    let progress = this.props.work === undefined ? null : <ProgressBar progress={this.state.workForm.status.value} />;
-
-    let form = <Spinner />;
 
     if (!this.props.loading) {
       // console.log(field.id, field.config.value);
+      if (this.props.work) {
+        gallery = <div className={classes.WorkFormGallery}>{this.renderGallery(this.props.work.media)}</div>;
+        progress = <ProgressBar progress={this.state.workForm.status.value} />;
+        fullscreen = (
+          <div className={classes.WorkFormGalleryZoom}>
+            <Fullscreen content={this.state.fullscreen.content} show={this.state.fullscreen.active} close={this.closeFullscreen} />
+          </div>
+        );
+      }
+
       form = (
         <form className={classes.WorkForm} onSubmit={this.onSubmit} encType="multipart/form-data">
           {workFields.map(field => {
@@ -502,11 +519,7 @@ class WorkForm extends Component {
             </div>
           </div>
 
-          <div className={classes.WorkFormRow}>
-            <div className={classes.WorkFormGallery}>
-              {this.state.media.map(m => <img className={classes.WorkFormGalleryThumbnail} src={m} alt={m} onClick={this.openFullscreen} />)}
-            </div>
-          </div>
+          <div className={classes.WorkFormRow}>{gallery}</div>
 
           <div className={classes.WorkFormSubmitRow}>
             <Button ButtonType="Success" type="submit">
@@ -522,9 +535,7 @@ class WorkForm extends Component {
 
     return (
       <Auxiliary>
-        <div className={classes.WorkFormGalleryZoom}>
-          <Fullscreen content={this.state.fullscreen.content} show={this.state.fullscreen.active} close={this.closeFullscreen} />
-        </div>
+        {fullscreen}
         {progress}
         {form}
       </Auxiliary>

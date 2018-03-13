@@ -3,7 +3,6 @@
   border: none;
   border-radius: 5px;
   box-shadow: 0 0 6px rgba(0, 0, 0, .16), 0 6px 12px rgba(0, 0, 0, .32);
-  height: 100%;
   margin: 0 4rem;
   padding: 20px;
 }
@@ -38,6 +37,9 @@
   z-index: 100;
   display: none;
   justify-content: center;
+  /* opacity: 0;
+  transform: translateY(-100vh); */
+  transition: all 0.3s ease-out;
 }
 
 .WorkFormUpload {
@@ -68,7 +70,7 @@
 }
 
 .WorkFormAddLocationButton {
-  background-color: #006eb6;
+  background-color: rgba(0, 110, 182, 1);
   border-radius: 5px;
   color: white;
   font-weight: 500;

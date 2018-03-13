@@ -37,7 +37,7 @@ class Auth extends Component {
 
   render() {
     let error = null;
-    console.log(this.props.user);
+    // console.log(this.props.user);
 
     if (this.props.error) {
       error = <p>{this.props.error.message}</p>;
@@ -74,10 +74,13 @@ class Auth extends Component {
     }
 
     return (
-      <div className={classes.Auth}>
-        <h4>{this.state.registration ? 'Register' : 'Login'}</h4>
-        {form}
-      </div>
+      <Auxiliary>
+        <h1 className={classes.Auth__Title}>Rozalado Services Portal</h1>
+        <div className={classes.Auth}>
+          <h4>{this.state.registration ? 'Register' : 'Login'}</h4>
+          {form}
+        </div>
+      </Auxiliary>
     );
   }
 }

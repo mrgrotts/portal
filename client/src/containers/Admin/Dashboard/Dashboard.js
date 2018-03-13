@@ -14,9 +14,9 @@ import Marker from '../../../components/UI/Maps/Marker/Marker';
 
 import * as actions from '../../../actions';
 
-import classes from './Builder.css';
+import classes from './Dashboard.css';
 
-class Builder extends Component {
+class Dashboard extends Component {
   state = {
     showingInfoWindow: false,
     activeMarker: {},
@@ -57,9 +57,9 @@ class Builder extends Component {
     let position = { lat: 41.88, lng: -87.65 };
 
     return (
-      <div className={classes.Builder}>
+      <div className={classes.Dashboard}>
         <div className={classes.title}>
-          <h1>Builder Component</h1>
+          <h1>Dashboard Component</h1>
         </div>
         <div className={classes.container}>
           <div className={classes.columnTwo}>
@@ -123,7 +123,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
   googleAPIComponent({
     apiKey: process.env.GOOGLE_MAPS_API_KEY,
     libraries: ['places']
-  })(handleErrors(Builder, api))
+  })(handleErrors(Dashboard, api))
 );
 
 // <Marker

@@ -15,17 +15,21 @@
   z-index: 90;
 }
 
+.Toolbar__Title {
+  color: rgba(255, 255, 255, 1);
+}
+
 .Toolbar nav {
   height: 85%;
   width: 100%;
   margin-top: auto;
+  padding-top: 2rem;
 }
 
 .Toolbar__Logo {
   align-items: center;
   display: flex;
   flex-flow: column nowrap;
-  /* height: 80%; */
   justify-content: center;
   position: absolute;
   width: 100%;

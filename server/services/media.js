@@ -3,8 +3,9 @@ require('dotenv').load();
 const fs = require('fs');
 const path = require('path');
 const util = require('util');
-const Storage = require('@google-cloud/storage');
+
 const Multer = require('multer');
+const Storage = require('@google-cloud/storage');
 
 const database = require('../database');
 

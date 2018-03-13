@@ -1,0 +1,76 @@
+.Home {
+    align-items: center;
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+    justify-content: center;
+}
+
+.Home__Container {
+    align-items: center;
+    background-color: rgba(255, 255, 255, 1);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    width: 80%;
+}
+
+.Home__Title, .Home__Subtitle, .Home__Message {
+    text-align: center;
+}
+
+.Home__Title {
+
+}
+
+.Home__Subtitle {
+    margin-top: 2rem;
+}
+
+.Home__Message {
+
+}
+
+.Home__Checklist {
+    align-items: center;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    margin: 4rem 0;
+    text-align: center;
+}
+
+.Home__Checklist_Item {
+    background-color: white;
+    border-radius: 5px;
+    color: rgba(0, 110, 182, 1);
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 12px 20px;
+    text-decoration: none;
+}
+
+.Home__LoginButton {
+    background-color: rgba(0, 110, 182, 1);
+    border-radius: 5px;
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding: 12px 20px;
+    text-decoration: none;
+}
+
+@media (min-width: 600px) {
+    .Home__Container {
+      background-color: rgba(255, 255, 255, 1);
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0 0 6px rgba(0, 0, 0, .16), 0 6px 12px rgba(0, 0, 0, .32);
+      height: 100%;
+      margin: 0 4rem;
+      padding: 20px;
+    }
+  }

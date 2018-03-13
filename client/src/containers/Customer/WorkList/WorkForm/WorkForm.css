@@ -3,13 +3,58 @@
   border: none;
   border-radius: 5px;
   box-shadow: 0 0 6px rgba(0, 0, 0, .16), 0 6px 12px rgba(0, 0, 0, .32);
-  height: 100%;
   margin: 0 4rem;
   padding: 20px;
 }
 
+.WorkFormRow {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding: 10px;
+  width: 100%;
+}
+
 .WorkFormInputContainer {
+  box-sizing: inherit;
+  display: flex;
+  flex-flow: column nowrap;
+  font-weight: bold;
   margin-top: 1.5rem;
+}
+
+.WorkFormGallery {
+  overflow-x: overlay;
+}
+
+.WorkFormGalleryThumbnail {
+  height: 200px!important;
+  width: 200px!important;
+}
+
+.WorkFormGalleryZoom {
+  z-index: 100;
+  display: none;
+  justify-content: center;
+  /* opacity: 0;
+  transform: translateY(-100vh); */
+  transition: all 0.3s ease-out;
+}
+
+.WorkFormUpload {
+  display: inline-block;
+  margin-top: 1.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.WorkFormUpload input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
 }
 
 .WorkFormAddLocation {
@@ -25,10 +70,14 @@
 }
 
 .WorkFormAddLocationButton {
-  background-color: #006eb6;
+  background-color: rgba(0, 110, 182, 1);
   border-radius: 5px;
   color: white;
   font-weight: 500;
   padding: 6px 10px;
   text-decoration: none;
+}
+
+.WorkFormSubmitRow {
+  padding: 10px;
 }

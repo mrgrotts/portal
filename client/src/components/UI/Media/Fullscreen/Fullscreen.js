@@ -16,13 +16,13 @@ class Fullscreen extends Component {
     if (content === null) {
       return;
     }
-    console.log(content.naturalHeight);
-    console.log(window.screen.availHeight);
+    // console.log(content.naturalHeight);
+    // console.log(window.screen.availHeight);
 
     const height = content.naturalHeight > window.screen.availHeight ? window.screen.availHeight * 0.8 : content.naturalHeight;
     const width = content.naturalWidth > window.screen.availWidth ? window.screen.availWidth * 0.8 : content.naturalWidth;
 
-    console.log(width, height);
+    // console.log(width, height);
 
     let media;
     switch (content.tagName) {

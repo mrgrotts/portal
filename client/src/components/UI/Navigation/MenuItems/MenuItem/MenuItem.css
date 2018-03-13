@@ -16,7 +16,7 @@
 .MenuItem a:hover,
 .MenuItem a:active,
 .MenuItem a.active {
-  color: #40a4c8;
+  color: rgba(0, 110, 182, 1);
 }
 
 @media (min-width: 500px) {
@@ -32,6 +32,7 @@
   .MenuItem a {
     border-bottom: 4px solid transparent;
     color: #ffffff;
+    font-weight: 400;
     height: 100%;
     padding: 16px 10px;
   }
@@ -40,7 +41,7 @@
   .MenuItem a:active,
   .MenuItem a.active {
     background: #333;
-    border-bottom: 4px solid #006eb6;
+    border-bottom: 4px solid rgba(0, 110, 182, 1);
     color: #ffffff;
   }
 }

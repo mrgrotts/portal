@@ -6,27 +6,21 @@ import classes from './MenuItems.css';
 
 const MenuItems = props => (
   <ul className={classes.MenuItems}>
-    <MenuItem exact link="/">
-      Dashboard
-    </MenuItem>
-
     {props.isAuthenticated ? (
-      props.company ? (
-        <MenuItem exact link={`/companies/${props.company}`}>
-          Company
-        </MenuItem>
-      ) : (
-        <MenuItem exact link="/companies/create">
-          Add Company
-        </MenuItem>
-      )
-    ) : null}
+      <MenuItem exact link="/dashboard">
+        Dashboard
+      </MenuItem>
+    ) : (
+      <MenuItem exact link="/">
+        Home
+      </MenuItem>
+    )}
 
-    {props.isAuthenticated ? (
+    {/* {props.isAuthenticated ? (
       <MenuItem exact link="/locations/create" disabled={!props.verified}>
         Add Location
       </MenuItem>
-    ) : null}
+    ) : null} */}
 
     {props.isAuthenticated ? (
       <MenuItem exact link="/work" disabled={!props.verified}>
@@ -38,6 +32,18 @@ const MenuItems = props => (
       <MenuItem exact link="/locations" disabled={!props.verified}>
         Locations
       </MenuItem>
+    ) : null}
+
+    {props.isAuthenticated ? (
+      props.company ? (
+        <MenuItem exact link={`/companies/${props.company}`}>
+          Company
+        </MenuItem>
+      ) : (
+        <MenuItem exact link="/companies/create">
+          Add Company
+        </MenuItem>
+      )
     ) : null}
 
     {props.isAuthenticated ? (

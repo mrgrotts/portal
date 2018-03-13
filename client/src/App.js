@@ -36,7 +36,7 @@ class App extends Component {
     let routes = <BaseRoutes />;
 
     if (this.props.isAuthenticated && this.props.user) {
-      console.log(this.props.user.role);
+      // console.log(this.props.user.role, this.props.user.verified);
       switch (this.props.user.role) {
         case 'New Account':
           routes = <AdminRoutes />;

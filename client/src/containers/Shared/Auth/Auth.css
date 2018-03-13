@@ -9,6 +9,10 @@
   width: 80%;
 }
 
+.Auth__Title {
+  text-align: center;
+}
+
 .Auth input {
   display: block;
   margin: 0 auto;

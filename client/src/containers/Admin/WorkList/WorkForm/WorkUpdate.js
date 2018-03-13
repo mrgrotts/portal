@@ -25,7 +25,7 @@ class WorkUpdate extends Component {
     let form = <Spinner />;
 
     if (!this.props.loading) {
-      form = <WorkForm onSubmit={this.updateWork} onCancel={this.onCancel} work={this.props.work} ref="WorkFormRef" />;
+      form = <WorkForm onSubmit={this.updateWork} onCancel={this.onCancel} work={this.props.work} />;
     }
 
     const redirectAfterSubmit = this.props.success ? <Redirect to="/work" /> : null;
@@ -33,7 +33,7 @@ class WorkUpdate extends Component {
     return (
       <div style={{ height: '100%', width: '100%' }}>
         {redirectAfterSubmit}
-        <h1 style={{ marginBottom: '2rem', textAlign: 'center' }}>Update Work Form</h1>
+        <h1 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>Update Work Form</h1>
         {form}
       </div>
     );

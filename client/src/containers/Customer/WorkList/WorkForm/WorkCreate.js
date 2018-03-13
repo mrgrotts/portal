@@ -32,7 +32,7 @@ class WorkCreate extends Component {
     return (
       <div style={{ height: '100%', width: '100%' }}>
         {redirectAfterSubmit}
-        <h1 style={{ marginBottom: '2rem', textAlign: 'center' }}>Create Work Form</h1>
+        <h1 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>Create Work Form</h1>
         {form}
       </div>
     );

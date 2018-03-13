@@ -1,9 +1,9 @@
 .DropArea {
-
+  border: 5px solid rgba(0, 110, 182, 1);
+  width:  200px;
+  height: 100px;
 }
 
 #drop_zone {
-    border: 5px solid blue;
-    width:  200px;
-    height: 100px;
+
   }

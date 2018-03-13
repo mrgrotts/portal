@@ -41,13 +41,13 @@
 }
 
 .Owner {
-  background-color: #006eb6;
+  background-color: rgba(0, 110, 182, 1);
 }
 
 /* LOCATION STYLES */
 
 .Headquarters {
-  background-color: #006eb6;
+  background-color: rgba(0, 110, 182, 1);
 }
 
 /* WORK ORDER STYLES */
@@ -60,7 +60,7 @@
 }
 
 .Unassigned {
-  background-color: red;
+  background-color: rgba(235, 57, 57, 0.80);
 }
 
 .Prep {
@@ -72,7 +72,7 @@
 }
 
 .InProgress {
-  background-color: blue;
+  background-color: rgba(0, 110, 182, 0.6);
 }
 
 .Pending {
@@ -87,12 +87,14 @@
   background-color: brown;
 }
 
+/* */
 .Closed {
-  background-color: green;
+  background-color: darkgreen;
 }
 
 /* INVOICE STYLES */
 
 .Paid {
-  background-color: green;
+  border: 6px solid green;
+  background-color: darkgreen;
 }

@@ -32,7 +32,7 @@ class WorkUpdate extends Component {
     return (
       <div style={{ height: '100%', width: '100%' }}>
         {redirectAfterSubmit}
-        <h1 style={{ marginBottom: '2rem', textAlign: 'center' }}>Update Work Form</h1>
+        <h1 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>Update Work Form</h1>
         {form}
       </div>
     );
@@ -40,7 +40,7 @@ class WorkUpdate extends Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  work: state.work.workList.find(work => work._id === props.match.params.id),
+  work: state.work.workList.find(work => work._id === props.match.params.workId),
   userId: state.auth.userId,
   token: state.auth.token,
   loading: state.work.loading,

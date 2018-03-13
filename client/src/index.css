@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Roboto:400,100,200,300,500,700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,500,600,700|Roboto:100,200,300,400,500,600,700');
 
 html {
   box-sizing: border-box;
@@ -18,10 +18,32 @@ body {
   height: 100%;
 }
 
+/* FONT CSS PROPERTY 
+font: font-style font-variant font-weight font-size/line-height font-family
+font: normal normal 600 1.4rem/3  'Open Sans', sans-serif;
+*/
+
 h1 {
-  font-weight: 400;
+  font: normal normal 400 2rem/3  'Open Sans', sans-serif;
 }
 
+h2 {
+  font: normal normal 400 1.8rem/3  'Open Sans', sans-serif;
+}
+
+h3 {
+  font: normal normal 500 1.4rem/3  'Open Sans', sans-serif;
+}
+
+h4 {
+  font: normal normal 600 1.4rem/3  'Open Sans', sans-serif;
+}
+
+a {
+  color: rgba(0, 110, 182, 1);
+  font-weight: 600;
+  text-decoration: none;
+}
 /* Smartphones (portrait and landscape) ----------- */
 
 /* @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {

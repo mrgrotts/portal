@@ -4,7 +4,8 @@ import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import asyncComponent from '../hoc/asyncComponent';
 
 // ADMIN COMPONENTS
-import Builder from '../containers/Admin/Builder/Builder';
+import Dashboard from '../containers/Admin/Dashboard/Dashboard';
+import Home from '../containers/Shared/Home/Home';
 import Logout from '../containers/Shared/Auth/Logout/Logout';
 const asyncAuth = asyncComponent(() => import('../containers/Shared/Auth/Auth'));
 const asyncCompanyCreate = asyncComponent(() => import('../containers/Admin/Company/CompanyForm/CompanyCreate'));
@@ -29,7 +30,8 @@ const AdminRoutes = props => (
     <Route path="/work/create" component={asyncWorkCreate} />
     <Route path="/work/:workId" component={asyncWorkUpdate} />
     <Route exact path="/work" component={asyncWorkList} />
-    <Route exact path="/" component={Builder} />
+    <Route exact path="/dashboard" component={Dashboard} />
+    <Route exact path="/" component={Home} />
     <Redirect to="/" />
   </Switch>
 );

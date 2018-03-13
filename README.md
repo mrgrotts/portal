@@ -83,7 +83,7 @@ All henceforth stated goals are by end of quarter.
 
 ### Q4 2018
 
-* Builder
+* Dashboard
 * Drag and Drop
 * E-Commerce
 * Live Chat Agent
