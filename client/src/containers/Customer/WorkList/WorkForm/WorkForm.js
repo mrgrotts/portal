@@ -2,7 +2,7 @@ import api from '../../../../api';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { SingleDatePicker } from 'react-dates';
 import moment from 'moment';
 
@@ -107,11 +107,24 @@ class WorkForm extends Component {
   };
 
   componentDidMount() {
-    console.log(this.refs.WorkFormRef);
-    this.getLocations();
+    // console.log(this.state.workForm);
+    if (this.locationsRef) {
+      this.getLocations();
+    }
 
-    // console.log(this.props.locations[0]._id);
-    // console.log(this.state.workForm.location.value);
+    const handleMedia = this.onUpload.bind(this);
+    this.mediaRef.addEventListener('click', handleMedia);
+
+    const handleSubmit = this.onSubmit.bind(this);
+    this.node.addEventListener('submit', handleSubmit);
+  }
+
+  componentWillUnmount() {
+    const handleMedia = this.onUpload.bind(this);
+    this.mediaRef.removeEventListener('click', handleMedia);
+
+    const handleSubmit = this.onSubmit.bind(this);
+    this.node.removeEventListener('submit', handleSubmit);
   }
 
   getLocations = async () => {
@@ -145,7 +158,7 @@ class WorkForm extends Component {
   };
 
   updateField = (event, field) => {
-    console.log(event.target);
+    // console.log(event.target);
     // 2 spreads to deeply clone state and get copies of nested properties from state
     const workForm = {
       ...this.state.workForm,
@@ -169,39 +182,41 @@ class WorkForm extends Component {
     return this.setState({ workForm, formValid });
   };
 
-  handleChange = event => this.setState({ [event.target.name]: event.target.value });
-
   onRequestedDateChange = requestedDate => this.setState({ requestedDate });
   onRequestedDateFocusChange = ({ focused: requestedDateFocused }) => this.setState({ requestedDateFocused });
 
   onFileUpload = event => {
     event.stopPropagation();
     event.preventDefault();
-    console.log(event.target);
+    // console.log(event.target);
 
-    return this.setState({ media: event.target.files });
+    if (this.mediaRef) {
+      return this.setState({ media: event.target.files });
+    }
   };
 
   onUpload = event => {
     event.stopPropagation();
     event.preventDefault();
-    this.props.uploadMedia(this.props.work._id, this.state.media);
+
+    if (this.mediaRef) {
+      this.props.uploadMedia(this.state.media, this.props.work._id);
+    }
   };
 
   onSubmit = event => {
     event.preventDefault();
-    this.props.uploadMedia(this.props.work._id, this.state.media);
-
-    this.props.onSubmit({
-      status: this.state.workForm.status.value,
-      category: this.state.workForm.category.value,
-      location: this.state.workForm.location.value,
-      description: this.state.workForm.description.value,
-      media: this.state.workForm.media.value,
-      requestedDate: this.state.requestedDate
-    });
-
-    // console.log(this.state);
+    // this.props.uploadMedia(this.props.work._id, this.state.media);
+    if (this.node) {
+      this.props.onSubmit({
+        status: this.state.workForm.status.value,
+        category: this.state.workForm.category.value,
+        location: this.state.workForm.location.value,
+        description: this.state.workForm.description.value,
+        requestedDate: this.state.requestedDate,
+        media: this.state.media
+      });
+    }
   };
 
   onCancel = event => {
@@ -281,12 +296,8 @@ class WorkForm extends Component {
     });
   };
 
-  renderGallery = media => {
-    if (this.props.work)
-      if (media === this.state.media && media.length > 0) {
-        return media.map((m, i) => <img key={i} className={classes.WorkFormGalleryThumbnail} src={m} alt={m} onClick={this.openFullscreen} />);
-      }
-  };
+  renderGallery = media =>
+    media.map((m, i) => <img key={i} className={classes.WorkFormGalleryThumbnail} src={m} alt={m} onClick={this.openFullscreen} />);
 
   render() {
     let gallery = null;
@@ -294,6 +305,7 @@ class WorkForm extends Component {
     let progress = null;
     let workFields = [];
     let form = <Spinner />;
+    const redirectAfterSubmit = this.props.success ? <Redirect to="/work" /> : null;
 
     for (let key in this.state.workForm) {
       workFields.push({
@@ -315,7 +327,13 @@ class WorkForm extends Component {
       }
 
       form = (
-        <form className={classes.WorkForm} onSubmit={this.onSubmit} encType="multipart/form-data">
+        <form
+          className={classes.WorkForm}
+          ref={node => {
+            this.node = node;
+          }}
+          onSubmit={this.onSubmit}
+          encType="multipart/form-data">
           {workFields.map(field => {
             if (!this.props.work && field.id === 'status') {
               return null;
@@ -323,7 +341,12 @@ class WorkForm extends Component {
 
             if (this.props.locations.length === 0 && field.id === 'location') {
               return (
-                <div key={field.id} className={classes.WorkFormInputContainer}>
+                <div
+                  key={field.id}
+                  ref={locationRef => {
+                    this.locationsRef = locationRef;
+                  }}
+                  className={classes.WorkFormInputContainer}>
                   <div className={classes.WorkFormAddLocation}>
                     <label className={classes.WorkFormAddLocationLabel} htmlFor={field.id}>
                       {toTitleCase(field.id)}
@@ -345,7 +368,6 @@ class WorkForm extends Component {
                 update={event => this.updateField(event, field.id)}
                 fieldType={field.config.fieldType}
                 fieldConfig={field.config.fieldConfig}
-                // ref={field.id}
                 value={field.config.value}
                 validation={field.config.validation}
                 touched={field.config.touched}
@@ -374,9 +396,14 @@ class WorkForm extends Component {
               <label htmlFor="media">
                 <input id="media" name="media" type="file" onChange={this.onFileUpload} multiple />
               </label>
-              <Button ButtonType="Upload" clicked={this.onUpload} type="button">
-                Choose Files
-              </Button>
+              <div
+                ref={mediaRef => {
+                  this.mediaRef = mediaRef;
+                }}>
+                <Button ButtonType="Upload" clicked={this.onUpload} type="button">
+                  Upload Files
+                </Button>
+              </div>
             </div>
           </div>
 
@@ -396,6 +423,7 @@ class WorkForm extends Component {
 
     return (
       <Auxiliary>
+        {redirectAfterSubmit}
         {fullscreen}
         {progress}
         {form}
@@ -407,7 +435,8 @@ class WorkForm extends Component {
 const mapStateToProps = state => ({
   locations: state.locations.locations,
   media: state.work.media,
-  loading: state.locations.loading
+  loading: state.locations.loading,
+  success: state.work.success
 });
 
 const mapDispatchToProps = dispatch => ({

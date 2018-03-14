@@ -42,7 +42,7 @@
   transition: all 0.3s ease-out;
 }
 
-.WorkFormUpload {
+/* .WorkFormUpload {
   display: inline-block;
   margin-top: 1.5rem;
   overflow: hidden;
@@ -55,7 +55,7 @@
   left: 0;
   top: 0;
   opacity: 0;
-}
+} */
 
 .WorkFormAddLocation {
   box-sizing: inherit;

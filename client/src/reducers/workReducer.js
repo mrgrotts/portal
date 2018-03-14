@@ -154,12 +154,9 @@ const workReducer = (state = initialState, action) => {
         success: false
       };
     case actions.UPLOAD_MEDIA_SUCCESS:
-      console.log(action);
-      const uploadedMedia = { ...action.work.media };
-
       return {
         ...state,
-        workList: state.workList.media.concat(uploadedMedia),
+        workList: updateWork({ ...action.work }),
         error: null,
         loading: false,
         success: true
@@ -172,45 +169,6 @@ const workReducer = (state = initialState, action) => {
         success: false
       };
     case actions.UPLOAD_MEDIA_END:
-      return {
-        ...state,
-        success: false
-      };
-    case actions.DOWNLOAD_MEDIA_START:
-      return {
-        ...state,
-        error: null,
-        loading: true,
-        success: false
-      };
-    case actions.DOWNLOAD_MEDIA_SUCCESS:
-      console.log(action);
-      const media = { ...action.work.media };
-      const work = readWork({ ...action.work });
-      const workList = {
-        ...state.workList,
-        [work._id]: {
-          ...state.workList[work._id],
-          media
-        }
-      };
-      console.log(workList);
-
-      return {
-        ...state,
-        workList,
-        error: null,
-        loading: false,
-        success: true
-      };
-    case actions.DOWNLOAD_MEDIA_FAIL:
-      return {
-        ...state,
-        error: action.error,
-        loading: false,
-        success: false
-      };
-    case actions.DOWNLOAD_MEDIA_END:
       return {
         ...state,
         success: false

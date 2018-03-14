@@ -425,7 +425,7 @@ export const DOWNLOAD_MEDIA_SUCCESS = 'download_media_success';
 export const DOWNLOAD_MEDIA_FAIL = 'download_media_fail';
 export const DOWNLOAD_MEDIA_END = 'download_media_end';
 
-export const uploadMedia = (id, files) => async dispatch => {
+export const uploadMedia = (files, id) => async dispatch => {
   const userId = localStorage.getItem('userId');
   const token = localStorage.getItem('token');
 
@@ -438,14 +438,13 @@ export const uploadMedia = (id, files) => async dispatch => {
   let media = new FormData();
 
   for (let file in files) {
-    console.log(files[file]);
+    // console.log(files[file]);
 
     media.append('media', files[file]);
-    media.append('workId', id);
     media.append('userId', userId);
   }
 
-  console.log(media);
+  // console.log(media);
 
   let url = `/users/${userId}/work/${id}/media`;
 
@@ -467,9 +466,9 @@ export const uploadMediaStart = () => ({
   type: UPLOAD_MEDIA_START
 });
 
-export const uploadMediaSuccess = media => ({
+export const uploadMediaSuccess = work => ({
   type: UPLOAD_MEDIA_SUCCESS,
-  media
+  work
 });
 
 export const uploadMediaFail = error => ({
@@ -479,46 +478,6 @@ export const uploadMediaFail = error => ({
 
 export const uploadMediaEnd = () => ({
   type: UPLOAD_MEDIA_END
-});
-
-export const downloadMedia = id => async dispatch => {
-  const userId = localStorage.getItem('userId');
-  const token = localStorage.getItem('token');
-
-  if (!token) {
-    dispatch(authLogout());
-  }
-
-  dispatch(downloadMediaStart());
-
-  let url = `/users/${userId}/work/${id}/media`;
-
-  await api
-    .get(url)
-    .then(response => dispatch(downloadMediaSuccess(response.data)))
-    .then(() => dispatch(downloadMediaEnd()))
-    .catch(error => {
-      console.log(error);
-      dispatch(downloadMediaFail(error));
-    });
-};
-
-export const downloadMediaStart = () => ({
-  type: DOWNLOAD_MEDIA_START
-});
-
-export const downloadMediaSuccess = media => ({
-  type: DOWNLOAD_MEDIA_SUCCESS,
-  media
-});
-
-export const downloadMediaFail = error => ({
-  type: DOWNLOAD_MEDIA_FAIL,
-  error
-});
-
-export const downloadMediaEnd = () => ({
-  type: DOWNLOAD_MEDIA_END
 });
 
 export const readWorkList = () => async dispatch => {
@@ -572,6 +531,20 @@ export const createWork = work => async dispatch => {
   dispatch(createWorkStart());
 
   let url = `/users/${userId}/work`;
+
+  let media = null;
+  if (work.media.length > 0) {
+    media = new FormData();
+
+    for (let file in work.media) {
+      console.log(work.media[file]);
+
+      media.append('media', work.media[file]);
+      media.append('userId', userId);
+    }
+  }
+
+  media = work.media;
 
   await api
     .post(url, work)

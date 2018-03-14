@@ -97,6 +97,16 @@ const Input = props => {
         />
       );
       break;
+    // case 'hidden':
+    //   field = (
+    //     <input
+    //       key={props.name}
+    //       {...props.fieldConfig}
+    //       name={props.name}
+    //       value={props.value}
+    //     />
+    //   );
+    //   break;
     default:
       field = (
         <input

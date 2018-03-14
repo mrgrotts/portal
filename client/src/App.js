@@ -26,8 +26,9 @@ registerInterfaceWithDefaultTheme(CSSInterface);
 class App extends Component {
   async componentDidMount() {
     await this.props.authState();
-    await this.props.authCurrentUser();
+
     if (this.props.isAuthenticated) {
+      await this.props.authCurrentUser();
       await this.props.readCompany(this.props.user.company);
     }
   }

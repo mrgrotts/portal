@@ -2,7 +2,7 @@ import api from '../../../../api';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 // import Auxiliary from '../../../../hoc/Auxiliary';
 import handleErrors from '../../../../hoc/handleErrors';
@@ -28,11 +28,8 @@ class WorkCreate extends Component {
       form = <WorkForm onSubmit={this.onSubmit} onCancel={this.onCancel} />;
     }
 
-    const redirectAfterSubmit = this.props.success ? <Redirect to="/work" {...this.props.work} /> : null;
-
     return (
       <div style={{ height: '100%', width: '100%' }}>
-        {redirectAfterSubmit}
         <h1 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>Create Work Form</h1>
         {form}
       </div>
@@ -41,10 +38,7 @@ class WorkCreate extends Component {
 }
 
 const mapStateToProps = state => ({
-  userId: state.auth.userId,
-  token: state.auth.token,
-  loading: state.work.loading,
-  success: state.work.success
+  loading: state.work.loading
 });
 
 const mapDispatchToProps = dispatch => ({
