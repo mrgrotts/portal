@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const tokenFactory = require('../factories/tokenFactory');
 const userFactory = require('../factories/userFactory');
 
-class Puppeteer {
+class PuppetFactory {
   static async build() {
     const browser = await puppeteer.launch({
       headless: false,
@@ -10,7 +10,7 @@ class Puppeteer {
     });
 
     const page = await browser.newPage();
-    const App = new Puppeteer(page);
+    const App = new PuppetFactory(page);
 
     return new Proxy(App, {
       get: function(target, property) {
@@ -48,26 +48,60 @@ class Puppeteer {
     }, path);
   }
 
-  post(path, data) {
+  post(path, body) {
     return this.page.evaluate(
-      (p, d) => {
+      (p, b) => {
         return fetch(p, {
           method: 'POST',
           credentials: 'same-origin',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(d)
+          body: JSON.stringify(b)
         }).then(res => res.json());
       },
       path,
-      data
+      body
     );
   }
 
-  execRequests(actions) {
+  put(path, body) {
+    return this.page.evaluate(
+      (p, b) => {
+        return fetch(p, {
+          method: 'PUT',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(b)
+        }).then(res => res.json());
+      },
+      path,
+      body
+    );
+  }
+
+  delete(path, body) {
+    return this.page.evaluate(
+      (p, b) => {
+        return fetch(p, {
+          method: 'DELETE',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(b)
+        }).then(res => res.json());
+      },
+      path,
+      body
+    );
+  }
+
+  execute(actions) {
     return Promise.all(actions.map(({ method, path, data }) => this[method](path, data)));
   }
 }
 
-module.exports = Puppeteer;
+module.exports = PuppetFactory;
